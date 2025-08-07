@@ -1,0 +1,130 @@
+/* Robot Loading Animations */
+
+@keyframes robotFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(-1deg);
+  }
+}
+
+@keyframes curtainLift {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0);
+  }
+}
+
+@keyframes ropeSwing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes progressGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(147, 51, 234, 0.4);
+  }
+}
+
+@keyframes lightRay {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Utility classes for robot loader */
+.robot-float {
+  animation: robotFloat 3s ease-in-out infinite;
+}
+
+.curtain-lift {
+  animation: curtainLift 1s ease-in-out forwards;
+}
+
+.sparkle-float {
+  animation: sparkleFloat 2s ease-out infinite;
+}
+
+.rope-swing {
+  animation: ropeSwing 2s ease-in-out infinite;
+}
+
+.progress-glow {
+  animation: progressGlow 2s ease-in-out infinite;
+}
+
+.light-ray {
+  animation: lightRay 3s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .robot-container {
+    scale: 0.8;
+  }
+  
+  .loading-text {
+    font-size: 1.25rem;
+  }
+  
+  .progress-bar {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .robot-container {
+    scale: 0.7;
+  }
+  
+  .loading-text {
+    font-size: 1rem;
+  }
+  
+  .progress-bar {
+    width: 240px;
+  }
+}
