@@ -44,27 +44,77 @@ body {
     5px 5px 10px rgba(22, 17, 29, 0.23);
   /* Shadow 2 */
 
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .neumorphic-button:hover {
-  background: linear-gradient(135deg, #00d2ff, #3aefc4);
-  /* xanh gradient như bạn yêu cầu */
+  background: linear-gradient(
+    90deg,
+    #00d2ff 0%,
+    #3aefc4 50%,
+    #00d2ff 100%
+  );
   color: white;
+  transform: translateY(-5px) scale(1.05);
   box-shadow:
-    -10px -10px 20px #FAFBFF,
-    10px 10px 20px rgba(22, 17, 29, 0.23);
+    -12px -12px 24px #FAFBFF,
+    12px 12px 24px rgba(22, 17, 29, 0.25),
+    0 8px 25px rgba(0, 210, 255, 0.4);
 }
 
 .neumorphic-button:active {
+  background: linear-gradient(
+    90deg,
+    #00d2ff 0%,
+    #3aefc4 50%,
+    #00d2ff 100%
+  );
+  color: white;
+  transform: translateY(-2px) scale(1.02);
   box-shadow:
-    inset -5px -5px 10px #FAFBFF,
-    inset 5px 5px 10px rgba(22, 17, 29, 0.23);
+    inset -8px -8px 16px rgba(255,255,255,0.1),
+    inset 8px 8px 16px rgba(0, 210, 255, 0.3),
+    0 4px 15px rgba(0, 210, 255, 0.2);
+  transition: all 0.1s ease;
 }
 
 .neumorphic-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+}
+
+/* Button glow animation */
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow:
+      -12px -12px 24px #FAFBFF,
+      12px 12px 24px rgba(22, 17, 29, 0.25),
+      0 8px 25px rgba(0, 210, 255, 0.4);
+  }
+  50% {
+    box-shadow:
+      -15px -15px 30px #FAFBFF,
+      15px 15px 30px rgba(22, 17, 29, 0.3),
+      0 12px 35px rgba(0, 210, 255, 0.6);
+  }
+}
+
+.neumorphic-button:hover {
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+/* Button SVG icon animation */
+.neumorphic-button svg {
+  transition: all 0.3s ease;
+}
+
+.neumorphic-button:hover svg {
+  transform: translateX(3px);
+}
+
+.neumorphic-button:active svg {
+  transform: translateX(1px);
 }
 
 /* Header Neumorphic Styles */
@@ -535,5 +585,172 @@ body {
 
 .app-item[title="Spotify"]:hover {
   background: #1DB954 !important;
+}
+
+/* Animation Loop Section Styles */
+@keyframes carousel-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2844px); /* 9 items * 316px (300px width + 16px gap) */
+  }
+}
+
+.animation-track {
+  will-change: transform;
+}
+
+.animation-track:hover {
+  animation-play-state: paused;
+}
+
+.animation-card {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, box-shadow;
+}
+
+.animation-card:hover {
+  animation-play-state: paused;
+}
+
+/* Pause animation when any card is hovered */
+.animation-track:has(.animation-card:hover) {
+  animation-play-state: paused;
+}
+
+/* Enhanced card interactions */
+.animation-card:hover {
+  transform: translateY(-20px) scale(1.05) !important;
+}
+
+.animation-card:active {
+  transform: translateY(-15px) scale(1.02) !important;
+  transition: transform 0.1s ease;
+}
+
+/* Smooth card transitions */
+.animation-card * {
+  transition: all 0.3s ease;
+}
+
+/* Hover glow effect */
+.animation-card:hover::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
+  border-radius: 28px;
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(10px);
+  animation: glow-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+/* Custom scrollbar for animation container */
+.section-1::-webkit-scrollbar {
+  display: none;
+}
+
+.section-1 {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Status indicator animation */
+@keyframes status-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3), -4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.5), -6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.3);
+  }
+}
+
+/* Robot Animation Keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes robotBob {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes robotSway {
+  0%, 100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(5px) rotate(2deg);
+  }
+}
+
+@keyframes robotGlow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 10px rgba(0, 210, 255, 0.3));
+  }
+  50% {
+    filter: brightness(1.2) drop-shadow(0 0 20px rgba(0, 210, 255, 0.6));
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-60px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes robotEyeBlink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
 }
 
