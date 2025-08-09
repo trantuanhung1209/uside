@@ -62,7 +62,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="header border-b border-gray-200 bg-white shadow-sm">
+      <header className="header border-b border-gray-200 bg-background shadow-sm sticky z-999 top-0 left-0 right-0">
         <div className="container mx-auto px-4">
           <div className="inner-wrap flex items-center justify-between">
             <div 

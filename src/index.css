@@ -3,7 +3,7 @@
 
 
 body {
-  background: #EFF2F9;
+  background: #f0f1f4;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -11,7 +11,7 @@ body {
   --color-primary: #e0f7fa;              /* màu xanh nhạt / dùng làm nền nổi bật */
   --color-secondary: #e4ebf1;            /* màu xám xanh nhạt */
   --color-accent: #00d2ff;               /* xanh cyan (accent, hover, active) */
-  --color-background: #EFF2F9;           /* màu nền chính */
+  --color-background: #f0f1f4;           /* màu nền chính */
   --color-text-primary: #1f1f1f;                 /* màu chữ chính */
   --color-text-secondary: #6b6b6b;       /* màu chữ phụ / mô tả */
   --color-text-accent: #00d2ff;          /* chữ nổi bật */
@@ -119,10 +119,8 @@ body {
 
 /* Header Neumorphic Styles */
 .header {
-  background: #EFF2F9;
   padding: 20px 0;
   transition: all 0.3s ease;
-  position: relative;
   
   /* Neumorphic shadow effect */
   box-shadow:
@@ -754,3 +752,59 @@ body {
   }
 }
 
+.inf-scroll-hozizon {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.inf-scroll-hozizon:hover .logos {
+    animation-play-state: paused;
+}
+
+.inf-scroll-hozizon::before {
+    left: 0px;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, var(--color-background));
+}
+
+.inf-scroll-hozizon::after {
+    right: 0px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--color-background));
+}
+
+.inf-scroll-hozizon::before, .inf-scroll-hozizon::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    width: 15rem;
+    z-index: 2;
+    height: 100%;
+}
+
+.inf-scroll-hozizon .logos img {
+    width: 100px;
+    height: 100px;
+    margin: 0 40px;
+    display: inline-block;
+}
+
+.inf-scroll-hozizon .logos img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.inf-scroll-hozizon .logos {
+    display: inline-block;
+    white-space: nowrap;
+    animation: 10s linear 0s infinite normal none running scroll;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+    
+}
