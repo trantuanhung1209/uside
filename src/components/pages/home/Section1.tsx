@@ -1,30 +1,48 @@
 const Section1 = () => {
+  // Tạo danh sách hình ảnh đa dạng cho infinite scroll
+  const images = [
+    "/images_uside/pet_uside_light.png",
+    "/images_uside/pet_uside_dark.png",
+    "/images_uside/uside_light.png",
+    "/images_uside/uside_dark.png",
+    "/images_uside/mascot_robot.png",
+    "/images_uside/pet_uside_light.png",
+    "/images_uside/pet_uside_dark.png",
+    "/images_uside/uside_light.png",
+  ];
+
   return (
-    <section className="section-1 py-[30px]">
-      <div className="inf-scroll-hozizon">
-        <div className="logos">
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-        </div>
-        <div className="logos">
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
-          <img src="/images_uside/pet_uside_light.png" alt="" />
+    <section className="section-1 overflow-hidden bg-background">
+      <div
+        className="bg-background p-6 md:p-8 mb-8"
+        style={{
+          boxShadow:
+            "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
+        }}
+      >
+        <div className="inf-scroll-hozizon">
+          {/* First set of logos for seamless loop */}
+          <div className="logos">
+            {images.map((src, index) => (
+              <img
+                key={`first-${index}`}
+                src={src}
+                alt={`USide mascot ${index + 1}`}
+                loading="lazy"
+              />
+            ))}
+          </div>
+          {/* Duplicate set for seamless infinite effect */}
+          <div className="logos">
+            {images.map((src, index) => (
+              <img
+                key={`second-${index}`}
+                src={src}
+                alt={`USide mascot duplicate ${index + 1}`}
+                loading="lazy"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

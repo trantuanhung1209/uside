@@ -1,4 +1,7 @@
+import { useMusic } from '../../../hooks';
+
 const SectionHero = () => {
+  const { isPlaying, toggleMusic } = useMusic();
   return (
     <>
       <section
@@ -529,14 +532,66 @@ const SectionHero = () => {
 
                 {/* Bottom decorative elements */}
                 <div className="flex justify-between items-center">
-                  <div
-                    className="w-24 h-24 rounded-2xl transition-all duration-300 hover:scale-105"
-                    style={{
-                      backgroundColor: "var(--color-background)",
-                      boxShadow:
-                        "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.2)",
-                    }}
-                  ></div>
+                  <button
+                    className="w-24 h-24 transition-all duration-500 hover:scale-110 active:scale-95 group relative overflow-hidden focus:outline-none cursor-pointer"
+                    onClick={toggleMusic}
+                    title={isPlaying ? "Dừng nhạc" : "Phát nhạc"}
+                  >
+                    {/* Robot Music Button - Play State */}
+                    <img
+                      src="/images_uside/button_play.png"
+                      alt="Robot Play Button"
+                      className={`w-full h-full object-contain transition-all duration-700 ease-in-out transform ${
+                        isPlaying 
+                          ? "opacity-0 scale-75 rotate-12" 
+                          : "opacity-100 scale-100 rotate-0 group-hover:scale-105"
+                      }`}
+                      style={{
+                        filter: isPlaying 
+                          ? "blur(2px)" 
+                          : "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) brightness(1.1)"
+                      }}
+                    />
+                    
+                    {/* Robot Music Button - Active/Playing State */}
+                    <img
+                      src="/images_uside/button_play_active.png"
+                      alt="Robot Playing Button"
+                      className={`absolute top-0 left-0 w-full h-full object-contain transition-all duration-700 ease-in-out transform ${
+                        isPlaying 
+                          ? "opacity-100 scale-100 rotate-0 animate-pulse" 
+                          : "opacity-0 scale-75 -rotate-12"
+                      }`}
+                      style={{
+                        filter: isPlaying 
+                          ? "drop-shadow(0 6px 12px rgba(0, 210, 255, 0.4)) brightness(1.2) saturate(1.3)" 
+                          : "blur(2px)"
+                      }}
+                    />
+
+                    {/* Interactive glow effect */}
+                    <div 
+                      className={`absolute inset-0 rounded-full transition-all duration-500 pointer-events-none ${
+                        isPlaying 
+                          ? "bg-gradient-to-br from-cyan-400/30 via-blue-500/20 to-purple-600/30 animate-pulse scale-110" 
+                          : "bg-gradient-to-br from-transparent via-transparent to-transparent scale-100 group-hover:from-cyan-400/10 group-hover:via-blue-500/5 group-hover:to-purple-600/10 group-hover:scale-105"
+                      }`}
+                      style={{
+                        background: isPlaying 
+                          ? "radial-gradient(circle, rgba(0,210,255,0.2) 0%, rgba(58,239,196,0.15) 50%, rgba(147,51,234,0.1) 100%)"
+                          : undefined
+                      }}
+                    />
+
+                    {/* Ripple effect on click */}
+                    <div 
+                      className="absolute inset-0 rounded-full opacity-0 group-active:opacity-100 transition-opacity duration-200 pointer-events-none"
+                      style={{
+                        background: "radial-gradient(circle, rgba(0,210,255,0.4) 0%, rgba(58,239,196,0.2) 70%, transparent 100%)",
+                        animation: "ripple 0.6s ease-out"
+                      }}
+                    />
+                  </button>
                   <div className="flex-1 mx-6 space-y-3">
                     <div
                       className="h-3 rounded-full transition-all duration-300 hover:scale-105"

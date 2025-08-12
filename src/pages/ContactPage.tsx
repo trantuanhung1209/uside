@@ -1,5 +1,5 @@
 import { Layout } from '../components/layout';
-import { Button, Input } from '../components/ui';
+import { BannerBreadcrumb, Button, Input } from '../components/ui';
 import { useState } from 'react';
 
 const ContactPage: React.FC = () => {
@@ -24,7 +24,11 @@ const ContactPage: React.FC = () => {
 
   return (
     <Layout>
-      <main className="py-8">
+      <BannerBreadcrumb
+        pageName="Liên hệ"
+        image="/images_uside/banner_contact.png"
+      />
+      <section className="py-8">
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-3xl font-bold text-gray-900 mb-8">
             Liên hệ với chúng tôi
@@ -91,7 +95,7 @@ const ContactPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </main>
+      </section>
     </Layout>
   );
 };

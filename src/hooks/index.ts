@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 // Export custom hooks
 export { default as useAppLoading } from './useAppLoading';
+export { useMusic } from './useMusic';
 
 /**
  * Custom hook for managing local storage state
