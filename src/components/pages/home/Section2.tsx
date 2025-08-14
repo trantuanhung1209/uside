@@ -52,7 +52,7 @@ export default function Section2() {
   return (
     <>
       <section className="section-2 py-10 sm:py-16 lg:py-20 border-b border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
             title="Giới thiệu về chúng tôi"
             desc="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, voluptatum."
@@ -295,7 +295,7 @@ export default function Section2() {
                 <div className="flex flex-col gap-6">
                   {/* Card 1 - Top Left */}
                   <div
-                    className="relative cursor-pointer transition-all duration-700 ease-in-out hover:scale-105 hover:-translate-y-2 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -320,7 +320,7 @@ export default function Section2() {
 
                   {/* Card 2 */}
                   <div
-                    className="relative cursor-pointer transition-all duration-700 ease-in-out hover:scale-105 hover:-translate-y-2 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -393,7 +393,7 @@ export default function Section2() {
                 <div className="flex flex-col gap-6">
                   {/* Card 3 */}
                   <div
-                    className="relative cursor-pointer transition-all duration-700 ease-in-out hover:scale-105 hover:-translate-y-2 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -418,7 +418,7 @@ export default function Section2() {
 
                   {/* Card 4 */}
                   <div
-                    className="relative cursor-pointer transition-all duration-700 ease-in-out hover:scale-105 hover:-translate-y-2 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",

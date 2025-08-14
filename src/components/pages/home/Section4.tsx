@@ -20,7 +20,7 @@ const Section4 = () => {
   return (
     <>
       <div className="section-4 py-10 md:py-16 lg:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
             title="Tin tức mới nhất"
             desc="Cập nhật những thông tin mới nhất từ chúng tôi."

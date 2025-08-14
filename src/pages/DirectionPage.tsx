@@ -1,7 +1,159 @@
-import { BannerBreadcrumb } from '../components';
-import { Layout } from '../components/layout';
+import { BannerBreadcrumb } from "../components";
+import { Layout } from "../components/layout";
+import { useState, useEffect } from "react";
+import Title from "../components/ui/Title";
+import { CareerCard } from "../components/pages/direction/CareerCard";
+
+interface CareerPath {
+  id: string;
+  title: string;
+  description: string;
+  image?: string; // Optional for future use
+  icon: string;
+  skills: string[];
+  opportunities: string;
+  gradient: string;
+}
+
+const careerPaths: CareerPath[] = [
+  {
+    id: "software-tester",
+    title: "Software Tester",
+    description:
+      "Chuyên gia kiểm thử phần mềm, đảm bảo chất lượng và hiệu suất của các ứng dụng.",
+    image: "/images_uside/career_software_tester.png",
+    icon: "🔍",
+    skills: [
+      "Manual Testing",
+      "Automation Testing",
+      "API Testing",
+      "Performance Testing",
+    ],
+    opportunities: "Nhu cầu cao trong các công ty công nghệ và dịch vụ số.",
+    gradient: "from-blue-400 to-purple-500",
+  },
+  {
+    id: "web-developer",
+    title: "Web Developer",
+    description:
+      "Phát triển các ứng dụng web hiện đại với công nghệ tiên tiến.",
+    image: "/images_uside/career_web_developer.png",
+    icon: "💻",
+    skills: ["HTML/CSS", "JavaScript", "React/Vue", "Node.js", "Database"],
+    opportunities: "Cơ hội việc làm đa dạng từ startup đến tập đoàn lớn.",
+    gradient: "from-green-400 to-blue-500",
+  },
+  {
+    id: "app-developer",
+    title: "App Developer",
+    description: "Tạo ra các ứng dụng di động sáng tạo cho iOS và Android.",
+    image: "/images_uside/career_app_developer.png",
+    icon: "📱",
+    skills: ["React Native", "Flutter", "Swift", "Kotlin", "UI/UX Design"],
+    opportunities:
+      "Thị trường mobile đang bùng nổ với triển vọng tăng trưởng mạnh.",
+    gradient: "from-purple-400 to-pink-500",
+  },
+  {
+    id: "designer",
+    title: "UI/UX Designer",
+    description: "Thiết kế trải nghiệm người dùng trực quan và thân thiện.",
+    image: "/images_uside/career_ui_ux_designer.png",
+    icon: "🎨",
+    skills: ["Figma", "Adobe Creative Suite", "User Research", "Prototyping"],
+    opportunities:
+      "Vai trò quan trọng trong mọi dự án số hóa và chuyển đổi công nghệ.",
+    gradient: "from-pink-400 to-red-500",
+  },
+  {
+    id: "data-scientist",
+    title: "Data Scientist",
+    description:
+      "Phân tích dữ liệu lớn để tạo ra những insights có giá trị cho doanh nghiệp.",
+    image: "/images_uside/career_data_scientist.png",
+    icon: "📊",
+    skills: [
+      "Python/R",
+      "Machine Learning",
+      "Statistics",
+      "Data Visualization",
+    ],
+    opportunities: "Một trong những ngành hot nhất với mức lương hấp dẫn.",
+    gradient: "from-cyan-400 to-blue-500",
+  },
+  {
+    id: "devops-engineer",
+    title: "DevOps Engineer",
+    description:
+      "Kết nối phát triển và vận hành, tự động hóa quy trình triển khai.",
+    image: "/images_uside/career_devops_engineer.png",
+    icon: "⚙️",
+    skills: ["Docker", "Kubernetes", "AWS/Azure", "CI/CD", "Linux"],
+    opportunities:
+      "Nhu cầu cao trong thời đại cloud computing và microservices.",
+    gradient: "from-orange-400 to-red-500",
+  },
+  {
+    id: "cybersecurity",
+    title: "Cybersecurity Specialist",
+    description: "Bảo vệ hệ thống và dữ liệu khỏi các mối đe dọa an ninh mạng.",
+    image: "/images_uside/career_cybersecurity.png",
+    icon: "🛡️",
+    skills: [
+      "Network Security",
+      "Penetration Testing",
+      "Incident Response",
+      "Risk Assessment",
+    ],
+    opportunities:
+      "Lĩnh vực quan trọng với sự phát triển mạnh mẽ của công nghệ.",
+    gradient: "from-red-400 to-pink-500",
+  },
+  {
+    id: "blockchain-developer",
+    title: "Blockchain Developer",
+    description: "Phát triển các ứng dụng phi tập trung và smart contracts.",
+    image: "/images_uside/career_blockchain_developer.png",
+    icon: "⛓️",
+    skills: ["Solidity", "Web3.js", "Smart Contracts", "DeFi", "NFTs"],
+    opportunities: "Công nghệ tương lai với nhiều cơ hội đột phá.",
+    gradient: "from-yellow-400 to-orange-500",
+  },
+];
 
 const DirectionPage: React.FC = () => {
+  const [currentCareerIndex, setCurrentCareerIndex] = useState(0);
+
+  const handlePrevious = () => {
+    setCurrentCareerIndex((prev) =>
+      prev === 0 ? careerPaths.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentCareerIndex((prev) =>
+      prev === careerPaths.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        handlePrevious();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        handleNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const currentCareer = careerPaths[currentCareerIndex];
+
   return (
     <Layout>
       <BannerBreadcrumb
@@ -10,21 +162,185 @@ const DirectionPage: React.FC = () => {
       />
 
       <section className="inner-about">
-        <div className="container mx-auto py-[40px]">
-          <h1 className="text-3xl font-bold text-text-primary mb-6">Định hướng phát triển</h1>
-          <p className="text-text-secondary mb-4">
-            USide là một nền tảng trực tuyến được thiết kế để cung cấp không gian cá nhân hóa cho người dùng, giúp họ quản lý công việc, học tập và giải trí một cách hiệu quả.
-          </p>
-          <p className="text-text-secondary mb-4">
-            Chúng tôi cam kết mang đến trải nghiệm người dùng tốt nhất với giao diện thân thiện, tính năng đa dạng và bảo mật cao.
-          </p>
-          <p className="text-text-secondary">
-            Hãy cùng khám phá những gì USide có thể mang lại cho bạn!
-          </p>
+        <div className="container max-w-7xl mx-auto py-[60px]">
+          {/* Header Section */}
+          <Title
+            title="Định hướng nghề nghiệp"
+            desc="Chúng tôi mang đến cho bạn cái nhìn tổng quan về các lộ trình nghề nghiệp trong ngành công nghệ thông tin."
+          />
+
+          {/* Career Paths Section */}
+          <div
+            className="mt-12 bg-background rounded-2xl p-4 sm:p-6 md:p-8 mb-8 relative"
+            style={{
+              boxShadow:
+                "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
+            }}
+          >
+            {/* Current Career Card */}
+            <div className="min-h-[400px]">
+              <CareerCard
+                key={`${currentCareer.id}-${currentCareerIndex}`}
+                career={currentCareer}
+                index={0}
+              />
+            </div>
+
+            {/* Pagination Controls */}
+            <div className="flex items-center justify-between mt-8 px-4 sm:px-0">
+              {/* Previous Button */}
+              <button
+                onClick={handlePrevious}
+                className={`
+                  group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl
+                  transition-all duration-300 ease-out
+                  transform hover:scale-110 active:scale-95
+                  focus:outline-none focus:ring-2 focus:ring-offset-2
+                `}
+                style={{
+                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  boxShadow: `
+                    8px 8px 16px var(--color-shadow),
+                    -8px -8px 16px #FAFBFF
+                  `,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    12px 12px 24px var(--color-shadow),
+                    -12px -12px 24px #FAFBFF,
+                    0 0 20px var(--color-accent)
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    8px 8px 16px var(--color-shadow),
+                    -8px -8px 16px #FAFBFF
+                  `;
+                }}
+                aria-label="Previous career"
+              >
+                <span
+                  className="text-xl sm:text-2xl transition-all duration-300 group-hover:scale-125"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
+                  ←
+                </span>
+              </button>
+
+              {/* Career Counter & Indicators */}
+              <div className="flex flex-col items-center gap-3 sm:gap-4">
+                {/* Career Progress */}
+                <div
+                  className="text-xs sm:text-sm font-medium"
+                  style={{ color: "var(--color-text-secondary)" }}
+                >
+                  {currentCareerIndex + 1} / {careerPaths.length}
+                </div>
+
+                {/* Dot Indicators */}
+                <div className="flex items-center gap-1 sm:gap-2">
+                  {careerPaths.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentCareerIndex(index)}
+                      className={`
+                        w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border-0 cursor-pointer
+                        transition-all duration-300 ease-out
+                        transform hover:scale-125 focus:outline-none focus:scale-150
+                        ${index === currentCareerIndex ? "animate-pulse" : ""}
+                      `}
+                      style={{
+                        background:
+                          index === currentCareerIndex
+                            ? `linear-gradient(90deg, var(--color-accent) 0%, #3aefc4 100%)`
+                            : `var(--color-border)`,
+                        boxShadow:
+                          index === currentCareerIndex
+                            ? `
+                            -4px -4px 8px #FAFBFF,
+                            4px 4px 8px var(--color-shadow),
+                            0 0 12px var(--color-accent)
+                          `
+                            : `
+                            -2px -2px 4px #FAFBFF,
+                            2px 2px 4px var(--color-shadow)
+                          `,
+                      }}
+                      aria-label={`Go to ${careerPaths[index].title}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Career Title */}
+                <div
+                  className="text-center font-semibold text-sm sm:text-base px-2"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
+                  {currentCareer.title}
+                </div>
+              </div>
+
+              {/* Next Button */}
+              <button
+                onClick={handleNext}
+                className={`
+                  group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl
+                  transition-all duration-300 ease-out
+                  transform hover:scale-110 active:scale-95
+                  focus:outline-none focus:ring-2 focus:ring-offset-2
+                `}
+                style={{
+                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  boxShadow: `
+                    8px 8px 16px var(--color-shadow),
+                    -8px -8px 16px #FAFBFF
+                  `,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    12px 12px 24px var(--color-shadow),
+                    -12px -12px 24px #FAFBFF,
+                    0 0 20px var(--color-accent)
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    8px 8px 16px var(--color-shadow),
+                    -8px -8px 16px #FAFBFF
+                  `;
+                }}
+                aria-label="Next career"
+              >
+                <span
+                  className="text-xl sm:text-2xl transition-all duration-300 group-hover:scale-125"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
+                  →
+                </span>
+              </button>
+            </div>
+
+            {/* Career Navigation Info */}
+            <div
+              className="text-center mt-6 space-y-2"
+              style={{ color: "var(--color-text-placeholder)" }}
+            >
+              <div className="text-xs">
+                Sử dụng mũi tên hoặc click vào các chấm để chuyển đổi nghề
+                nghiệp
+              </div>
+              <div className="text-xs hidden sm:block">
+                🎯 Phím mũi tên ← → để điều hướng nhanh
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
   );
 };
+
+// Career Card Component with Neumorphic Design
+
 
 export default DirectionPage;

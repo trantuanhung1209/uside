@@ -69,8 +69,8 @@ body {
   color: white;
   transform: translateY(-5px) scale(1.05);
   box-shadow:
-    -12px -12px 24px #FAFBFF,
-    12px 12px 24px rgba(22, 17, 29, 0.25),
+    -6px -6px 12px #FAFBFF,
+    6px 6px 12px rgba(22, 17, 29, 0.25),
     0 8px 25px rgba(0, 210, 255, 0.4);
 }
 
@@ -131,7 +131,6 @@ body {
 
 /* Header Neumorphic Styles */
 .header {
-  padding: 20px 0;
   transition: all 0.3s ease;
   
   /* Neumorphic shadow effect */
@@ -158,8 +157,8 @@ body {
   cursor: pointer;
   
   box-shadow:
-    -8px -8px 16px #FAFBFF,
-    8px 8px 16px rgba(22, 17, 29, 0.2);
+    -4px -4px 8px #FAFBFF,
+    4px 4px 8px rgba(22, 17, 29, 0.2);
 
   @media(max-width: 768px) {
     padding: 10px 16px;
@@ -176,18 +175,18 @@ body {
 .inner-logo:hover {
   /* Subtle lift effect on hover */
   box-shadow:
-    -12px -12px 24px #FAFBFF,
-    12px 12px 24px rgba(22, 17, 29, 0.3);
-  
+    -6px -6px 12px #FAFBFF,
+    6px 6px 12px rgba(22, 17, 29, 0.3);
+
   transform: translateY(-3px) scale(1.02);
 }
 
 .inner-logo:active {
   /* Pressed effect when clicked */
   box-shadow:
-    inset -8px -8px 16px #FAFBFF,
-    inset 8px 8px 16px rgba(22, 17, 29, 0.2);
-  
+    inset -4px -4px 8px #FAFBFF,
+    inset 4px 4px 8px rgba(22, 17, 29, 0.2);
+
   transform: translateY(1px) scale(0.98);
 }
 
@@ -236,8 +235,8 @@ body {
   animation: shimmer 2s ease-in-out infinite;
   
   box-shadow:
-    -8px -8px 16px #FAFBFF,
-    8px 8px 16px rgba(22, 17, 29, 0.25);
+    -4px -4px 4px #FAFBFF,
+    4px 4px 8px rgba(22, 17, 29, 0.25);
   
   transform: translateY(-1px);
 }
@@ -311,13 +310,13 @@ body {
 @keyframes pulse {
   0%, 100% {
     box-shadow:
-      -8px -8px 16px #FAFBFF,
-      8px 8px 16px rgba(22, 17, 29, 0.2);
+      -4px -4px 8px #FAFBFF,
+      4px 4px 8px rgba(22, 17, 29, 0.2);
   }
   50% {
     box-shadow:
-      -12px -12px 24px #FAFBFF,
-      12px 12px 24px rgba(22, 17, 29, 0.3);
+      -6px -6px 12px #FAFBFF,
+      6px 6px 12px rgba(22, 17, 29, 0.3);
   }
 }
 
@@ -394,8 +393,8 @@ body {
 .robot-apps-button:hover {
   transform: translateY(-5px) scale(1.1);
   box-shadow:
-    -12px -12px 24px #FAFBFF,
-    12px 12px 24px rgba(22, 17, 29, 0.3),
+    -6px -6px 12px #FAFBFF,
+    6px 6px 12px rgba(22, 17, 29, 0.3),
     0 0 30px rgba(0, 210, 255, 0.3);
 }
 
@@ -1362,3 +1361,294 @@ body {
   transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
   transform-style: preserve-3d;
 }
+
+/* Career Cards Styles */
+.career-card {
+  animation: slideInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.career-card:hover {
+  box-shadow: 
+    -20px -20px 40px #FAFBFF, 
+    20px 20px 40px rgba(22, 17, 29, 0.25),
+    0 0 30px rgba(0, 210, 255, 0.1) !important;
+}
+
+.skill-tag:hover {
+  background: linear-gradient(90deg, #00d2ff, #3aefc4) !important;
+  color: white !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    -5px -5px 10px #FAFBFF, 
+    5px 5px 10px rgba(22, 17, 29, 0.2),
+    0 0 15px rgba(0, 210, 255, 0.3) !important;
+}
+
+.career-icon {
+  filter: drop-shadow(0 4px 8px rgba(0, 210, 255, 0.2));
+}
+
+.career-card:hover .career-icon {
+  animation: iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1.1);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg) scale(1.15);
+  }
+}
+
+/* Testimonials Section Styles */
+.testimonials-card {
+  animation: slideInLeft 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.testimonials-card:hover {
+  box-shadow: 
+    -15px -15px 30px #FAFBFF, 
+    15px 15px 30px rgba(22, 17, 29, 0.2),
+    0 0 25px rgba(0, 210, 255, 0.1) !important;
+}
+
+.testimonials-visual {
+  animation: slideInRight 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.testimonials-visual:hover {
+  transform: scale(1.05) rotate(2deg) !important;
+}
+
+/* Mountain SVG animations */
+.mountain-svg path:first-child {
+  animation: mountainFloat 3s ease-in-out infinite;
+}
+
+.mountain-svg path:nth-child(2) {
+  animation: mountainFloat 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes mountainFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+/* Decorative dots animation enhancement */
+.testimonials-visual .animate-bounce:nth-child(1) {
+  animation: floatDot 2s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.testimonials-visual .animate-bounce:nth-child(2) {
+  animation: floatDot 2s ease-in-out infinite;
+  animation-delay: 0.7s;
+}
+
+.testimonials-visual .animate-bounce:nth-child(3) {
+  animation: floatDot 2s ease-in-out infinite;
+  animation-delay: 1.4s;
+}
+
+@keyframes floatDot {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-8px) scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Pagination Navigation Buttons */
+.pagination-nav-btn {
+  color: #6b6b6b;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pagination-nav-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  color: #00d2ff;
+  box-shadow: 
+    -8px -8px 16px #FAFBFF, 
+    8px 8px 16px rgba(22, 17, 29, 0.25),
+    0 0 15px rgba(0, 210, 255, 0.3) !important;
+}
+
+.pagination-nav-btn:active:not(:disabled) {
+  transform: scale(0.95);
+  box-shadow: 
+    inset -6px -6px 12px #FAFBFF, 
+    inset 6px 6px 12px rgba(22, 17, 29, 0.15) !important;
+}
+
+.pagination-nav-btn svg {
+  transition: all 0.3s ease;
+}
+
+.pagination-nav-btn:hover:not(:disabled) svg {
+  transform: scale(1.2);
+  filter: drop-shadow(0 2px 4px rgba(0, 210, 255, 0.3));
+}
+
+/* Enhanced pagination dot animations */
+.pagination-dot:not(.active):hover {
+  transform: scale(1.15) !important;
+  color: #00d2ff !important;
+  box-shadow: 
+    -8px -8px 16px #FAFBFF, 
+    8px 8px 16px rgba(22, 17, 29, 0.2),
+    0 0 20px rgba(0, 210, 255, 0.2) !important;
+}
+
+.pagination-dot.active {
+  animation: activePulse 2s ease-in-out infinite;
+}
+
+@keyframes activePulse {
+  0%, 100% {
+    box-shadow: 
+      -6px -6px 12px #FAFBFF, 
+      6px 6px 12px rgba(22, 17, 29, 0.25), 
+      0 0 15px rgba(0, 210, 255, 0.4);
+  }
+  50% {
+    box-shadow: 
+      -8px -8px 16px #FAFBFF, 
+      8px 8px 16px rgba(22, 17, 29, 0.3), 
+      0 0 25px rgba(0, 210, 255, 0.6);
+  }
+}
+
+/* Responsive adjustments for 3-column layout */
+@media (max-width: 1024px) {
+  .career-card {
+    padding: 20px !important;
+  }
+  
+  .career-card .career-icon {
+    font-size: 2.5rem !important;
+    margin-right: 12px !important;
+  }
+  
+  .career-card h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .career-card .skill-tag {
+    padding: 6px 12px !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .testimonials-visual {
+    width: 280px !important;
+    height: 280px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .career-card {
+    padding: 16px !important;
+  }
+  
+  .career-card .career-icon {
+    font-size: 2rem !important;
+    margin-right: 8px !important;
+  }
+  
+  .career-card h3 {
+    font-size: 1.125rem !important;
+  }
+  
+  .testimonials-visual {
+    width: 240px !important;
+    height: 240px !important;
+  }
+  
+  /* Stack testimonials on mobile */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .testimonials-visual {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Loading states */
+.career-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.career-card.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #00d2ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Stagger animation delays */
+.career-card:nth-child(1) { animation-delay: 0.1s; }
+.career-card:nth-child(2) { animation-delay: 0.2s; }
+.career-card:nth-child(3) { animation-delay: 0.3s; }
+.career-card:nth-child(4) { animation-delay: 0.4s; }
+.career-card:nth-child(5) { animation-delay: 0.5s; }
+.career-card:nth-child(6) { animation-delay: 0.6s; }
+.career-card:nth-child(7) { animation-delay: 0.7s; }
+.career-card:nth-child(8) { animation-delay: 0.8s; }
+
+.testimonials-card:nth-child(1) { animation-delay: 0.2s; }
+.testimonials-card:nth-child(2) { animation-delay: 0.4s; }
+.testimonials-card:nth-child(3) { animation-delay: 0.6s; }

@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
       {/* section 3 - direction */}
             {/* section 3 - direction */}
       <section className="section-3 py-[80px]">
-        <div className="container mx-auto">
+        <div className="container max-w-7xl mx-auto">
           <Title title="Định hướng sinh viên" desc="Chúng tôi luôn hướng tới việc mang lại giá trị tốt nhất cho khách hàng." />
 
           <div className="inner-content">

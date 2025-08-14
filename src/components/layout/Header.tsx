@@ -23,7 +23,6 @@ const appsData = [
 
 
 const Header = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [logoClicked, setLogoClicked] = useState(false);
   const [showAppsPopup, setShowAppsPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,18 +34,8 @@ const Header = () => {
     setTimeout(() => setLogoClicked(false), 300);
   };
 
-  const handleLoginClick = () => {
-    setIsLoading(true);
-    // Simulate loading
-    setTimeout(() => setIsLoading(false), 2000);
-  };
-
   const handleRobotClick = () => {
     setShowAppsPopup(!showAppsPopup);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   // Handle click outside to close popup and mobile menu
@@ -72,7 +61,7 @@ const Header = () => {
   return (
     <>
       <header className="header border-b border-gray-200 bg-background shadow-sm sticky z-50 top-0 left-0 right-0">
-        <div className="container mx-auto px-3">
+        <div className="container max-w-7xl mx-auto px-3">
           <div className="inner-wrap flex items-center justify-between py-2 sm:py-3 md:py-4">
             {/* Logo */}
             <div 
@@ -121,6 +110,62 @@ const Header = () => {
 
             {/* Right side buttons */}
             <div className="inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px]">
+
+              {/* Search */}
+              <div className="search-container relative group">
+                <div className="search-wrapper relative rounded-2xl transition-all duration-300 hover:shadow-lg focus-within:shadow-lg"
+                     style={{
+                       background: 'var(--color-secondary)',
+                       boxShadow: '-8px -8px 16px #FAFBFF, 8px 8px 16px var(--color-shadow)'
+                     }}>
+                  <input
+                    type="text"
+                    placeholder="Tìm kiếm..."
+                    className="search-input w-full px-5 py-3 bg-transparent rounded-2xl focus:outline-none transition-all duration-300 max-w-xs sm:max-w-sm"
+                    style={{
+                      color: 'var(--color-text-primary)',
+                      boxShadow: 'inset 6px 6px 12px rgba(0, 0, 0, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.8)'
+                    }}
+                  />
+                  <div className="search-icon-wrapper absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg group-hover:shadow-xl"
+                       style={{
+                         background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)',
+                         boxShadow: '-4px -4px 8px #FAFBFF, 4px 4px 8px var(--color-shadow)'
+                       }}>
+                    <svg
+                      className="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                         style={{
+                           background: 'rgba(255, 255, 255, 0.2)'
+                         }}></div>
+                  </div>
+                  
+                  {/* Decorative elements */}
+                  <div className="absolute -top-1 -left-1 w-3 h-3 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                       style={{
+                         background: 'linear-gradient(135deg, var(--color-accent) 0%, #ff6b6b 100%)'
+                       }}></div>
+                  <div className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                       style={{
+                         background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)'
+                       }}></div>
+                  
+                  {/* Floating particles effect */}
+                  <div className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                       style={{
+                         background: 'var(--color-accent)',
+                         transform: 'translate(-50%, -50%)',
+                         animation: 'floatUp 2s ease-in-out infinite'
+                       }}></div>
+                </div>
+              </div>
+
               {/* Apps button */}
               <div 
                 ref={popupRef}
@@ -159,32 +204,6 @@ const Header = () => {
                   </div>
                 )}
               </div>
-
-              {/* Login button */}
-              <button 
-                className="neumorphic-button button-login px-3 py-2 md:px-6 md:py-2 text-sm md:text-base bg-color-accent text-white rounded-lg hover:bg-opacity-90 transition-all disabled:opacity-50 flex items-center gap-2"
-                onClick={handleLoginClick}
-                disabled={isLoading}
-              >
-                {isLoading && <div className="loading-spinner w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}
-                <span className="hidden sm:inline">{isLoading ? 'Đang xử lý...' : 'Đăng nhập'}</span>
-                <span className="sm:hidden">{isLoading ? '...' : 'Login'}</span>
-              </button>
-
-              {/* Mobile menu button */}
-              <button
-                className="xl:hidden p-2 text-text-primary hover:text-color-accent transition-colors"
-                onClick={toggleMobileMenu}
-                aria-label="Toggle mobile menu"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isMobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
-              </button>
             </div>
           </div>
         </div>

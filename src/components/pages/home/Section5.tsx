@@ -48,7 +48,7 @@ const Section5 = () => {
 
   return (
     <section className="section-5 overflow-hidden bg-background py-20">
-      <div className="container mx-auto px-4">
+      <div className="container max-w-7xl mx-auto px-4">
         <Title 
           title="Câu hỏi thường gặp"
           desc="Những câu hỏi thường gặp từ người dùng về chương trình và dịch vụ của chúng tôi."

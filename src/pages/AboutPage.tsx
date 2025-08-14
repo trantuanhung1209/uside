@@ -17,7 +17,7 @@ const AboutPage: React.FC = () => {
         />
 
         <div className="inner-content">
-          <div className="container mx-auto">
+          <div className="container max-w-7xl mx-auto">
             {/* Features Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
               {/* Feature 1 */}
@@ -261,7 +261,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       <section className="section-2 pb-[80px] bg-gradient-to-br from-background to-primary/5 -mt-48 pt-48 relative z-10">
-        <div className="container mx-auto ">
+        <div className="container max-w-7xl mx-auto ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Left Side - Title and Description */}

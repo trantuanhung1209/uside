@@ -4,7 +4,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
   return (
     <>
       <section
-        className="section-bg w-full h-[450px] bg-border flex items-end justify-center relative overflow-hidden"
+        className="section-bg w-full h-[550px] mt-[-100px] bg-border flex items-end justify-center relative overflow-hidden"
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
@@ -67,7 +67,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
 
             <div className="breadcrumb-separator flex items-center">
               <svg
-                className="w-4 h-4 text-text-placeholder animate-pulse"
+                className="w-4 h-4 text-text-placeholder text-2xl animate-pulse"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -96,7 +96,6 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
               </svg>
               <span className="relative">
                 {pageName}
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-accent via-primary to-accent animate-gradient-x"></span>
               </span>
             </NavLink>
           </nav>
