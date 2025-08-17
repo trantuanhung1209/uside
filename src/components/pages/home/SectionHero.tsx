@@ -1,33 +1,29 @@
-
 import { useMusic } from "../../../hooks";
 import { SplineViewer } from "../../ui";
+import BackgroundRobot from "../../ui/BackgroundRobot";
 
 const SectionHero = () => {
   const { isPlaying, toggleMusic } = useMusic();
   return (
     <>
       <section
-        className="min-h-screen relative overflow-hidden flex items-center justify-center py-20 border-b border-border"
+        className="min-h-screen relative overflow-hidden border-b pt-[100px] border-border"
         style={{ background: "var(--color-background)" }}
       >
         {/* Background overlay for readability */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(45deg, rgba(240, 241, 244, 0.3) 0%, rgba(240, 241, 244, 0.1) 50%, rgba(240, 241, 244, 0.3) 100%)"
+            background:
+              "linear-gradient(45deg, rgba(240, 241, 244, 0.3) 0%, rgba(240, 241, 244, 0.1) 50%, rgba(240, 241, 244, 0.3) 100%)",
           }}
         ></div>
+
+        <BackgroundRobot />
 
         {/* Main Content */}
         <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inner-wrap grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="inner-right">
-              <SplineViewer 
-            url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
-            className="w-full h-full"
-          />
-            </div>
-
             {/* Hero Illustration/Image */}
             <div className="relative">
               <div
@@ -48,9 +44,7 @@ const SectionHero = () => {
                   }}
                 >
                   {/* Geometric illustration */}
-                  <div className="relative z-10">
-                    ...
-                  </div>
+                  <div className="relative z-10">...</div>
 
                   {/* Background pattern */}
                   <div className="absolute inset-0 opacity-10">
@@ -181,7 +175,7 @@ const SectionHero = () => {
                 }}
               ></div>
               <div
-                className="absolute -bottom-6 -left-6 w-12 h-12 rounded-full animate-pulse transition-all duration-300 hover:scale-110"
+                className="absolute bottom-40 -left-6 w-12 h-12 rounded-full animate-pulse transition-all duration-300 hover:scale-110 z-10"
                 style={{
                   backgroundColor: "var(--color-secondary)",
                   boxShadow:
@@ -190,7 +184,7 @@ const SectionHero = () => {
                 }}
               ></div>
               <div
-                className="absolute -bottom-8 -right-8 w-8 h-8 rounded-full animate-pulse transition-all duration-300 hover:scale-110"
+                className="absolute bottom-45 -right-8 w-8 h-8 rounded-full animate-pulse transition-all duration-300 hover:scale-110"
                 style={{
                   backgroundColor: "var(--color-text-accent)",
                   boxShadow:
@@ -198,6 +192,13 @@ const SectionHero = () => {
                   animationDelay: "0.5s",
                 }}
               ></div>
+            </div>
+
+            <div className="inner-left">
+              <SplineViewer
+                url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
+                className="w-full h-full"
+              />
             </div>
           </div>
         </div>
