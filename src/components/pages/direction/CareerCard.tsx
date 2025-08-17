@@ -205,6 +205,9 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
                 -8px -8px 16px rgba(255,255,255,0.1)
               `,
             }}
+            onClick={() => {
+              navigate(`/dinh-huong/${career.id}`);
+            }}
             onMouseEnter={(e) => {
               e.currentTarget.style.boxShadow = `
                 12px 12px 24px var(--color-shadow),
@@ -219,11 +222,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               `;
             }}
           >
-            <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2 cursor-pointer"
-            onClick={() => {
-              navigate(`/dinh-huong/${career.id}`);
-            }}
-            >
+            <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2 cursor-pointer">
               Tìm hiểu thêm
               <span
                 className={`

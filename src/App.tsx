@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { 
   HomePage, 
   AboutPage, 
-  DirectionPage, 
+  DirectionPage,
+  DirectionDetailPage,
   NewsPage, 
   NewsDetailPage,
   ContactPage 
@@ -39,6 +40,7 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/gioi-thieu" element={<AboutPage />} />
             <Route path="/dinh-huong" element={<DirectionPage />} />
+            <Route path="/dinh-huong/:id" element={<DirectionDetailPage />} />
             <Route path="/tin-tuc" element={<NewsPage />} />
             <Route path="/tin-tuc/:id" element={<NewsDetailPage />} />
             <Route path="/lien-he" element={<ContactPage />} />
