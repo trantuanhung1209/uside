@@ -1,28 +1,15 @@
-import { useNavigate } from "react-router-dom";
+
 import { useMusic } from "../../../hooks";
 import { SplineViewer } from "../../ui";
 
 const SectionHero = () => {
   const { isPlaying, toggleMusic } = useMusic();
-  const navigate = useNavigate();
   return (
     <>
       <section
         className="min-h-screen relative overflow-hidden flex items-center justify-center py-20 border-b border-border"
         style={{ background: "var(--color-background)" }}
       >
-        {/* Interactive 3D Background */}
-        <div className="absolute top-[-250px] right-[20%] z-999">
-          <SplineViewer 
-            url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
-            className="w-full h-full"
-            style={{
-              opacity: 0.8,
-              mixBlendMode: 'multiply'
-            }}
-          />
-        </div>
-
         {/* Background overlay for readability */}
         <div 
           className="absolute inset-0 pointer-events-none"
@@ -35,45 +22,10 @@ const SectionHero = () => {
         <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inner-wrap grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="inner-right">
-              {/* Hero Heading */}
-              <h1
-                className="text-4xl md:text-6xl font-bold mb-6"
-                style={{ color: "var(--color-text-primary)" }}
-              >
-                USide Platform
-              </h1>
-
-              {/* Hero Description */}
-              <p
-                className="text-lg md:text-xl mb-8 leading-relaxed"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                Chúng tôi vừa ra mắt nền tảng USide, nơi bạn có thể khám phá và trải nghiệm những định hướng mới trong công nghệ và cộng đồng. Hãy cùng chúng tôi khám phá những tiềm năng vô hạn!
-              </p>
-
-              {/* Action Buttons */}
-              <div className="flex sm:flex-row gap-4 items-center mb-12">
-                <button className="neumorphic-button"
-                onClick={() => {
-                  navigate("/dinh-huong");
-                }}
-                >
-                  Bắt đầu ngay
-                  <svg
-                    className="w-5 h-5 inline-block ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <SplineViewer 
+            url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
+            className="w-full h-full"
+          />
             </div>
 
             {/* Hero Illustration/Image */}
