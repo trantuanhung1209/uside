@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Layout } from '../components/layout';
+import { Title } from '../components';
+import NewsCard from '../components/ui/NewsCard';
 
 interface NewsItem {
   id: number;
@@ -195,42 +197,18 @@ const NewsDetailPage: React.FC = () => {
 
           {/* Related Articles */}
           <section className="mt-12">
-            <h3 className="text-2xl font-bold text-text-primary mb-6">
-              Bài viết liên quan
-            </h3>
+            <Title title='Bài viết liên quan' desc='Khám phá thêm các bài viết khác từ chúng tôi' />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {newsData
                 .filter(item => item.id !== newsItem.id)
                 .slice(0, 2)
                 .map((relatedItem) => (
-                  <div 
-                    key={relatedItem.id}
-                    className="bg-background rounded-xl p-6 cursor-pointer hover:scale-105 transition-all duration-300"
-                    style={{
-                      boxShadow: "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.2)",
-                    }}
-                    onClick={() => navigate(`/tin-tuc/${relatedItem.id}`)}
-                  >
-                    {relatedItem.image && (
-                      <div className="h-40 overflow-hidden rounded-lg mb-4">
-                        <img
-                          src={relatedItem.image}
-                          alt={relatedItem.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    )}
-                    <h4 className="font-semibold text-text-primary mb-2 line-clamp-2">
-                      {relatedItem.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm mb-3">
-                      {relatedItem.date}
-                    </p>
-                    <p className="text-gray-600 text-sm line-clamp-3">
-                      {relatedItem.excerpt}
-                    </p>
-                  </div>
-                ))}
+                <NewsCard
+                  key={relatedItem.id} 
+                  article={relatedItem} 
+                  index={0} // Chỉ cần index 0 vì không cần animation delay
+                />
+              ))}
             </div>
           </section>
         </div>

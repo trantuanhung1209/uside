@@ -3,6 +3,7 @@ import { Layout } from "../components/layout";
 import { useState, useEffect } from "react";
 import Title from "../components/ui/Title";
 import { CareerCard } from "../components/pages/direction/CareerCard";
+import NewsCard from "../components/ui/NewsCard";
 
 interface CareerPath {
   id: string;
@@ -13,6 +14,17 @@ interface CareerPath {
   skills: string[];
   opportunities: string;
   gradient: string;
+}
+
+interface NewsItem {
+  id: number;
+  title: string;
+  date: string;
+  excerpt: string;
+  content: string;
+  image?: string;
+  author?: string;
+  category?: string;
 }
 
 const careerPaths: CareerPath[] = [
@@ -121,9 +133,80 @@ const careerPaths: CareerPath[] = [
   },
 ];
 
+const newsData: NewsItem[] = [
+  {
+    id: 1,
+    title: "USide ra mắt phiên bản 2.0",
+    date: "7 tháng 8, 2025",
+    excerpt:
+      "Phiên bản mới với nhiều tính năng cải tiến và giao diện được thiết kế lại hoàn toàn.",
+    content: `
+        <p>USide tự hào giới thiệu phiên bản 2.0 với nhiều cải tiến đáng kể trong trải nghiệm người dùng và hiệu suất.</p>
+        
+        <h3>Tính năng mới</h3>
+        <ul>
+          <li>Giao diện người dùng được thiết kế lại hoàn toàn</li>
+          <li>Hiệu suất cải thiện 40% so với phiên bản trước</li>
+          <li>Tích hợp AI để cá nhân hóa trải nghiệm</li>
+          <li>Hỗ trợ đa ngôn ngữ</li>
+        </ul>
+        
+        <p>Chúng tôi tin rằng phiên bản 2.0 sẽ mang lại trải nghiệm tốt nhất cho người dùng.</p>
+      `,
+    image: "/images_uside/news.png",
+    author: "Đội ngũ USide",
+    category: "Cập nhật",
+  },
+  {
+    id: 2,
+    title: "Cập nhật bảo mật quan trọng",
+    date: "5 tháng 8, 2025",
+    excerpt:
+      "Chúng tôi đã cập nhật các biện pháp bảo mật mới nhất để bảo vệ dữ liệu người dùng.",
+    content: `
+        <p>Bảo mật là ưu tiên hàng đầu của USide. Chúng tôi đã triển khai các cập nhật bảo mật quan trọng.</p>
+        
+        <h3>Các cải tiến bảo mật</h3>
+        <ul>
+          <li>Mã hóa end-to-end cho tất cả dữ liệu</li>
+          <li>Xác thực hai yếu tố (2FA)</li>
+          <li>Kiểm tra bảo mật định kỳ</li>
+          <li>Tuân thủ các tiêu chuẩn bảo mật quốc tế</li>
+        </ul>
+        
+        <p>Dữ liệu của bạn được bảo vệ với các công nghệ bảo mật tiên tiến nhất.</p>
+      `,
+    image: "/images_uside/mascot_robot.png",
+    author: "Team Security",
+    category: "Bảo mật",
+  },
+  {
+    id: 3,
+    title: "Hợp tác với các đối tác công nghệ",
+    date: "1 tháng 8, 2025",
+    excerpt:
+      "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
+    content: `
+        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
+        
+        <h3>Lợi ích từ việc hợp tác</h3>
+        <ul>
+          <li>Mở rộng phạm vi dịch vụ</li>
+          <li>Tích hợp công nghệ tiên tiến</li>
+          <li>Cải thiện trải nghiệm người dùng</li>
+          <li>Tăng cường khả năng cạnh tranh</li>
+        </ul>
+        
+        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
+      `,
+    image: "/images_uside/uside_light.png",
+    author: "Ban lãnh đạo",
+    category: "Đối tác",
+  },
+];
+
 const DirectionPage: React.FC = () => {
   const [currentCareerIndex, setCurrentCareerIndex] = useState(0);
-
   const handlePrevious = () => {
     setCurrentCareerIndex((prev) =>
       prev === 0 ? careerPaths.length - 1 : prev - 1
@@ -334,13 +417,26 @@ const DirectionPage: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Related Articles Section */}
+          <div
+            className="mt-16 pt-8 border-t border-opacity-20"
+            style={{ borderColor: "var(--color-border)" }}
+          >
+            <div className="text-center mb-8">
+              <Title title="Bài viết liên quan" desc="Khám phá thêm những thông tin hữu ích về ngành công nghệ" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {newsData.slice(0, 3).map((article, index) => (
+                <NewsCard key={article.id} article={article} index={index} />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
   );
 };
-
-// Career Card Component with Neumorphic Design
-
 
 export default DirectionPage;

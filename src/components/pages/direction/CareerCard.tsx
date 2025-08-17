@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface CareerPath {
   id: string;
@@ -19,6 +20,7 @@ interface CareerCardProps {
 export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   // Animation effect when card appears
   useEffect(() => {
@@ -29,10 +31,11 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
   return (
     <div
       className={`
-        group relative overflow-hidden rounded-3xl p-8
+        group relative overflow-hidden rounded-3xl 
+        p-4 sm:p-6 md:p-8
         transition-all duration-700 ease-out
         transform hover:scale-[1.02]
-        ${index % 2 === 0 ? "" : "flex-row-reverse"}
+        ${index % 2 === 0 ? "" : "lg:flex-row-reverse"}
         ${
           isVisible
             ? "opacity-100 translate-y-0 scale-100"
@@ -86,14 +89,14 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
       />
 
       {/* Content Container */}
-      <div className="flex items-center gap-8 relative z-10">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-6 lg:gap-8 relative z-10">
         {/* Left Content */}
-        <div className={`flex-1 ${index % 2 === 0 ? "order-1" : "order-2"}`}>
+        <div className={`flex-1 ${index % 2 === 0 ? "lg:order-1" : "lg:order-2"}`}>
           {/* Icon and Title */}
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
             <div
               className={`
-                text-4xl p-3 rounded-2xl
+                text-2xl sm:text-3xl lg:text-4xl p-2 sm:p-3 rounded-xl sm:rounded-2xl
                 transition-all duration-300
                 ${isHovered ? "animate-bounce" : ""}
               `}
@@ -108,7 +111,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               {career.icon}
             </div>
             <h3
-              className="text-2xl font-bold transition-colors duration-300"
+              className="text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-300"
               style={{
                 color: "var(--color-text-primary)",
               }}
@@ -119,7 +122,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
 
           {/* Description */}
           <p
-            className="mb-6 leading-relaxed transition-colors duration-300 text-[16px]"
+            className="mb-4 sm:mb-6 leading-relaxed transition-colors duration-300 text-sm sm:text-base"
             style={{
               color: "var(--color-text-secondary)",
             }}
@@ -128,12 +131,12 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
           </p>
 
           {/* Skills Tags */}
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
             {career.skills.map((skill, skillIndex) => (
               <span
                 key={skill}
                 className={`
-                  px-4 py-2 text-sm font-medium
+                  px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium
                   rounded-full border
                   transform hover:scale-105
                   transition-all duration-300
@@ -173,9 +176,9 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
           </div>
 
           {/* Opportunities */}
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <p
-              className="text-sm italic"
+              className="text-xs sm:text-sm italic"
               style={{
                 color: "var(--color-text-secondary)",
               }}
@@ -187,10 +190,12 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
           {/* Learn More Button */}
           <button
             className={`
-              px-8 py-3 text-white font-semibold rounded-2xl
+              px-6 sm:px-8 py-2.5 sm:py-3 text-white font-semibold rounded-xl sm:rounded-2xl
+              text-sm sm:text-base
               transform hover:scale-105 active:scale-95
               transition-all duration-200 ease-out
               relative overflow-hidden
+              w-full sm:w-auto
               ${isHovered ? "animate-pulse" : ""}
             `}
             style={{
@@ -214,7 +219,11 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               `;
             }}
           >
-            <span className="relative z-10 flex items-center gap-2 cursor-pointer">
+            <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2 cursor-pointer"
+            onClick={() => {
+              navigate(`/dinh-huong/${career.id}`);
+            }}
+            >
               Tìm hiểu thêm
               <span
                 className={`
@@ -230,14 +239,14 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
 
         {/* Right Image */}
         <div
-          className={`flex-shrink-0 ${index % 2 === 0 ? "order-2" : "order-1"}`}
+          className={`flex-shrink-0 mt-4 lg:mt-0 ${index % 2 === 0 ? "lg:order-2" : "lg:order-1"}`}
         >
           <div
             className={`
-              w-80 h-64 rounded-3xl overflow-hidden
+              w-full sm:w-72 lg:w-80 h-48 sm:h-56 lg:h-64 rounded-2xl sm:rounded-3xl overflow-hidden
               transition-all duration-500
               transform group-hover:scale-105
-              relative
+              relative mx-auto
             `}
             style={{
               background: `linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%)`,
@@ -257,7 +266,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
             >
               <div
                 className={`
-                text-6xl opacity-50 group-hover:opacity-70 
+                text-4xl sm:text-5xl lg:text-6xl opacity-50 group-hover:opacity-70 
                 transition-all duration-300
                 ${isHovered ? "animate-pulse scale-110" : ""}
               `}
@@ -281,19 +290,19 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
 
       {/* Floating particles effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(3)].map((_, i) => (
           <div
             key={i}
             className={`
-              absolute w-2 h-2 rounded-full
+              absolute w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full
               opacity-0 group-hover:opacity-40
               transition-all duration-1000 ease-out
               ${isHovered ? "animate-ping" : ""}
             `}
             style={{
               background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
-              left: `${20 + i * 15}%`,
-              top: `${30 + i * 10}%`,
+              left: `${20 + i * 20}%`,
+              top: `${30 + i * 15}%`,
               animationDelay: `${i * 200}ms`,
             }}
           />
