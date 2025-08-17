@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useMusic } from "../../../hooks";
 import { SplineViewer } from "../../ui";
-import BackgroundRobot from "../../ui/BackgroundRobot";
 
 const SectionHero = () => {
   const { isPlaying, toggleMusic } = useMusic();
@@ -13,7 +12,7 @@ const SectionHero = () => {
         style={{ background: "var(--color-background)" }}
       >
         {/* Interactive 3D Background */}
-        <div className="absolute z-999 inset-0 w-full h-full">
+        <div className="absolute top-[-250px] right-[20%] z-999">
           <SplineViewer 
             url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
             className="w-full h-full"
@@ -23,8 +22,6 @@ const SectionHero = () => {
             }}
           />
         </div>
-
-        <BackgroundRobot />
 
         {/* Background overlay for readability */}
         <div 
