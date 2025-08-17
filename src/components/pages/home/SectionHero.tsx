@@ -194,11 +194,79 @@ const SectionHero = () => {
               ></div>
             </div>
 
-            <div className="inner-left">
+            <div className="inner-left relative">
               <SplineViewer
                 url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
                 className="w-full h-full"
               />
+              
+              {/* Robot overlay to hide Spline logo */}
+              <div className="absolute bottom-4 right-4 z-50">
+                <div
+                  className="relative w-40 h-20 transition-all duration-300"
+                  style={{
+                    background: "var(--color-background)",
+                    borderRadius: "16px",
+                  }}
+                >
+                  {/* Robot Head */}
+                  <div
+                    className="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-xl"
+                    style={{
+                      background: "var(--color-primary)",
+                      boxShadow: "inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.15)",
+                    }}
+                  >
+                    {/* Eyes */}
+                    <div className="absolute top-2 left-2 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    <div 
+                      className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full animate-pulse"
+                      style={{ animationDelay: "0.5s" }}
+                    ></div>
+                    {/* Mouth */}
+                    <div
+                      className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-1 rounded-full"
+                      style={{ background: "var(--color-accent)" }}
+                    ></div>
+                  </div>
+
+                  {/* Robot Body */}
+                  <div
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-8 rounded-lg"
+                    style={{
+                      background: "var(--color-secondary)",
+                      boxShadow: "inset -3px -3px 6px #FAFBFF, inset 3px 3px 6px rgba(22, 17, 29, 0.1)",
+                    }}
+                  >
+                    {/* Control Panel */}
+                    <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex gap-1">
+                      <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
+                      <div 
+                        className="w-1 h-1 bg-yellow-400 rounded-full animate-pulse"
+                        style={{ animationDelay: "0.5s" }}
+                      ></div>
+                      <div 
+                        className="w-1 h-1 bg-red-400 rounded-full animate-pulse"
+                        style={{ animationDelay: "1s" }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  {/* Hover effect */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: "linear-gradient(45deg, var(--color-accent), #3aefc4)",
+                    }}
+                  ></div>
+
+                  {/* Floating particle effect */}
+                  <div
+                    className="absolute -top-1 -right-1 w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-opacity duration-300"
+                    style={{ background: "var(--color-accent)" }}
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

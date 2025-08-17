@@ -121,7 +121,6 @@ const NewsPage: React.FC = () => {
   // Pagination handlers
   const goToPage = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const goToPrevious = () => {

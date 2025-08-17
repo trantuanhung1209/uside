@@ -154,7 +154,7 @@ const BackgroundRobot = () => {
         {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-12 h-16"
+            className="absolute w-12 h-16 hihi"
             style={{
               top: `${40 + i * 15}%`,
               left: `${10 + i * 20}%`,
@@ -208,7 +208,7 @@ const BackgroundRobot = () => {
             key={i}
             className="absolute w-12 h-16"
             style={{
-              top: `${20 + i * 15}%`,
+              top: `${10 + i * 15}%`,
               left: `${60 + i * 20}%`,
               animation: "bounce 2s ease-in-out infinite",
               animationDelay: `${i * 0.5}s`,
