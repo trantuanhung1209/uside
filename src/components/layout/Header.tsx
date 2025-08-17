@@ -116,7 +116,6 @@ const Header = () => {
                 <div className="search-wrapper relative rounded-2xl transition-all duration-300 hover:shadow-lg focus-within:shadow-lg"
                      style={{
                        background: 'var(--color-secondary)',
-                       boxShadow: '-8px -8px 16px #FAFBFF, 8px 8px 16px var(--color-shadow)'
                      }}>
                   <input
                     type="text"
@@ -124,13 +123,12 @@ const Header = () => {
                     className="search-input w-full px-5 py-3 bg-transparent rounded-2xl focus:outline-none transition-all duration-300 max-w-xs sm:max-w-sm"
                     style={{
                       color: 'var(--color-text-primary)',
-                      boxShadow: 'inset 6px 6px 12px rgba(0, 0, 0, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.8)'
+                      boxShadow: 'inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.8)'
                     }}
                   />
                   <div className="search-icon-wrapper absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg group-hover:shadow-xl"
                        style={{
                          background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)',
-                         boxShadow: '-4px -4px 8px #FAFBFF, 4px 4px 8px var(--color-shadow)'
                        }}>
                     <svg
                       className="w-5 h-5 text-white"

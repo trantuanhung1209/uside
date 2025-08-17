@@ -15,12 +15,12 @@ const HomePage: React.FC = () => {
       {/* Section 1 - Animation Loop */}
       <Section1 />
 
-      {/* section 2 - about*/}
-      <Section2 />
+      {/* section 4 - news */}
+      <Section4 />
 
       {/* section 3 - direction */}
             {/* section 3 - direction */}
-      <section className="section-3 py-[80px]">
+      <section className="section-3 py-[60px]">
         <div className="container max-w-7xl mx-auto">
           <Title title="Định hướng sinh viên" desc="Chúng tôi luôn hướng tới việc mang lại giá trị tốt nhất cho khách hàng." />
 
@@ -30,10 +30,10 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* section 4 - news */}
-      <Section4 />
+      {/* section 2 - about*/}
+      <Section2 />
 
-      {/* section 5 - footer */}
+      {/* section 5 - FAQ */}
       <Section5 />
 
       {/* section 6 - contact */}

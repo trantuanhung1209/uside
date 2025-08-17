@@ -51,7 +51,7 @@ export default function Section2() {
   };
   return (
     <>
-      <section className="section-2 py-10 sm:py-16 lg:py-20 border-b border-border">
+      <section className="section-2 py-10 sm:py-[40px] lg:py-[60px] border-b border-border">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
             title="Giới thiệu về chúng tôi"
@@ -295,7 +295,7 @@ export default function Section2() {
                 <div className="flex flex-col gap-6">
                   {/* Card 1 - Top Left */}
                   <div
-                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-[5px] xl:p-[5px]"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -320,7 +320,7 @@ export default function Section2() {
 
                   {/* Card 2 */}
                   <div
-                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-[5px] xl:p-[5px]"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -346,14 +346,14 @@ export default function Section2() {
 
                 {/* Center Card - Occupies middle position */}
                 <div
-                  className="relative cursor-pointer transition-all duration-300 hover:scale-105"
+                  className="relative transition-all duration-300 "
                   onClick={() => handleCardClick(centerCard.id)}
                 >
                   <div
                     className="p-6 rounded-3xl h-full bg-gradient-to-br from-blue-50 to-cyan-50 flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[440px]"
                     style={{
                       boxShadow:
-                        "-20px -20px 40px #FAFBFF, 20px 20px 40px rgba(22, 17, 29, 0.2)",
+                        "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.2)",
                     }}
                   >
                     {/* Center decoration */}
@@ -393,7 +393,7 @@ export default function Section2() {
                 <div className="flex flex-col gap-6">
                   {/* Card 3 */}
                   <div
-                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-[5px] xl:p-[5px]"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -418,7 +418,7 @@ export default function Section2() {
 
                   {/* Card 4 */}
                   <div
-                    className="relative transition-all duration-700 bg-background rounded-2xl p-6 xl:p-8"
+                    className="relative transition-all duration-700 bg-background rounded-2xl p-[5px] xl:p-[5px]"
                     style={{
                       boxShadow:
                         "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",

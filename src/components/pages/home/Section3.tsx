@@ -195,7 +195,7 @@ const Section3: React.FC = () => {
           className="bg-background rounded-2xl lg:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 transition-all duration-500 transform"
           style={{
             boxShadow:
-              "-20px -20px 40px #FAFBFF, 20px 20px 40px rgba(22, 17, 29, 0.15)",
+              "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.15)",
           }}
         >
           {/* Step header */}

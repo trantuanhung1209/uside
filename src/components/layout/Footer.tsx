@@ -6,7 +6,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo Section */}
           <div className="lg:col-span-1">
-            <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff] transition-all duration-300">
+            <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
               <div className="w-16 h-16 bg-background rounded-xl mb-4 flex items-center justify-center shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff]">
                 <img
                   src="/images_uside/uside_light.png"
@@ -35,7 +35,7 @@ const Footer = () => {
           </div>
 
           {/* Solution Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] transition-all duration-300">
+          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
             <h3 className="text-text-primary font-semibold text-lg mb-6">
               Solution
             </h3>
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
 
           {/* Support Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] transition-all duration-300">
+          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
             <h3 className="text-text-primary font-semibold text-lg mb-6">
               Support
             </h3>
@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
 
           {/* Company Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] transition-all duration-300">
+          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
             <h3 className="text-text-primary font-semibold text-lg mb-6">
               Company
             </h3>
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
 
           {/* Legal Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] transition-all duration-300">
+          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
             <h3 className="text-text-primary font-semibold text-lg mb-6">
               Legal
             </h3>

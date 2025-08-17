@@ -19,7 +19,7 @@ const Section4 = () => {
 
   return (
     <>
-      <div className="section-4 py-10 md:py-16 lg:py-20">
+      <div className="section-4 py-[20px] md:py-[40px] lg:py-[60px]">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
             title="Tin tức mới nhất"
@@ -68,26 +68,24 @@ const Section4 = () => {
                     <button className="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base hover:font-bold text-text-primary transform hover:scale-105 transition-all duration-300 cursor-pointer">
                       Tuyển dụng
                     </button>
-                    
                   </div>
 
                   <div className="inner-list-news">
                     <ul className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-6">
                       <li className="mb-2 flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-2">
-                        <div className="flex-1 flex flex-col sm:flex-row gap-3 sm:gap-[20px] items-start  w-full">
-                          <NavLink 
-                            to="/tin-tuc/1" 
-                            className="neumorphic-button text-sm sm:text-base px-4 py-2 whitespace-nowrap"
+                        <div className="flex-1 flex flex-col sm:flex-row gap-3 sm:gap-[20px] items-start w-full">
+                          <NavLink
+                            to="/tin-tuc/1"
+                            className="text-sm sm:text-base whitespace-nowrap hover:text-text-accent font-semibold text-text-primary transition-all duration-300"
                           >
-                            Xem chi tiết
-                          </NavLink>
-                          <div className="flex-1 line-clamp-2 sm:line-clamp-1 text-sm sm:text-base">
                             Tin tức mới nhất về USide và các hoạt động của chúng
                             tôi.
-                          </div>
+                          </NavLink>
                         </div>
                         <div className="inner-date mt-2 sm:mt-0">
-                          <span className="text-gray-500 text-sm sm:text-base whitespace-nowrap">12/10/2023</span>
+                          <span className="text-gray-500 text-sm sm:text-base whitespace-nowrap">
+                            12/10/2023
+                          </span>
                         </div>
                       </li>
                     </ul>

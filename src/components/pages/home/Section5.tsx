@@ -59,13 +59,13 @@ const Section5 = () => {
             {faqData.map((item, index) => (
               <div
                 key={item.id}
-                className={`faq-item bg-background rounded-3xl overflow-hidden transition-all duration-500 ease-out hover:scale-[1.02] self-start ${
+                className={`faq-item bg-background rounded-3xl overflow-hidden transition-all duration-500 ease-out self-start ${
                   openItems.includes(item.id) ? 'open' : ''
                 }`}
                 style={{
                   boxShadow: openItems.includes(item.id)
-                    ? 'inset -8px -8px 16px #FAFBFF, inset 8px 8px 16px rgba(22, 17, 29, 0.15)'
-                    : '-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.2)',
+                    ? 'inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.15)'
+                    : '-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.2)',
                   animationDelay: `${index * 0.1}s`
                 }}
               >
