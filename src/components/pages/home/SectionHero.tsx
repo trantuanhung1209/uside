@@ -324,11 +324,11 @@ const SectionHero = () => {
           </div>
 
           {/* Right side buttons */}
-          <div className="absolute top-[-80px] right-[-40px] inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px]">
+          <div className="absolute top-[-80px] right-[-40px] inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px] border-gray-200 bg-background shadow-sm px-[20px] py-[8px] rounded-[20px] transition-all duration-300 hover:shadow-lg">
             {/* Search */}
             <div className="search-container relative group">
               <div
-                className="search-wrapper relative rounded-2xl transition-all duration-300 hover:shadow-lg focus-within:shadow-lg"
+                className="search-wrapper relative rounded-2xl transition-all duration-300"
                 style={{
                   background: "var(--color-secondary)",
                 }}
@@ -336,7 +336,7 @@ const SectionHero = () => {
                 <input
                   type="text"
                   placeholder="Tìm kiếm..."
-                  className="search-input w-full px-5 py-3 bg-transparent rounded-2xl focus:outline-none transition-all duration-300 max-w-xs sm:max-w-sm"
+                  className="search-input w-full px-5 py-3 bg-transparent rounded-xl focus:outline-none transition-all duration-300 max-w-xs sm:max-w-sm"
                   style={{
                     color: "var(--color-text-primary)",
                     boxShadow:

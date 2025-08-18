@@ -101,7 +101,7 @@ const FloatingStepProgress = () => {
               <div 
                 className={`
                   w-4 h-4 rounded-full border-2 transition-all duration-300 relative z-10 transform
-                  ${index <= currentSection
+                  ${index === currentSection
                     ? 'bg-gradient-to-br from-accent to-[#3aefc4] border-accent shadow-[0_0_15px_rgba(0,210,255,0.6)] scale-110'
                     : 'bg-gray-400 border-gray-400 shadow-[inset_-3px_-3px_6px_#FAFBFF,inset_3px_3px_6px_rgba(22,17,29,0.15)]'
                   }
@@ -109,7 +109,7 @@ const FloatingStepProgress = () => {
                 `}
               >
                 {/* Inner glow for active step */}
-                {index <= currentSection && (
+                {index === currentSection && (
                   <div className="absolute inset-0 bg-gradient-to-br from-accent to-[#3aefc4] rounded-full animate-pulse opacity-70"></div>
                 )}
                 
@@ -130,7 +130,7 @@ const FloatingStepProgress = () => {
                   ${index === currentSection
                     ? 'bg-gradient-to-r from-accent/20 to-[#3aefc4]/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)] opacity-100'
                     : index < currentSection 
-                      ? 'text-accent/80 opacity-100 bg-gradient-to-r from-accent/10 to-[#3aefc4]/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]'
+                      ? 'text-gray-400 opacity-100 bg-gradient-to-r from-accent/10 to-[#3aefc4]/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]'
                       : 'text-text-secondary group-hover:text-accent group-hover:scale-105 opacity-0'
                   }
                   ${index <= currentSection ? 'opacity-100' : 'group-hover:opacity-100'}
