@@ -70,14 +70,10 @@ const FloatingStepProgress = () => {
   };
 
   return (
-    <div className="sticky left-5 top-1/2 -translate-y-1/2 z-50 transition-all duration-300 hover:scale-105 w-[100px] h-[400px]">
+    <div className="sticky left-5 top-2/3 -translate-y-1/2 z-50 transition-all duration-300 hover:scale-105 w-[100px] h-[400px]">
       {/* Container với neumorphic design */}
       <div 
-        className="relative bg-background p-4 rounded-3xl shadow-[inset_-8px_-8px_16px_#FAFBFF,inset_8px_8px_16px_rgba(22,17,29,0.2)] backdrop-blur-lg border border-border/30"
-        style={{
-          background: 'rgba(240, 241, 244, 0.9)',
-          backdropFilter: 'blur(20px)',
-        }}
+        className="relative bg-background p-4 rounded-3xl border-gray-200 shadow-sm"
       >
         {/* Progress line */}
         <div className="absolute left-6 top-4 bottom-4 w-1 bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
@@ -94,7 +90,7 @@ const FloatingStepProgress = () => {
         </div>
 
         {/* Steps */}
-        <div className="flex flex-col space-y-6 ml-8">
+        <div className="flex flex-col space-y-6 ml-5">
           {sections.map((section, index) => (
             <div
               key={section.id}
@@ -107,7 +103,7 @@ const FloatingStepProgress = () => {
                   w-4 h-4 rounded-full border-2 transition-all duration-300 relative z-10 transform
                   ${index <= currentSection
                     ? 'bg-gradient-to-br from-accent to-[#3aefc4] border-accent shadow-[0_0_15px_rgba(0,210,255,0.6)] scale-110'
-                    : 'bg-background border-secondary shadow-[inset_-3px_-3px_6px_#FAFBFF,inset_3px_3px_6px_rgba(22,17,29,0.15)]'
+                    : 'bg-gray-400 border-gray-400 shadow-[inset_-3px_-3px_6px_#FAFBFF,inset_3px_3px_6px_rgba(22,17,29,0.15)]'
                   }
                   group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(0,210,255,0.8)]
                 `}
@@ -133,9 +129,12 @@ const FloatingStepProgress = () => {
                   ml-4 px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-300 transform origin-left
                   ${index === currentSection
                     ? 'bg-gradient-to-r from-accent/20 to-[#3aefc4]/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)] opacity-100'
-                    : 'text-text-secondary group-hover:text-accent group-hover:scale-105 opacity-0'
+                    : index < currentSection 
+                      ? 'text-accent/80 opacity-100 bg-gradient-to-r from-accent/10 to-[#3aefc4]/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]'
+                      : 'text-text-secondary group-hover:text-accent group-hover:scale-105 opacity-0'
                   }
-                  group-hover:opacity-100 whitespace-nowrap
+                  ${index <= currentSection ? 'opacity-100' : 'group-hover:opacity-100'}
+                  whitespace-nowrap
                   group-hover:bg-background group-hover:shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]
                   group-hover:translate-x-1
                 `}

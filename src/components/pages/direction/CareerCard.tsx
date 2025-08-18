@@ -138,36 +138,15 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
                 className={`
                   px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium
                   rounded-full border
-                  transform hover:scale-105
-                  transition-all duration-300
-                  ${isHovered ? "animate-pulse" : ""}
                 `}
                 style={{
                   color: "var(--color-text-primary)",
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
                   borderColor: "var(--color-border)",
                   boxShadow: `
                     4px 4px 8px var(--color-shadow),
                     -4px -4px 8px #FAFBFF
                   `,
                   animationDelay: `${skillIndex * 100}ms`,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = `linear-gradient(90deg, var(--color-accent), #3aefc4)`;
-                  e.currentTarget.style.color = "white";
-                  e.currentTarget.style.boxShadow = `
-                    6px 6px 12px var(--color-shadow),
-                    -6px -6px 12px #FAFBFF,
-                    0 0 15px var(--color-accent)
-                  `;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`;
-                  e.currentTarget.style.color = "var(--color-text-primary)";
-                  e.currentTarget.style.boxShadow = `
-                    4px 4px 8px var(--color-shadow),
-                    -4px -4px 8px #FAFBFF
-                  `;
                 }}
               >
                 {skill}
