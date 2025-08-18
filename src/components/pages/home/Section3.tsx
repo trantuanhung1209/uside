@@ -200,7 +200,6 @@ const Section3: React.FC = () => {
         >
           {/* Step header */}
           <div className="text-center mb-6 lg:mb-8">
-            <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 lg:mb-4">{currentStepData.icon}</div>
             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-3 lg:mb-4">
               {currentStepData.title}
             </h3>

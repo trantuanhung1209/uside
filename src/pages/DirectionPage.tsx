@@ -245,7 +245,7 @@ const DirectionPage: React.FC = () => {
       />
 
       <section className="inner-about">
-        <div className="container max-w-7xl mx-auto py-[60px]">
+        <div className="container max-w-7xl mx-auto py-[60px] px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <Title
             title="Định hướng nghề nghiệp"
@@ -406,7 +406,7 @@ const DirectionPage: React.FC = () => {
             {/* Career Navigation Info */}
             <div
               className="text-center mt-6 space-y-2"
-              style={{ color: "var(--color-text-placeholder)" }}
+              style={{ color: "var(--color-text-secondary)" }}
             >
               <div className="text-xs">
                 Sử dụng mũi tên hoặc click vào các chấm để chuyển đổi nghề

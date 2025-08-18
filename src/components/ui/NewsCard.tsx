@@ -32,8 +32,8 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
       style={{
         background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
         boxShadow: `
-          -12px -12px 24px #FAFBFF,
-          12px 12px 24px var(--color-shadow)
+          -4px -4px 8px #FAFBFF,
+          4px 4px 8px var(--color-shadow)
         `,
         animationDelay: `${index * 200}ms`,
       }}
@@ -89,8 +89,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
               transition-all duration-300
             `}
             style={{
-              background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
-              color: "white",
+              color: "var(--color-text-primary)",
               boxShadow: `
                 -3px -3px 6px #FAFBFF,
                 3px 3px 6px var(--color-shadow)

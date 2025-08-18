@@ -1,7 +1,6 @@
 import { Layout } from '../components/layout';
 import { BannerBreadcrumb, Title } from '../components';
 import { useState } from 'react';
-import Section5 from '../components/pages/home/Section5';
 
 // Contact Card Component
 interface ContactCardProps {
@@ -17,27 +16,14 @@ interface ContactCardProps {
 const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
   return (
     <div 
-      className="p-6 rounded-2xl transition-all duration-500 transform hover:scale-105"
+      className="p-6 rounded-2xl transition-all duration-500 transform"
       style={{
         background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
         boxShadow: `
-          -6px -6px 12px #FAFBFF,
-          6px 6px 12px var(--color-shadow)
+          -4px -4px 8px #FAFBFF,
+          4px 4px 8px var(--color-shadow)
         `,
         animationDelay: `${index * 0.1}s`
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = `
-          -16px -16px 32px #FAFBFF,
-          16px 16px 32px var(--color-shadow),
-          0 0 40px var(--color-accent)
-        `;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = `
-          -6px -6px 12px #FAFBFF,
-          6px 6px 12px var(--color-shadow)
-        `;
       }}
     >
       <div className="flex items-start gap-4">
@@ -106,8 +92,7 @@ const FormField: React.FC<FormFieldProps> = ({
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium
-                   transition-all duration-300 focus:scale-105"
+        className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
         style={{
           background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
           color: 'var(--color-text-primary)',
@@ -115,19 +100,6 @@ const FormField: React.FC<FormFieldProps> = ({
             inset -6px -6px 12px #FAFBFF,
             inset 6px 6px 12px var(--color-shadow)
           `
-        }}
-        onFocus={(e) => {
-          e.currentTarget.style.boxShadow = `
-            inset -8px -8px 16px #FAFBFF,
-            inset 8px 8px 16px var(--color-shadow),
-            0 0 20px var(--color-accent)
-          `;
-        }}
-        onBlur={(e) => {
-          e.currentTarget.style.boxShadow = `
-            inset -6px -6px 12px #FAFBFF,
-            inset 6px 6px 12px var(--color-shadow)
-          `;
         }}
       />
     </div>
@@ -214,8 +186,8 @@ const ContactPage: React.FC = () => {
         image="/images_uside/banner_contact.png"
       />
       
-      <section className="pt-[40px]">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-[40px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="text-center mb-16">
             <Title title='Liên hệ với chúng tôi' desc='Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy để lại thông tin và chúng tôi sẽ phản hồi sớm nhất có thể.' />
@@ -241,8 +213,8 @@ const ContactPage: React.FC = () => {
                 style={{
                   background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
                   boxShadow: `
-                    inset -8px -8px 16px #FAFBFF,
-                    inset 8px 8px 16px var(--color-shadow)
+                    -4px -4px 8px #FAFBFF,
+                    4px 4px 8px var(--color-shadow)
                   `
                 }}
               >
@@ -412,9 +384,6 @@ const ContactPage: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* FAQ Section */}
-          <Section5 />
         </div>
       </section>
     </Layout>

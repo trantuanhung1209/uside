@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Title from "../../ui/Title";
+import { useNavigate } from "react-router-dom";
 
 interface FAQItem {
   id: number;
@@ -37,6 +38,7 @@ const faqData: FAQItem[] = [
 
 const Section5 = () => {
   const [openItems, setOpenItems] = useState<number[]>([]);
+  const navigate = useNavigate();
 
   const toggleItem = (id: number) => {
     setOpenItems(prev => 
@@ -48,10 +50,11 @@ const Section5 = () => {
 
   return (
     <section className="section-5 overflow-hidden bg-background py-20">
-      <div className="container max-w-7xl mx-auto px-4">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Title 
-          title="Câu hỏi thường gặp"
+          title="Câu hỏi & Liên hệ"
           desc="Những câu hỏi thường gặp từ người dùng về chương trình và dịch vụ của chúng tôi."
+          link="lien-he"
         />
         
         <div className="max-w-4xl mx-auto mt-16">
@@ -148,7 +151,11 @@ const Section5 = () => {
             >
               <p className="text-text-secondary text-sm">
                 Bạn có câu hỏi khác? 
-                <span className="faq-contact-link text-accent font-semibold ml-1 cursor-pointer transition-colors duration-300">
+                <span className="faq-contact-link text-accent font-semibold ml-1 cursor-pointer transition-colors duration-300"
+                onClick={() => {
+                  navigate('/lien-he'); // Navigate to contact page
+                }}
+                >
                   Liên hệ với chúng tôi
                 </span>
               </p>

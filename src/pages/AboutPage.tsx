@@ -17,13 +17,13 @@ const AboutPage: React.FC = () => {
         />
 
         <div className="inner-content">
-          <div className="container max-w-7xl mx-auto">
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Features Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
               {/* Feature 1 */}
-              <div className="feature-card group relative p-8 rounded-3xl bg-background transition-all duration-500 hover:transform hover:translateY(-8px) hover:scale-105">
+              <div className="feature-card group relative p-8 rounded-3xl bg-background">
                 {/* Neumorphic shadow */}
-                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25)] group-hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.3),0_0_30px_rgba(0,210,255,0.15)] transition-all duration-500"></div>
+                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]"></div>
                 
                 <div className="relative z-10">
                   {/* Icon Container */}
@@ -55,8 +55,8 @@ const AboutPage: React.FC = () => {
               </div>
 
               {/* Feature 3 */}
-              <div className="feature-card group relative p-8 rounded-3xl bg-background transition-all duration-500 hover:transform hover:translateY(-8px) hover:scale-105">
-                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25)] group-hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.3),0_0_30px_rgba(0,210,255,0.15)] transition-all duration-500"></div>
+              <div className="feature-card group relative p-8 rounded-3xl bg-background">
+                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]"></div>
                 
                 <div className="relative z-10">
                   <div className="w-16 h-16 mb-6 rounded-2xl bg-background shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] flex items-center justify-center group-hover:shadow-[-12px_-12px_24px_#FAFBFF,12px_12px_24px_rgba(22,17,29,0.3)] transition-all duration-300">
@@ -86,8 +86,8 @@ const AboutPage: React.FC = () => {
               </div>
 
               {/* Feature 2 */}
-              <div className="feature-card group relative p-8 rounded-3xl bg-background transition-all duration-500 hover:transform hover:translateY(-8px) hover:scale-105">
-                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25)] group-hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.3),0_0_30px_rgba(0,210,255,0.15)] transition-all duration-500"></div>
+              <div className="feature-card group relative p-8 rounded-3xl bg-background">
+                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]"></div>
                 
                 <div className="relative z-10">
                   <div className="w-16 h-16 mb-6 rounded-2xl bg-background shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] flex items-center justify-center group-hover:shadow-[-12px_-12px_24px_#FAFBFF,12px_12px_24px_rgba(22,17,29,0.3)] transition-all duration-300">
@@ -114,8 +114,8 @@ const AboutPage: React.FC = () => {
               </div>
 
               {/* Feature 4 */}
-              <div className="feature-card group relative p-8 rounded-3xl bg-background transition-all duration-500 hover:transform hover:translateY(-8px) hover:scale-105">
-                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25)] group-hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.3),0_0_30px_rgba(0,210,255,0.15)] transition-all duration-500"></div>
+              <div className="feature-card group relative p-8 rounded-3xl bg-background">
+                <div className="absolute inset-0 rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]"></div>
                 
                 <div className="relative z-10">
                   <div className="w-16 h-16 mb-6 rounded-2xl bg-background shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] flex items-center justify-center group-hover:shadow-[-12px_-12px_24px_#FAFBFF,12px_12px_24px_rgba(22,17,29,0.3)] transition-all duration-300">
@@ -209,18 +209,18 @@ const AboutPage: React.FC = () => {
 
                 {/* Central Bridge Element */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                  <div className="relative group cursor-pointer">
+                  <div className="relative group">
                     {/* Main bridge circle with neumorphic design */}
-                    <div className="w-32 h-32 rounded-full bg-background relative overflow-hidden transition-all duration-700 hover:scale-110 hover:rotate-12">
+                    <div className="w-32 h-32 rounded-full bg-background relative overflow-hidden">
                       {/* Neumorphic shadow layers */}
                       <div className="absolute inset-0 rounded-full shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25)] group-hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.3),0_0_30px_rgba(0,210,255,0.2)] transition-all duration-700"></div>
                       
                       {/* Inner pressed effect */}
-                      <div className="absolute inset-3 rounded-full bg-background shadow-[inset_-8px_-8px_16px_#FAFBFF,inset_8px_8px_16px_rgba(22,17,29,0.15)] group-hover:shadow-[inset_-12px_-12px_24px_#FAFBFF,inset_12px_12px_24px_rgba(22,17,29,0.2)] transition-all duration-700"></div>
+                      <div className="absolute inset-3 rounded-full bg-background shadow-[inset_-8px_-8px_16px_#FAFBFF,inset_8px_8px_16px_rgba(22,17,29,0.15)] "></div>
                       
                       {/* Mountain illustration */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <svg className="w-16 h-16 text-accent group-hover:scale-110 group-hover:text-[#3aefc4] transition-all duration-500" viewBox="0 0 120 120" fill="currentColor">
+                        <svg className="w-16 h-16 text-accent" viewBox="0 0 120 120" fill="currentColor">
                           <polygon points="60,25 85,75 35,75" opacity="0.9"/>
                           <polygon points="50,40 75,75 25,75" opacity="0.7"/>
                           <circle cx="75" cy="40" r="6" opacity="0.8"/>
@@ -261,7 +261,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       <section className="section-2 pb-[80px] bg-gradient-to-br from-background to-primary/5 -mt-48 pt-48 relative z-10">
-        <div className="container max-w-7xl mx-auto ">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Left Side - Title and Description */}
@@ -281,7 +281,7 @@ const AboutPage: React.FC = () => {
               <div className="relative">
                 <div className="w-80 h-64 relative">
                   {/* Neumorphic container */}
-                  <div className="absolute inset-0 rounded-3xl bg-background shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.2)] transition-all duration-500 hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.25)]"></div>
+                  <div className="absolute inset-0 rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.2)]"></div>
                   
                   {/* Wireframe geometric shape */}
                   <div className="absolute inset-0 flex items-center justify-center p-12">
@@ -317,9 +317,9 @@ const AboutPage: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               
               {/* Feature 1 */}
-              <div className="group relative p-6 rounded-2xl bg-background transition-all duration-500 hover:transform hover:translateY(-4px) hover:scale-105">
+              <div className="group relative p-6 rounded-2xl bg-background">
                 {/* Neumorphic shadow */}
-                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-12px_-12px_24px_#FAFBFF,12px_12px_24px_rgba(22,17,29,0.2)] group-hover:shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25),0_0_25px_rgba(0,210,255,0.1)] transition-all duration-500"></div>
+                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.2)]"></div>
                 
                 <div className="relative z-10 text-center space-y-4">
                   {/* Icon */}
@@ -351,8 +351,8 @@ const AboutPage: React.FC = () => {
               </div>
 
               {/* Feature 2 */}
-              <div className="group relative p-6 rounded-2xl bg-background transition-all duration-500 hover:transform hover:translateY(-4px) hover:scale-105">
-                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-12px_-12px_24px_#FAFBFF,12px_12px_24px_rgba(22,17,29,0.2)] group-hover:shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25),0_0_25px_rgba(0,210,255,0.1)] transition-all duration-500"></div>
+              <div className="group relative p-6 rounded-2xl bg-background">
+                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.2)]"></div>
                 
                 <div className="relative z-10 text-center space-y-4">
                   <div className="w-12 h-12 mx-auto rounded-xl bg-background shadow-[-6px_-6px_12px_#FAFBFF,6px_6px_12px_rgba(22,17,29,0.15)] flex items-center justify-center group-hover:shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] transition-all duration-300">
@@ -379,8 +379,8 @@ const AboutPage: React.FC = () => {
               </div>
 
               {/* Feature 3 */}
-              <div className="group relative p-6 rounded-2xl bg-background transition-all duration-500 hover:transform hover:translateY(-4px) hover:scale-105">
-                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-12px_-12px_24px_#FAFBFF,12px_12px_24px_rgba(22,17,29,0.2)] group-hover:shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25),0_0_25px_rgba(0,210,255,0.1)] transition-all duration-500"></div>
+              <div className="group relative p-6 rounded-2xl bg-background">
+                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.2)]"></div>
                 
                 <div className="relative z-10 text-center space-y-4">
                   <div className="w-12 h-12 mx-auto rounded-xl bg-background shadow-[-6px_-6px_12px_#FAFBFF,6px_6px_12px_rgba(22,17,29,0.15)] flex items-center justify-center group-hover:shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] transition-all duration-300">
@@ -410,8 +410,8 @@ const AboutPage: React.FC = () => {
               </div>
 
               {/* Feature 4 */}
-              <div className="group relative p-6 rounded-2xl bg-background transition-all duration-500 hover:transform hover:translateY(-4px) hover:scale-105">
-                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-12px_-12px_24px_#FAFBFF,12px_12px_24px_rgba(22,17,29,0.2)] group-hover:shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25),0_0_25px_rgba(0,210,255,0.1)] transition-all duration-500"></div>
+              <div className="group relative p-6 rounded-2xl bg-background">
+                <div className="absolute inset-0 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.2)]"></div>
                 
                 <div className="relative z-10 text-center space-y-4">
                   <div className="w-12 h-12 mx-auto rounded-xl bg-background shadow-[-6px_-6px_12px_#FAFBFF,6px_6px_12px_rgba(22,17,29,0.15)] flex items-center justify-center group-hover:shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] transition-all duration-300">

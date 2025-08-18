@@ -86,6 +86,72 @@ const NewsDetailPage: React.FC = () => {
       author: 'Ban lãnh đạo',
       category: 'Đối tác'
     },
+    {
+      id: 4,
+      title: 'Hợp tác với các đối tác công nghệ',
+      date: '1 tháng 8, 2025',
+      excerpt: 'USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.',
+      content: `
+        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
+        
+        <h3>Lợi ích từ việc hợp tác</h3>
+        <ul>
+          <li>Mở rộng phạm vi dịch vụ</li>
+          <li>Tích hợp công nghệ tiên tiến</li>
+          <li>Cải thiện trải nghiệm người dùng</li>
+          <li>Tăng cường khả năng cạnh tranh</li>
+        </ul>
+        
+        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
+      `,
+      image: '/images_uside/uside_light.png',
+      author: 'Ban lãnh đạo',
+      category: 'Đối tác'
+    },
+    {
+      id: 5,
+      title: 'Hợp tác với các đối tác công nghệ',
+      date: '1 tháng 8, 2025',
+      excerpt: 'USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.',
+      content: `
+        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
+        
+        <h3>Lợi ích từ việc hợp tác</h3>
+        <ul>
+          <li>Mở rộng phạm vi dịch vụ</li>
+          <li>Tích hợp công nghệ tiên tiến</li>
+          <li>Cải thiện trải nghiệm người dùng</li>
+          <li>Tăng cường khả năng cạnh tranh</li>
+        </ul>
+        
+        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
+      `,
+      image: '/images_uside/uside_light.png',
+      author: 'Ban lãnh đạo',
+      category: 'Đối tác'
+    },
+    {
+      id: 6,
+      title: 'Hợp tác với các đối tác công nghệ',
+      date: '1 tháng 8, 2025',
+      excerpt: 'USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.',
+      content: `
+        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
+        
+        <h3>Lợi ích từ việc hợp tác</h3>
+        <ul>
+          <li>Mở rộng phạm vi dịch vụ</li>
+          <li>Tích hợp công nghệ tiên tiến</li>
+          <li>Cải thiện trải nghiệm người dùng</li>
+          <li>Tăng cường khả năng cạnh tranh</li>
+        </ul>
+        
+        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
+      `,
+      image: '/images_uside/uside_light.png',
+      author: 'Ban lãnh đạo',
+      category: 'Đối tác'
+    },
   ];
 
   const newsItem = newsData.find(item => item.id === parseInt(id || '0'));
@@ -94,7 +160,7 @@ const NewsDetailPage: React.FC = () => {
     return (
       <Layout>
         <main className="py-8">
-          <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
               Không tìm thấy bài viết
             </h1>
@@ -116,7 +182,7 @@ const NewsDetailPage: React.FC = () => {
   return (
     <Layout>
       <main className="py-8">
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="mb-6 text-sm text-gray-600">
             <span 
@@ -198,10 +264,10 @@ const NewsDetailPage: React.FC = () => {
           {/* Related Articles */}
           <section className="mt-12">
             <Title title='Bài viết liên quan' desc='Khám phá thêm các bài viết khác từ chúng tôi' />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {newsData
                 .filter(item => item.id !== newsItem.id)
-                .slice(0, 2)
+                .slice(0, 3)
                 .map((relatedItem) => (
                 <NewsCard
                   key={relatedItem.id} 

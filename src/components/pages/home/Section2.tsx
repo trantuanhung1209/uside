@@ -55,7 +55,8 @@ export default function Section2() {
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
             title="Giới thiệu về chúng tôi"
-            desc="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, voluptatum."
+            desc=""
+            link="gioi-thieu"
           />
 
           <div className="inner-wrap pt-6 sm:pt-8 lg:pt-12">

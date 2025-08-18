@@ -26,6 +26,8 @@ const Header = () => {
   const [logoClicked, setLogoClicked] = useState(false);
   const [showAppsPopup, setShowAppsPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const popupRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -37,6 +39,35 @@ const Header = () => {
   const handleRobotClick = () => {
     setShowAppsPopup(!showAppsPopup);
   };
+
+  // Handle scroll to hide/show header
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Only hide header after scrolling more than 100px
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down - hide header
+          setIsHeaderVisible(false);
+        } else {
+          // Scrolling up - show header
+          setIsHeaderVisible(true);
+        }
+      } else {
+        // Always show header when near top
+        setIsHeaderVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
 
   // Handle click outside to close popup and mobile menu
   useEffect(() => {
@@ -60,8 +91,10 @@ const Header = () => {
 
   return (
     <>
-      <header className="header border-b border-gray-200 bg-background shadow-sm sticky z-50 top-0 left-0 right-0">
-        <div className="container max-w-7xl mx-auto px-3">
+      <header className={`header border-b border-gray-200 bg-background shadow-sm sticky z-50 top-0 left-0 right-0 transition-transform duration-300 ease-in-out ${
+        isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}>
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inner-wrap flex items-center justify-between py-2 sm:py-3 md:py-4">
             {/* Logo */}
             <div 

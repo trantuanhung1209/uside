@@ -13,16 +13,19 @@ const HomePage: React.FC = () => {
       <SectionHero />
 
       {/* Section 1 - Animation Loop */}
-      <Section1 />
+      <section id="section-1">
+        <Section1 />
+      </section>
 
       {/* section 4 - news */}
-      <Section4 />
+      <section id="section-2">
+        <Section4 />
+      </section>
 
       {/* section 3 - direction */}
-            {/* section 3 - direction */}
-      <section className="section-3 py-[60px]">
-        <div className="container max-w-7xl mx-auto">
-          <Title title="Định hướng sinh viên" desc="Chúng tôi luôn hướng tới việc mang lại giá trị tốt nhất cho khách hàng." />
+      <section id="section-3" className="section-3 py-[60px]">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Title title="Định hướng sinh viên" desc="Chúng tôi luôn hướng tới việc mang lại giá trị tốt nhất cho khách hàng." link="dinh-huong" />
 
           <div className="inner-content">
             <Section3 />
@@ -31,12 +34,14 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* section 2 - about*/}
-      <Section2 />
+      <section id="section-4">
+        <Section2 />
+      </section>
 
       {/* section 5 - FAQ */}
-      <Section5 />
-
-      {/* section 6 - contact */}
+      <section id="section-5">
+        <Section5 />
+      </section>
     </Layout>
   );
 };

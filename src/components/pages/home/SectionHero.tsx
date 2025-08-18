@@ -1,13 +1,63 @@
+import { useRef, useState } from "react";
 import { useMusic } from "../../../hooks";
 import { SplineViewer } from "../../ui";
 import BackgroundRobot from "../../ui/BackgroundRobot";
 
 const SectionHero = () => {
   const { isPlaying, toggleMusic } = useMusic();
+  const popupRef = useRef<HTMLDivElement>(null);
+  const [showAppsPopup, setShowAppsPopup] = useState(false);
+  const handleRobotClick = () => {
+    setShowAppsPopup(!showAppsPopup);
+  };
+
+  // Apps/Websites data for popup
+  const appsData = [
+    { name: "Gmail", icon: "📧", url: "https://gmail.com", color: "#EA4335" },
+    {
+      name: "YouTube",
+      icon: "📺",
+      url: "https://youtube.com",
+      color: "#FF0000",
+    },
+    { name: "GitHub", icon: "🐙", url: "https://github.com", color: "#181717" },
+    {
+      name: "Facebook",
+      icon: "📘",
+      url: "https://facebook.com",
+      color: "#1877F2",
+    },
+    {
+      name: "Instagram",
+      icon: "📷",
+      url: "https://instagram.com",
+      color: "#E4405F",
+    },
+    {
+      name: "LinkedIn",
+      icon: "💼",
+      url: "https://linkedin.com",
+      color: "#0A66C2",
+    },
+    {
+      name: "Twitter",
+      icon: "🐦",
+      url: "https://twitter.com",
+      color: "#1DA1F2",
+    },
+    {
+      name: "Spotify",
+      icon: "🎵",
+      url: "https://spotify.com",
+      color: "#1DB954",
+    },
+  ];
+
   return (
     <>
       <section
-        className="min-h-screen relative overflow-hidden border-b pt-[100px] border-border"
+        id="hero"
+        className="min-h-screen relative overflow-hidden border-b border-border pt-[100px] mt-[-400px]"
         style={{ background: "var(--color-background)" }}
       >
         {/* Background overlay for readability */}
@@ -22,8 +72,8 @@ const SectionHero = () => {
         <BackgroundRobot />
 
         {/* Main Content */}
-        <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inner-wrap grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[80px]">
+          <div className="inner-wrap grid grid-cols-1 md:grid-cols-2 gap-[40px]">
             {/* Hero Illustration/Image */}
             <div className="relative">
               <div
@@ -199,7 +249,7 @@ const SectionHero = () => {
                 url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
                 className="w-full h-full"
               />
-              
+
               {/* Robot overlay to hide Spline logo */}
               <div className="absolute bottom-4 right-4 z-50">
                 <div
@@ -214,12 +264,13 @@ const SectionHero = () => {
                     className="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-xl"
                     style={{
                       background: "var(--color-primary)",
-                      boxShadow: "inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.15)",
+                      boxShadow:
+                        "inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.15)",
                     }}
                   >
                     {/* Eyes */}
                     <div className="absolute top-2 left-2 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                    <div 
+                    <div
                       className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full animate-pulse"
                       style={{ animationDelay: "0.5s" }}
                     ></div>
@@ -235,17 +286,18 @@ const SectionHero = () => {
                     className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-8 rounded-lg"
                     style={{
                       background: "var(--color-secondary)",
-                      boxShadow: "inset -3px -3px 6px #FAFBFF, inset 3px 3px 6px rgba(22, 17, 29, 0.1)",
+                      boxShadow:
+                        "inset -3px -3px 6px #FAFBFF, inset 3px 3px 6px rgba(22, 17, 29, 0.1)",
                     }}
                   >
                     {/* Control Panel */}
                     <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex gap-1">
                       <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                      <div 
+                      <div
                         className="w-1 h-1 bg-yellow-400 rounded-full animate-pulse"
                         style={{ animationDelay: "0.5s" }}
                       ></div>
-                      <div 
+                      <div
                         className="w-1 h-1 bg-red-400 rounded-full animate-pulse"
                         style={{ animationDelay: "1s" }}
                       ></div>
@@ -256,7 +308,8 @@ const SectionHero = () => {
                   <div
                     className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
                     style={{
-                      background: "linear-gradient(45deg, var(--color-accent), #3aefc4)",
+                      background:
+                        "linear-gradient(45deg, var(--color-accent), #3aefc4)",
                     }}
                   ></div>
 
@@ -267,6 +320,132 @@ const SectionHero = () => {
                   ></div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Right side buttons */}
+          <div className="absolute top-[-80px] right-[-40px] inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px]">
+            {/* Search */}
+            <div className="search-container relative group">
+              <div
+                className="search-wrapper relative rounded-2xl transition-all duration-300 hover:shadow-lg focus-within:shadow-lg"
+                style={{
+                  background: "var(--color-secondary)",
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm..."
+                  className="search-input w-full px-5 py-3 bg-transparent rounded-2xl focus:outline-none transition-all duration-300 max-w-xs sm:max-w-sm"
+                  style={{
+                    color: "var(--color-text-primary)",
+                    boxShadow:
+                      "inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.8)",
+                  }}
+                />
+                <div
+                  className="search-icon-wrapper absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg group-hover:shadow-xl"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)",
+                  }}
+                >
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                  <div
+                    className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.2)",
+                    }}
+                  ></div>
+                </div>
+
+                {/* Decorative elements */}
+                <div
+                  className="absolute -top-1 -left-1 w-3 h-3 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--color-accent) 0%, #ff6b6b 100%)",
+                  }}
+                ></div>
+                <div
+                  className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)",
+                  }}
+                ></div>
+
+                {/* Floating particles effect */}
+                <div
+                  className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                  style={{
+                    background: "var(--color-accent)",
+                    transform: "translate(-50%, -50%)",
+                    animation: "floatUp 2s ease-in-out infinite",
+                  }}
+                ></div>
+              </div>
+            </div>
+
+            {/* Apps button */}
+            <div
+              ref={popupRef}
+              className="relative cursor-pointer top-0 right-0 z-50"
+              onClick={handleRobotClick}
+            >
+              <button
+                className={`robot-apps-button w-8 h-8 md:w-10 md:h-10 ${
+                  showAppsPopup ? "active" : ""
+                }`}
+              >
+                <img
+                  src="/images_uside/pet_uside_light.png"
+                  alt="Apps"
+                  className="w-full h-full object-contain"
+                />
+                <div className="robot-button-glow"></div>
+              </button>
+
+              {/* Apps Popup */}
+              {showAppsPopup && (
+                <div className="apps-popup absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg border-border p-4 w-64 z-50">
+                  <div className="apps-popup-arrow absolute -top-2 right-4 w-4 h-4 bg-white border-l border-t border-border transform rotate-45"></div>
+                  <div className="apps-grid grid grid-cols-4 gap-3">
+                    {appsData.map((app, index) => (
+                      <a
+                        key={index}
+                        href={app.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="app-item flex flex-col items-center p-2 rounded-lg hover:bg-gray-50 transition-colors text-center"
+                        style={
+                          { "--app-color": app.color } as React.CSSProperties
+                        }
+                        title={app.name}
+                      >
+                        <span className="app-icon text-lg mb-1">
+                          {app.icon}
+                        </span>
+                        <span className="app-name text-xs text-gray-600">
+                          {app.name}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

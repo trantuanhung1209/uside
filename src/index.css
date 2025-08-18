@@ -90,6 +90,22 @@ body {
   transition: all 0.1s ease;
 }
 
+.neumorphic-button.active {
+  background: linear-gradient(
+    90deg,
+    #00d2ff 0%,
+    #3aefc4 50%,
+    #00d2ff 100%
+  );
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    -8px -8px 16px #FAFBFF,
+    8px 8px 16px rgba(22, 17, 29, 0.3),
+    0 8px 25px rgba(0, 210, 255, 0.5);
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
 .neumorphic-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
