@@ -344,32 +344,12 @@ const Section4 = () => {
                               <div className="flex flex-wrap gap-2 mt-1">
                                 <span
                                   className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer
-                                  bg-background text-text-primary
-                                  hover:transform hover:translateY(-1px) hover:scale-105
-                                  ${
-                                    item.category === "update"
-                                      ? "hover:bg-green-500 hover:text-white"
-                                      : item.category === "security"
-                                      ? "hover:bg-red-500 hover:text-white"
-                                      : item.category === "partnership"
-                                      ? "hover:bg-blue-500 hover:text-white"
-                                      : item.category === "recruitment"
-                                      ? "hover:bg-purple-500 hover:text-white"
-                                      : item.category === "technology"
-                                      ? "hover:bg-orange-500 hover:text-white"
-                                      : "hover:bg-accent hover:text-white"
-                                  }`}
+                                  bg-background text-text-primary`}
                                   style={{
                                     boxShadow:
                                       "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
-                                  }}
-                                  onMouseEnter={(e) => {
-                                    (e.target as HTMLElement).style.boxShadow =
-                                      "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.25), 0 0 15px rgba(0, 210, 255, 0.3)";
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    (e.target as HTMLElement).style.boxShadow =
-                                      "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)";
+                                    background: "linear-gradient( 90deg, #00d2ff 0%, #3aefc4 50%, #00d2ff 100%)",
+                                    color: "white",
                                   }}
                                 >
                                   {item.category === "update"
