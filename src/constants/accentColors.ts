@@ -1,11 +1,11 @@
-// Định nghĩa các màu accent có sẵn
 export const ACCENT_COLORS = {
-  default: '#00d2ff',
-  accent1: '#e8a9c4', // hồng pastel
-  accent2: '#eabf94', // cam đào pastel
-  accent3: '#e8e39a', // vàng pastel
-  accent4: '#a9d7a1', // xanh lá pastel
-  accent5: '#9fc9e8', // xanh dương pastel
+  default: '#00d2ff',  // Cyan sáng – mặc định, hiện đại
+
+  accent1: '#ff4da6',  // Hồng magenta sáng – nổi bật, cân bằng với cyan
+  accent2: '#ff884d',  // Cam san hô tươi – ấm, vẫn trong sáng
+  accent3: '#ffd633',  // Vàng tươi – sáng rõ, không quá chói
+  accent4: '#33d96f',  // Xanh lá tươi (emerald/green mint) – fresh
+  accent5: '#3385ff',  // Xanh dương sáng – công nghệ, đồng điệu với cyan
 } as const;
 
 export type AccentColorType = keyof typeof ACCENT_COLORS;

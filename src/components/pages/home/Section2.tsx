@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useAccentColor } from "../../../hooks/useAccentColor";
 import Title from "../../ui/Title";
 
 export default function Section2() {
   const [shuffleKey, setShuffleKey] = useState(0);
+  const { currentAccentColor } = useAccentColor();
 
   // Data cho các cards - sử dụng state để có thể shuffle
   const [cardData, setCardData] = useState([
@@ -70,8 +72,9 @@ export default function Section2() {
                   onClick={() => handleCardClick(centerCard.id)}
                 >
                   <div
-                    className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[200px]"
+                    className="p-6 rounded-2xl flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[200px]"
                     style={{
+                      background: `linear-gradient(135deg, ${currentAccentColor}15, ${currentAccentColor}25)`,
                       boxShadow:
                         "-15px -15px 30px #FAFBFF, 15px 15px 30px rgba(22, 17, 29, 0.15)",
                     }}
@@ -80,7 +83,7 @@ export default function Section2() {
                     <div
                       className="w-16 h-16 rounded-full mb-4 flex items-center justify-center"
                       style={{
-                        background: "linear-gradient(135deg, #00d2ff, #3aefc4)",
+                        background: `linear-gradient(135deg, ${currentAccentColor}, #3aefc4)`,
                         boxShadow:
                           "inset -6px -6px 12px rgba(255,255,255,0.2), inset 6px 6px 12px rgba(0,0,0,0.1)",
                       }}
@@ -97,14 +100,23 @@ export default function Section2() {
 
                     {/* Bottom decoration */}
                     <div className="mt-4 flex gap-2">
-                      <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-                      <div
-                        className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
+                      <div 
+                        className="w-2 h-2 rounded-full animate-pulse"
+                        style={{ backgroundColor: `${currentAccentColor}80` }}
                       ></div>
                       <div
-                        className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"
-                        style={{ animationDelay: "1s" }}
+                        className="w-2 h-2 rounded-full animate-pulse"
+                        style={{ 
+                          backgroundColor: `${currentAccentColor}60`,
+                          animationDelay: "0.5s" 
+                        }}
+                      ></div>
+                      <div
+                        className="w-2 h-2 rounded-full animate-pulse"
+                        style={{ 
+                          backgroundColor: `${currentAccentColor}40`,
+                          animationDelay: "1s" 
+                        }}
                       ></div>
                     </div>
                   </div>
@@ -200,8 +212,9 @@ export default function Section2() {
                     onClick={() => handleCardClick(centerCard.id)}
                   >
                     <div
-                      className="p-6 rounded-3xl bg-gradient-to-br from-blue-50 to-cyan-50 flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[240px]"
+                      className="p-6 rounded-3xl flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[240px]"
                       style={{
+                        background: `linear-gradient(135deg, ${currentAccentColor}15, ${currentAccentColor}25)`,
                         boxShadow:
                           "-20px -20px 40px #FAFBFF, 20px 20px 40px rgba(22, 17, 29, 0.2)",
                       }}
@@ -209,7 +222,7 @@ export default function Section2() {
                       <div
                         className="w-16 h-16 rounded-full mb-4 flex items-center justify-center"
                         style={{
-                          background: "linear-gradient(135deg, #00d2ff, #3aefc4)",
+                          background: `linear-gradient(135deg, ${currentAccentColor}, #3aefc4)`,
                           boxShadow:
                             "inset -6px -6px 12px rgba(255,255,255,0.2), inset 6px 6px 12px rgba(0,0,0,0.1)",
                         }}
@@ -225,14 +238,23 @@ export default function Section2() {
                       </p>
 
                       <div className="mt-4 flex gap-2">
-                        <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-                        <div
-                          className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"
-                          style={{ animationDelay: "0.5s" }}
+                        <div 
+                          className="w-2 h-2 rounded-full animate-pulse"
+                          style={{ backgroundColor: `${currentAccentColor}80` }}
                         ></div>
                         <div
-                          className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"
-                          style={{ animationDelay: "1s" }}
+                          className="w-2 h-2 rounded-full animate-pulse"
+                          style={{ 
+                            backgroundColor: `${currentAccentColor}60`,
+                            animationDelay: "0.5s" 
+                          }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 rounded-full animate-pulse"
+                          style={{ 
+                            backgroundColor: `${currentAccentColor}40`,
+                            animationDelay: "1s" 
+                          }}
                         ></div>
                       </div>
                     </div>
@@ -351,8 +373,9 @@ export default function Section2() {
                   onClick={() => handleCardClick(centerCard.id)}
                 >
                   <div
-                    className="p-6 rounded-3xl h-full bg-gradient-to-br from-blue-50 to-cyan-50 flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[440px]"
+                    className="p-6 rounded-3xl h-full flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[440px]"
                     style={{
+                      background: `linear-gradient(135deg, ${currentAccentColor}15, ${currentAccentColor}25)`,
                       boxShadow:
                         "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.2)",
                     }}
@@ -361,7 +384,7 @@ export default function Section2() {
                     <div
                       className="w-20 h-20 rounded-full mb-6 flex items-center justify-center"
                       style={{
-                        background: "linear-gradient(135deg, #00d2ff, #3aefc4)",
+                        background: `linear-gradient(135deg, ${currentAccentColor}, #3aefc4)`,
                         boxShadow:
                           "inset -8px -8px 16px rgba(255,255,255,0.2), inset 8px 8px 16px rgba(0,0,0,0.1)",
                       }}
@@ -378,14 +401,23 @@ export default function Section2() {
 
                     {/* Bottom decoration */}
                     <div className="mt-6 flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-blue-400 animate-pulse"></div>
-                      <div
-                        className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
+                      <div 
+                        className="w-3 h-3 rounded-full animate-pulse"
+                        style={{ backgroundColor: `${currentAccentColor}80` }}
                       ></div>
                       <div
-                        className="w-3 h-3 rounded-full bg-teal-400 animate-pulse"
-                        style={{ animationDelay: "1s" }}
+                        className="w-3 h-3 rounded-full animate-pulse"
+                        style={{ 
+                          backgroundColor: `${currentAccentColor}60`,
+                          animationDelay: "0.5s" 
+                        }}
+                      ></div>
+                      <div
+                        className="w-3 h-3 rounded-full animate-pulse"
+                        style={{ 
+                          backgroundColor: `${currentAccentColor}40`,
+                          animationDelay: "1s" 
+                        }}
                       ></div>
                     </div>
                   </div>

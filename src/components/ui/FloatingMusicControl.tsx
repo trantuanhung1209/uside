@@ -1,37 +1,52 @@
 import { useMusic } from '../../hooks';
+import { useAccentColor } from '../../hooks/useAccentColor';
 
 const FloatingMusicControl = () => {
   const { isPlaying, toggleMusic } = useMusic();
+  const { currentAccentColor } = useAccentColor();
 
   return (
     <div className="inline-block sticky bottom-10 left-[95%] z-50">
       <button
-        className="w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group relative overflow-hidden flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-cyan-200 cursor-pointer shadow-lg"
-        style={{
-          backgroundColor: "var(--color-background)",
-          boxShadow:
-            "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.3)",
-        }}
+        className="w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group relative overflow-hidden flex items-center justify-center focus:outline-none cursor-pointer shadow-lg section-neumorphic"
         onClick={toggleMusic}
         title={isPlaying ? "Dừng nhạc" : "Phát nhạc"}
+        style={{
+          focusRingColor: `color-mix(in srgb, ${currentAccentColor} 20%, transparent)`,
+          '--focus-ring': `0 0 0 4px color-mix(in srgb, ${currentAccentColor} 20%, transparent)`,
+        } as React.CSSProperties}
+        onFocus={(e) => {
+          (e.target as HTMLElement).style.boxShadow = `0 0 0 4px color-mix(in srgb, ${currentAccentColor} 20%, transparent)`;
+        }}
+        onBlur={(e) => {
+          (e.target as HTMLElement).style.boxShadow = '';
+        }}
       >
         {/* Play/Stop Icon */}
         <div className="relative z-10">
           {isPlaying ? (
             // Stop Icon
             <svg
-              className="w-6 h-6 text-cyan-500 group-hover:text-cyan-400 transition-colors duration-300"
+              className="w-6 h-6 transition-all duration-300 group-hover:scale-110"
               fill="currentColor"
               viewBox="0 0 24 24"
+              style={{ 
+                color: currentAccentColor,
+                filter: `drop-shadow(0 0 4px ${currentAccentColor}30)`
+              }}
             >
               <path d="M6 6h12v12H6z" />
             </svg>
           ) : (
             // Play Icon
             <svg
-              className="w-6 h-6 text-cyan-500 group-hover:text-cyan-400 transition-colors duration-300"
+              className="w-6 h-6 transition-all duration-300 group-hover:scale-110"
               fill="currentColor"
               viewBox="0 0 24 24"
+              style={{ 
+                color: currentAccentColor,
+                filter: `drop-shadow(0 0 4px ${currentAccentColor}30)`
+              }}
             >
               <path d="M8 5v14l11-7z" />
             </svg>
@@ -56,20 +71,35 @@ const FloatingMusicControl = () => {
               : "opacity-0 group-hover:opacity-20"
           }`}
           style={{
-            background: "linear-gradient(90deg, #00d2ff 0%, #3aefc4 50%, #00d2ff 100%)"
+            background: `linear-gradient(90deg, ${currentAccentColor} 0%, #3aefc4 50%, ${currentAccentColor} 100%)`
           }}
         ></div>
 
         {/* Sound waves animation when playing */}
         {isPlaying && (
           <div className="absolute -inset-6 pointer-events-none">
-            <div className="absolute inset-0 rounded-full border-2 border-cyan-400 opacity-20 animate-ping"></div>
             <div 
-              className="absolute inset-2 rounded-full border-2 border-cyan-300 opacity-30 animate-ping"
-              style={{ animationDelay: "0.5s" }}
+              className="absolute inset-0 rounded-full border-2 opacity-20 animate-ping"
+              style={{ borderColor: currentAccentColor }}
+            ></div>
+            <div 
+              className="absolute inset-2 rounded-full border-2 opacity-30 animate-ping"
+              style={{ 
+                borderColor: `color-mix(in srgb, ${currentAccentColor} 80%, white)`,
+                animationDelay: "0.5s" 
+              }}
             ></div>
           </div>
         )}
+
+        {/* Hover glow effect */}
+        <div 
+          className="absolute -inset-2 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle, ${currentAccentColor} 0%, transparent 70%)`,
+            filter: 'blur(8px)'
+          }}
+        ></div>
       </button>
     </div>
   );
