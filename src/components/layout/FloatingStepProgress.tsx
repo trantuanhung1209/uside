@@ -70,7 +70,7 @@ const FloatingStepProgress = () => {
   };
 
   return (
-    <div className="sticky left-5 top-2/3 -translate-y-1/2 z-50 transition-all duration-300 hover:scale-105 w-[100px] h-[400px]">
+    <div className="sticky left-5 top-1/2 -translate-y-1/2 z-50 transition-all duration-300 hover:scale-105 w-[100px] h-[400px]">
       {/* Container với neumorphic design */}
       <div 
         className="relative bg-background p-4 rounded-3xl border-gray-200 shadow-sm"
@@ -126,14 +126,13 @@ const FloatingStepProgress = () => {
               {/* Step label */}
               <div 
                 className={`
-                  ml-4 px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-300 transform origin-left
+                  ml-4 px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-300 transform origin-left opacity-100
                   ${index === currentSection
-                    ? 'bg-gradient-to-r from-accent/20 to-[#3aefc4]/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)] opacity-100'
+                    ? 'bg-gradient-to-r from-accent/20 to-[#3aefc4]/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]'
                     : index < currentSection 
-                      ? 'text-gray-400 opacity-100 bg-gradient-to-r from-accent/10 to-[#3aefc4]/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]'
-                      : 'text-text-secondary group-hover:text-accent group-hover:scale-105 opacity-0'
+                      ? 'text-gray-400 bg-gradient-to-r from-accent/10 to-[#3aefc4]/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]'
+                      : 'text-text-secondary group-hover:text-accent group-hover:scale-105'
                   }
-                  ${index <= currentSection ? 'opacity-100' : 'group-hover:opacity-100'}
                   whitespace-nowrap
                   group-hover:bg-background group-hover:shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]
                   group-hover:translate-x-1

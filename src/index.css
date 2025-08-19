@@ -1668,3 +1668,527 @@ body {
 .testimonials-card:nth-child(1) { animation-delay: 0.2s; }
 .testimonials-card:nth-child(2) { animation-delay: 0.4s; }
 .testimonials-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* BlockQuote Thought Bubbles - Neumorphic Style */
+.shadow-neumorphic {
+  box-shadow: 
+    -6px -6px 12px #FAFBFF,
+    6px 6px 12px rgba(22, 17, 29, 0.15);
+}
+
+.shadow-neumorphic-sm {
+  box-shadow: 
+    -4px -4px 8px #FAFBFF,
+    4px 4px 8px rgba(22, 17, 29, 0.12);
+}
+
+.shadow-neumorphic-xs {
+  box-shadow: 
+    -2px -2px 4px #FAFBFF,
+    2px 2px 4px rgba(22, 17, 29, 0.1);
+}
+
+/* Floating Animation Variants */
+.animate-float-slow {
+  animation: floatSlow 3s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: floatMedium 2.5s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: floatFast 2s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+@keyframes floatMedium {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.1);
+  }
+}
+
+@keyframes floatFast {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.15);
+  }
+}
+
+
+@keyframes thoughtPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(3);
+    opacity: 1;
+  }
+}
+
+/* Typewriter Effect Styles */
+.typewriter-text {
+  display: inline;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  background-color: var(--color-text-secondary);
+  width: 1px;
+  margin-left: 2px;
+  animation: typewriter-blink 1s infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Enhanced typewriter cursor with neumorphic style */
+.typewriter-cursor {
+  background: linear-gradient(90deg, #00d2ff, #3aefc4);
+  border-radius: 1px;
+  box-shadow: 
+    0 0 4px rgba(0, 210, 255, 0.5),
+    0 0 8px rgba(0, 210, 255, 0.3);
+}
+
+/* Digital Clock Styles - Neumorphic with Neon */
+.digital-clock-container {
+  perspective: 1000px;
+}
+
+.digital-clock-wrapper {
+  position: relative;
+  padding: 12px 18px;
+  background: var(--color-background);
+  border-radius: 12px;
+  
+  /* Inner neumorphic shadow only */
+  box-shadow:
+    inset -6px -6px 12px rgba(22, 17, 29, 0.15),
+    inset 6px 6px 12px #FAFBFF;
+  
+  /* Subtle border */
+  border: 1px solid rgba(224, 247, 250, 0.2);
+  
+  /* Animation */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.digital-clock-wrapper:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    inset -8px -8px 16px rgba(22, 17, 29, 0.2),
+    inset 8px 8px 16px #FAFBFF,
+    0 0 15px rgba(0, 210, 255, 0.15);
+}
+
+.digital-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', 'Monaco', 'Lucida Console', monospace;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+.time-digit {
+  display: inline-block;
+  font-size: 1.5rem;
+  line-height: 1;
+  min-width: 0.8em;
+  text-align: center;
+  
+  /* Neon effect with accent color - subtle */
+  color: var(--color-accent);
+  text-shadow: 
+    0 0 5px var(--color-accent),
+    0 0 10px var(--color-accent),
+    0 0 15px var(--color-accent);
+  
+  /* Letter spacing for digital look */
+  letter-spacing: 1px;
+  
+  /* Animation */
+  transition: all 0.3s ease;
+  animation: digitalGlow 3s ease-in-out infinite alternate;
+}
+
+.time-separator {
+  display: inline-block;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0 4px;
+  
+  /* Subtle neon for separators */
+  color: var(--color-accent);
+  text-shadow: 
+    0 0 3px var(--color-accent),
+    0 0 6px var(--color-accent);
+  
+  /* Blinking animation for separators */
+  animation: separatorBlink 2s ease-in-out infinite;
+}
+
+/* Glow background effect - smaller and subtle */
+.clock-glow {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 210, 255, 0.08) 0%,
+    rgba(0, 210, 255, 0.03) 50%,
+    transparent 100%
+  );
+  border-radius: 15px;
+  z-index: 1;
+  filter: blur(8px);
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+/* Reflection effect - smaller */
+.clock-reflection {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 210, 255, 0.05) 0%,
+    transparent 100%
+  );
+  border-radius: 12px;
+  filter: blur(5px);
+  transform: scaleY(-1);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* Keyframe Animations - more subtle */
+@keyframes digitalGlow {
+  0% {
+    text-shadow: 
+      0 0 5px var(--color-accent),
+      0 0 10px var(--color-accent),
+      0 0 15px var(--color-accent);
+  }
+  100% {
+    text-shadow: 
+      0 0 8px var(--color-accent),
+      0 0 15px var(--color-accent),
+      0 0 20px var(--color-accent);
+  }
+}
+
+@keyframes separatorBlink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Hover effects for individual digits - more subtle */
+.time-digit:hover {
+  transform: scale(1.05);
+  text-shadow: 
+    0 0 8px var(--color-accent),
+    0 0 15px var(--color-accent),
+    0 0 25px var(--color-accent);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .digital-clock-wrapper {
+    padding: 15px 20px;
+    border-radius: 15px;
+  }
+  
+  .time-digit, .time-separator {
+    font-size: 2rem;
+  }
+  
+  .time-separator {
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .digital-clock-wrapper {
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+  
+  .time-digit, .time-separator {
+    font-size: 1.5rem;
+  }
+  
+  .time-separator {
+    margin: 0 3px;
+  }
+}
+
+/* Weather Component Styles - Compact Neumorphic */
+.weather-container {
+  perspective: 1000px;
+}
+
+.weather-wrapper {
+  position: relative;
+  padding: 12px 15px;
+  background: var(--color-background);
+  border-radius: 12px;
+  min-width: 140px;
+  
+  /* Inner neumorphic shadow only */
+  box-shadow:
+    inset -6px -6px 12px rgba(22, 17, 29, 0.15),
+    inset 6px 6px 12px #FAFBFF;
+  
+  /* Subtle border */
+  border: 1px solid rgba(224, 247, 250, 0.2);
+  
+  /* Animation */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Flexbox layout */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weather-wrapper:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    inset -8px -8px 16px rgba(22, 17, 29, 0.2),
+    inset 8px 8px 16px #FAFBFF,
+    0 0 15px rgba(0, 210, 255, 0.1);
+}
+
+.weather-icon {
+  font-size: 1.8rem;
+  animation: weatherIconFloat 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 2px 4px rgba(0, 210, 255, 0.2));
+}
+
+.weather-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.weather-temp {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-accent);
+  text-shadow: 
+    0 0 5px var(--color-accent),
+    0 0 10px var(--color-accent);
+  letter-spacing: 0.5px;
+}
+
+.weather-desc {
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 2px;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.humidity, .city {
+  font-size: 0.65rem;
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Loading state */
+.weather-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  padding: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top: 2px solid var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Error state */
+.weather-error {
+  padding: 8px;
+  color: #ff6b6b;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Glow effect */
+.weather-glow {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 210, 255, 0.05) 0%,
+    rgba(0, 210, 255, 0.02) 50%,
+    transparent 100%
+  );
+  border-radius: 15px;
+  z-index: -1;
+  filter: blur(6px);
+  animation: weatherGlow 4s ease-in-out infinite alternate;
+}
+
+/* Animations */
+@keyframes weatherIconFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+}
+
+@keyframes weatherGlow {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .weather-wrapper {
+    padding: 10px 12px;
+    min-width: 120px;
+    gap: 6px;
+  }
+  
+  .weather-icon {
+    font-size: 1.5rem;
+  }
+  
+  .weather-temp {
+    font-size: 1rem;
+  }
+  
+  .weather-desc {
+    font-size: 0.65rem;
+  }
+  
+  .humidity, .city {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .weather-wrapper {
+    padding: 8px 10px;
+    min-width: 100px;
+    gap: 4px;
+  }
+  
+  .weather-icon {
+    font-size: 1.3rem;
+  }
+  
+  .weather-temp {
+    font-size: 0.9rem;
+  }
+  
+  .weather-desc {
+    font-size: 0.6rem;
+  }
+  
+  .humidity, .city {
+    font-size: 0.55rem;
+  }
+}
+
+.section-neumorphic {
+  background: var(--color-background);
+  border-radius: 12px;
+  
+  /* Inner neumorphic shadow only */
+  box-shadow:
+    inset -6px -6px 12px rgba(22, 17, 29, 0.15),
+    inset 6px 6px 12px #FAFBFF;
+  /* Subtle border */
+  border: 1px solid rgba(224, 247, 250, 0.2);
+  
+  /* Animation */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Flexbox layout */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
