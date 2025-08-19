@@ -19,7 +19,18 @@ const Clock = () => {
     return { hours, minutes, seconds };
   };
 
-  const { hours, minutes, seconds } = formatTime(time);
+  // Format date to "Tue 19 August" format
+  const formatDate = (date: Date) => {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'long'
+    };
+    return date.toLocaleDateString('en-US', options);
+  };
+
+  const { hours, minutes } = formatTime(time);
+  const formattedDate = formatDate(time);
 
   return (
     <>
@@ -32,9 +43,11 @@ const Clock = () => {
             <span className="time-separator">:</span>
             <span className="time-digit">{minutes.charAt(0)}</span>
             <span className="time-digit">{minutes.charAt(1)}</span>
-            <span className="time-separator">:</span>
-            <span className="time-digit">{seconds.charAt(0)}</span>
-            <span className="time-digit">{seconds.charAt(1)}</span>
+          </div>
+          
+          {/* Date Display */}
+          <div className="digital-date time-digit">
+            {formattedDate}
           </div>
           
           {/* Glow Effect Background */}
