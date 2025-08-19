@@ -122,7 +122,7 @@ const Section4 = () => {
 
           <div className="inner-content">
             <div
-              className="bg-background rounded-2xl p-4 sm:p-6 md:p-8 mb-8"
+              className="bg-background rounded-2xl p-4 sm:p-6 md:p-8 mb-8 h-[600px] overflow-hidden"
               style={{
                 boxShadow:
                   "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -130,7 +130,7 @@ const Section4 = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-[60px]">
                 <div className="relative order-2 lg:order-1">
-                  <div 
+                  <div
                     className="h-48 sm:h-64 md:h-72 lg:h-[300px] w-full lg:w-[90%] overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 relative mx-auto lg:mx-0 cursor-pointer"
                     onClick={() => {
                       const currentNews = filteredNews[safeActiveSlide];
@@ -345,9 +345,7 @@ const Section4 = () => {
                         >
                           <div className="flex-1 flex flex-col sm:flex-row gap-3 sm:gap-[20px] items-start w-full">
                             <div className="flex flex-col gap-1">
-                              <span
-                                className="text-sm sm:text-base hover:text-accent font-semibold text-text-primary transition-all duration-300 line-clamp-2 hover:transform hover:translateX-1 cursor-pointer"
-                              >
+                              <span className="text-sm sm:text-base hover:text-accent font-semibold text-text-primary transition-all duration-300 line-clamp-2 hover:transform hover:translateX-1 cursor-pointer">
                                 {item.title}
                               </span>
                               <p className="text-xs sm:text-sm text-text-secondary line-clamp-2 mt-1 leading-relaxed">
@@ -355,12 +353,22 @@ const Section4 = () => {
                               </p>
                               <div className="flex flex-wrap gap-2 mt-1">
                                 <span
-                                  className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer
-                                  bg-background text-text-primary`}
+                                  className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer`}
                                   style={{
                                     boxShadow:
                                       "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
-                                    background: "linear-gradient( 90deg, #00d2ff 0%, #3aefc4 50%, #00d2ff 100%)",
+                                    background:
+                                      item.category === "update"
+                                        ? "linear-gradient(90deg, #9fc9e8, #00d2ff)" // xanh dương pastel
+                                        : item.category === "security"
+                                        ? "linear-gradient(90deg, #e8a9c4, #d98bb0)" // hồng pastel đậm
+                                        : item.category === "partnership"
+                                        ? "linear-gradient(90deg, #eabf94, #e89b5c)" // cam đào ấm
+                                        : item.category === "recruitment"
+                                        ? "linear-gradient(90deg, #e8e39a, #d6cf66)" // vàng pastel đậm
+                                        : item.category === "technology"
+                                        ? "linear-gradient(90deg, #a9d7a1, #7ecb85)" // xanh lá mint
+                                        : "linear-gradient(90deg, #d4ecfa, #9fc9e8)", // default: xanh pastel
                                     color: "white",
                                   }}
                                 >
@@ -376,6 +384,7 @@ const Section4 = () => {
                                     ? "Công nghệ"
                                     : "Sự kiện"}
                                 </span>
+
                                 <span className="text-xs text-text-secondary font-medium opacity-75 hover:opacity-100 transition-opacity duration-300">
                                   bởi {item.author}
                                 </span>

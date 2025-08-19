@@ -7,3 +7,4 @@ export { default as FloatingMusicControl } from './FloatingMusicControl';
 export { default as BannerBreadcrumb } from './BannerBreadcumb';
 export { default as Title } from './Title';
 export { default as SplineViewer } from './SplineViewer';
+export { default as ChangeAccentColor } from './ChangeAccentColor';

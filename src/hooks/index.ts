@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 // Export custom hooks
 export { default as useAppLoading } from './useAppLoading';
 export { useMusic } from './useMusic';
+export { useAccentColor } from './useAccentColor';
 
 /**
  * Custom hook for managing local storage state

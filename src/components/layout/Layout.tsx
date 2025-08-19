@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import FloatingStepProgress from './FloatingStepProgress';
+import { ChangeAccentColor } from '../ui';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -18,6 +19,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {isHomePage && <FloatingStepProgress />}
       <main className={isHomePage ? '' : ''}>{children}</main>
       <Footer />
+      
+      {/* Change Accent Color - Floating button available on all pages */}
+      <ChangeAccentColor />
     </>
   );
 };
