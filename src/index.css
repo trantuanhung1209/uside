@@ -24,6 +24,12 @@ body {
   --breakpoint-lg: 1024px; /* nhỏ hơn 1024px */
   --breakpoint-xl: 1280px; /* nhỏ hơn 1280px */
   --breakpoint-2xl: 1536px; /* nhỏ hơn 1536px */
+
+  --color-accent-1: #ffb3ba; /* hồng pastel (nhẹ nhàng, nữ tính, dùng cho highlight nhỏ) */
+  --color-accent-2: #ffdfba; /* cam đào pastel (ấm áp, làm điểm nhấn nhẹ) */
+  --color-accent-3: #ffffba; /* vàng pastel (sáng, gợi năng lượng) */
+  --color-accent-4: #baffc9; /* xanh lá pastel (tươi mới, thư giãn) */
+  --color-accent-5: #bae1ff; /* xanh dương pastel (dịu, đồng bộ với cyan) */
 }
 
 
@@ -1822,9 +1828,9 @@ body {
   /* Neon effect with accent color - subtle */
   color: var(--color-accent);
   text-shadow: 
-    0 0 5px var(--color-accent),
-    0 0 10px var(--color-accent),
-    0 0 15px var(--color-accent);
+    0 0 2px var(--color-accent),
+    0 0 4px var(--color-accent),
+    0 0 8px var(--color-accent);
   
   /* Letter spacing for digital look */
   letter-spacing: 1px;
@@ -1843,8 +1849,8 @@ body {
   /* Subtle neon for separators */
   color: var(--color-accent);
   text-shadow: 
-    0 0 3px var(--color-accent),
-    0 0 6px var(--color-accent);
+    0 0 2px var(--color-accent),
+    0 0 4px var(--color-accent);
   
   /* Blinking animation for separators */
   animation: separatorBlink 2s ease-in-out infinite;
@@ -1892,15 +1898,15 @@ body {
 @keyframes digitalGlow {
   0% {
     text-shadow: 
-      0 0 5px var(--color-accent),
-      0 0 10px var(--color-accent),
-      0 0 15px var(--color-accent);
+      0 0 2px var(--color-accent),
+      0 0 4px var(--color-accent),
+      0 0 8px var(--color-accent);
   }
   100% {
     text-shadow: 
+      0 0 4px var(--color-accent),
       0 0 8px var(--color-accent),
-      0 0 15px var(--color-accent),
-      0 0 20px var(--color-accent);
+      0 0 12px var(--color-accent);
   }
 }
 
@@ -1924,14 +1930,6 @@ body {
   }
 }
 
-/* Hover effects for individual digits - more subtle */
-.time-digit:hover {
-  transform: scale(1.05);
-  text-shadow: 
-    0 0 8px var(--color-accent),
-    0 0 15px var(--color-accent),
-    0 0 25px var(--color-accent);
-}
 
 /* Responsive design */
 @media (max-width: 768px) {

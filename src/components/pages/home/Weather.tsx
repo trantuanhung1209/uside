@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 interface WeatherData {
   temperature: number;
@@ -170,6 +170,12 @@ const Weather = () => {
     return "🌤️";
   };
 
+  // Cache activity suggestion để tránh thay đổi khi re-render
+  const activitySuggestion = useMemo(() => {
+    if (!weather) return "";
+    return getActivitySuggestion(weather.description, weather.temperature);
+  }, [weather]);
+
   if (loading) {
     return (
       <div className="weather-container absolute top-[0px] right-[190px]">
@@ -211,7 +217,7 @@ const Weather = () => {
             <div className="weather-temp">{weather.temperature}°C</div>
             <div className="flex flex-col">
               <div className="weather-desc">{weather.description}</div>
-              <div className="weather-desc">{getActivitySuggestion(weather.description, weather.temperature)}</div>
+              <div className="weather-desc">{activitySuggestion}</div>
             </div>
             <div className="weather-details">
               <span className="humidity">💧 {weather.humidity}%</span>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Title from "../../ui/Title";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Section4 = () => {
+  const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
@@ -101,6 +102,11 @@ const Section4 = () => {
     setActiveSlide(0); // Reset to first slide when filter changes
   };
 
+  // Handle click to navigate to news detail
+  const handleNewsItemClick = (newsId: number) => {
+    navigate(`/tin-tuc/${newsId}`);
+  };
+
   // Make sure activeSlide doesn't exceed the filtered news length
   const safeActiveSlide = Math.min(activeSlide, filteredNews.length - 1);
 
@@ -124,7 +130,15 @@ const Section4 = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-[60px]">
                 <div className="relative order-2 lg:order-1">
-                  <div className="h-48 sm:h-64 md:h-72 lg:h-[300px] w-full lg:w-[90%] overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 relative mx-auto lg:mx-0">
+                  <div 
+                    className="h-48 sm:h-64 md:h-72 lg:h-[300px] w-full lg:w-[90%] overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 relative mx-auto lg:mx-0 cursor-pointer"
+                    onClick={() => {
+                      const currentNews = filteredNews[safeActiveSlide];
+                      if (currentNews) {
+                        handleNewsItemClick(currentNews.id);
+                      }
+                    }}
+                  >
                     {filteredNews.length > 0 && (
                       <img
                         src={filteredNews[safeActiveSlide]?.image}
@@ -170,12 +184,11 @@ const Section4 = () => {
                         boxShadow:
                           activeFilter === "all"
                             ? `
-                          -6px -6px 12px #FAFBFF,
-                          6px 6px 12px var(--color-shadow)
+                          -3px -3px 6px #FAFBFF, 3px 3px 6px var(--color-shadow)
                         `
                             : `
-                          inset -6px -6px 12px #FAFBFF,
-                          inset 6px 6px 12px var(--color-shadow)
+                          inset -3px -3px 6px #FAFBFF,
+                          inset 3px 3px 6px var(--color-shadow)
                         `,
                       }}
                       onMouseEnter={(e) => {
@@ -190,8 +203,8 @@ const Section4 = () => {
                       onMouseLeave={(e) => {
                         if (activeFilter !== "all") {
                           e.currentTarget.style.boxShadow = `
-                          inset -4px -4px 8px #FAFBFF,
-                          inset 4px 4px 8px var(--color-shadow)
+                          inset -3px -3px 6px #FAFBFF,
+                          inset 3px 3px 6px var(--color-shadow)
                         `;
                         }
                       }}
@@ -219,12 +232,11 @@ const Section4 = () => {
                         boxShadow:
                           activeFilter === "news"
                             ? `
-                          -6px -6px 12px #FAFBFF,
-                          6px 6px 12px var(--color-shadow)
+                          -3px -3px 6px #FAFBFF, 3px 3px 6px var(--color-shadow)
                         `
                             : `
-                          inset -6px -6px 12px #FAFBFF,
-                          inset 6px 6px 12px var(--color-shadow)
+                          inset -3px -3px 6px #FAFBFF,
+                          inset 3px 3px 6px var(--color-shadow)
                         `,
                       }}
                       onMouseEnter={(e) => {
@@ -239,8 +251,8 @@ const Section4 = () => {
                       onMouseLeave={(e) => {
                         if (activeFilter !== "news") {
                           e.currentTarget.style.boxShadow = `
-                          inset -4px -4px 8px #FAFBFF,
-                          inset 4px 4px 8px var(--color-shadow)
+                          inset -3px -3px 6px #FAFBFF,
+                          inset 3px 3px 6px var(--color-shadow)
                         `;
                         }
                       }}
@@ -268,12 +280,11 @@ const Section4 = () => {
                         boxShadow:
                           activeFilter === "recruitment"
                             ? `
-                          -6px -6px 12px #FAFBFF,
-                          6px 6px 12px var(--color-shadow)
+                          -3px -3px 6px #FAFBFF, 3px 3px 6px var(--color-shadow)
                         `
                             : `
-                          inset -6px -6px 12px #FAFBFF,
-                          inset 6px 6px 12px var(--color-shadow)
+                          inset -3px -3px 6px #FAFBFF,
+                          inset 3px 3px 6px var(--color-shadow)
                         `,
                       }}
                       onMouseEnter={(e) => {
@@ -288,8 +299,8 @@ const Section4 = () => {
                       onMouseLeave={(e) => {
                         if (activeFilter !== "recruitment") {
                           e.currentTarget.style.boxShadow = `
-                          inset -4px -4px 8px #FAFBFF,
-                          inset 4px 4px 8px var(--color-shadow)
+                          inset -3px -3px 6px #FAFBFF,
+                          inset 3px 3px 6px var(--color-shadow)
                         `;
                         }
                       }}
@@ -314,30 +325,31 @@ const Section4 = () => {
                             boxShadow:
                               safeActiveSlide === index
                                 ? "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.25), 0 0 20px rgba(0, 210, 255, 0.3)"
-                                : "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15)",
+                                : "-3px -3px 6px #FAFBFF, 3px 3px 6px var(--color-shadow)",
                           }}
-                          onClick={() => setActiveSlide(index)}
                           onMouseEnter={(e) => {
+                            // Hover: Tự động chuyển ảnh
+                            setActiveSlide(index);
                             if (safeActiveSlide !== index) {
                               (e.currentTarget as HTMLElement).style.boxShadow =
-                                "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.2)";
+                                "-3px -3px 6px #FAFBFF, 3px 3px 6px var(--color-shadow)";
                             }
                           }}
                           onMouseLeave={(e) => {
                             if (safeActiveSlide !== index) {
                               (e.currentTarget as HTMLElement).style.boxShadow =
-                                "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15)";
+                                "-3px -3px 6px #FAFBFF, 3px 3px 6px var(--color-shadow)";
                             }
                           }}
+                          onClick={() => handleNewsItemClick(item.id)}
                         >
                           <div className="flex-1 flex flex-col sm:flex-row gap-3 sm:gap-[20px] items-start w-full">
                             <div className="flex flex-col gap-1">
-                              <NavLink
-                                to={`/tin-tuc/${item.id}`}
-                                className="text-sm sm:text-base hover:text-accent font-semibold text-text-primary transition-all duration-300 line-clamp-2 hover:transform hover:translateX-1"
+                              <span
+                                className="text-sm sm:text-base hover:text-accent font-semibold text-text-primary transition-all duration-300 line-clamp-2 hover:transform hover:translateX-1 cursor-pointer"
                               >
                                 {item.title}
-                              </NavLink>
+                              </span>
                               <p className="text-xs sm:text-sm text-text-secondary line-clamp-2 mt-1 leading-relaxed">
                                 {item.excerpt}
                               </p>
