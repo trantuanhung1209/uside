@@ -8,7 +8,6 @@ interface ContactCardProps {
     icon: string;
     title: string;
     content: string;
-    gradient: string;
   };
   index: number;
 }
@@ -18,7 +17,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
     <div 
       className="p-6 rounded-2xl transition-all duration-500 transform"
       style={{
-        background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+        background: "var(--color-background)",
         boxShadow: `
           -4px -4px 8px #FAFBFF,
           4px 4px 8px var(--color-shadow)
@@ -28,8 +27,10 @@ const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
     >
       <div className="flex items-start gap-4">
         <div 
-          className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl bg-gradient-to-r ${info.gradient}`}
+          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
           style={{
+            background: "var(--color-accent)",
+            color: "white",
             boxShadow: `
               -6px -6px 12px #FAFBFF,
               6px 6px 12px var(--color-shadow)
@@ -94,7 +95,7 @@ const FormField: React.FC<FormFieldProps> = ({
         required={required}
         className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
         style={{
-          background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+          background: "var(--color-background)",
           color: 'var(--color-text-primary)',
           boxShadow: `
             inset -6px -6px 12px #FAFBFF,
@@ -147,26 +148,22 @@ const ContactPage: React.FC = () => {
     {
       icon: '📍',
       title: 'Địa chỉ',
-      content: '123 Đường Công Nghệ, Quận 7, TP. Hồ Chí Minh',
-      gradient: 'from-blue-400 to-purple-500'
+      content: '123 Đường Công Nghệ, Quận 7, TP. Hồ Chí Minh'
     },
     {
       icon: '📧',
       title: 'Email',
-      content: 'hello@uside.vn',
-      gradient: 'from-green-400 to-blue-500'
+      content: 'hello@uside.vn'
     },
     {
       icon: '📞',
       title: 'Điện thoại',
-      content: '+84 (028) 123 4567',
-      gradient: 'from-purple-400 to-pink-500'
+      content: '+84 (028) 123 4567'
     },
     {
       icon: '🕒',
       title: 'Giờ làm việc',
-      content: 'T2 - T6: 8:00 - 18:00\nT7: 8:00 - 12:00',
-      gradient: 'from-orange-400 to-red-500'
+      content: 'T2 - T6: 8:00 - 18:00\nT7: 8:00 - 12:00'
     }
   ];
 
@@ -211,7 +208,7 @@ const ContactPage: React.FC = () => {
               <div 
                 className="p-8 rounded-3xl"
                 style={{
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  background: "var(--color-background)",
                   boxShadow: `
                     -4px -4px 8px #FAFBFF,
                     4px 4px 8px var(--color-shadow)
@@ -272,7 +269,7 @@ const ContactPage: React.FC = () => {
                         required
                         className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
                         style={{
-                          background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                          background: "var(--color-background)",
                           color: 'var(--color-text-primary)',
                           boxShadow: `
                             inset -6px -6px 12px #FAFBFF,
@@ -307,7 +304,7 @@ const ContactPage: React.FC = () => {
                       required
                       className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium resize-none"
                       style={{
-                        background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                        background: "var(--color-background)",
                         color: 'var(--color-text-primary)',
                         boxShadow: `
                           inset -6px -6px 12px #FAFBFF,
@@ -332,10 +329,10 @@ const ContactPage: React.FC = () => {
                       `}
                       style={{
                         background: submitStatus === 'success' 
-                          ? `linear-gradient(90deg, #10B981, #059669)`
+                          ? "#10B981"
                           : submitStatus === 'error'
-                          ? `linear-gradient(90deg, #EF4444, #DC2626)`
-                          : `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                          ? "#EF4444"
+                          : "var(--color-accent)",
                         boxShadow: `
                           -8px -8px 16px #FAFBFF,
                           8px 8px 16px var(--color-shadow)

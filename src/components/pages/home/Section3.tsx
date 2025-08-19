@@ -77,9 +77,9 @@ const Section3: React.FC = () => {
                     relative w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-500 flex-shrink-0
                     ${
                       currentStep === step.id
-                        ? "bg-gradient-to-r from-accent to-[#3aefc4] text-white shadow-lg transform scale-110"
+                        ? "bg-accent text-white shadow-lg transform scale-110"
                         : currentStep > step.id
-                        ? "bg-gradient-to-r from-accent to-[#3aefc4] text-white"
+                        ? "bg-accent text-white"
                         : "bg-[#EFF2F9] text-text-secondary shadow-neumorphic"
                     }
                   `}
@@ -94,7 +94,7 @@ const Section3: React.FC = () => {
                 >
                   {currentStep > step.id ? "✓" : step.icon}
                   {currentStep === step.id && (
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent to-[#3aefc4] opacity-30 animate-ping" />
+                    <div className="absolute inset-0 rounded-full bg-accent opacity-30 animate-ping" />
                   )}
                 </div>
                 
@@ -127,9 +127,9 @@ const Section3: React.FC = () => {
                     relative w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center text-lg lg:text-2xl font-bold transition-all duration-500
                     ${
                       currentStep === step.id
-                        ? "bg-gradient-to-r from-accent to-[#3aefc4] text-white shadow-lg transform scale-110"
+                        ? "bg-accent text-white shadow-lg transform scale-110"
                         : currentStep > step.id
-                        ? "bg-gradient-to-r from-accent to-[#3aefc4] text-white"
+                        ? "bg-accent text-white"
                         : "bg-[#EFF2F9] text-text-secondary shadow-neumorphic"
                     }
                   `}
@@ -146,7 +146,7 @@ const Section3: React.FC = () => {
 
                   {/* Pulse animation for current step */}
                   {currentStep === step.id && (
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent to-[#3aefc4] opacity-30 animate-ping" />
+                    <div className="absolute inset-0 rounded-full bg-accent opacity-30 animate-ping" />
                   )}
                 </div>
 
@@ -157,7 +157,7 @@ const Section3: React.FC = () => {
                       w-16 lg:w-24 h-1 mx-2 lg:mx-4 rounded-full transition-all duration-500
                       ${
                         currentStep > step.id
-                          ? "bg-gradient-to-r from-accent to-[#3aefc4]"
+                          ? "bg-accent"
                           : "bg-border"
                       }
                     `}
@@ -268,7 +268,7 @@ const Section3: React.FC = () => {
                 }}
               >
                 <div
-                  className="h-full bg-gradient-to-r from-accent to-[#3aefc4] transition-all duration-500 rounded-full"
+                  className="h-full bg-accent transition-all duration-500 rounded-full"
                   style={{
                     width: `${(currentStep / 3) * 100}%`,
                     boxShadow: "0 0 10px rgba(0, 210, 255, 0.3)",
@@ -287,7 +287,7 @@ const Section3: React.FC = () => {
                 flex items-center space-x-2 transition-all duration-300 hover:transform hover:translateX(2px) w-full sm:w-auto
                 ${
                   currentStep === 3
-                    ? "bg-gradient-to-r from-green-500 to-green-600 text-white"
+                    ? "bg-green-500 text-white"
                     : ""
                 }
               `}
@@ -302,8 +302,8 @@ const Section3: React.FC = () => {
       )}
 
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-accent/10 to-transparent rounded-full blur-xl" />
-      <div className="absolute bottom-0 right-0 w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-tl from-[#3aefc4]/10 to-transparent rounded-full blur-xl" />
+      <div className="absolute top-0 left-0 w-16 h-16 lg:w-20 lg:h-20 bg-accent/10 rounded-full blur-xl" />
+      <div className="absolute bottom-0 right-0 w-24 h-24 lg:w-32 lg:h-32 bg-accent/10 rounded-full blur-xl" />
 
       {/* Background particles */}
       <div className="absolute inset-0 z-[-1] hidden lg:block">

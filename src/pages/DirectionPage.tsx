@@ -281,7 +281,7 @@ const DirectionPage: React.FC = () => {
                   focus:outline-none focus:ring-2 focus:ring-offset-2
                 `}
                 style={{
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  background: `var(--color-background)`,
                   boxShadow: `
                     8px 8px 16px var(--color-shadow),
                     -8px -8px 16px #FAFBFF
@@ -335,7 +335,7 @@ const DirectionPage: React.FC = () => {
                       style={{
                         background:
                           index === currentCareerIndex
-                            ? `linear-gradient(90deg, var(--color-accent) 0%, #3aefc4 100%)`
+                            ? `var(--color-accent)`
                             : `var(--color-border)`,
                         boxShadow:
                           index === currentCareerIndex
@@ -373,7 +373,7 @@ const DirectionPage: React.FC = () => {
                   focus:outline-none focus:ring-2 focus:ring-offset-2
                 `}
                 style={{
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  background: `var(--color-background)`,
                   boxShadow: `
                     8px 8px 16px var(--color-shadow),
                     -8px -8px 16px #FAFBFF

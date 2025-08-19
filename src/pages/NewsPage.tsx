@@ -176,8 +176,8 @@ const NewsPage: React.FC = () => {
                     style={{
                       background:
                         selectedCategory === category.id
-                          ? `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`
-                          : `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                          ? `var(--color-background)`
+                          : `var(--color-background)`,
                       color:
                         selectedCategory === category.id
                           ? "var(--color-text-primary)"
@@ -272,7 +272,7 @@ const NewsPage: React.FC = () => {
                     opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]
                   `}
                   style={{
-                    background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                    background: `var(--color-background)`,
                     boxShadow: `
                       -4px -4px 8px #FAFBFF,
                       4px 4px 8px var(--color-shadow)
@@ -285,7 +285,7 @@ const NewsPage: React.FC = () => {
                   <div
                     className={`
                     absolute inset-0 opacity-0 group-hover:opacity-5
-                    bg-gradient-to-br from-blue-400 to-purple-500
+                    bg-accent
                     transition-opacity duration-500
                   `}
                   />
@@ -398,7 +398,7 @@ const NewsPage: React.FC = () => {
                           flex items-center gap-2
                         `}
                         style={{
-                          background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                          background: `var(--color-accent)`,
                           color: "white",
                           boxShadow: `
                             -6px -6px 12px #FAFBFF,
@@ -443,7 +443,7 @@ const NewsPage: React.FC = () => {
                           animate-ping
                         `}
                         style={{
-                          background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                          background: `var(--color-accent)`,
                           left: `${20 + i * 25}%`,
                           top: `${15 + i * 20}%`,
                           animationDelay: `${i * 400}ms`,
@@ -458,7 +458,7 @@ const NewsPage: React.FC = () => {
               <div
                 className="text-center py-16 rounded-2xl"
                 style={{
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  background: `var(--color-background)`,
                   boxShadow: `
                     inset -8px -8px 16px #FAFBFF,
                     inset 8px 8px 16px var(--color-shadow)
@@ -485,7 +485,7 @@ const NewsPage: React.FC = () => {
                   }}
                   className="px-6 py-2 text-sm font-semibold rounded-xl transition-all duration-300"
                   style={{
-                    background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                    background: `var(--color-accent)`,
                     color: "white",
                     boxShadow: `
                       -6px -6px 12px #FAFBFF,
@@ -504,7 +504,7 @@ const NewsPage: React.FC = () => {
               <div
                 className="mt-12 flex items-center justify-center gap-4"
                 style={{
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  background: `var(--color-background)`,
                   borderRadius: "24px",
                   padding: "20px",
                   boxShadow: `
@@ -527,7 +527,7 @@ const NewsPage: React.FC = () => {
                     background:
                       currentPage === 1
                         ? `var(--color-border)`
-                        : `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                        : `var(--color-background)`,
                     boxShadow:
                       currentPage === 1
                         ? `inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px var(--color-shadow)`
@@ -585,8 +585,8 @@ const NewsPage: React.FC = () => {
                         `}
                         style={{
                           background: isActive
-                            ? `linear-gradient(90deg, var(--color-accent) 0%, #3aefc4 100%)`
-                            : `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                            ? `var(--color-accent)`
+                            : `var(--color-background)`,
                           color: isActive
                             ? "white"
                             : "var(--color-text-primary)",
@@ -626,7 +626,7 @@ const NewsPage: React.FC = () => {
                           <div
                             className="absolute inset-0 rounded-2xl animate-ping opacity-30"
                             style={{
-                              background: `linear-gradient(90deg, var(--color-accent) 0%, #3aefc4 100%)`,
+                              background: `var(--color-accent)`,
                             }}
                           />
                         )}
@@ -649,7 +649,7 @@ const NewsPage: React.FC = () => {
                     background:
                       currentPage === totalPages
                         ? `var(--color-border)`
-                        : `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                        : `var(--color-background)`,
                     boxShadow:
                       currentPage === totalPages
                         ? `inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px var(--color-shadow)`

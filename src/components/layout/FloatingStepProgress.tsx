@@ -78,14 +78,14 @@ const FloatingStepProgress = () => {
         {/* Progress line */}
         <div className="absolute left-6 top-4 bottom-4 w-1 bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
           <div 
-            className="bg-gradient-to-b from-accent to-[#3aefc4] rounded-full transition-all duration-700 ease-out relative shadow-[0_0_15px_rgba(0,210,255,0.4)]"
+            className="bg-accent rounded-full transition-all duration-700 ease-out relative shadow-[0_0_15px_rgba(0,210,255,0.4)]"
             style={{ 
               height: `${(scrollProgress / 100) * 100}%`,
               width: '100%'
             }}
           >
             {/* Glowing effect */}
-            <div className="absolute inset-0 bg-gradient-to-b from-accent to-[#3aefc4] rounded-full animate-pulse opacity-50"></div>
+            <div className="absolute inset-0 bg-accent rounded-full animate-pulse opacity-50"></div>
           </div>
         </div>
 
@@ -102,7 +102,7 @@ const FloatingStepProgress = () => {
                 className={`
                   w-4 h-4 rounded-full border-2 transition-all duration-300 relative z-10 transform
                   ${index === currentSection
-                    ? 'bg-gradient-to-br from-accent to-[#3aefc4] border-accent shadow-[0_0_15px_rgba(0,210,255,0.6)] scale-110'
+                    ? 'bg-accent border-accent shadow-[0_0_15px_rgba(0,210,255,0.6)] scale-110'
                     : 'bg-gray-400 border-gray-400 shadow-[inset_-3px_-3px_6px_#FAFBFF,inset_3px_3px_6px_rgba(22,17,29,0.15)]'
                   }
                   group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(0,210,255,0.8)]
@@ -110,7 +110,7 @@ const FloatingStepProgress = () => {
               >
                 {/* Inner glow for active step */}
                 {index === currentSection && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent to-[#3aefc4] rounded-full animate-pulse opacity-70"></div>
+                  <div className="absolute inset-0 bg-accent rounded-full animate-pulse opacity-70"></div>
                 )}
                 
                 {/* Check mark for completed steps */}
@@ -128,9 +128,9 @@ const FloatingStepProgress = () => {
                 className={`
                   ml-4 px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-300 transform origin-left opacity-100
                   ${index === currentSection
-                    ? 'bg-gradient-to-r from-accent/20 to-[#3aefc4]/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]'
+                    ? 'bg-accent/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]'
                     : index < currentSection 
-                      ? 'text-gray-400 bg-gradient-to-r from-accent/10 to-[#3aefc4]/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]'
+                      ? 'text-gray-400 bg-accent/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]'
                       : 'text-text-secondary group-hover:text-accent group-hover:scale-105'
                   }
                   whitespace-nowrap
@@ -142,7 +142,7 @@ const FloatingStepProgress = () => {
               </div>
 
               {/* Hover effect background */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-accent/5 to-[#3aefc4]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
+              <div className="absolute -inset-2 bg-accent/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
             </div>
           ))}
         </div>
@@ -150,15 +150,15 @@ const FloatingStepProgress = () => {
         {/* Progress percentage */}
         <div className="mt-6 pt-4 pl-[20px] border-t border-border/30">
           <div className="text-center">
-            <div className="text-base font-bold bg-gradient-to-r from-accent to-[#3aefc4] bg-clip-text text-transparent ">
+            <div className="text-base font-bold text-accent">
               {Math.round(scrollProgress)}%
             </div>
           </div>
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute -top-2 -right-2 w-4 h-4 bg-gradient-to-br from-accent to-[#3aefc4] rounded-full opacity-30 animate-ping"></div>
-        <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-gradient-to-br from-[#3aefc4] to-accent rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent rounded-full opacity-30 animate-ping"></div>
+        <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-accent rounded-full opacity-20 animate-pulse"></div>
       </div>
 
     </div>

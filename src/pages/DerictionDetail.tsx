@@ -908,7 +908,7 @@ const DirectionDetailPage: React.FC = () => {
             `}
             style={{
               color: "var(--color-text-primary)",
-              background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+              background: "var(--color-background)",
               boxShadow: `
                 6px 6px 12px var(--color-shadow),
                 -6px -6px 12px #FAFBFF
@@ -936,7 +936,7 @@ const DirectionDetailPage: React.FC = () => {
             <div
               className="p-6 sm:p-8 rounded-3xl text-center transform transition-all duration-700 ease-in-out animate-fade-in-up"
               style={{
-                background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                background: "var(--color-background)",
                 boxShadow: `
                   4px 4px 8px var(--color-shadow),
                   -4px -4px 8px #FAFBFF
@@ -973,7 +973,7 @@ const DirectionDetailPage: React.FC = () => {
                     shadow-lg hover:shadow-xl cursor-pointer
                   `}
                   style={{
-                    background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                    background: "var(--color-accent)",
                     boxShadow: `
                       6px 6px 12px var(--color-shadow),
                       -6px -6px 12px rgba(255,255,255,0.1)
@@ -1023,7 +1023,7 @@ const DirectionDetailPage: React.FC = () => {
             <div
               className="p-6 sm:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-left"
               style={{
-                background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                background: "var(--color-background)",
                 boxShadow: `
                   4px 4px 8px var(--color-shadow),
                 -4px -4px 8px #FAFBFF
@@ -1053,7 +1053,7 @@ const DirectionDetailPage: React.FC = () => {
                 <div
                   className="h-2 rounded-full overflow-hidden"
                   style={{
-                    background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                    background: "var(--color-background)",
                     boxShadow: `
                       inset 4px 4px 8px var(--color-shadow),
                       inset -4px -4px 8px #FAFBFF
@@ -1067,7 +1067,7 @@ const DirectionDetailPage: React.FC = () => {
                         ((currentQuestionIndex + 1) / quizQuestions.length) *
                         100
                       }%`,
-                      background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                      background: "var(--color-accent)",
                     }}
                   />
                 </div>
@@ -1105,7 +1105,7 @@ const DirectionDetailPage: React.FC = () => {
                     style={{
                       animationDelay: `${index * 0.1}s`,
                       color: "var(--color-text-primary)",
-                      background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                      background: "var(--color-background)",
                       boxShadow: `
                         4px 4px 8px var(--color-shadow),
                 -4px -4px 8px #FAFBFF
@@ -1153,7 +1153,7 @@ const DirectionDetailPage: React.FC = () => {
                         style={{
                           background: showResult
                             ? undefined
-                            : `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                            : "var(--color-accent)",
                           color: showResult ? undefined : "white",
                         }}
                       >
@@ -1189,7 +1189,7 @@ const DirectionDetailPage: React.FC = () => {
                   `}
                   style={{
                     color: "var(--color-text-primary)",
-                    background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                    background: "var(--color-background)",
                     boxShadow:
                       currentQuestionIndex === 0
                         ? "none"
@@ -1218,7 +1218,7 @@ const DirectionDetailPage: React.FC = () => {
                     background:
                       !selectedOption && currentQuestionIndex === quizQuestions.length - 1
                         ? "#gray-400"
-                        : `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                        : "var(--color-accent)",
                     boxShadow:
                       !selectedOption && currentQuestionIndex === quizQuestions.length - 1
                         ? "none"
@@ -1238,7 +1238,7 @@ const DirectionDetailPage: React.FC = () => {
               <div
                 className="p-6 sm:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-right"
                 style={{
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  background: "var(--color-background)",
                   boxShadow: `
                     4px 4px 8px var(--color-shadow),
                   -4px -4px 8px #FAFBFF
@@ -1275,7 +1275,7 @@ const DirectionDetailPage: React.FC = () => {
                         <div
                           className="h-3 rounded-full overflow-hidden"
                           style={{
-                            background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                            background: "var(--color-background)",
                             boxShadow: `
                               inset 3px 3px 6px var(--color-shadow),
                               inset -3px -3px 6px #FAFBFF
@@ -1287,10 +1287,10 @@ const DirectionDetailPage: React.FC = () => {
                             style={{
                               width: `${option.percentage}%`,
                               background: option.isCorrect
-                                ? `linear-gradient(90deg, #4ade80, #22c55e)`
+                                ? "#22c55e"
                                 : selectedOption === option.id
-                                ? `linear-gradient(90deg, #f87171, #ef4444)`
-                                : `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                                ? "#ef4444"
+                                : "var(--color-accent)",
                             }}
                           />
                         </div>
@@ -1302,7 +1302,7 @@ const DirectionDetailPage: React.FC = () => {
                   <div
                     className="p-4 rounded-2xl"
                     style={{
-                      background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                      background: "var(--color-background)",
                       boxShadow: `
                         inset 6px 6px 12px var(--color-shadow),
                         inset -6px -6px 12px #FAFBFF
@@ -1334,7 +1334,7 @@ const DirectionDetailPage: React.FC = () => {
               <div
                 className="p-6 sm:p-8 rounded-3xl transform transition-all duration-1000 ease-in-out"
                 style={{
-                  background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                  background: "var(--color-background)",
                   boxShadow: `
                     4px 4px 8px var(--color-shadow),
                     -4px -4px 8px #FAFBFF
@@ -1420,7 +1420,7 @@ const DirectionDetailPage: React.FC = () => {
                   <div
                     className="p-6 rounded-2xl mb-6"
                     style={{
-                      background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                      background: "var(--color-background)",
                       boxShadow: `
                         inset 6px 6px 12px var(--color-shadow),
                         inset -6px -6px 12px #FAFBFF
@@ -1452,7 +1452,7 @@ const DirectionDetailPage: React.FC = () => {
                         transition-all duration-300 transform hover:scale-105 active:scale-95
                       `}
                       style={{
-                        background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+                        background: "var(--color-accent)",
                         boxShadow: `
                           6px 6px 12px var(--color-shadow),
                           -6px -6px 12px rgba(255,255,255,0.1)
@@ -1470,7 +1470,7 @@ const DirectionDetailPage: React.FC = () => {
                       `}
                       style={{
                         color: "var(--color-text-primary)",
-                        background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                        background: "var(--color-background)",
                         boxShadow: `
                           6px 6px 12px var(--color-shadow),
                           -6px -6px 12px #FAFBFF

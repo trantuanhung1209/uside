@@ -43,7 +43,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
         }
       `}
       style={{
-        background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+        background: `var(--color-background)`,
         boxShadow: `
           10px 10px 20px var(--color-shadow),
           -10px -10px 20px #FAFBFF
@@ -83,7 +83,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
       <div
         className={`
         absolute inset-0 opacity-0 group-hover:opacity-10
-        bg-gradient-to-r ${career.gradient}
+        bg-accent
         transition-opacity duration-500
       `}
       />
@@ -101,7 +101,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
                 ${isHovered ? "animate-bounce" : ""}
               `}
               style={{
-                background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+                background: `var(--color-background)`,
                 boxShadow: `
                   8px 8px 16px var(--color-shadow),
                   -8px -8px 16px #FAFBFF
@@ -178,7 +178,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               ${isHovered ? "animate-pulse" : ""}
             `}
             style={{
-              background: `linear-gradient(90deg, var(--color-accent) 0%, #3aefc4 100%)`,
+              background: `var(--color-accent)`,
               boxShadow: `
                 8px 8px 16px var(--color-shadow),
                 -8px -8px 16px rgba(255,255,255,0.1)
@@ -227,7 +227,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               relative mx-auto
             `}
             style={{
-              background: `linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%)`,
+              background: `var(--color-secondary)`,
               boxShadow: `
                 inset 8px 8px 16px var(--color-shadow),
                 inset -8px -8px 16px #FAFBFF
@@ -238,7 +238,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
             <div
               className={`
               w-full h-full flex items-center justify-center
-              bg-gradient-to-br ${career.gradient} opacity-20
+              bg-accent opacity-20
               group-hover:opacity-30 transition-opacity duration-300
             `}
             >
@@ -256,7 +256,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
             {/* Animated overlay effect */}
             <div
               className={`
-              absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent
+              absolute inset-0 bg-white
               opacity-0 group-hover:opacity-20
               transform -skew-x-12 -translate-x-full group-hover:translate-x-full
               transition-all duration-1000 ease-out
@@ -278,7 +278,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               ${isHovered ? "animate-ping" : ""}
             `}
             style={{
-              background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+              background: `var(--color-accent)`,
               left: `${20 + i * 20}%`,
               top: `${30 + i * 15}%`,
               animationDelay: `${i * 200}ms`,

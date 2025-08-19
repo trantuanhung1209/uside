@@ -30,7 +30,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
         opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]
       `}
       style={{
-        background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%)`,
+        background: `var(--color-background)`,
         boxShadow: `
           -4px -4px 8px #FAFBFF,
           4px 4px 8px var(--color-shadow)
@@ -51,7 +51,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
       <div
         className={`
         absolute inset-0 opacity-0 group-hover:opacity-5
-        bg-gradient-to-br from-blue-400 to-purple-500
+        bg-accent
         transition-opacity duration-500
       `}
       />
@@ -136,7 +136,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
               style={{
-                background: `linear-gradient(135deg, var(--color-primary), var(--color-accent))`,
+                background: `var(--color-accent)`,
                 color: "white",
                 boxShadow: `
                   -3px -3px 6px #FAFBFF,
@@ -164,7 +164,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
             flex items-center justify-center gap-2
           `}
           style={{
-            background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+            background: `var(--color-accent)`,
             color: "white",
             boxShadow: `
               -6px -6px 12px #FAFBFF,
@@ -209,7 +209,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
               ${isHovered ? "animate-ping" : ""}
             `}
             style={{
-              background: `linear-gradient(90deg, var(--color-accent), #3aefc4)`,
+              background: `var(--color-accent)`,
               left: `${30 + i * 20}%`,
               top: `${20 + i * 15}%`,
               animationDelay: `${i * 300}ms`,
