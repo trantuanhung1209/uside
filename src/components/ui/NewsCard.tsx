@@ -19,7 +19,7 @@ interface NewsItem {
 
 const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
   const [isHovered, setIsHovered] = useState(false);
-    const Navigate = useNavigate();
+  const Navigate = useNavigate();
 
   return (
     <div
@@ -84,19 +84,35 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
         {/* Category & Date */}
         <div className="flex items-center justify-between mb-3">
           <span
-            className={`
-              px-3 py-1 text-xs font-medium rounded-full
-              transition-all duration-300
-            `}
+            className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer`}
             style={{
-              color: "var(--color-text-primary)",
-              boxShadow: `
-                -3px -3px 6px #FAFBFF,
-                3px 3px 6px var(--color-shadow)
-              `,
+              boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
+              background:
+                article.category === "update"
+                  ? "linear-gradient(90deg, #9fc9e8, #00d2ff)" // xanh dương pastel
+                  : article.category === "security"
+                  ? "linear-gradient(90deg, #e8a9c4, #d98bb0)" // hồng pastel đậm
+                  : article.category === "partnership"
+                  ? "linear-gradient(90deg, #eabf94, #e89b5c)" // cam đào ấm
+                  : article.category === "recruitment"
+                  ? "linear-gradient(90deg, #e8e39a, #d6cf66)" // vàng pastel đậm
+                  : article.category === "technology"
+                  ? "linear-gradient(90deg, #a9d7a1, #7ecb85)" // xanh lá mint
+                  : "linear-gradient(90deg, #d4ecfa, #9fc9e8)", // default: xanh pastel
+              color: "white",
             }}
           >
-            {article.category || "Tin tức"}
+            {article.category === "update"
+              ? "Cập nhật"
+              : article.category === "security"
+              ? "Bảo mật"
+              : article.category === "partnership"
+              ? "Hợp tác"
+              : article.category === "recruitment"
+              ? "Tuyển dụng"
+              : article.category === "technology"
+              ? "Công nghệ"
+              : "Sự kiện"}
           </span>
           <span
             className="text-xs"

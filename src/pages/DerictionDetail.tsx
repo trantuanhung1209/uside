@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BannerBreadcrumb } from "../components";
 import { Layout } from "../components/layout";
+import { PiShootingStarBold } from "react-icons/pi";
 
 interface CareerPath {
   id: string;
@@ -1438,9 +1439,9 @@ const DirectionDetailPage: React.FC = () => {
                       className="flex items-center justify-center gap-2 text-lg font-semibold"
                       style={{ color: "var(--color-accent)" }}
                     >
-                      <span>✨</span>
+                      <span><PiShootingStarBold /></span>
                       <span>Chúc bạn thành công trên con đường sự nghiệp!</span>
-                      <span>✨</span>
+                      <span><PiShootingStarBold /></span>
                     </div>
                   </div>
                   

@@ -205,7 +205,7 @@ const Weather = () => {
 
   return (
     <>
-      <div className="weather-container absolute top-[25%] right-[15%] z-1">
+      <div className="weather-container absolute top-[25%] right-[15%] z-1 lg:right-[6%] md:right-[1%] sm:right-[4%] xs:right-[10%] xs:top-[100%] 2xl:top-[32%] lg:top-[90%]">
         <div className="">
           {/* Weather Icon */}
           <div className="weather-icon inline-block">

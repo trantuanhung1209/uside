@@ -70,7 +70,7 @@ const ChangeAccentColor = () => {
     <>
       {/* Robot Button */}
       <div
-        className="absolute top-32 right-20 w-20 h-28 cursor-pointer"
+        className="absolute md:top-32 md:left-[90%] w-20 h-28 cursor-pointer z-99999 xs:top-[10%] xs:left-10 xl:top-[3%] lg:left-[90%] lg:top-[2%]"
         style={{
           animation: "float 4s ease-in-out infinite",
           animationDelay: "1s",
@@ -78,7 +78,7 @@ const ChangeAccentColor = () => {
         onClick={togglePopup}
       >
         <div
-          className="w-full h-full relative transition-all duration-300 hover:scale-105"
+          className="2xl:w-full 2xl:h-full w-10 h-10 relative transition-all duration-300 hover:scale-105"
           style={{
             background: "var(--color-background)",
             boxShadow: isPopupOpen
@@ -89,7 +89,7 @@ const ChangeAccentColor = () => {
         >
           {/* Robot Head */}
           <div
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-14 h-14 rounded-xl transition-all duration-300"
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 2xl:w-14 2xl:h-14 w-10 h-10 rounded-xl transition-all duration-300"
             style={{
               background: currentAccentColor,
               boxShadow:
@@ -128,7 +128,7 @@ const ChangeAccentColor = () => {
 
           {/* Body with chest display */}
           <div
-            className="absolute top-10 left-1/2 transform -translate-x-1/2 w-16 h-14 rounded-lg"
+            className="absolute top-10 left-1/2 transform -translate-x-1/2 2xl:w-16 2xl:h-14 w-12 h-12 rounded-lg"
             style={{
               background: "var(--color-primary)",
               boxShadow:

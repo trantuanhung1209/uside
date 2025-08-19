@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 
 const menu = [
@@ -30,10 +30,12 @@ const Header = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const popupRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const handleLogoClick = () => {
     setLogoClicked(true);
     setTimeout(() => setLogoClicked(false), 300);
+    navigate('/');
   };
 
   const handleRobotClick = () => {

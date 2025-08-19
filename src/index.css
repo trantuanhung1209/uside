@@ -50,6 +50,17 @@ body {
   /* xanh lá pastel (tươi mới, thư giãn) */
   --color-accent-5: #bae1ff;
   /* xanh dương pastel (dịu, đồng bộ với cyan) */
+
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 576px;
+  --breakpoint-lg: 680px;
+  --breakpoint-xl: 768px;
+  --breakpoint-2xl: 992px;
+  --breakpoint-3xl: 1024px;
+  --breakpoint-4xl: 1122px;
+  --breakpoint-5xl: 1280px;
+  --breakpoint-6xl: 1340px;
 }
 
 
@@ -902,6 +913,10 @@ body {
   width: 120px;
   height: 100%;
   z-index: 2;
+
+  @media screen and (max-width: 768px) {
+    width: 0px;
+  }
 }
 
 /* Logo images styling */
@@ -1937,6 +1952,7 @@ body {
 
   /* Animation */
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
 }
 
 .digital-clock-wrapper:hover {
@@ -1977,6 +1993,10 @@ body {
   /* Animation */
   transition: all 0.3s ease;
   animation: digitalGlow 3s ease-in-out infinite alternate;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
 }
 
 .digital-date {
@@ -2000,6 +2020,9 @@ body {
   transition: all 0.3s ease;
   animation: digitalGlow 3s ease-in-out infinite alternate;
 
+  @media screen and (max-width: 768px) {
+    font-size: 0.875rem;
+  }
 }
 
 .time-separator {
@@ -2104,39 +2127,6 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .digital-clock-wrapper {
-    padding: 15px 20px;
-    border-radius: 15px;
-  }
-
-  .time-digit,
-  .time-separator {
-    font-size: 2rem;
-  }
-
-  .time-separator {
-    margin: 0 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .digital-clock-wrapper {
-    padding: 12px 16px;
-    border-radius: 12px;
-  }
-
-  .time-digit,
-  .time-separator {
-    font-size: 1.5rem;
-  }
-
-  .time-separator {
-    margin: 0 3px;
   }
 }
 

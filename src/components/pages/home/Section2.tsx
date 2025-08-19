@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAccentColor } from "../../../hooks/useAccentColor";
 import Title from "../../ui/Title";
+import { PiShootingStarBold } from "react-icons/pi";
 
 export default function Section2() {
   const [shuffleKey, setShuffleKey] = useState(0);
@@ -88,7 +89,7 @@ export default function Section2() {
                           "inset -6px -6px 12px rgba(255,255,255,0.2), inset 6px 6px 12px rgba(0,0,0,0.1)",
                       }}
                     >
-                      <div className="text-white text-xl font-bold">✨</div>
+                      <div className="text-white text-xl font-bold"><PiShootingStarBold /></div>
                     </div>
 
                     <h3 className="text-xl font-bold mb-3 text-gray-800">
@@ -227,7 +228,7 @@ export default function Section2() {
                             "inset -6px -6px 12px rgba(255,255,255,0.2), inset 6px 6px 12px rgba(0,0,0,0.1)",
                         }}
                       >
-                        <div className="text-white text-xl font-bold">✨</div>
+                        <div className="text-white text-xl font-bold"><PiShootingStarBold /></div>
                       </div>
 
                       <h3 className="text-xl font-bold mb-3 text-gray-800">
@@ -389,7 +390,7 @@ export default function Section2() {
                           "inset -8px -8px 16px rgba(255,255,255,0.2), inset 8px 8px 16px rgba(0,0,0,0.1)",
                       }}
                     >
-                      <div className="text-white text-2xl font-bold">✨</div>
+                      <div className="text-white text-2xl font-bold"><PiShootingStarBold /></div>
                     </div>
 
                     <h3 className="text-2xl font-bold mb-4 text-gray-800">

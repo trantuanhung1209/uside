@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Layout } from "../components/layout";
 import { BannerBreadcrumb } from "../components";
 import { useState } from "react";
+import { FaCalendarAlt } from "react-icons/fa";
 
 const NewsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -353,10 +354,10 @@ const NewsPage: React.FC = () => {
 
                       {/* Date */}
                       <p
-                        className="text-sm mb-3"
-                        style={{ color: "var(--color-text-placeholder)" }}
+                        className="text-sm mb-3 flex items-center gap-[10px]"
+                        style={{ color: "var(--color-text-secondary)" }}
                       >
-                        📅 {item.date}
+                        <FaCalendarAlt />  {item.date}
                       </p>
 
                       {/* Excerpt */}

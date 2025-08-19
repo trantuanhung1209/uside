@@ -1,4 +1,3 @@
-import ChangeAccentColor from "./ChangeAccentColor";
 
 const BackgroundRobot = () => {
   return (
@@ -7,7 +6,7 @@ const BackgroundRobot = () => {
       <div className="absolute inset-0 pointer-events-none">
         {/* Robot 1 - Large floating robot */}
         <div
-          className="absolute top-10 left-10 w-24 h-32 animate-bounce"
+          className="absolute top-10 left-10 w-24 h-32 animate-bounce hidden 3xl:block"
           style={{
             animationDuration: "3s",
             animationDelay: "0s",
@@ -97,12 +96,9 @@ const BackgroundRobot = () => {
           </div>
         </div>
 
-        {/* Robot 2 - Medium robot with different animation change accent color */}
-        <ChangeAccentColor />
-
         {/* Robot 5 - Large background robot */}
         <div
-          className="absolute top-1/2 right-10 transform -translate-y-1/2 w-32 h-40 opacity-30"
+          className="absolute top-1/2 right-10 transform -translate-y-1/2 w-32 h-40 opacity-30 hidden xl:block"
           style={{
             animation: "pulse 4s ease-in-out infinite",
           }}

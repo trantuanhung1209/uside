@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../ui/Button";
+import { BsFillQuestionSquareFill } from "react-icons/bs";
+import { FaRocket } from "react-icons/fa";
+import { RiChatSearchFill } from "react-icons/ri";
 
 interface Step {
   id: number;
   title: string;
   description: string;
   content: string;
-  icon: string;
+  icon: React.ReactNode | string;
   image: string;
 }
 
@@ -18,7 +21,7 @@ const steps: Step[] = [
     description: "Tìm hiểu về sở thích, điểm mạnh và mục tiêu của bạn",
     content:
       "Một buổi sáng, bạn thức dậy và chợt nhận ra mình đang đi trên một con đường quen thuộc, nhưng lần này, xung quanh đầy những bảng chỉ dẫn mới lạ. Mỗi bảng ghi một câu hỏi: 'Bạn thật sự thích điều gì?', 'Điều gì khiến bạn hạnh phúc?', 'Bạn muốn trở thành ai trong 5 năm tới?'. Bạn mỉm cười, vì biết rằng hành trình quan trọng nhất không phải tìm một nơi chốn… mà là tìm ra chính mình.",
-    icon: "🔍",
+    icon: <RiChatSearchFill />,
     image: "/images_uside/mascot_robot.png", // Placeholder image URL
   },
   {
@@ -27,7 +30,7 @@ const steps: Step[] = [
     description: "Hoàn thành bộ câu hỏi đánh giá năng lực và sở thích",
     content:
       "Bạn bước vào một căn phòng ấm áp, nơi có một chiếc bàn gỗ với xấp giấy câu hỏi đang chờ. Mỗi câu hỏi như một cánh cửa mở ra góc khuất của chính bạn — từ sở thích thầm kín cho đến những kỹ năng bạn chưa từng nhận ra. Khi viết câu trả lời cuối cùng, bạn chợt mỉm cười… vì những mảnh ghép về con người thật của mình đang dần hiện rõ.",
-    icon: "❓",
+    icon: <BsFillQuestionSquareFill />,
     image: "/images_uside/mascot_robot.png", // Placeholder image URL
   },
   {
@@ -36,7 +39,7 @@ const steps: Step[] = [
     description: "Nhận được gợi ý về nghề nghiệp phù hợp với bạn",
     content:
       "Hãy tưởng tượng bạn đang đứng trước ngã ba đường, mỗi con đường dẫn đến một miền đất mới — nơi bạn có thể phát huy thế mạnh, sống đúng với đam mê và tạo ra giá trị cho người khác. Khi nhận được những gợi ý nghề nghiệp phù hợp, mọi thứ bỗng trở nên rõ ràng hơn: bạn biết mình cần bước đi đâu, và quan trọng nhất… bạn biết lý do vì sao.",
-    icon: "🚀",
+    icon: <FaRocket />,
     image: "/images_uside/mascot_robot.png", // Placeholder image URL
   },
 ];

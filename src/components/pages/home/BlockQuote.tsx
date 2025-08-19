@@ -190,9 +190,9 @@ const BlockQuote = () => {
 
   return (
     <>
-      <div className="inner-quote absolute top-[-120px] left-[60px]">
+      <div className="inner-quote absolute top-[-120px] left-[60px] xs:top-[-15%] xs:left-[5%] sm:top-[-15%] sm:left-[5%] md:top-[-15%] md:left-[2%] xl:top-[-30%] lg:top-[-18%] lg:left-[1%]">
         <div className="relative">
-          <div className=" section-neumorphic px-[20px] py-[8px] rounded-[20px] transition-all duration-300">
+          <div className=" section-neumorphic px-[16px] py-[8px] rounded-[20px] transition-all duration-300">
             <blockquote 
               className={`text-sm text-text-secondary font-semibold transition-opacity duration-300 ${
                 isAnimating ? 'opacity-0' : 'opacity-100'
@@ -203,7 +203,7 @@ const BlockQuote = () => {
             </blockquote>
           </div>
 
-          <div className="inner-circle flex items-center justify-center absolute top-10 left-[-40px]">
+          <div className="inner-circle flex items-center justify-center absolute top-10 left-[-40px] xs:left-[-6%]">
             {/* Thought bubbles với neumorphic style */}
             <div className="relative">
               {/* Bubble lớn nhất - gần blockquote nhất */}

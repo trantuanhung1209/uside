@@ -1,11 +1,14 @@
-import { Layout } from '../components/layout';
-import { BannerBreadcrumb, Title } from '../components';
-import { useState } from 'react';
+import { Layout } from "../components/layout";
+import { BannerBreadcrumb, Title } from "../components";
+import { useState } from "react";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaClock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { BsRocketTakeoffFill } from "react-icons/bs";
 
 // Contact Card Component
 interface ContactCardProps {
   info: {
-    icon: string;
+    icon: React.ReactNode | string;
     title: string;
     content: string;
   };
@@ -14,7 +17,7 @@ interface ContactCardProps {
 
 const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
   return (
-    <div 
+    <div
       className="p-6 rounded-2xl transition-all duration-500 transform"
       style={{
         background: "var(--color-background)",
@@ -22,11 +25,11 @@ const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
           -4px -4px 8px #FAFBFF,
           4px 4px 8px var(--color-shadow)
         `,
-        animationDelay: `${index * 0.1}s`
+        animationDelay: `${index * 0.1}s`,
       }}
     >
       <div className="flex items-start gap-4">
-        <div 
+        <div
           className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
           style={{
             background: "var(--color-accent)",
@@ -34,21 +37,21 @@ const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
             boxShadow: `
               -6px -6px 12px #FAFBFF,
               6px 6px 12px var(--color-shadow)
-            `
+            `,
           }}
         >
           {info.icon}
         </div>
         <div className="flex-1">
-          <h3 
+          <h3
             className="font-bold text-lg mb-2"
-            style={{ color: 'var(--color-text-primary)' }}
+            style={{ color: "var(--color-text-primary)" }}
           >
             {info.title}
           </h3>
-          <p 
+          <p
             className="text-sm leading-relaxed whitespace-pre-line"
-            style={{ color: 'var(--color-text-secondary)' }}
+            style={{ color: "var(--color-text-secondary)" }}
           >
             {info.content}
           </p>
@@ -69,20 +72,20 @@ interface FormFieldProps {
   required?: boolean;
 }
 
-const FormField: React.FC<FormFieldProps> = ({ 
-  label, 
-  name, 
-  type = 'text', 
-  value, 
-  onChange, 
+const FormField: React.FC<FormFieldProps> = ({
+  label,
+  name,
+  type = "text",
+  value,
+  onChange,
   placeholder,
-  required = false 
+  required = false,
 }) => {
   return (
     <div>
-      <label 
+      <label
         className="block text-sm font-semibold mb-3"
-        style={{ color: 'var(--color-text-primary)' }}
+        style={{ color: "var(--color-text-primary)" }}
       >
         {label}
       </label>
@@ -96,11 +99,11 @@ const FormField: React.FC<FormFieldProps> = ({
         className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
         style={{
           background: "var(--color-background)",
-          color: 'var(--color-text-primary)',
+          color: "var(--color-text-primary)",
           boxShadow: `
             inset -6px -6px 12px #FAFBFF,
             inset 6px 6px 12px var(--color-shadow)
-          `
+          `,
         }}
       />
     </div>
@@ -109,71 +112,77 @@ const FormField: React.FC<FormFieldProps> = ({
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      console.log('Form submitted:', formData);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      console.log("Form submitted:", formData);
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     } catch {
-      setSubmitStatus('error');
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      setTimeout(() => setSubmitStatus("idle"), 3000);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const contactInfo = [
     {
-      icon: '📍',
-      title: 'Địa chỉ',
-      content: '123 Đường Công Nghệ, Quận 7, TP. Hồ Chí Minh'
+      icon: <FaLocationDot />,
+      title: "Địa chỉ",
+      content: "123 Đường Công Nghệ, Quận 7, TP. Hồ Chí Minh",
     },
     {
-      icon: '📧',
-      title: 'Email',
-      content: 'hello@uside.vn'
+      icon: <FaEnvelope />,
+      title: "Email",
+      content: "hello@uside.vn",
     },
     {
-      icon: '📞',
-      title: 'Điện thoại',
-      content: '+84 (028) 123 4567'
+      icon: <FaPhoneAlt />,
+      title: "Điện thoại",
+      content: "+84 (028) 123 4567",
     },
     {
-      icon: '🕒',
-      title: 'Giờ làm việc',
-      content: 'T2 - T6: 8:00 - 18:00\nT7: 8:00 - 12:00'
-    }
+      icon: <FaClock />,
+      title: "Giờ làm việc",
+      content: "T2 - T6: 8:00 - 18:00\nT7: 8:00 - 12:00",
+    },
   ];
 
   const subjects = [
-    'Tư vấn dự án',
-    'Hỗ trợ kỹ thuật',
-    'Hợp tác kinh doanh',
-    'Tuyển dụng',
-    'Khiếu nại/Góp ý',
-    'Khác'
+    "Tư vấn dự án",
+    "Hỗ trợ kỹ thuật",
+    "Hợp tác kinh doanh",
+    "Tuyển dụng",
+    "Khiếu nại/Góp ý",
+    "Khác",
   ];
 
   return (
@@ -182,44 +191,45 @@ const ContactPage: React.FC = () => {
         pageName="Liên hệ"
         image="/images_uside/banner_contact.png"
       />
-      
+
       <section className="py-[40px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="text-center mb-16">
-            <Title title='Liên hệ với chúng tôi' desc='Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy để lại thông tin và chúng tôi sẽ phản hồi sớm nhất có thể.' />
+            <Title
+              title="Liên hệ với chúng tôi"
+              desc="Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy để lại thông tin và chúng tôi sẽ phản hồi sớm nhất có thể."
+            />
           </div>
 
           <div className="grid lg:grid-cols-3 gap-[30px]">
             {/* Contact Info Cards */}
             <div className="lg:col-span-1 space-y-6">
-              
               {contactInfo.map((info, index) => (
-                <ContactCard 
-                  key={index}
-                  info={info}
-                  index={index}
-                />
+                <ContactCard key={index} info={info} index={index} />
               ))}
             </div>
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div 
+              <div
                 className="p-8 rounded-3xl"
                 style={{
                   background: "var(--color-background)",
                   boxShadow: `
                     -4px -4px 8px #FAFBFF,
                     4px 4px 8px var(--color-shadow)
-                  `
+                  `,
                 }}
               >
-                <h2 
-                  className="text-2xl font-bold mb-6"
-                  style={{ color: 'var(--color-text-primary)' }}
+                <h2
+                  className="text-2xl font-bold mb-6 flex items-center gap-2"
+                  style={{ color: "var(--color-text-primary)" }}
                 >
-                  ✉️ Gửi tin nhắn cho chúng tôi
+                  <div className="text-text-accent">
+                    <FaEnvelope />
+                  </div>{" "}
+                  Gửi tin nhắn cho chúng tôi
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -256,9 +266,9 @@ const ContactPage: React.FC = () => {
                       placeholder="+84 123 456 789"
                     />
                     <div>
-                      <label 
+                      <label
                         className="block text-sm font-semibold mb-3"
-                        style={{ color: 'var(--color-text-primary)' }}
+                        style={{ color: "var(--color-text-primary)" }}
                       >
                         🏷️ Chủ đề
                       </label>
@@ -270,11 +280,11 @@ const ContactPage: React.FC = () => {
                         className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
                         style={{
                           background: "var(--color-background)",
-                          color: 'var(--color-text-primary)',
+                          color: "var(--color-text-primary)",
                           boxShadow: `
                             inset -6px -6px 12px #FAFBFF,
                             inset 6px 6px 12px var(--color-shadow)
-                          `
+                          `,
                         }}
                       >
                         <option value="">Chọn chủ đề</option>
@@ -289,9 +299,9 @@ const ContactPage: React.FC = () => {
 
                   {/* Message Field */}
                   <div>
-                    <label 
+                    <label
                       className="block text-sm font-semibold mb-3"
-                      style={{ color: 'var(--color-text-primary)' }}
+                      style={{ color: "var(--color-text-primary)" }}
                     >
                       💬 Tin nhắn
                     </label>
@@ -305,11 +315,11 @@ const ContactPage: React.FC = () => {
                       className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium resize-none"
                       style={{
                         background: "var(--color-background)",
-                        color: 'var(--color-text-primary)',
+                        color: "var(--color-text-primary)",
                         boxShadow: `
                           inset -6px -6px 12px #FAFBFF,
                           inset 6px 6px 12px var(--color-shadow)
-                        `
+                        `,
                       }}
                     />
                   </div>
@@ -324,19 +334,20 @@ const ContactPage: React.FC = () => {
                         transition-all duration-300 ease-out
                         transform hover:scale-105 active:scale-95
                         disabled:opacity-70 disabled:cursor-not-allowed
-                        flex items-center gap-3
-                        ${isSubmitting ? 'animate-pulse' : ''}
+                        flex items-center gap-3 cursor-pointer
+                        ${isSubmitting ? "animate-pulse" : ""}
                       `}
                       style={{
-                        background: submitStatus === 'success' 
-                          ? "#10B981"
-                          : submitStatus === 'error'
-                          ? "#EF4444"
-                          : "var(--color-accent)",
+                        background:
+                          submitStatus === "success"
+                            ? "#10B981"
+                            : submitStatus === "error"
+                            ? "#EF4444"
+                            : "var(--color-accent)",
                         boxShadow: `
                           -8px -8px 16px #FAFBFF,
                           8px 8px 16px var(--color-shadow)
-                        `
+                        `,
                       }}
                       onMouseEnter={(e) => {
                         if (!isSubmitting) {
@@ -359,17 +370,13 @@ const ContactPage: React.FC = () => {
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                           Đang gửi...
                         </>
-                      ) : submitStatus === 'success' ? (
-                        <>
-                          ✅ Đã gửi thành công!
-                        </>
-                      ) : submitStatus === 'error' ? (
-                        <>
-                          ❌ Có lỗi xảy ra
-                        </>
+                      ) : submitStatus === "success" ? (
+                        <>✅ Đã gửi thành công!</>
+                      ) : submitStatus === "error" ? (
+                        <>❌ Có lỗi xảy ra</>
                       ) : (
                         <>
-                          🚀 Gửi tin nhắn
+                          <BsRocketTakeoffFill /> Gửi tin nhắn
                           <span className="transition-transform duration-300 group-hover:translate-x-1">
                             →
                           </span>

@@ -60,7 +60,7 @@ const SectionHero = () => {
     <>
       <section
         id="hero"
-        className="min-h-screen relative overflow-hidden border-b border-border pt-[200px] mt-[-400px]"
+        className="min-h-screen relative overflow-hidden border-b border-border pt-[200px] 5xl:mt-[-400px]"
         style={{ background: "var(--color-background)" }}
       >
         {/* Background overlay for readability */}
@@ -75,19 +75,19 @@ const SectionHero = () => {
         <BackgroundRobot />
 
         {/* Main Content */}
-        <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[80px]">
-          <div className="inner-wrap grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+        <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:pb-[80px] pb-[40px]">
+          <div className="inner-wrap grid grid-cols-1 2xl:grid-cols-2 gap-[40px]">
             {/* Hero Illustration/Image */}
             <Television />
 
-            <div className="inner-left relative">
+            <div className="inner-left relative hidden 2xl:block">
               <SplineViewer
                 url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
                 className="w-full h-full"
               />
 
               {/* Robot overlay to hide Spline logo */}
-              <div className="absolute bottom-4 right-4 z-50">
+              <div className="absolute bottom-4 right-4 z-50 3xl:right-0 2xl:bottom-[-20px]">
                 <div
                   className="relative w-40 h-20 transition-all duration-300"
                   style={{
@@ -160,7 +160,7 @@ const SectionHero = () => {
           </div>
 
           {/* Right side buttons */}
-          <div className="absolute top-[-160px] right-[-40px] inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px] border-gray-200 bg-background shadow-sm px-[20px] py-[8px] rounded-[20px] transition-all duration-300 hover:shadow-lg">
+          <div className="absolute top-[-160px] right-[-40px] inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px] border-gray-200 bg-background shadow-sm px-[20px] py-[8px] rounded-[20px] transition-all duration-300 hover:shadow-lg xl:right-[4%] xl:top-[-32%] lg:top-[-32%] lg:right-[4%] md:top-[-32%] md:right-[2%]sm:top-[-32%] sm:right-[4%] right-[4%]">
             {/* Search */}
             <div className="search-container relative group">
               <div
