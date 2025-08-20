@@ -65,7 +65,7 @@ const Weather = () => {
   // Get weather activity suggestion
   const getActivitySuggestion = (description: string, temperature: number) => {
     const desc = description.toLowerCase();
-    
+
     // Rainy weather
     if (desc.includes("mưa") || desc.includes("rain")) {
       const rainSuggestions = [
@@ -73,22 +73,30 @@ const Weather = () => {
         "🏠 Thời tiết này thích hợp xem phim trong nhà",
         "☕ Hôm nay hoàn hảo để làm việc tại nhà",
         "� Mưa rồi, chơi game thôi!",
-        "📚 Thời tiết lý tưởng để học tập"
+        "📚 Thời tiết lý tưởng để học tập",
       ];
-      return rainSuggestions[Math.floor(Math.random() * rainSuggestions.length)];
+      return rainSuggestions[
+        Math.floor(Math.random() * rainSuggestions.length)
+      ];
     }
-    
+
     // Foggy/Misty weather
-    if (desc.includes("sương") || desc.includes("mist") || desc.includes("fog")) {
+    if (
+      desc.includes("sương") ||
+      desc.includes("mist") ||
+      desc.includes("fog")
+    ) {
       const mistSuggestions = [
         "🌫️ Sương mù thơ mộng, thích hợp chụp ảnh",
         "☕ Thời tiết này uống cà phê ngon lắm",
         "🚗 Lái xe cẩn thận nhé, tầm nhìn hạn chế",
-        "🏞️ Đi dạo công viên sẽ rất lãng mạn"
+        "🏞️ Đi dạo công viên sẽ rất lãng mạn",
       ];
-      return mistSuggestions[Math.floor(Math.random() * mistSuggestions.length)];
+      return mistSuggestions[
+        Math.floor(Math.random() * mistSuggestions.length)
+      ];
     }
-    
+
     // Hot weather
     if (temperature > 30) {
       const hotSuggestions = [
@@ -96,11 +104,11 @@ const Weather = () => {
         "🧊 Thời tiết này cần kem lạnh",
         "🏢 Ở trong nhà có máy lạnh thôi",
         "🌴 Đi biển sẽ mát mẻ hơn",
-        "🥤 Nhớ uống nhiều nước nhé!"
+        "🥤 Nhớ uống nhiều nước nhé!",
       ];
       return hotSuggestions[Math.floor(Math.random() * hotSuggestions.length)];
     }
-    
+
     // Cool weather
     if (temperature < 20) {
       const coolSuggestions = [
@@ -108,11 +116,13 @@ const Weather = () => {
         "☕ Thời tiết này thích hợp uống đồ nóng",
         "🚶 Đi dạo sẽ rất dễ chịu",
         "�️ Thích hợp đi trekking núi",
-        "🔥 Quây quần bên lò sưởi ấm áp"
+        "🔥 Quây quần bên lò sưởi ấm áp",
       ];
-      return coolSuggestions[Math.floor(Math.random() * coolSuggestions.length)];
+      return coolSuggestions[
+        Math.floor(Math.random() * coolSuggestions.length)
+      ];
     }
-    
+
     // Cloudy weather
     if (desc.includes("mây") || desc.includes("cloud")) {
       const cloudySuggestions = [
@@ -120,43 +130,59 @@ const Weather = () => {
         "📷 Ánh sáng mềm mại, thích hợp chụp ảnh",
         "🚴 Đạp xe sẽ rất dễ chịu",
         "🏃 Thời tiết lý tưởng để chạy bộ",
-        "🌳 Đi dạo công viên sẽ tuyệt vời"
+        "🌳 Đi dạo công viên sẽ tuyệt vời",
       ];
-      return cloudySuggestions[Math.floor(Math.random() * cloudySuggestions.length)];
+      return cloudySuggestions[
+        Math.floor(Math.random() * cloudySuggestions.length)
+      ];
     }
-    
+
     // Clear/Sunny weather
-    if (desc.includes("nắng") || desc.includes("clear") || desc.includes("sunny")) {
+    if (
+      desc.includes("nắng") ||
+      desc.includes("clear") ||
+      desc.includes("sunny")
+    ) {
       const sunnySuggestions = [
         "☀️ Nắng đẹp! Thích hợp đi picnic",
         "🏖️ Thời tiết hoàn hảo để đi biển",
         "🚵 Đạp xe dạo phố sẽ tuyệt vời",
         "🎾 Chơi thể thao ngoài trời thôi!",
         "🌻 Đi chụp ảnh thiên nhiên nào",
-        "🏃 Chạy bộ buổi sáng rất tốt cho sức khỏe"
+        "🏃 Chạy bộ buổi sáng rất tốt cho sức khỏe",
       ];
-      return sunnySuggestions[Math.floor(Math.random() * sunnySuggestions.length)];
+      return sunnySuggestions[
+        Math.floor(Math.random() * sunnySuggestions.length)
+      ];
     }
-    
+
     // Stormy weather
-    if (desc.includes("bão") || desc.includes("storm") || desc.includes("thunder")) {
+    if (
+      desc.includes("bão") ||
+      desc.includes("storm") ||
+      desc.includes("thunder")
+    ) {
       const stormSuggestions = [
         "⛈️ Bão tố! Ở nhà an toàn nhất",
         "🏠 Thời tiết nguy hiểm, không nên ra ngoài",
         "📱 Kiểm tra tin tức thời tiết thường xuyên",
-        "🔋 Chuẩn bị đèn pin phòng mất điện"
+        "🔋 Chuẩn bị đèn pin phòng mất điện",
       ];
-      return stormSuggestions[Math.floor(Math.random() * stormSuggestions.length)];
+      return stormSuggestions[
+        Math.floor(Math.random() * stormSuggestions.length)
+      ];
     }
-    
+
     // Default suggestions
     const defaultSuggestions = [
       "🌤️ Thời tiết ổn định, tận hưởng ngày mới!",
       "😊 Hôm nay là ngày tuyệt vời để làm điều mình thích",
       "🌈 Thời tiết dễ chịu, hãy ra ngoài thư giãn",
-      "💫 Ngày đẹp trời, tâm trạng cũng vui vẻ hơn"
+      "💫 Ngày đẹp trời, tâm trạng cũng vui vẻ hơn",
     ];
-    return defaultSuggestions[Math.floor(Math.random() * defaultSuggestions.length)];
+    return defaultSuggestions[
+      Math.floor(Math.random() * defaultSuggestions.length)
+    ];
   };
 
   // Get weather icon based on description
@@ -191,7 +217,7 @@ const Weather = () => {
 
   if (error) {
     return (
-      <div className="weather-container absolute top-[0px] right-[190px]">
+      <div className="weather-container absolute top-[0px] right-[0]">
         <div className="weather-wrapper">
           <div className="weather-error">
             <span>⚠️ {error}</span>
@@ -205,15 +231,14 @@ const Weather = () => {
 
   return (
     <>
-      <div className="weather-container absolute top-[25%] right-[15%] z-1 lg:right-[6%] md:right-[1%] sm:right-[4%] xs:right-[10%] xs:top-[100%] 2xl:top-[32%] lg:top-[90%]">
+      <div className="weather-container absolute top-[40%] left-0">
         <div className="">
-          {/* Weather Icon */}
-          <div className="weather-icon inline-block">
-            {getWeatherIcon(weather.description)}
-          </div>
-
           {/* Weather Info */}
           <div className="flex items-center gap-[20px]">
+            {/* Weather Icon */}
+            <div className="weather-icon inline-block">
+              {getWeatherIcon(weather.description)}
+            </div>
             <div className="weather-temp">{weather.temperature}°C</div>
             <div className="flex flex-col">
               <div className="weather-desc">{weather.description}</div>

@@ -10,6 +10,9 @@ const FloatingStepProgress = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isInSection, setIsInSection] = useState(false);
+  const [isManuallyHidden, setIsManuallyHidden] = useState(false);
 
   // Định nghĩa các sections của trang chủ
   const sections: Section[] = useMemo(
@@ -24,99 +27,174 @@ const FloatingStepProgress = () => {
     []
   );
 
+  // Theo dõi scroll để cập nhật progress và current section
   useEffect(() => {
     const handleScroll = () => {
+      // Tính scroll progress
       const scrollTop = window.pageYOffset;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(Math.min(100, Math.max(0, scrollPercent)));
 
-      setScrollProgress(scrollPercent * 100);
+      // Tìm section hiện tại dựa trên vị trí scroll
+      const windowHeight = window.innerHeight;
+      const currentScrollY = scrollTop + windowHeight / 2;
+      let foundSection = false;
 
-      // Tìm section hiện tại dựa trên scroll position
-      const sectionElements = sections
-        .map((section) => document.getElementById(section.id))
-        .filter(Boolean);
-
-      let current = 0;
-      const scrollOffset = window.innerHeight / 3; // Trigger khi section chiếm 1/3 viewport
-
-      sectionElements.forEach((element, index) => {
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i].id);
         if (element) {
-          const rect = element.getBoundingClientRect();
-          // Section được coi là active khi top của nó ở trong vùng trigger
-          if (rect.top <= scrollOffset && rect.bottom >= scrollOffset) {
-            current = index;
+          const elementTop = element.offsetTop;
+          const elementBottom = elementTop + element.offsetHeight;
+          
+          // Kiểm tra nếu đang ở trong section
+          if (currentScrollY >= elementTop && currentScrollY <= elementBottom) {
+            setCurrentSection(i);
+            foundSection = true;
+            break;
           }
         }
-      });
+      }
 
-      setCurrentSection(current);
+      // Tự động hiện/ẩn component dựa trên việc có đang ở trong section không
+      setIsInSection(foundSection);
+      if (foundSection && !isVisible && !isExpanded && !isManuallyHidden) {
+        // Tự động hiện khi vào section (chỉ khi chưa bị ẩn thủ công)
+        setIsVisible(true);
+        setIsExpanded(true);
+      } else if (!foundSection && isVisible && isExpanded && !isManuallyHidden) {
+        // Tự động ẩn khi ra khỏi tất cả sections (có delay nhỏ)
+        setTimeout(() => {
+          setIsVisible(false);
+          setIsExpanded(false);
+        }, 1000);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
+    // Gọi ngay lần đầu
+    handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
+    // Thêm event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-  const scrollToSection = (sectionId: string) => {
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sections, isVisible, isExpanded, isManuallyHidden]);
+
+
+  const handleToggleVisibility = () => {
+    if (isVisible || isExpanded) {
+      // Đang hiển thị -> Ẩn đi (đánh dấu là ẩn thủ công)
+      setIsVisible(false);
+      setIsExpanded(false);
+      setIsManuallyHidden(true);
+    } else {
+      // Đang ẩn -> Hiển thị (bỏ đánh dấu ẩn thủ công)
+      setIsVisible(true);
+      setIsExpanded(true);
+      setIsManuallyHidden(false);
+    }
+  };
+
+  const handleSectionClick = (sectionIndex: number) => {
+    setCurrentSection(sectionIndex);
+    
+    // Scroll to section
+    const sectionId = sections[sectionIndex].id;
+    console.log('Clicking section:', sectionId, 'index:', sectionIndex); // Debug log
+    
     const element = document.getElementById(sectionId);
+    console.log('Found element:', element); // Debug log
+    
     if (element) {
-      const headerOffset = 80; // Offset cho header nếu có
-      const elementPosition = element.offsetTop;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
       });
+      console.log('Scrolled to:', sectionId); // Debug log
+    } else {
+      console.warn('Element not found:', sectionId); // Debug log
     }
   };
 
   return (
     <>
-      {/* Toggle Button - Hiển thị khi component bị ẩn */}
-      {!isVisible && (
-        <div className="sticky left-2 top-1/2 -translate-y-1/2 z-50 5xl:hidden">
-          <button
-            onClick={() => setIsVisible(true)}
-            className="bg-background p-3 rounded-full border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
-            title="Mở thanh tiến trình"
+      {/* Toggle Button */}
+      <div 
+        className="fixed left-2 top-1/2 z-50 transition-all duration-700 ease-out"
+        style={{ 
+          transform: 'translateY(-50%)'
+        }}
+      >
+        <button
+          onClick={handleToggleVisibility}
+          className={`bg-background p-3 rounded-full border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group ${
+            isInSection 
+              ? 'opacity-100 border-accent shadow-accent/20' 
+              : isVisible || isExpanded 
+                ? 'opacity-100' 
+                : 'opacity-60 hover:opacity-100'
+          }`}
+          title={
+            isVisible || isExpanded 
+              ? "Đóng thanh tiến trình" 
+              : isInSection 
+                ? `Mở thanh tiến trình (Section: ${sections[currentSection]?.name})` 
+                : "Mở thanh tiến trình"
+          }
+        >
+          <svg
+            className={`w-5 h-5 transition-all duration-300 ${
+              isVisible || isExpanded 
+                ? 'text-accent' 
+                : isInSection 
+                  ? 'text-accent scale-110'
+                  : 'text-gray-600'
+            }`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <svg
-              className="w-5 h-5 text-accent transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            {isVisible || isExpanded ? (
+              // Arrow left khi đang hiện (ẩn đi)
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            ) : (
+              // Arrow right khi đang ẩn (hiện ra)
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
                 d="M9 5l7 7-7 7"
               />
-            </svg>
-          </button>
-        </div>
-      )}
+            )}
+          </svg>
+        </button>
+      </div>
 
       {/* Main Progress Component */}
-      <div className={`sticky left-5 top-1/2 -translate-y-1/2 5xl:-translate-x-[72px] z-50 transition-all duration-300 hover:scale-105 w-[100px] h-[400px] ${
-        isVisible ? 'block' : 'hidden 5xl:block'
-      }`}>
+      <div 
+        className={`fixed left-5 top-1/2 z-40 transition-all duration-700 ease-out w-[100px] ${
+          (isVisible || isExpanded) 
+            ? 'opacity-100 pointer-events-auto scale-100' 
+            : 'opacity-0 pointer-events-none scale-95'
+        }`}
+        style={{ 
+          transform: `translateY(-50%) ${
+            (isVisible || isExpanded) 
+              ? 'translateX(3rem)' 
+              : 'translateX(0)'
+          }`
+        }}
+      >
         {/* Container với neumorphic design */}
-        <div className="relative bg-background p-4 rounded-3xl border-gray-200 shadow-sm">
-          {/* Close button - Chỉ hiển thị khi được mở bằng toggle trên màn hình nhỏ */}
-          {isVisible && (
-            <button
-              onClick={() => setIsVisible(false)}
-              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs hover:bg-red-600 transition-colors shadow-lg 5xl:hidden z-10"
-              title="Đóng thanh tiến trình"
-            >
-              ×
-            </button>
-          )}
+        <div className="relative bg-background p-4 rounded-3xl border-gray-200 shadow-sm hover:scale-105 transition-all duration-300 hover:shadow-lg">
           {/* Progress line */}
           <div className="absolute left-6 top-4 bottom-4 w-1 bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
             <div
@@ -137,7 +215,7 @@ const FloatingStepProgress = () => {
               <div
                 key={section.id}
                 className="relative flex items-center cursor-pointer group"
-                onClick={() => scrollToSection(section.id)}
+                onClick={() => handleSectionClick(index)}
               >
                 {/* Step circle */}
                 <div
@@ -183,7 +261,7 @@ const FloatingStepProgress = () => {
                       ? "bg-accent/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]"
                       : index < currentSection
                       ? "text-gray-400 bg-accent/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]"
-                      : "text-text-secondary group-hover:text-accent group-hover:scale-105"
+                      : "text-text-secondary bg-accent/20 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)] group-hover:text-accent group-hover:scale-105"
                   }
                   whitespace-nowrap
                   group-hover:bg-background group-hover:shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]

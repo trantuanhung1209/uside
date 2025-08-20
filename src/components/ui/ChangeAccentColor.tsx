@@ -70,7 +70,7 @@ const ChangeAccentColor = () => {
     <>
       {/* Robot Button */}
       <div
-        className="absolute md:top-32 md:left-[90%] w-20 h-28 cursor-pointer z-99999 xs:top-[11%] xs:left-10 xl:top-[3%] lg:left-[90%] lg:top-[2%]"
+        className="absolute top-[11%] left-[90%] w-20 h-28 cursor-pointer z-1"
         style={{
           animation: "float 4s ease-in-out infinite",
           animationDelay: "1s",

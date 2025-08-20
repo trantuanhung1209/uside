@@ -4,7 +4,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
   return (
     <>
       <section
-        className="section-bg w-full h-[550px] mt-[-100px] bg-border flex items-end justify-center relative overflow-hidden"
+        className="section-bg w-full h-[550px] bg-border flex items-end justify-center relative overflow-hidden"
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",

@@ -16,9 +16,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       {!isHomePage && <Header />}
-      {isHomePage && <FloatingStepProgress />}
-      <main className={isHomePage ? '' : ''}>{children}</main>
+      
+      <main className={isHomePage ? '' : ''}>
+        {isHomePage && <FloatingStepProgress />}
+        {children}</main>
       <Footer />
+      
       
       {/* Change Accent Color - Floating button available on all pages */}
       <ChangeAccentColor />
