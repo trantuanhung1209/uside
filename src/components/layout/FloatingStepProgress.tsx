@@ -198,7 +198,20 @@ const FloatingStepProgress = () => {
           }}
         >
           {/* Container với neumorphic design */}
-          <div className="relative rounded-3xl shadow-sm hover:scale-101 transition-all duration-300 hover:shadow-lg">
+          <div className="relative bg-background pt-[10px] rounded-3xl shadow-sm hover:scale-101 transition-all duration-300 hover:shadow-lg">
+            {/* Progress line */}
+            <div className="absolute left-3 top-4 bottom-4 w-1 max-h-full bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
+              <div
+                className="bg-accent rounded-full transition-all duration-700 ease-out relative shadow-[0_0_15px_rgba(0,210,255,0.4)]"
+                style={{
+                  height: `${(scrollProgress / 100) * 100}%`,
+                  width: "100%",
+                }}
+              >
+                {/* Glowing effect */}
+                <div className="absolute inset-0 bg-accent rounded-full animate-pulse opacity-50"></div>
+              </div>
+            </div>
 
             {/* Steps */}
             <div className="flex flex-col space-y-6 ml-5">
@@ -208,45 +221,10 @@ const FloatingStepProgress = () => {
                   className="relative flex items-center cursor-pointer group"
                   onClick={() => handleSectionClick(index)}
                 >
-                  {/* Step circle */}
-                  <div
-                    className={`
-                  w-4 h-4 rounded-full border-2 transition-all duration-300 relative z-10 transform
-                  ${
-                    index === currentSection
-                      ? "bg-accent border-accent shadow-[0_0_15px_rgba(0,210,255,0.6)] scale-110"
-                      : "bg-gray-400 border-gray-400 shadow-[inset_-3px_-3px_6px_#FAFBFF,inset_3px_3px_6px_rgba(22,17,29,0.15)]"
-                  }
-                  group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(0,210,255,0.8)]
-                `}
-                  >
-                    {/* Inner glow for active step */}
-                    {index === currentSection && (
-                      <div className="absolute inset-0 bg-accent rounded-full animate-pulse opacity-70"></div>
-                    )}
-
-                    {/* Check mark for completed steps */}
-                    {index < currentSection && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <svg
-                          className="w-2 h-2 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
 
                   {/* Step label */}
                   <div
-                    className={`
-                  ml-4 px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-300 transform origin-left opacity-100
+                    className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-300 transform origin-left opacity-100
                   ${
                     index === currentSection
                       ? "bg-accent/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]"
@@ -270,7 +248,7 @@ const FloatingStepProgress = () => {
 
             {/* Progress percentage */}
             <div className="mt-6 pt-4 pl-[20px] border-t border-border/30">
-              <div className="text-end translate-x-[-20px] translate-y-[-20px]">
+              <div className="text-end translate-x-[-10px] translate-y-[-20px]">
                 <div className="text-base font-bold text-accent">
                   {Math.round(scrollProgress)}%
                 </div>
