@@ -9,9 +9,9 @@ const Footer = () => {
             <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
               <div className="w-16 h-16 bg-background rounded-xl mb-4 flex items-center justify-center shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff]">
                 <img
-                  src="/images_uside/uside_light.png"
+                  src="/images_uside/pet_cloud_uside.png"
+                  className="w-full h-full object-contain scale-120 transition-transform duration-300"
                   alt="USide Logo"
-                  className="w-full h-full object-contain"
                 />
               </div>
               <p className="text-text-primary text-sm leading-relaxed">

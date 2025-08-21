@@ -105,8 +105,8 @@ const Header = () => {
             >
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-[60px] md:h-[60px] flex-shrink-0">
                 <img
-                  src="/images_uside/uside_light.png"
-                  className="w-full h-full object-contain"
+                  src="/images_uside/pet_cloud_uside.png"
+                  className="w-full h-full object-contain scale-120 transition-transform duration-300"
                   alt="USide Logo"
                 />
               </div>

@@ -138,24 +138,28 @@ const Television = () => {
       
       <div className="relative">
         <div
-          className="rounded-[20px] p-3 md:p-4 transition-all duration-300 hover:scale-105"
+          className="rounded-[20px] p-3 transition-all duration-300 hover:scale-105"
           style={{
             backgroundColor: "var(--color-background)",
             boxShadow:
               "-10px -10px 20px #FAFBFF, 10px 10px 20px var(--color-shadow)",
           }}
         >
-          {/* Main content area */}
+          {/* Main content area - TV Screen */}
           <div
-            className="h-64 md:h-80 rounded-[12px] mb-6 flex items-center justify-center relative overflow-hidden"
+            className="h-64 md:h-80 rounded-[12px] mb-6 flex items-center justify-center relative overflow-hidden p-2"
             style={{
               backgroundColor: "var(--color-secondary)",
               boxShadow:
                 "inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px var(--color-shadow)",
             }}
           >
-            {/* Video content */}
-            <div className="relative z-10 w-full h-full rounded-[8px] overflow-hidden">
+            {/* Inner TV Bezel */}
+            <div
+              className="w-full h-full rounded-[8px] relative overflow-hidden"
+            >
+              {/* Video content */}
+              <div className="relative z-10 w-full h-full rounded-[6px] overflow-hidden">
               <video
                 ref={videoRef}
                 className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:brightness-110"
@@ -234,6 +238,7 @@ const Television = () => {
                   mixBlendMode: "overlay"
                 }}
               />
+              </div>
             </div>
 
             {/* Background pattern */}

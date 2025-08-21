@@ -123,7 +123,7 @@ const FloatingStepProgress = () => {
     <>
       {/* Toggle Button */}
       <div 
-        className="fixed left-2 top-1/2 z-50 transition-all duration-700 ease-out"
+        className=" sticky left-2 top-1/2  transition-all duration-700 ease-out"
         style={{ 
           transform: 'translateY(-50%)'
         }}
@@ -180,7 +180,7 @@ const FloatingStepProgress = () => {
 
       {/* Main Progress Component */}
       <div 
-        className={`fixed left-5 top-1/2 z-40 transition-all duration-700 ease-out w-[100px] ${
+        className={`sticky left-5 top-1/2 z-40 transition-all duration-700 ease-out w-[100px] ${
           (isVisible || isExpanded) 
             ? 'opacity-100 pointer-events-auto scale-100' 
             : 'opacity-0 pointer-events-none scale-95'
@@ -196,7 +196,7 @@ const FloatingStepProgress = () => {
         {/* Container với neumorphic design */}
         <div className="relative bg-background p-4 rounded-3xl border-gray-200 shadow-sm hover:scale-105 transition-all duration-300 hover:shadow-lg">
           {/* Progress line */}
-          <div className="absolute left-6 top-4 bottom-4 w-1 bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
+          <div className="absolute left-6 top-4 bottom-4 w-1 max-h-full bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
             <div
               className="bg-accent rounded-full transition-all duration-700 ease-out relative shadow-[0_0_15px_rgba(0,210,255,0.4)]"
               style={{
