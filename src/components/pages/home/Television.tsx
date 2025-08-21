@@ -2,9 +2,53 @@ import { useState, useRef, useEffect } from "react";
 import { useMusic } from "../../../hooks";
 import { TV_CHANNELS, getNextChannel, getPreviousChannel, type TvChannel } from "../../../constants";
 
+// Custom CSS for slider
+const sliderStyles = `
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-track {
+    background: transparent;
+    height: 4px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: var(--color-background);
+    box-shadow: -2px -2px 4px #FAFBFF, 2px 2px 4px var(--color-shadow), 0 0 6px var(--color-accent);
+    border: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 4px;
+    border: none;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: var(--color-background);
+    box-shadow: -2px -2px 4px #FAFBFF, 2px 2px 4px var(--color-shadow), 0 0 6px var(--color-accent);
+    border: none;
+    cursor: pointer;
+  }
+`;
+
 const Television = () => {
   const { isPlaying, toggleMusic, volume, setVolume, playSpecificTrack } = useMusic();
   const [currentChannel, setCurrentChannel] = useState<TvChannel>(TV_CHANNELS[0]);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Handle channel change
@@ -15,7 +59,10 @@ const Television = () => {
     if (videoRef.current) {
       videoRef.current.src = newChannel.video;
       videoRef.current.load();
-      videoRef.current.play().catch(console.error);
+      // Only play if video was already playing
+      if (isVideoPlaying) {
+        videoRef.current.play().catch(console.error);
+      }
     }
     
     // Change music if playing
@@ -34,12 +81,22 @@ const Television = () => {
     changeChannel(previous);
   };
 
-  // Override toggle music to play current channel's music
+  // Override toggle music to play current channel's music and control video
   const handleToggleMusic = () => {
     if (!isPlaying) {
+      // Start both music and video
       playSpecificTrack(currentChannel.music);
+      setIsVideoPlaying(true);
+      if (videoRef.current) {
+        videoRef.current.play().catch(console.error);
+      }
     } else {
+      // Stop both music and video
       toggleMusic();
+      setIsVideoPlaying(false);
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
     }
   };
 
@@ -51,8 +108,24 @@ const Television = () => {
     }
   }, [currentChannel.video]);
 
+  // Sync video playing state with music playing state
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isPlaying && !isVideoPlaying) {
+        setIsVideoPlaying(true);
+        videoRef.current.play().catch(console.error);
+      } else if (!isPlaying && isVideoPlaying) {
+        setIsVideoPlaying(false);
+        videoRef.current.pause();
+      }
+    }
+  }, [isPlaying, isVideoPlaying]);
+
   return (
     <>
+      {/* Custom CSS for slider */}
+      <style>{sliderStyles}</style>
+      
       <div className="relative">
         <div
           className="rounded-[20px] p-3 md:p-4 transition-all duration-300 hover:scale-105"
@@ -75,11 +148,11 @@ const Television = () => {
             <div className="relative z-10 w-full h-full rounded-[8px] overflow-hidden">
               <video
                 ref={videoRef}
-                className="w-full h-full object-cover"
-                autoPlay
+                className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:brightness-110"
                 loop
                 muted
                 playsInline
+                onClick={handleToggleMusic}
               >
                 <source src={currentChannel.video} type="video/mp4" />
                 {/* Fallback for browsers that don't support video */}
@@ -99,6 +172,30 @@ const Television = () => {
                   <div className="text-xs opacity-75">{currentChannel.description}</div>
                 )}
               </div>
+              
+              {/* Video Paused Overlay */}
+              {!isVideoPlaying && (
+                <div 
+                  className="absolute inset-0 bg-black/20 backdrop-blur-[1px] flex items-center justify-center cursor-pointer"
+                  onClick={handleToggleMusic}
+                >
+                  <div 
+                    className="w-20 h-20 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      border: "2px solid rgba(255, 255, 255, 0.3)",
+                    }}
+                  >
+                    <svg
+                      className="w-8 h-8 text-white opacity-80"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
               
               {/* Video overlay for better visual integration */}
               <div 
@@ -228,13 +325,24 @@ const Television = () => {
             
             {/* Volume Control */}
             <div className="flex items-center space-x-3">
-              {/* Volume Icon */}
-              <div className="flex items-center">
+              {/* Volume Icon Button */}
+              <button
+                onClick={() => setVolume(volume === 0 ? 0.5 : 0)}
+                className="w-12 h-12 section-neumorphic transition-all duration-300 hover:scale-105 active:scale-95 group relative overflow-hidden focus:outline-none cursor-pointer rounded-full flex items-center justify-center"
+                title={volume === 0 ? "Bật âm thanh" : "Tắt âm thanh"}
+                style={{
+                  backgroundColor: "var(--color-background)",
+                  borderRadius: "50%",
+                }}
+              >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 transition-all duration-300 group-hover:scale-110"
                   fill="currentColor"
                   viewBox="0 0 24 24"
-                  style={{ color: "var(--color-accent)" }}
+                  style={{ 
+                    color: "var(--color-accent)",
+                    filter: `drop-shadow(0 0 4px var(--color-accent)30)`,
+                  }}
                 >
                   {volume === 0 ? (
                     // Muted icon
@@ -247,34 +355,63 @@ const Television = () => {
                     <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                   )}
                 </svg>
-              </div>
+              </button>
               
-              {/* Volume Slider */}
-              <div className="relative w-20">
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={volume}
-                  onChange={(e) => {
-                    const newVolume = parseFloat(e.target.value);
-                    console.log('Setting volume to:', newVolume); // Debug log
-                    setVolume(newVolume);
-                  }}
-                  className="w-full h-2 rounded-full appearance-none cursor-pointer focus:outline-none"
-                  style={{
-                    background: `linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) ${volume * 100}%, var(--color-secondary) ${volume * 100}%, var(--color-secondary) 100%)`,
-                    boxShadow: "inset -1px -1px 2px #FAFBFF, inset 1px 1px 2px rgba(22, 17, 29, 0.1)"
-                  }}
-                />
-                
-                {/* Volume percentage display */}
-                <div 
-                  className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs opacity-75"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  {Math.round(volume * 100)}%
+              {/* Volume Slider Container */}
+              <div 
+                className="relative w-24 h-12 rounded-full flex items-center px-3 transition-all duration-300"
+                style={{
+                  backgroundColor: "var(--color-background)",
+                  boxShadow: "inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px var(--color-shadow)",
+                }}
+              >
+                {/* Volume Slider */}
+                <div className="relative w-full">
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={volume}
+                    onChange={(e) => {
+                      const newVolume = parseFloat(e.target.value);
+                      setVolume(newVolume);
+                    }}
+                    className="w-full h-1 rounded-full appearance-none cursor-pointer focus:outline-none bg-transparent relative z-10 -translate-y-[4px]"
+                    style={{
+                      background: 'transparent',
+                    }}
+                  />
+                  
+                  {/* Custom slider track */}
+                  <div 
+                    className="absolute top-1/2 left-0 h-1 rounded-full transform -translate-y-1/2 pointer-events-none"
+                    style={{
+                      width: '100%',
+                      backgroundColor: "var(--color-secondary)",
+                      boxShadow: "inset -1px -1px 2px #FAFBFF, inset 1px 1px 2px rgba(22, 17, 29, 0.1)"
+                    }}
+                  />
+                  
+                  {/* Progress fill */}
+                  <div 
+                    className="absolute top-1/2 left-0 h-1 rounded-full transform -translate-y-1/2 pointer-events-none transition-all duration-150"
+                    style={{
+                      width: `${volume * 100}%`,
+                      backgroundColor: "var(--color-accent)",
+                      boxShadow: `0 0 4px var(--color-accent)40`,
+                    }}
+                  />
+                  
+                  {/* Custom slider thumb */}
+                  <div 
+                    className="absolute top-0 w-3 h-3 rounded-full transform  -translate-x-1/2 translate-y-1/2 pointer-events-none transition-all duration-150"
+                    style={{
+                      left: `${volume * 100}%`,
+                      backgroundColor: "var(--color-background)",
+                      boxShadow: "-2px -2px 4px #FAFBFF, 2px 2px 4px var(--color-shadow), 0 0 6px var(--color-accent)30",
+                    }}
+                  />
                 </div>
               </div>
             </div>
