@@ -10,7 +10,7 @@ export const TV_CHANNELS: TvChannel[] = [
   {
     id: 1,
     name: "USide Pet Dark",
-    video: "/images_uside/pet_dark.mp4",
+    video: "/images_uside/cloud_loadding.mp4",
     music: "/music_uside/music1.mp3",
     description: "Thế giới thú cưng USide trong không gian tối"
   },
