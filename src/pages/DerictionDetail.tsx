@@ -832,8 +832,9 @@ const DirectionDetailPage: React.FC = () => {
         }}
       >
         {/* Custom CSS Animations */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
             @keyframes fadeIn {
               from { opacity: 0; }
               to { opacity: 1; }
@@ -896,8 +897,9 @@ const DirectionDetailPage: React.FC = () => {
             .animate-slide-in-right {
               animation: slideInRight 0.8s ease-out;
             }
-          `
-        }} />
+          `,
+          }}
+        />
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Button */}
           <button
@@ -942,7 +944,7 @@ const DirectionDetailPage: React.FC = () => {
                   4px 4px 8px var(--color-shadow),
                   -4px -4px 8px #FAFBFF
                 `,
-                animation: 'fadeInUp 0.6s ease-out',
+                animation: "fadeInUp 0.6s ease-out",
               }}
             >
               <div
@@ -951,58 +953,39 @@ const DirectionDetailPage: React.FC = () => {
               >
                 🎯
               </div>
-              <h2 
+              <h2
                 className="text-xl sm:text-2xl font-bold mb-4"
                 style={{ color: "var(--color-text-primary)" }}
               >
                 Bắt đầu khám phá
               </h2>
-              <p 
+              <p
                 className="text-base sm:text-lg mb-6 max-w-2xl mx-auto"
                 style={{ color: "var(--color-text-secondary)" }}
               >
-                Hãy trả lời một số câu hỏi để khám phá khả năng và sở thích của bạn trong lĩnh vực <strong>{career.title}</strong>. 
-                Điều này sẽ giúp bạn hiểu rõ hơn về con đường nghề nghiệp này.
+                Hãy trả lời một số câu hỏi để khám phá khả năng và sở thích của
+                bạn trong lĩnh vực <strong>{career.title}</strong>. Điều này sẽ
+                giúp bạn hiểu rõ hơn về con đường nghề nghiệp này.
               </p>
-              
+
               {!hasStartedQuiz ? (
-                <button
+                <div className="flex justify-center">
+                  <button
                   onClick={handleStartQuiz}
                   className={`
-                    px-8 py-4 rounded-2xl font-bold text-lg text-white
-                    transition-all duration-300 transform hover:scale-105 active:scale-95
-                    shadow-lg hover:shadow-xl cursor-pointer
+                    neumorphic-button
                   `}
-                  style={{
-                    background: "var(--color-accent)",
-                    boxShadow: `
-                      6px 6px 12px var(--color-shadow),
-                      -6px -6px 12px rgba(255,255,255,0.1)
-                    `,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = `
-                      8px 8px 16px var(--color-shadow),
-                      -8px -8px 16px rgba(255,255,255,0.1),
-                      0 0 25px rgba(0, 210, 255, 0.3)
-                    `;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = `
-                      6px 6px 12px var(--color-shadow),
-                      -6px -6px 12px rgba(255,255,255,0.1)
-                    `;
-                  }}
                 >
                   🚀 Bắt đầu ngay
                 </button>
+                </div>
               ) : (
                 <div className="flex items-center justify-center gap-3">
                   <div
                     className="w-3 h-3 rounded-full animate-pulse"
                     style={{ background: "var(--color-accent)" }}
                   />
-                  <span 
+                  <span
                     className="text-lg font-medium"
                     style={{ color: "var(--color-accent)" }}
                   >
@@ -1020,75 +1003,77 @@ const DirectionDetailPage: React.FC = () => {
           {/* Quiz Section */}
           {hasStartedQuiz && !isQuizCompleted && (
             <div className="grid lg:grid-cols-2 gap-8 animate-fade-in">
-            {/* Question */}
-            <div
-              className="p-6 sm:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-left"
-              style={{
-                background: "var(--color-background)",
-                boxShadow: `
+              {/* Question */}
+              <div
+                className="p-6 sm:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-left"
+                style={{
+                  background: "var(--color-background)",
+                  boxShadow: `
                   4px 4px 8px var(--color-shadow),
                 -4px -4px 8px #FAFBFF
                 `,
-                animation: 'slideInLeft 0.8s ease-out, fadeIn 0.8s ease-out',
-              }}
-            >
-              {/* Question Progress */}
-              <div className="mb-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: "var(--color-text-secondary)" }}
-                  >
-                    Câu hỏi {currentQuestionIndex + 1} / {quizQuestions.length}
-                  </span>
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: "var(--color-accent)" }}
-                  >
-                    {Math.round(
-                      ((currentQuestionIndex + 1) / quizQuestions.length) * 100
-                    )}
-                    %
-                  </span>
-                </div>
-                <div
-                  className="h-2 rounded-full overflow-hidden"
-                  style={{
-                    background: "var(--color-background)",
-                    boxShadow: `
+                  animation: "slideInLeft 0.8s ease-out, fadeIn 0.8s ease-out",
+                }}
+              >
+                {/* Question Progress */}
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: "var(--color-text-secondary)" }}
+                    >
+                      Câu hỏi {currentQuestionIndex + 1} /{" "}
+                      {quizQuestions.length}
+                    </span>
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: "var(--color-accent)" }}
+                    >
+                      {Math.round(
+                        ((currentQuestionIndex + 1) / quizQuestions.length) *
+                          100
+                      )}
+                      %
+                    </span>
+                  </div>
+                  <div
+                    className="h-2 rounded-full overflow-hidden"
+                    style={{
+                      background: "var(--color-background)",
+                      boxShadow: `
                       inset 4px 4px 8px var(--color-shadow),
                       inset -4px -4px 8px #FAFBFF
                     `,
-                  }}
-                >
-                  <div
-                    className="h-full transition-all duration-500 rounded-full"
-                    style={{
-                      width: `${
-                        ((currentQuestionIndex + 1) / quizQuestions.length) *
-                        100
-                      }%`,
-                      background: "var(--color-accent)",
                     }}
-                  />
+                  >
+                    <div
+                      className="h-full transition-all duration-500 rounded-full"
+                      style={{
+                        width: `${
+                          ((currentQuestionIndex + 1) / quizQuestions.length) *
+                          100
+                        }%`,
+                        background: "var(--color-accent)",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <h2
-                className="text-xl sm:text-2xl font-bold mb-6"
-                style={{ color: "var(--color-text-primary)" }}
-              >
-                {currentQuestion.question}
-              </h2>
+                <h2
+                  className="text-xl sm:text-2xl font-bold mb-6"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
+                  {currentQuestion.question}
+                </h2>
 
-              {/* Options */}
-              <div className="space-y-4">
-                {currentQuestion.options.map((option, index) => (
-                  <button
-                    key={option.id}
-                    onClick={() => handleOptionSelect(option.id)}
-                    disabled={showResult}
-                    className={`
+                {/* Options */}
+                <div className="space-y-4">
+                  {currentQuestion.options.map((option, index) => (
+                    <button
+                      key={option.id}
+                      onClick={() => handleOptionSelect(option.id)}
+                      disabled={showResult}
+                      className={`
                       w-full p-4 rounded-2xl text-left transition-all duration-500
                       transform hover:scale-[1.02] active:scale-98 animate-fade-in-up
                       ${selectedOption === option.id ? "ring-2" : ""}
@@ -1103,40 +1088,40 @@ const DirectionDetailPage: React.FC = () => {
                           : ""
                       }
                     `}
-                    style={{
-                      animationDelay: `${index * 0.1}s`,
-                      color: "var(--color-text-primary)",
-                      background: "var(--color-background)",
-                      boxShadow: `
+                      style={{
+                        animationDelay: `${index * 0.1}s`,
+                        color: "var(--color-text-primary)",
+                        background: "var(--color-background)",
+                        boxShadow: `
                         4px 4px 8px var(--color-shadow),
                 -4px -4px 8px #FAFBFF
                       `,
-                      ...(selectedOption === option.id && {
-                        outline: `2px solid var(--color-accent)`,
-                        outlineOffset: "2px",
-                      }),
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!showResult) {
-                        e.currentTarget.style.boxShadow = `
+                        ...(selectedOption === option.id && {
+                          outline: `2px solid var(--color-accent)`,
+                          outlineOffset: "2px",
+                        }),
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!showResult) {
+                          e.currentTarget.style.boxShadow = `
                           4px 4px 8px var(--color-shadow),
                           -4px -4px 8px #FAFBFF,
                           0 0 20px rgba(0, 210, 255, 0.1)
                         `;
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!showResult) {
-                        e.currentTarget.style.boxShadow = `
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!showResult) {
+                          e.currentTarget.style.boxShadow = `
                           4px 4px 8px var(--color-shadow),
                 -4px -4px 8px #FAFBFF
                         `;
-                      }
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`
+                        }
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`
                           w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold
                           ${
                             showResult && option.isCorrect
@@ -1151,183 +1136,171 @@ const DirectionDetailPage: React.FC = () => {
                               : ""
                           }
                         `}
-                        style={{
-                          background: showResult
-                            ? undefined
-                            : "var(--color-accent)",
-                          color: showResult ? undefined : "white",
-                        }}
-                      >
-                        {option.id.toUpperCase()}
-                      </div>
-                      <span className="flex-1">{option.text}</span>
-                      {showResult && (
-                        <span
-                          className="text-sm font-medium"
-                          style={{ color: "var(--color-accent)" }}
+                          style={{
+                            background: showResult
+                              ? undefined
+                              : "var(--color-accent)",
+                            color: showResult ? undefined : "white",
+                          }}
                         >
-                          {option.percentage}%
-                        </span>
-                      )}
-                    </div>
-                  </button>
-                ))}
-              </div>
-
-              {/* Navigation */}
-              <div className="flex justify-between items-center mt-8">
-                <button
-                  onClick={handlePrevQuestion}
-                  disabled={currentQuestionIndex === 0}
-                  className={`
-                    px-6 py-3 rounded-xl font-medium transition-all duration-300
-                    transform hover:scale-105 active:scale-95
-                    ${
-                      currentQuestionIndex === 0
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                    }
-                  `}
-                  style={{
-                    color: "var(--color-text-primary)",
-                    background: "var(--color-background)",
-                    boxShadow:
-                      currentQuestionIndex === 0
-                        ? "none"
-                        : `
-                      6px 6px 12px var(--color-shadow),
-                      -6px -6px 12px #FAFBFF
-                    `,
-                  }}
-                >
-                  ← Trước
-                </button>
-
-                <button
-                  onClick={handleNextQuestion}
-                  disabled={currentQuestionIndex === quizQuestions.length - 1 && !selectedOption}
-                  className={`
-                    px-6 py-3 rounded-xl font-medium text-white transition-all duration-300
-                    transform hover:scale-105 active:scale-95 cursor-pointer
-                    ${
-                      !selectedOption && currentQuestionIndex === quizQuestions.length - 1
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                    }
-                  `}
-                  style={{
-                    background:
-                      !selectedOption && currentQuestionIndex === quizQuestions.length - 1
-                        ? "#gray-400"
-                        : "var(--color-accent)",
-                    boxShadow:
-                      !selectedOption && currentQuestionIndex === quizQuestions.length - 1
-                        ? "none"
-                        : `
-                      6px 6px 12px var(--color-shadow),
-                      -6px -6px 12px rgba(255,255,255,0.1)
-                    `,
-                  }}
-                >
-                  {currentQuestionIndex === quizQuestions.length - 1 ? "🏁 Hoàn thành" : "Tiếp →"}
-                </button>
-              </div>
-            </div>
-
-            {/* Results/Analysis */}
-            {showResult && (
-              <div
-                className="p-6 sm:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-right"
-                style={{
-                  background: "var(--color-background)",
-                  boxShadow: `
-                    4px 4px 8px var(--color-shadow),
-                  -4px -4px 8px #FAFBFF
-                  `,
-                  animation: 'slideInRight 0.8s ease-out, fadeIn 0.8s ease-out',
-                }}
-              >
-                <>
-                  <h3
-                    className="text-xl font-bold mb-6"
-                    style={{ color: "var(--color-text-primary)" }}
-                  >
-                    📊 Phân tích kết quả
-                  </h3>
-
-                  {/* Results Chart */}
-                  <div className="space-y-4 mb-6">
-                    {currentQuestion.options.map((option) => (
-                      <div key={option.id} className="space-y-2">
-                        <div className="flex justify-between items-center">
+                          {option.id.toUpperCase()}
+                        </div>
+                        <span className="flex-1">{option.text}</span>
+                        {showResult && (
                           <span
                             className="text-sm font-medium"
-                            style={{ color: "var(--color-text-primary)" }}
-                          >
-                            {option.id.toUpperCase()}. {option.text}
-                          </span>
-                          <span
-                            className="text-sm font-bold"
                             style={{ color: "var(--color-accent)" }}
                           >
                             {option.percentage}%
                           </span>
-                        </div>
-                        <div
-                          className="h-3 rounded-full overflow-hidden"
-                          style={{
-                            background: "var(--color-background)",
-                            boxShadow: `
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Navigation */}
+                <div className="flex justify-between items-center mt-8">
+                  <button
+                    onClick={handlePrevQuestion}
+                    disabled={currentQuestionIndex === 0}
+                    className={`
+                    neumorphic-button
+                    ${
+                      currentQuestionIndex === 0
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }
+                  `}
+                    style={{
+                      color: "white",
+                      background: "var(--color-background)",
+                      textShadow:
+                        "0 0 2px var(--color-accent)," +
+                        "0 0 4px var(--color-accent)," +
+                        "0 0 8px var(--color-accent)",
+                    }}
+                  >
+                    ← Trước
+                  </button>
+
+                  <button
+                    onClick={handleNextQuestion}
+                    disabled={
+                      currentQuestionIndex === quizQuestions.length - 1 &&
+                      !selectedOption
+                    }
+                    className={`neumorphic-button
+                    ${
+                      !selectedOption &&
+                      currentQuestionIndex === quizQuestions.length - 1
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }
+                  `}
+                  >
+                    {currentQuestionIndex === quizQuestions.length - 1
+                      ? "🏁 Hoàn thành"
+                      : "Tiếp →"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Results/Analysis */}
+              {showResult && (
+                <div
+                  className="p-6 sm:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-right"
+                  style={{
+                    background: "var(--color-background)",
+                    boxShadow: `
+                    4px 4px 8px var(--color-shadow),
+                  -4px -4px 8px #FAFBFF
+                  `,
+                    animation:
+                      "slideInRight 0.8s ease-out, fadeIn 0.8s ease-out",
+                  }}
+                >
+                  <>
+                    <h3
+                      className="text-xl font-bold mb-6"
+                      style={{ color: "var(--color-text-primary)" }}
+                    >
+                      📊 Phân tích kết quả
+                    </h3>
+
+                    {/* Results Chart */}
+                    <div className="space-y-4 mb-6">
+                      {currentQuestion.options.map((option) => (
+                        <div key={option.id} className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span
+                              className="text-sm font-medium"
+                              style={{ color: "var(--color-text-primary)" }}
+                            >
+                              {option.id.toUpperCase()}. {option.text}
+                            </span>
+                            <span
+                              className="text-sm font-bold"
+                              style={{ color: "var(--color-accent)" }}
+                            >
+                              {option.percentage}%
+                            </span>
+                          </div>
+                          <div
+                            className="h-3 rounded-full overflow-hidden"
+                            style={{
+                              background: "var(--color-background)",
+                              boxShadow: `
                               inset 3px 3px 6px var(--color-shadow),
                               inset -3px -3px 6px #FAFBFF
                             `,
-                          }}
-                        >
-                          <div
-                            className="h-full transition-all duration-1000 rounded-full"
-                            style={{
-                              width: `${option.percentage}%`,
-                              background: option.isCorrect
-                                ? "#22c55e"
-                                : selectedOption === option.id
-                                ? "#ef4444"
-                                : "var(--color-accent)",
                             }}
-                          />
+                          >
+                            <div
+                              className="h-full transition-all duration-1000 rounded-full"
+                              style={{
+                                width: `${option.percentage}%`,
+                                background: option.isCorrect
+                                  ? "#22c55e"
+                                  : selectedOption === option.id
+                                  ? "#ef4444"
+                                  : "var(--color-accent)",
+                              }}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
 
-                  {/* Explanation */}
-                  <div
-                    className="p-4 rounded-2xl"
-                    style={{
-                      background: "var(--color-background)",
-                      boxShadow: `
+                    {/* Explanation */}
+                    <div
+                      className="p-4 rounded-2xl"
+                      style={{
+                        background: "var(--color-background)",
+                        boxShadow: `
                         inset 6px 6px 12px var(--color-shadow),
                         inset -6px -6px 12px #FAFBFF
                       `,
-                    }}
-                  >
-                    <h4
-                      className="font-semibold mb-2 flex items-center gap-2"
-                      style={{ color: "var(--color-text-primary)" }}
+                      }}
                     >
-                      💡 Giải thích
-                    </h4>
-                    <p
-                      className="text-sm leading-relaxed"
-                      style={{ color: "var(--color-text-secondary)" }}
-                    >
-                      {currentQuestion.explanation}
-                    </p>
-                  </div>
-                </>
-              </div>
-            )}
-          </div>
-        )}
+                      <h4
+                        className="font-semibold mb-2 flex items-center gap-2"
+                        style={{ color: "var(--color-text-primary)" }}
+                      >
+                        💡 Giải thích
+                      </h4>
+                      <p
+                        className="text-sm leading-relaxed"
+                        style={{ color: "var(--color-text-secondary)" }}
+                      >
+                        {currentQuestion.explanation}
+                      </p>
+                    </div>
+                  </>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Quiz Completed Section */}
           {isQuizCompleted && (
@@ -1340,7 +1313,7 @@ const DirectionDetailPage: React.FC = () => {
                     4px 4px 8px var(--color-shadow),
                     -4px -4px 8px #FAFBFF
                   `,
-                  animation: 'fadeInUp 1.2s ease-out, scaleIn 1.2s ease-out',
+                  animation: "fadeInUp 1.2s ease-out, scaleIn 1.2s ease-out",
                 }}
               >
                 {/* Quiz Completion Message */}
@@ -1352,8 +1325,8 @@ const DirectionDetailPage: React.FC = () => {
                         key={i}
                         className="absolute"
                         style={{
-                          left: `${15 + (i * 15)}%`,
-                          bottom: '10%',
+                          left: `${15 + i * 15}%`,
+                          bottom: "10%",
                           animation: `firework-${i} 3s ease-out infinite`,
                           animationDelay: `${i * 0.5}s`,
                         }}
@@ -1361,7 +1334,14 @@ const DirectionDetailPage: React.FC = () => {
                         <div
                           className="text-2xl"
                           style={{
-                            color: ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1', '#ff7675'][i],
+                            color: [
+                              "#ff6b6b",
+                              "#feca57",
+                              "#48dbfb",
+                              "#ff9ff3",
+                              "#1dd1a1",
+                              "#ff7675",
+                            ][i],
                           }}
                         >
                           🎆
@@ -1371,8 +1351,9 @@ const DirectionDetailPage: React.FC = () => {
                   </div>
 
                   {/* CSS Animation Styles */}
-                  <style dangerouslySetInnerHTML={{
-                    __html: `
+                  <style
+                    dangerouslySetInnerHTML={{
+                      __html: `
                       @keyframes firework-0 {
                         0% { transform: translateY(0) scale(0.5); opacity: 0; }
                         50% { transform: translateY(-200px) scale(1); opacity: 1; }
@@ -1403,8 +1384,9 @@ const DirectionDetailPage: React.FC = () => {
                         50% { transform: translateY(-170px) scale(1); opacity: 1; }
                         100% { transform: translateY(-340px) scale(1.5); opacity: 0; }
                       }
-                    `
-                  }} />
+                    `,
+                    }}
+                  />
 
                   <div
                     className="text-8xl mb-6 animate-bounce relative z-10"
@@ -1432,19 +1414,24 @@ const DirectionDetailPage: React.FC = () => {
                       className="text-lg leading-relaxed mb-4"
                       style={{ color: "var(--color-text-secondary)" }}
                     >
-                      Cảm ơn bạn đã dành thời gian khám phá lĩnh vực <strong>{career.title}</strong>! 
-                      Hy vọng những câu hỏi này đã giúp bạn hiểu rõ hơn về con đường nghề nghiệp này.
+                      Cảm ơn bạn đã dành thời gian khám phá lĩnh vực{" "}
+                      <strong>{career.title}</strong>! Hy vọng những câu hỏi này
+                      đã giúp bạn hiểu rõ hơn về con đường nghề nghiệp này.
                     </p>
                     <div
                       className="flex items-center justify-center gap-2 text-lg font-semibold"
                       style={{ color: "var(--color-accent)" }}
                     >
-                      <span><PiShootingStarBold /></span>
+                      <span>
+                        <PiShootingStarBold />
+                      </span>
                       <span>Chúc bạn thành công trên con đường sự nghiệp!</span>
-                      <span><PiShootingStarBold /></span>
+                      <span>
+                        <PiShootingStarBold />
+                      </span>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <button
                       onClick={handleRestartQuiz}
@@ -1462,12 +1449,11 @@ const DirectionDetailPage: React.FC = () => {
                     >
                       🔄 Làm lại quiz
                     </button>
-                    
+
                     <button
                       onClick={() => navigate("/dinh-huong")}
                       className={`
-                        px-6 py-3 rounded-xl font-medium transition-all duration-300
-                        transform hover:scale-105 active:scale-95
+                        neumorphic-button
                       `}
                       style={{
                         color: "var(--color-text-primary)",

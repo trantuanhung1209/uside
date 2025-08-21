@@ -48,7 +48,7 @@ const Section4 = () => {
       excerpt:
         "USide đang tìm kiếm Frontend Developer tài năng để gia nhập đội ngũ phát triển.",
       category: "recruitment",
-      image: "/images_uside/pet_uside_light.png",
+      image: "/images_uside/pet_cloud_uside.png",
       author: "HR Team",
       tags: ["React", "TypeScript", "Career"],
     },

@@ -1,20 +1,20 @@
 const Section1 = () => {
   // Tạo danh sách hình ảnh đa dạng cho infinite scroll
   const images = [
-    "/images_uside/pet_uside_light.png",
-    "/images_uside/pet_uside_dark.png",
-    "/images_uside/uside_light.png",
-    "/images_uside/uside_dark.png",
-    "/images_uside/mascot_robot.png",
-    "/images_uside/pet_uside_light.png",
-    "/images_uside/pet_uside_dark.png",
-    "/images_uside/uside_light.png",
+    "/images_uside/pet_cloud_uside.png",
+    "/images_uside/pet_cloud_uside.png",
+    "/images_uside/pet_cloud_uside.png",
+    "/images_uside/pet_cloud_uside.png",
+    "/images_uside/pet_cloud_uside.png",
+    "/images_uside/pet_cloud_uside.png",
+    "/images_uside/pet_cloud_uside.png",
+    "/images_uside/pet_cloud_uside.png",
   ];
 
   return (
     <section className="section-1 overflow-hidden bg-background">
       <div
-        className="bg-background p-6 md:p-8 mb-8"
+        className="bg-background p-3 mb-8"
         style={{
           boxShadow:
             "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",

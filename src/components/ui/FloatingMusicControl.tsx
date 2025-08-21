@@ -14,6 +14,7 @@ const FloatingMusicControl = () => {
         style={{
           focusRingColor: `color-mix(in srgb, ${currentAccentColor} 20%, transparent)`,
           '--focus-ring': `0 0 0 4px color-mix(in srgb, ${currentAccentColor} 20%, transparent)`,
+          borderRadius: "50%",
         } as React.CSSProperties}
         onFocus={(e) => {
           (e.target as HTMLElement).style.boxShadow = `0 0 0 4px color-mix(in srgb, ${currentAccentColor} 20%, transparent)`;

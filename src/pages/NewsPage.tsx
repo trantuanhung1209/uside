@@ -62,7 +62,7 @@ const NewsPage: React.FC = () => {
       excerpt:
         "USide đang tìm kiếm Frontend Developer tài năng để gia nhập đội ngũ phát triển.",
       category: "recruitment",
-      image: "/images_uside/pet_uside_light.png",
+      image: "/images_uside/pet_cloud_uside.png",
       author: "HR Team",
       tags: ["React", "TypeScript", "Career"],
     },
@@ -393,35 +393,15 @@ const NewsPage: React.FC = () => {
                       {/* Read More Button */}
                       <button
                         className={`
-                          px-6 py-2 text-sm font-semibold rounded-xl
-                          transition-all duration-300 ease-out
-                          transform hover:scale-105 active:scale-95
-                          flex items-center gap-2
+                          neumorphic-button 
                         `}
                         style={{
                           background: `var(--color-accent)`,
                           color: "white",
-                          boxShadow: `
-                            -6px -6px 12px #FAFBFF,
-                            6px 6px 12px var(--color-shadow)
-                          `,
                         }}
                         onClick={(e) => {
                           e.stopPropagation();
                           navigate(`/tin-tuc/${item.id}`);
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.boxShadow = `
-                            -8px -8px 16px #FAFBFF,
-                            8px 8px 16px var(--color-shadow),
-                            0 0 20px var(--color-accent)
-                          `;
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.boxShadow = `
-                            -6px -6px 12px #FAFBFF,
-                            6px 6px 12px var(--color-shadow)
-                          `;
                         }}
                       >
                         Đọc thêm

@@ -169,36 +169,13 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
           {/* Learn More Button */}
           <button
             className={`
-              px-6 sm:px-8 py-2.5 sm:py-3 text-white font-semibold rounded-xl sm:rounded-2xl
-              text-sm sm:text-base
-              transform hover:scale-105 active:scale-95
-              transition-all duration-200 ease-out
+              neumorphic-button
               relative overflow-hidden
               w-full sm:w-auto
               ${isHovered ? "animate-pulse" : ""}
             `}
-            style={{
-              background: `var(--color-accent)`,
-              boxShadow: `
-                8px 8px 16px var(--color-shadow),
-                -8px -8px 16px rgba(255,255,255,0.1)
-              `,
-            }}
             onClick={() => {
               navigate(`/dinh-huong/${career.id}`);
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = `
-                12px 12px 24px var(--color-shadow),
-                -12px -12px 24px rgba(255,255,255,0.2),
-                0 0 20px var(--color-accent)
-              `;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = `
-                8px 8px 16px var(--color-shadow),
-                -8px -8px 16px rgba(255,255,255,0.1)
-              `;
             }}
           >
             <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2 cursor-pointer">

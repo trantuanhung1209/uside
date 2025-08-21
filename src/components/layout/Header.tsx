@@ -129,7 +129,7 @@ const Header = () => {
                       to={item.link}
                       end={item.link === '/'}
                       className={({ isActive }) =>
-                        `px-2 py-2 rounded-lg text-sm xl:text-base transition-colors whitespace-nowrap ${
+                        `px-2 py-2 rounded-lg text-sm xl:text-base transition-colors whitespace-nowrap   ${
                           isActive
                             ? 'text-white font-semibold bg-color-accent active'
                             : 'text-text-primary hover:text-color-accent hover:bg-gray-100'
@@ -207,7 +207,7 @@ const Header = () => {
               >
                 <button className={`robot-apps-button w-8 h-8 md:w-10 md:h-10 ${showAppsPopup ? 'active' : ''}`}>
                   <img 
-                    src="/images_uside/pet_uside_light.png" 
+                    src="/images_uside/pet_cloud_uside.png" 
                     alt="Apps"
                     className="w-full h-full object-contain" 
                   />

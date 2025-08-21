@@ -4,7 +4,10 @@ import type { ReactNode } from 'react';
 interface MusicContextType {
   isPlaying: boolean;
   currentTrack: number;
+  volume: number;
   toggleMusic: () => void;
+  setVolume: (volume: number) => void;
+  playSpecificTrack: (trackUrl: string) => void;
   audioRef: React.RefObject<HTMLAudioElement | null>;
 }
 
@@ -19,6 +22,7 @@ interface MusicProviderProps {
 export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
+  const [volume, setVolumeState] = useState(0.7);
   const audioRef = useRef<HTMLAudioElement>(null);
   
   // Danh sách các bài nhạc
@@ -33,7 +37,7 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
     const audio = audioRef.current;
     if (audio) {
       audio.loop = false;
-      audio.volume = 0.7;
+      audio.volume = volume;
     }
 
     // Cleanup function
@@ -42,7 +46,18 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
         audio.pause();
       }
     };
-  }, []);
+  }, [volume]);
+
+  // Set volume function
+  const setVolume = (newVolume: number) => {
+    // Clamp volume between 0 and 1
+    const clampedVolume = Math.max(0, Math.min(1, newVolume));
+    setVolumeState(clampedVolume);
+    
+    if (audioRef.current) {
+      audioRef.current.volume = clampedVolume;
+    }
+  };
 
   // Xử lý khi bài nhạc kết thúc
   const handleTrackEnd = () => {
@@ -51,6 +66,8 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
     setCurrentTrack(nextTrack);
     if (audioRef.current) {
       audioRef.current.src = musicTracks[nextTrack];
+      // Đảm bảo volume được set đúng cho bài tiếp theo
+      audioRef.current.volume = volume;
       audioRef.current.play();
     }
   };
@@ -72,6 +89,8 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
       
       if (audioRef.current) {
         audioRef.current.src = musicTracks[randomTrack];
+        // Đảm bảo volume được set đúng trước khi phát
+        audioRef.current.volume = volume;
         audioRef.current.play()
           .then(() => {
             setIsPlaying(true);
@@ -83,10 +102,37 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
     }
   };
 
+  // Play specific track by URL
+  const playSpecificTrack = (trackUrl: string) => {
+    if (audioRef.current) {
+      // Pause current track if playing
+      if (isPlaying) {
+        audioRef.current.pause();
+      }
+      
+      // Set new track
+      audioRef.current.src = trackUrl;
+      audioRef.current.volume = volume;
+      audioRef.current.currentTime = 0;
+      
+      // Play new track
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((error) => {
+          console.error("Không thể phát nhạc:", error);
+        });
+    }
+  };
+
   const value = {
     isPlaying,
     currentTrack,
+    volume,
     toggleMusic,
+    setVolume,
+    playSpecificTrack,
     audioRef,
   };
 

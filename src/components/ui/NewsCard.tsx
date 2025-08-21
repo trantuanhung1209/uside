@@ -172,34 +172,11 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
         )}
 
         {/* Read More Button */}
-        <button
+        <div className="w-full text-center">
+          <button
           className={`
-            w-full py-2 px-4 text-sm font-semibold rounded-xl
-            transition-all duration-300 ease-out
-            transform hover:scale-105 active:scale-95
-            flex items-center justify-center gap-2
+            neumorphic-button w-full text-center
           `}
-          style={{
-            background: `var(--color-accent)`,
-            color: "white",
-            boxShadow: `
-              -6px -6px 12px #FAFBFF,
-              6px 6px 12px var(--color-shadow)
-            `,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = `
-              -8px -8px 16px #FAFBFF,
-              8px 8px 16px var(--color-shadow),
-              0 0 20px var(--color-accent)
-            `;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = `
-              -6px -6px 12px #FAFBFF,
-              6px 6px 12px var(--color-shadow)
-            `;
-          }}
         >
           Đọc thêm
           <span
@@ -211,6 +188,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
             →
           </span>
         </button>
+        </div>
       </div>
 
       {/* Floating particles */}

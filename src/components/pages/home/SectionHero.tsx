@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { SplineViewer } from "../../ui";
 import BackgroundRobot from "../../ui/BackgroundRobot";
 import BlockQuote from "./BlockQuote";
@@ -9,9 +9,27 @@ import Weather from "./Weather";
 const SectionHero = () => {
   const popupRef = useRef<HTMLDivElement>(null);
   const [showAppsPopup, setShowAppsPopup] = useState(false);
+  
   const handleRobotClick = () => {
     setShowAppsPopup(!showAppsPopup);
   };
+
+  // Handle click outside to close popup
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+        setShowAppsPopup(false);
+      }
+    };
+
+    if (showAppsPopup) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showAppsPopup]);
 
   // Apps/Websites data for popup
   const appsData = [
@@ -153,14 +171,17 @@ const SectionHero = () => {
                   onClick={handleRobotClick}
                 >
                   <button
-                    className={`robot-apps-button w-8 h-8 md:w-10 md:h-10 ${
+                    className={`robot-apps-button section-neumorphic w-8 h-8 md:w-10 md:h-10 ${
                       showAppsPopup ? "active" : ""
                     }`}
+                    style={{
+                      borderRadius: "50%",
+                    }}
                   >
                     <img
-                      src="/images_uside/pet_uside_light.png"
+                      src="/images_uside/pet_cloud_uside.png"
                       alt="Apps"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain scale-[1.2]"
                     />
                     <div className="robot-button-glow"></div>
                   </button>

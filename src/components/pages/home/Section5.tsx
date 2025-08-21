@@ -144,10 +144,7 @@ const Section5 = () => {
           {/* Bottom decoration */}
           <div className="text-center mt-12">
             <div 
-              className="faq-bottom-decoration inline-block px-8 py-4 bg-background rounded-full cursor-pointer group"
-              style={{
-                boxShadow: '-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.15)'
-              }}
+              className="faq-bottom-decoration px-8 py-4 rounded-full cursor-pointer group section-neumorphic inline-block"
             >
               <p className="text-text-secondary text-sm">
                 Bạn có câu hỏi khác? 
