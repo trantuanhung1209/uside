@@ -34,7 +34,7 @@ const Clock = () => {
 
   return (
     <>
-      <div className="digital-clock-container inline-block absolute top-10 right-10 z-[-1] xs:left-0 xs:top-10 xs:w-[50%] xs:scale-90 sm:top-0 md:w-[35%] md:translate-x-[196%] md:top-10 md:scale-100 lg:w-[26%] lg:translate-x-[200%]lg:right-10 xl:w-[30%] xl:right-[10px]  2xl:w-[40%] 2xl:top-0 2xl:scale-95 2xl:translate-x-0 3xl:w-[40%] 4xl:w-[35%] 5xl:w-[30%]"> 
+      <div className="digital-clock-container inline-block absolute top-10 right-10 z-[-1] xs:left-0 xs:top-10 xs:w-[50%] xs:scale-90 sm:top-0 md:w-[35%] md:translate-x-[196%] md:top-10 md:scale-100 lg:w-[26%] lg:translate-x-[200%]lg:right-10 xl:w-[30%] xl:right-[10px]  2xl:w-[40%] 2xl:top-0 2xl:scale-95 2xl:translate-x-0 3xl:w-[40%] 3xl:translate-x-[150%] 4xl:translate-x-[200%] 3xl:right-0 4xl:w-[35%] 5xl:w-[30%]"> 
         <div className="digital-clock-wrapper">
           {/* Digital Clock Display */}
           <div className="digital-clock">

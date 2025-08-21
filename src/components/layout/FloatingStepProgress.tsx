@@ -186,7 +186,7 @@ const FloatingStepProgress = () => {
 
         {/* Main Progress Component */}
         <div
-          className={`transition-all duration-700 ease-out w-[100px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 2xl:scale-90 5xl:scale-95 6xl:scale-100 ${
+          className={`transition-all duration-700 ease-out w-[100px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 5xl:scale-95 6xl:scale-100 ${
             isVisible || isExpanded
               ? "opacity-100 pointer-events-auto scale-100"
               : "opacity-0 pointer-events-none scale-95"
@@ -198,20 +198,7 @@ const FloatingStepProgress = () => {
           }}
         >
           {/* Container với neumorphic design */}
-          <div className="relative bg-background p-4 rounded-3xl border-gray-200 shadow-sm hover:scale-105 transition-all duration-300 hover:shadow-lg">
-            {/* Progress line */}
-            <div className="absolute left-6 top-4 bottom-4 w-1 max-h-full bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
-              <div
-                className="bg-accent rounded-full transition-all duration-700 ease-out relative shadow-[0_0_15px_rgba(0,210,255,0.4)]"
-                style={{
-                  height: `${(scrollProgress / 100) * 100}%`,
-                  width: "100%",
-                }}
-              >
-                {/* Glowing effect */}
-                <div className="absolute inset-0 bg-accent rounded-full animate-pulse opacity-50"></div>
-              </div>
-            </div>
+          <div className="relative rounded-3xl shadow-sm hover:scale-101 transition-all duration-300 hover:shadow-lg">
 
             {/* Steps */}
             <div className="flex flex-col space-y-6 ml-5">
@@ -283,7 +270,7 @@ const FloatingStepProgress = () => {
 
             {/* Progress percentage */}
             <div className="mt-6 pt-4 pl-[20px] border-t border-border/30">
-              <div className="text-end translate-x-[10px]">
+              <div className="text-end translate-x-[-20px] translate-y-[-20px]">
                 <div className="text-base font-bold text-accent">
                   {Math.round(scrollProgress)}%
                 </div>

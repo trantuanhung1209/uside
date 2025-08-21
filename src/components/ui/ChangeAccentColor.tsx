@@ -13,56 +13,56 @@ const colorOptions: ColorOption[] = [
   {
     key: 'default',
     color: ACCENT_COLORS.default,
-    name: 'Cyan',
-    description: 'Mặc định'
+    name: 'Bình tĩnh',
+    description: 'Thư giãn, tĩnh lặng'
   },
   {
     key: 'accent1',
     color: ACCENT_COLORS.accent1,
-    name: 'Hồng',
-    description: 'Nhẹ nhàng'
+    name: 'Yêu thương',
+    description: 'Lãng mạn, ấm áp'
   },
   {
     key: 'accent2',
     color: ACCENT_COLORS.accent2,
-    name: 'Cam',
-    description: 'Ấm áp'
+    name: 'Hưng phấn',
+    description: 'Nhiệt huyết, năng động'
   },
   {
     key: 'accent3',
     color: ACCENT_COLORS.accent3,
-    name: 'Vàng',
-    description: 'Năng lượng'
+    name: 'Vui vẻ',
+    description: 'Tích cực, rạng rỡ'
   },
   {
     key: 'accent4',
     color: ACCENT_COLORS.accent4,
-    name: 'Xanh lá',
-    description: 'Tươi mới'
+    name: 'Hy vọng',
+    description: 'Tươi mới, lạc quan'
   },
   {
     key: 'accent5',
     color: ACCENT_COLORS.accent5,
-    name: 'Xanh dương',
-    description: 'Dịu dàng'
+    name: 'Tin tưởng',
+    description: 'Chuyên nghiệp, ổn định'
   },
   {
     key: 'accent6',
     color: ACCENT_COLORS.accent6,
-    name: 'Tím',
-    description: 'Bí ẩn'
+    name: 'Sáng tạo',
+    description: 'Bí ẩn, nghệ thuật'
   },
   {
     key: 'accent7',
     color: ACCENT_COLORS.accent7,
-    name: 'Vàng ánh kim',
-    description: 'Sang trọng'
+    name: 'Thành công',
+    description: 'Sang trọng, quý phái'
   },
   {
     key: 'accent8',
     color: ACCENT_COLORS.accent8,
-    name: 'Đỏ',
-    description: 'Năng lượng'
+    name: 'Quyết tâm',
+    description: 'Mạnh mẽ, dứt khoát'
   }
 ];
 
@@ -253,8 +253,11 @@ const ChangeAccentColor = () => {
               {/* Header */}
               <div className="mb-3">
                 <h3 className="text-sm font-semibold text-gray-800 mb-1">
-                  Chọn màu accent
+                  Chọn màu theo cảm xúc
                 </h3>
+                <p className="text-xs text-gray-500">
+                  Thay đổi theo trạng thái tâm trạng của bạn
+                </p>
               </div>
 
               {/* Color Grid with Custom Scrollbar */}
@@ -395,10 +398,10 @@ const ChangeAccentColor = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <h4 className="text-sm font-semibold text-gray-800 mb-1">
-                  Màu mới đã áp dụng!
+                  Trạng thái mới đã áp dụng!
                 </h4>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Website đã tự động chuyển sang màu accent mới nhất. Khám phá thêm màu khác?
+                  Website đã tự động chuyển sang cảm xúc mới nhất. Khám phá thêm trạng thái khác?
                 </p>
                 <button
                   onClick={togglePopup}
@@ -409,7 +412,7 @@ const ChangeAccentColor = () => {
                     boxShadow: `0 2px 8px ${currentAccentColor}30`,
                   }}
                 >
-                  Xem thêm màu khác
+                  Xem thêm cảm xúc
                 </button>
               </div>
             </div>
@@ -442,7 +445,7 @@ const ChangeAccentColor = () => {
               style={{ backgroundColor: currentAccentColor }}
             />
             <span className="text-xs font-medium text-gray-700">
-              {hasNewColors ? '🎨 Đã cập nhật màu mới!' : 'Đã đổi màu!'}
+              {hasNewColors ? '🎨 Đã cập nhật trạng thái mới!' : '✨ Đã đổi cảm xúc!'}
             </span>
           </div>
         </div>

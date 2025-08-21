@@ -6,7 +6,7 @@ const BackgroundRobot = () => {
       <div className="absolute inset-0 pointer-events-none">
         {/* Robot 1 - Large floating robot */}
         <div
-          className="absolute top-10 left-10 w-24 h-32 animate-bounce hidden 3xl:block"
+          className="absolute top-10 left-10 w-24 h-32 animate-bounce hidden 5xl:block"
           style={{
             animationDuration: "3s",
             animationDelay: "0s",

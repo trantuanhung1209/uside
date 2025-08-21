@@ -5,6 +5,7 @@ import BlockQuote from "./BlockQuote";
 import Television from "./Television";
 import Clock from "./Clock";
 import Weather from "./Weather";
+import SearchInput from "./SearchInput";
 
 const SectionHero = () => {
   const popupRef = useRef<HTMLDivElement>(null);
@@ -98,16 +99,7 @@ const SectionHero = () => {
                       background: "var(--color-secondary)",
                     }}
                   >
-                    <input
-                      type="text"
-                      placeholder="Tìm kiếm..."
-                      className="search-input w-full px-5 py-3 bg-transparent rounded-xl focus:outline-none transition-all duration-300 max-w-xs sm:max-w-sm"
-                      style={{
-                        color: "var(--color-text-primary)",
-                        boxShadow:
-                          "inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.8)",
-                      }}
-                    />
+                    <SearchInput />
                     <div
                       className="search-icon-wrapper absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg group-hover:shadow-xl"
                       style={{

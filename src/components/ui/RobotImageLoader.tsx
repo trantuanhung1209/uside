@@ -13,8 +13,14 @@ const RobotImageLoader: React.FC<RobotImageLoaderProps> = ({
   duration = 3000,
   robotImage = '/images_uside/mascot_robot.png'
 }) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
   const [stage, setStage] = useState<'appearing' | 'working' | 'lifting' | 'complete'>('appearing');
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Tự động scroll lên đầu trang khi component mount
+
 
   useEffect(() => {
     if (!isVisible) return;

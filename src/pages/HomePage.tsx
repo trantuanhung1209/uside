@@ -3,8 +3,11 @@ import { Section1, Section2, Section3, SectionHero } from "../components/pages";
 import Section4 from "../components/pages/home/Section4";
 import Section5 from "../components/pages/home/Section5";
 import Title from "../components/ui/Title";
+import { useScrollToTop } from "../hooks";
 
 const HomePage: React.FC = () => {
+
+  useScrollToTop()
 
   return (
     <Layout>
