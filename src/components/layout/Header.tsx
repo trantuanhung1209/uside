@@ -93,7 +93,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`header border-b border-gray-200 bg-background shadow-sm sticky z-50 top-0 left-0 right-0 transition-transform duration-300 ease-in-out ${
+      <header className={`header border-b border-gray-200 bg-background shadow-sm sticky z-9 top-0 left-0 right-0 transition-transform duration-300 ease-in-out ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}>
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

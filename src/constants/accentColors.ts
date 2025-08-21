@@ -7,8 +7,8 @@ export const ACCENT_COLORS = {
   accent4: '#33d96f',  // Xanh lá tươi (emerald/green mint) – fresh
   accent5: '#3385ff',  // Xanh dương sáng – công nghệ, đồng điệu với cyan
   accent6: '#9d4edd',  // Tím violet sáng – bí ẩn, sáng tạo
-  accent7: '#e63946',  // Đỏ Giáng Sinh – festive, năng lượng, kết hợp xanh lá
-  accent8: '#ffd700', // Vàng ánh kim – sang trọng, quý phái
+  accent7: '#ffd700',  // Đỏ Giáng Sinh – festive, năng lượng, kết hợp xanh lá
+  accent8: '#e63946', // Vàng ánh kim – sang trọng, quý phái
 } as const;
 
 export type AccentColorType = keyof typeof ACCENT_COLORS;

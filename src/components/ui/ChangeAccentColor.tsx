@@ -55,14 +55,14 @@ const colorOptions: ColorOption[] = [
   {
     key: 'accent7',
     color: ACCENT_COLORS.accent7,
-    name: 'Đỏ',
-    description: 'Năng lượng'
+    name: 'Vàng ánh kim',
+    description: 'Sang trọng'
   },
   {
     key: 'accent8',
     color: ACCENT_COLORS.accent8,
-    name: 'Vàng ánh kim',
-    description: 'Sang trọng'
+    name: 'Đỏ',
+    description: 'Năng lượng'
   }
 ];
 
@@ -83,9 +83,22 @@ const ChangeAccentColor = () => {
       setHasInteracted(true);
     }
     
-    // Kiểm tra có màu mới không
-    if (storedColorCount > 0 && currentColorCount > storedColorCount) {
+    // Kiểm tra có màu mới không hoặc localStorage bị xóa
+    const shouldShowNewColors = 
+      // Trường hợp 1: Có màu mới thực sự
+      (storedColorCount > 0 && currentColorCount > storedColorCount) ||
+      // Trường hợp 2: localStorage bị xóa (storedColorCount = 0) nhưng user đã từng tương tác
+      (storedColorCount === 0 && hasUserInteracted) ||
+      // Trường hợp 3: localStorage bị xóa hoàn toàn (cả interacted và count)
+      (!hasUserInteracted && storedColorCount === 0 && currentColorCount > 0);
+    
+    if (shouldShowNewColors) {
       setHasNewColors(true);
+      
+      // Nếu localStorage bị xóa, reset trạng thái tương tác
+      if (storedColorCount === 0) {
+        setHasInteracted(false);
+      }
       
       // Tự động cập nhật màu accent thành màu mới nhất
       const newestColor = colorOptions[colorOptions.length - 1];
@@ -136,13 +149,9 @@ const ChangeAccentColor = () => {
       {/* Color Palette Button */}
       <div
         className={`fixed top-4 right-4 w-12 h-12 cursor-pointer z-10 group ${
-          !hasInteracted ? 'animate-bounce' : hasNewColors ? 'animate-pulse' : ''
+          !hasInteracted ? 'animate-gentle-bounce' : hasNewColors ? 'animate-smooth-pulse' : ''
         }`}
         onClick={togglePopup}
-        style={{
-          animationDuration: !hasInteracted ? '2s' : hasNewColors ? '1.5s' : undefined,
-          animationIterationCount: !hasInteracted || hasNewColors ? 'infinite' : undefined,
-        }}
       >
         <div
           className="w-full h-full relative transition-all duration-300 hover:scale-105 rounded-full p-2"
@@ -165,13 +174,12 @@ const ChangeAccentColor = () => {
                 <div
                   key={index}
                   className={`rounded-full transition-all duration-300 group-hover:scale-110 ${
-                    !hasInteracted || hasNewColors ? 'animate-pulse' : ''
+                    !hasInteracted || hasNewColors ? 'animate-smooth-pulse' : ''
                   }`}
                   style={{
                     backgroundColor: option.color,
                     boxShadow: `inset -1px -1px 2px rgba(255,255,255,0.3), inset 1px 1px 2px rgba(0,0,0,0.1)`,
-                    animationDelay: !hasInteracted || hasNewColors ? `${index * 0.15}s` : undefined,
-                    animationDuration: !hasInteracted ? '1.5s' : hasNewColors ? '2s' : undefined,
+                    animationDelay: !hasInteracted || hasNewColors ? `${index * 0.3}s` : undefined,
                   }}
                 />
               ))}
@@ -180,12 +188,11 @@ const ChangeAccentColor = () => {
             {/* Center dot showing current color */}
             <div
               className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full border border-white ${
-                !hasInteracted ? 'animate-ping' : hasNewColors ? 'animate-bounce' : 'animate-pulse'
+                !hasInteracted ? 'animate-ping' : hasNewColors ? 'animate-float-bounce' : 'animate-smooth-pulse'
               }`}
               style={{
                 backgroundColor: currentAccentColor,
                 boxShadow: `0 0 8px ${currentAccentColor}80`,
-                animationDuration: !hasInteracted ? '2s' : hasNewColors ? '1s' : undefined,
               }}
             />
           </div>
@@ -193,7 +200,7 @@ const ChangeAccentColor = () => {
           {/* NEW Badge khi có màu mới */}
           {hasNewColors && (
             <div
-              className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center animate-pulse"
+              className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center animate-float-bounce"
               style={{
                 background: 'linear-gradient(45deg, #ff4da6, #ff884d)',
                 boxShadow: '0 0 10px #ff4da680, 0 0 20px #ff4da640',
@@ -208,7 +215,7 @@ const ChangeAccentColor = () => {
         </div>
       </div>
 
-      {/* Color Picker Popup */}
+          {/* Color Picker Popup */}
       {isPopupOpen && (
         <>
           {/* Backdrop */}
@@ -250,49 +257,78 @@ const ChangeAccentColor = () => {
                 </h3>
               </div>
 
-              {/* Color Grid */}
-              <div className="grid grid-cols-3 gap-2 mb-3">
-                {colorOptions.map((option) => (
-                  <button
-                    key={option.key}
-                    onClick={() => handleColorSelect(option.color)}
-                    className="group relative p-2 rounded-lg transition-all duration-300 hover:scale-105"
-                    style={{
-                      background: "var(--color-background)",
-                      boxShadow: currentAccentColor === option.color
-                        ? `inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.15), 0 0 10px ${option.color}40`
-                        : "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.12)",
-                    }}
-                  >
-                    {/* Color Circle */}
-                    <div
-                      className="w-6 h-6 rounded-full mx-auto mb-1 transition-all duration-300 group-hover:scale-110"
+              {/* Color Grid with Custom Scrollbar */}
+              <div 
+                className="max-h-32 overflow-y-auto overflow-x-hidden mb-3"
+                style={{
+                  /* Custom scrollbar styles */
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: `${currentAccentColor} transparent`,
+                }}
+              >
+                <style>
+                  {`
+                    .color-grid::-webkit-scrollbar {
+                      width: 6px;
+                    }
+                    .color-grid::-webkit-scrollbar-track {
+                      background: var(--color-background);
+                      border-radius: 10px;
+                      box-shadow: inset -2px -2px 4px #FAFBFF, inset 2px 2px 4px rgba(22, 17, 29, 0.1);
+                    }
+                    .color-grid::-webkit-scrollbar-thumb {
+                      background: ${currentAccentColor};
+                      border-radius: 10px;
+                      box-shadow: 0 0 6px ${currentAccentColor}40;
+                      transition: all 0.3s ease;
+                    }
+                    .color-grid::-webkit-scrollbar-thumb:hover {
+                      background: ${currentAccentColor};
+                      box-shadow: 0 0 10px ${currentAccentColor}60;
+                    }
+                  `}
+                </style>
+                <div className="grid grid-cols-3 gap-2 color-grid">
+                  {colorOptions.map((option) => (
+                    <button
+                      key={option.key}
+                      onClick={() => handleColorSelect(option.color)}
+                      className="group relative p-2 rounded-lg transition-all duration-300 hover:scale-105"
                       style={{
-                        backgroundColor: option.color,
-                        boxShadow: `0 0 8px ${option.color}30, inset -2px -2px 4px rgba(255,255,255,0.3), inset 2px 2px 4px rgba(0,0,0,0.1)`,
+                        background: "var(--color-background)",
+                        boxShadow: currentAccentColor === option.color
+                          ? `inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.15), 0 0 10px ${option.color}40`
+                          : "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.12)",
                       }}
-                    />
-                    
-                    {/* Color Name */}
-                    <div className="text-xs font-medium text-gray-700 text-center leading-tight">
-                      {option.name}
-                    </div>
-
-                    {/* Selected Indicator */}
-                    {currentAccentColor === option.color && (
+                    >
+                      {/* Color Circle */}
                       <div
-                        className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full animate-pulse"
+                        className="w-6 h-6 rounded-full mx-auto mb-1 transition-all duration-300 group-hover:scale-110"
                         style={{
-                          background: option.color,
-                          boxShadow: `0 0 6px ${option.color}`,
+                          backgroundColor: option.color,
+                          boxShadow: `0 0 8px ${option.color}30, inset -2px -2px 4px rgba(255,255,255,0.3), inset 2px 2px 4px rgba(0,0,0,0.1)`,
                         }}
                       />
-                    )}
-                  </button>
-                ))}
-              </div>
+                      
+                      {/* Color Name */}
+                      <div className="text-xs font-medium text-gray-700 text-center leading-tight">
+                        {option.name}
+                      </div>
 
-              {/* Footer */}
+                      {/* Selected Indicator */}
+                      {currentAccentColor === option.color && (
+                        <div
+                          className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full animate-pulse"
+                          style={{
+                            background: option.color,
+                            boxShadow: `0 0 6px ${option.color}`,
+                          }}
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>              {/* Footer */}
               <div className="flex justify-between items-center pt-2 border-t border-gray-200">
                 <div className="flex items-center gap-1">
                   <div
@@ -348,7 +384,7 @@ const ChangeAccentColor = () => {
             <div className="flex items-start gap-2">
               <div className="flex-shrink-0">
                 <div
-                  className="w-6 h-6 rounded-full flex items-center justify-center animate-bounce"
+                  className="w-6 h-6 rounded-full flex items-center justify-center animate-gentle-bounce"
                   style={{
                     background: `linear-gradient(45deg, ${currentAccentColor}, ${currentAccentColor}CC)`,
                     boxShadow: `0 0 10px ${currentAccentColor}50`,
@@ -411,6 +447,79 @@ const ChangeAccentColor = () => {
           </div>
         </div>
       )}
+
+      {/* Custom Animation Styles */}
+      <style>
+        {`
+          @keyframes gentleBounce {
+            0%, 20%, 53%, 80%, 100% {
+              transform: translateY(0) scale(1);
+            }
+            40% {
+              transform: translateY(-8px) scale(1.05);
+            }
+            43% {
+              transform: translateY(-6px) scale(1.02);
+            }
+            70% {
+              transform: translateY(-2px) scale(1.01);
+            }
+          }
+
+          @keyframes floatBounce {
+            0%, 100% {
+              transform: translateY(0) scale(1);
+            }
+            25% {
+              transform: translateY(-3px) scale(1.02);
+            }
+            50% {
+              transform: translateY(-6px) scale(1.05);
+            }
+            75% {
+              transform: translateY(-3px) scale(1.02);
+            }
+          }
+
+          @keyframes smoothPulse {
+            0%, 100% {
+              transform: scale(1);
+              opacity: 1;
+            }
+            50% {
+              transform: scale(1.1);
+              opacity: 0.8;
+            }
+          }
+
+          @keyframes popupSlideIn {
+            0% {
+              opacity: 0;
+              transform: translateY(-10px) scale(0.95);
+            }
+            60% {
+              opacity: 0.8;
+              transform: translateY(2px) scale(1.02);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+            }
+          }
+
+          .animate-gentle-bounce {
+            animation: gentleBounce 3s ease-in-out infinite;
+          }
+
+          .animate-float-bounce {
+            animation: floatBounce 2.5s ease-in-out infinite;
+          }
+
+          .animate-smooth-pulse {
+            animation: smoothPulse 2s ease-in-out infinite;
+          }
+        `}
+      </style>
     </>
   );
 };
