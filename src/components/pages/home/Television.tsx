@@ -49,6 +49,7 @@ const Television = () => {
   const { isPlaying, toggleMusic, volume, setVolume, playSpecificTrack } = useMusic();
   const [currentChannel, setCurrentChannel] = useState<TvChannel>(TV_CHANNELS[0]);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [showChannelInfo, setShowChannelInfo] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Handle channel change
@@ -59,9 +60,15 @@ const Television = () => {
     if (videoRef.current) {
       videoRef.current.src = newChannel.video;
       videoRef.current.load();
-      // Only play if video was already playing
-      if (isVideoPlaying) {
-        videoRef.current.play().catch(console.error);
+      // Video state should always follow the play button state
+      if (isPlaying) {
+        setIsVideoPlaying(true);
+        // Wait for video to load before playing
+        videoRef.current.addEventListener('loadeddata', () => {
+          videoRef.current?.play().catch(console.error);
+        }, { once: true });
+      } else {
+        setIsVideoPlaying(false);
       }
     }
     
@@ -111,15 +118,17 @@ const Television = () => {
   // Sync video playing state with music playing state
   useEffect(() => {
     if (videoRef.current) {
-      if (isPlaying && !isVideoPlaying) {
+      if (isPlaying) {
+        // If play button is active, video should play
         setIsVideoPlaying(true);
         videoRef.current.play().catch(console.error);
-      } else if (!isPlaying && isVideoPlaying) {
+      } else {
+        // If play button is inactive, video should pause
         setIsVideoPlaying(false);
         videoRef.current.pause();
       }
     }
-  }, [isPlaying, isVideoPlaying]);
+  }, [isPlaying]); // Only depend on isPlaying, not isVideoPlaying
 
   return (
     <>
@@ -166,12 +175,31 @@ const Television = () => {
               </video>
               
               {/* Channel Info Overlay */}
-              <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1 text-white text-sm">
-                <div className="font-semibold">{currentChannel.name}</div>
-                {currentChannel.description && (
-                  <div className="text-xs opacity-75">{currentChannel.description}</div>
+              {showChannelInfo && (
+                <div className="absolute top-4 left-4 bg-black/30 backdrop-blur-sm rounded-lg px-3 py-1 text-white text-sm transition-all duration-300">
+                  <div className="font-semibold">{currentChannel.name}</div>
+                  {currentChannel.description && (
+                    <div className="text-xs opacity-75">{currentChannel.description}</div>
+                  )}
+                </div>
+              )}
+              
+              {/* Toggle Channel Info Button */}
+              <button
+                onClick={() => setShowChannelInfo(!showChannelInfo)}
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm text-white text-xs transition-all duration-300 hover:bg-black/30 hover:scale-105 flex items-center justify-center"
+                title={showChannelInfo ? "Ẩn thông tin kênh" : "Hiện thông tin kênh"}
+              >
+                {showChannelInfo ? (
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
                 )}
-              </div>
+              </button>
               
               {/* Video Paused Overlay */}
               {!isVideoPlaying && (
