@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       {!isHomePage && <Header />}
-      <div className="flex">
+      <div className={isHomePage ? "flex" : ""}>
         {isHomePage && (
           <div className="sticky left-2 top-1/2 z-50 transition-all duration-700 ease-out">
             <FloatingStepProgress />

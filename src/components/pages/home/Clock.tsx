@@ -34,7 +34,7 @@ const Clock = () => {
 
   return (
     <>
-      <div className="digital-clock-container inline-block absolute top-0 right-10"> 
+      <div className="digital-clock-container inline-block absolute top-10 right-10"> 
         <div className="digital-clock-wrapper">
           {/* Digital Clock Display */}
           <div className="digital-clock">
