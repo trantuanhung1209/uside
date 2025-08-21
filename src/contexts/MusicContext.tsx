@@ -46,17 +46,26 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
         audio.pause();
       }
     };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Separate effect for volume changes to prevent audio interruption
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      console.log('Volume effect triggered:', volume, 'Audio paused:', audio.paused);
+      audio.volume = volume;
+    }
   }, [volume]);
 
   // Set volume function
   const setVolume = (newVolume: number) => {
     // Clamp volume between 0 and 1
     const clampedVolume = Math.max(0, Math.min(1, newVolume));
+    console.log('Setting volume to:', clampedVolume, 'Current playing:', isPlaying);
     setVolumeState(clampedVolume);
     
-    if (audioRef.current) {
-      audioRef.current.volume = clampedVolume;
-    }
+    // Volume will be updated via useEffect to prevent audio interruption
+    // The separate useEffect will handle audio.volume = clampedVolume
   };
 
   // Xử lý khi bài nhạc kết thúc

@@ -89,6 +89,7 @@ const Television = () => {
   };
 
   // Override toggle music to play current channel's music and control video
+  // Note: Videos are muted by default, we use separate music tracks for better audio control
   const handleToggleMusic = () => {
     if (!isPlaying) {
       // Start both music and video
@@ -159,7 +160,7 @@ const Television = () => {
                 ref={videoRef}
                 className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:brightness-110"
                 loop
-                muted
+                muted={true} // Keep video muted since we use separate music track for better control
                 playsInline
                 onClick={handleToggleMusic}
               >
@@ -304,7 +305,7 @@ const Television = () => {
             <button
               className="w-16 h-16 section-neumorphic transition-all duration-300 hover:scale-105 active:scale-95 group relative overflow-hidden focus:outline-none cursor-pointer rounded-full flex items-center justify-center"
               onClick={handleToggleMusic}
-              title={isPlaying ? "Dừng nhạc" : "Phát nhạc"}
+              title={isPlaying ? "Dừng phát (video + nhạc)" : "Bắt đầu phát (video + nhạc)"}
               style={{
                 backgroundColor: "var(--color-background)",
                 borderRadius: "50%",
@@ -357,7 +358,7 @@ const Television = () => {
               <button
                 onClick={() => setVolume(volume === 0 ? 0.5 : 0)}
                 className="w-12 h-12 section-neumorphic transition-all duration-300 hover:scale-105 active:scale-95 group relative overflow-hidden focus:outline-none cursor-pointer rounded-full flex items-center justify-center"
-                title={volume === 0 ? "Bật âm thanh" : "Tắt âm thanh"}
+                title={volume === 0 ? "Bật âm thanh nhạc" : "Tắt âm thanh nhạc"}
                 style={{
                   backgroundColor: "var(--color-background)",
                   borderRadius: "50%",
