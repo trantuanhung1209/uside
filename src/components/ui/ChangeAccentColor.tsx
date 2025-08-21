@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAccentColor } from '../../hooks/useAccentColor';
 import { ACCENT_COLORS } from '../../constants/accentColors';
 
@@ -45,17 +45,71 @@ const colorOptions: ColorOption[] = [
     color: ACCENT_COLORS.accent5,
     name: 'Xanh dương',
     description: 'Dịu dàng'
+  },
+  {
+    key: 'accent6',
+    color: ACCENT_COLORS.accent6,
+    name: 'Tím',
+    description: 'Bí ẩn'
+  },
+  {
+    key: 'accent7',
+    color: ACCENT_COLORS.accent7,
+    name: 'Đỏ',
+    description: 'Năng lượng'
+  },
+  {
+    key: 'accent8',
+    color: ACCENT_COLORS.accent8,
+    name: 'Vàng ánh kim',
+    description: 'Sang trọng'
   }
 ];
 
 const ChangeAccentColor = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [hasNewColors, setHasNewColors] = useState(false);
   const { currentAccentColor, changeAccentColor } = useAccentColor();
+
+  // Kiểm tra localStorage để xem user đã từng tương tác chưa và có màu mới không
+  useEffect(() => {
+    const hasUserInteracted = localStorage.getItem('uside-color-interacted');
+    const storedColorCount = parseInt(localStorage.getItem('uside-color-count') || '0');
+    const currentColorCount = colorOptions.length;
+    
+    if (hasUserInteracted) {
+      setHasInteracted(true);
+    }
+    
+    // Kiểm tra có màu mới không
+    if (storedColorCount > 0 && currentColorCount > storedColorCount) {
+      setHasNewColors(true);
+      
+      // Tự động cập nhật màu accent thành màu mới nhất
+      const newestColor = colorOptions[colorOptions.length - 1];
+      if (newestColor) {
+        changeAccentColor(newestColor.color);
+        
+        // Hiển thị thông báo đã cập nhật màu mới
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 3000);
+      }
+    }
+    
+    // Cập nhật số lượng màu hiện tại
+    localStorage.setItem('uside-color-count', currentColorCount.toString());
+  }, [changeAccentColor]);
 
   const handleColorSelect = (color: string) => {
     changeAccentColor(color);
     setIsPopupOpen(false);
+    
+    // Đánh dấu user đã tương tác và lưu vào localStorage
+    setHasInteracted(true);
+    setHasNewColors(false); // Đã xem màu mới rồi
+    localStorage.setItem('uside-color-interacted', 'true');
     
     // Hiển thị thông báo thành công
     setShowNotification(true);
@@ -64,14 +118,31 @@ const ChangeAccentColor = () => {
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
+    
+    // Nếu user mở popup lần đầu, cũng đánh dấu đã tương tác
+    if (!hasInteracted) {
+      setHasInteracted(true);
+      localStorage.setItem('uside-color-interacted', 'true');
+    }
+    
+    // Nếu user mở popup khi có màu mới, đánh dấu đã xem
+    if (hasNewColors) {
+      setHasNewColors(false);
+    }
   };
 
   return (
     <>
       {/* Color Palette Button */}
       <div
-        className="fixed top-4 right-4 w-12 h-12 cursor-pointer z-10 group"
+        className={`fixed top-4 right-4 w-12 h-12 cursor-pointer z-10 group ${
+          !hasInteracted ? 'animate-bounce' : hasNewColors ? 'animate-pulse' : ''
+        }`}
         onClick={togglePopup}
+        style={{
+          animationDuration: !hasInteracted ? '2s' : hasNewColors ? '1.5s' : undefined,
+          animationIterationCount: !hasInteracted || hasNewColors ? 'infinite' : undefined,
+        }}
       >
         <div
           className="w-full h-full relative transition-all duration-300 hover:scale-105 rounded-full p-2"
@@ -79,6 +150,10 @@ const ChangeAccentColor = () => {
             background: "var(--color-background)",
             boxShadow: isPopupOpen
               ? `-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.25), 0 0 15px ${currentAccentColor}40`
+              : !hasInteracted
+              ? `-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15), 0 0 10px ${currentAccentColor}60`
+              : hasNewColors
+              ? `-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15), 0 0 15px #ff4da680, 0 0 25px #ff4da640`
               : "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15)",
           }}
         >
@@ -89,11 +164,14 @@ const ChangeAccentColor = () => {
               {colorOptions.slice(0, 4).map((option, index) => (
                 <div
                   key={index}
-                  className="rounded-full transition-all duration-300 group-hover:scale-110"
+                  className={`rounded-full transition-all duration-300 group-hover:scale-110 ${
+                    !hasInteracted || hasNewColors ? 'animate-pulse' : ''
+                  }`}
                   style={{
                     backgroundColor: option.color,
                     boxShadow: `inset -1px -1px 2px rgba(255,255,255,0.3), inset 1px 1px 2px rgba(0,0,0,0.1)`,
-                    animationDelay: `${index * 0.1}s`,
+                    animationDelay: !hasInteracted || hasNewColors ? `${index * 0.15}s` : undefined,
+                    animationDuration: !hasInteracted ? '1.5s' : hasNewColors ? '2s' : undefined,
                   }}
                 />
               ))}
@@ -101,21 +179,32 @@ const ChangeAccentColor = () => {
             
             {/* Center dot showing current color */}
             <div
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full animate-pulse border border-white"
+              className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full border border-white ${
+                !hasInteracted ? 'animate-ping' : hasNewColors ? 'animate-bounce' : 'animate-pulse'
+              }`}
               style={{
                 backgroundColor: currentAccentColor,
                 boxShadow: `0 0 8px ${currentAccentColor}80`,
+                animationDuration: !hasInteracted ? '2s' : hasNewColors ? '1s' : undefined,
               }}
             />
           </div>
 
-          {/* Tooltip */}
-          <div
-            className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"
-            style={{ fontSize: '10px' }}
-          >
-            Đổi màu
-          </div>
+          {/* NEW Badge khi có màu mới */}
+          {hasNewColors && (
+            <div
+              className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center animate-pulse"
+              style={{
+                background: 'linear-gradient(45deg, #ff4da6, #ff884d)',
+                boxShadow: '0 0 10px #ff4da680, 0 0 20px #ff4da640',
+                border: '1px solid white',
+              }}
+            >
+              <span className="text-white text-xs font-bold" style={{ fontSize: '8px' }}>
+                NEW
+              </span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -231,6 +320,75 @@ const ChangeAccentColor = () => {
         </>
       )}
 
+      {/* New Colors Notification */}
+      {hasNewColors && (
+        <div
+          className="fixed top-20 right-4 z-50 max-w-48 transition-all duration-300"
+          style={{
+            animation: "popupSlideIn 0.5s ease-out",
+          }}
+        >
+          <div
+            className="relative p-3 rounded-xl backdrop-blur-lg"
+            style={{
+              background: `linear-gradient(135deg, var(--color-background) 0%, ${currentAccentColor}15 100%)`,
+              boxShadow: `-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.2), 0 0 20px ${currentAccentColor}30`,
+              border: `1px solid ${currentAccentColor}40`,
+            }}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setHasNewColors(false)}
+              className="absolute top-1 right-1 w-4 h-4 rounded-full text-gray-400 hover:text-gray-600 text-xs flex items-center justify-center"
+            >
+              ×
+            </button>
+
+            {/* Content */}
+            <div className="flex items-start gap-2">
+              <div className="flex-shrink-0">
+                <div
+                  className="w-6 h-6 rounded-full flex items-center justify-center animate-bounce"
+                  style={{
+                    background: `linear-gradient(45deg, ${currentAccentColor}, ${currentAccentColor}CC)`,
+                    boxShadow: `0 0 10px ${currentAccentColor}50`,
+                  }}
+                >
+                  <span className="text-white text-xs">🎨</span>
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="text-sm font-semibold text-gray-800 mb-1">
+                  Màu mới đã áp dụng!
+                </h4>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  Website đã tự động chuyển sang màu accent mới nhất. Khám phá thêm màu khác?
+                </p>
+                <button
+                  onClick={togglePopup}
+                  className="mt-2 text-xs px-2 py-1 rounded-md transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: `linear-gradient(45deg, ${currentAccentColor}, ${currentAccentColor}DD)`,
+                    color: 'white',
+                    boxShadow: `0 2px 8px ${currentAccentColor}30`,
+                  }}
+                >
+                  Xem thêm màu khác
+                </button>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -top-1 -left-1 w-3 h-3 rounded-full animate-ping opacity-60"
+              style={{ backgroundColor: currentAccentColor }}
+            />
+            <div className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full animate-pulse opacity-40"
+              style={{ backgroundColor: currentAccentColor, animationDelay: '0.5s' }}
+            />
+          </div>
+        </div>
+      )}
+
       {/* Success Notification */}
       {showNotification && (
         <div
@@ -248,7 +406,7 @@ const ChangeAccentColor = () => {
               style={{ backgroundColor: currentAccentColor }}
             />
             <span className="text-xs font-medium text-gray-700">
-              Đã đổi màu!
+              {hasNewColors ? '🎨 Đã cập nhật màu mới!' : 'Đã đổi màu!'}
             </span>
           </div>
         </div>
