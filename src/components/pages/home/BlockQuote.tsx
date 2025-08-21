@@ -190,7 +190,7 @@ const BlockQuote = () => {
 
   return (
     <>
-      <div className="inner-quote inline-block">
+      <div className="inner-quote inline-block xs:order-2 xs:scale-80 xs:w-full md:w-[80%] xl:order-1 2xl:scale-100 md:scale-80 w-[50%] 3xl:w-[60%] 4xl:w-[40%] 6xl:w-[30%] ">
         <div className="relative">
           <div className=" section-neumorphic px-[16px] py-[8px] rounded-[20px] transition-all duration-300">
             <blockquote 

@@ -12,7 +12,7 @@ const Section1 = () => {
   ];
 
   return (
-    <section className="section-1 overflow-hidden bg-background">
+    <section className="section-1 overflow-hidden bg-background ml-[-100px]">
       <div
         className="bg-background p-3 mb-8"
         style={{

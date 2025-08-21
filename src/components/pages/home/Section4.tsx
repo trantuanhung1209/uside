@@ -112,7 +112,7 @@ const Section4 = () => {
 
   return (
     <>
-      <div className="section-4 py-[20px] md:py-[40px] lg:py-[60px]">
+      <div className="section-4 py-[20px] xs:py-[0] md:py-[40px] lg:py-[60px] xs:scale-85 sm:scale-100">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
             title="Tin tức mới nhất"
@@ -122,7 +122,7 @@ const Section4 = () => {
 
           <div className="inner-content">
             <div
-              className="bg-background rounded-2xl p-4 sm:p-6 md:p-8 mb-8 h-[600px] overflow-hidden"
+              className="bg-background rounded-2xl p-4 sm:p-6 md:p-8 mb-8 h-[600px] overflow-hidden 2xl:scale-85 3xl:scale-95"
               style={{
                 boxShadow:
                   "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",

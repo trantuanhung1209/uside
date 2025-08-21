@@ -5,7 +5,6 @@ import Section5 from "../components/pages/home/Section5";
 import Title from "../components/ui/Title";
 
 const HomePage: React.FC = () => {
-  
 
   return (
     <Layout>

@@ -129,7 +129,7 @@ const FloatingStepProgress = () => {
       <div className="sticky left-2 top-1/2">
         {/* Toggle Button */}
         <div
-          className="transition-all duration-700 ease-out"
+          className="transition-all duration-700 ease-out 3xl:hidden xs:translate-x-[-10px] xs:scale-70 sm:scale-100"
           style={{
             transform: "translateY(-50%)",
           }}
@@ -186,7 +186,7 @@ const FloatingStepProgress = () => {
 
         {/* Main Progress Component */}
         <div
-          className={`transition-all duration-700 ease-out w-[100px] ${
+          className={`transition-all duration-700 ease-out w-[100px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 2xl:scale-90 5xl:scale-95 6xl:scale-100 ${
             isVisible || isExpanded
               ? "opacity-100 pointer-events-auto scale-100"
               : "opacity-0 pointer-events-none scale-95"

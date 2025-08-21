@@ -136,7 +136,7 @@ const Television = () => {
       {/* Custom CSS for slider */}
       <style>{sliderStyles}</style>
       
-      <div className="relative">
+      <div className="relative md:w-[95%]">
         <div
           className="rounded-[20px] p-3 transition-all duration-300 hover:scale-105"
           style={{
@@ -181,7 +181,7 @@ const Television = () => {
               
               {/* Channel Info Overlay */}
               {showChannelInfo && (
-                <div className="absolute top-4 left-4 bg-black/30 backdrop-blur-sm rounded-lg px-3 py-1 text-white text-sm transition-all duration-300">
+                <div className="absolute top-4 left-4 bg-black/30 backdrop-blur-sm rounded-lg px-3 py-1 text-white text-sm transition-all duration-300 xs:scale-80 sm:scale-100">
                   <div className="font-semibold">{currentChannel.name}</div>
                   {currentChannel.description && (
                     <div className="text-xs opacity-75">{currentChannel.description}</div>
@@ -192,7 +192,7 @@ const Television = () => {
               {/* Toggle Channel Info Button */}
               <button
                 onClick={() => setShowChannelInfo(!showChannelInfo)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm text-white text-xs transition-all duration-300 hover:bg-black/30 hover:scale-105 flex items-center justify-center"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm text-white text-xs transition-all duration-300 hover:bg-black/30 hover:scale-105 flex items-center justify-center xs:scale-80 sm:scale-100"
                 title={showChannelInfo ? "Ẩn thông tin kênh" : "Hiện thông tin kênh"}
               >
                 {showChannelInfo ? (
@@ -262,7 +262,7 @@ const Television = () => {
           {/* Bottom Controls */}
           <div className="flex justify-between items-center">
             {/* Channel Controls */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 xs:scale-80 sm:scale-100">
               {/* Previous Channel Button */}
               <button
                 onClick={previousChannel}
@@ -280,7 +280,7 @@ const Television = () => {
               
               {/* Channel Number Display */}
               <div 
-                className="px-4 py-2 rounded-lg text-sm font-bold min-w-[60px] text-center"
+                className="px-4 py-2 rounded-lg text-sm font-bold min-w-[60px] text-center xs:hidden md:block"
                 style={{
                   backgroundColor: "var(--color-secondary)",
                   color: "var(--color-accent)",
@@ -308,7 +308,7 @@ const Television = () => {
 
             {/* Music Play Button */}
             <button
-              className="w-16 h-16 section-neumorphic transition-all duration-300 hover:scale-105 active:scale-95 group relative overflow-hidden focus:outline-none cursor-pointer rounded-full flex items-center justify-center"
+              className="w-16 h-16 section-neumorphic transition-all duration-300 hover:scale-102 active:scale-95 group relative overflow-hidden focus:outline-none cursor-pointer rounded-full flex items-center justify-center xs:w-10 xs:h-10 sm:scale-100"
               onClick={handleToggleMusic}
               title={isPlaying ? "Dừng phát (video + nhạc)" : "Bắt đầu phát (video + nhạc)"}
               style={{
@@ -358,7 +358,7 @@ const Television = () => {
             </button>
             
             {/* Volume Control */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 xs:scale-80 sm:scale-100">
               {/* Volume Icon Button */}
               <button
                 onClick={() => setVolume(volume === 0 ? 0.5 : 0)}

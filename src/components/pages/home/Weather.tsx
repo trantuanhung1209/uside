@@ -234,7 +234,7 @@ const Weather = () => {
       <div className="weather-container absolute top-[40%] left-0">
         <div className="">
           {/* Weather Info */}
-          <div className="flex items-center gap-[20px]">
+          <div className="flex items-center gap-[20px] ">
             {/* Weather Icon */}
             <div className="weather-icon inline-block">
               {getWeatherIcon(weather.description)}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 export { default as useAppLoading } from './useAppLoading';
 export { useMusic } from './useMusic';
 export { useAccentColor } from './useAccentColor';
+export { useScrollToTop, useScrollToTopInstant } from './useScrollToTop';
 
 /**
  * Custom hook for managing local storage state
