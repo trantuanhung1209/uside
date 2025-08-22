@@ -268,8 +268,15 @@ const SearchInput = () => {
                 boxShadow:
                   "inset -2px -2px 6px #FAFBFF, inset 2px 2px 6px var(--color-shadow)",
               }}
-              onMouseDown={() => {
+              onMouseDown={(e) => {
+                e.preventDefault(); // tránh blur input trước khi click
                 setSearchValue(item);
+              }}
+              onClick={() => {
+                window.open(
+                  `https://www.google.com/search?q=${encodeURIComponent(item)}`,
+                  "_blank"
+                );
                 setShowSuggestions(false);
               }}
             >
