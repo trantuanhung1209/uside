@@ -205,6 +205,7 @@ const SearchInput = () => {
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter" && searchValue.trim()) {
+            e.preventDefault(); // chặn submit mặc định
             window.open(
               `https://www.google.com/search?q=${encodeURIComponent(
                 searchValue
@@ -269,8 +270,7 @@ const SearchInput = () => {
                   "inset -2px -2px 6px #FAFBFF, inset 2px 2px 6px var(--color-shadow)",
               }}
               onMouseDown={(e) => {
-                e.preventDefault(); // tránh blur input trước khi click
-                setSearchValue(item);
+                e.preventDefault(); // giữ cho click mượt, không bị blur
               }}
               onClick={() => {
                 window.open(
