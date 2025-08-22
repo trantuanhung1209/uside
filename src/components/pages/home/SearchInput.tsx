@@ -319,7 +319,7 @@ const SearchInput = () => {
           {randomSuggestions.slice(0, 1).map((item) => (
             <li
               key={item}
-              className="px-4 py-2 rounded-xl cursor-pointer xs:text-sm lg:text-base font-semibold text-text-primary"
+              className="px-4 py-2 rounded-xl cursor-pointer xs:text-sm lg:text-base font-semibold text-text-primary hover:text-accent"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => {
                 window.open(

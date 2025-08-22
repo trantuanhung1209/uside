@@ -16,6 +16,9 @@ const RobotLoader: React.FC<RobotLoaderProps> = ({
   useEffect(() => {
     if (!isVisible) return;
 
+    // Scroll top mượt mà khi hiển thị
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     const timer1 = setTimeout(() => setStage('working'), 500);
     const timer2 = setTimeout(() => setStage('lifting'), duration - 1000);
     const timer3 = setTimeout(() => {
