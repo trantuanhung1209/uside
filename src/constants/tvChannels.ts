@@ -56,6 +56,13 @@ export const TV_CHANNELS: TvChannel[] = [
     music: "/music_uside/music7.mp3",
     description: "Không gian tương lai của USide"
   },
+  {
+    id: 8,
+    name: "USide Space",
+    video: "/images_uside/cloud_loadding.mp4", // Sử dụng video tạm
+    music: "/music_uside/music8.mp3",
+    description: "Không gian tương lai của USide"
+  },
 ];
 
 export const getChannelById = (id: number): TvChannel | undefined => {

@@ -162,7 +162,7 @@ const Section4 = () => {
                 </div>
 
                 <div className="order-1 2xl:order-2">
-                  <div className="inner-buttons flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-4 mb-4 lg:mb-0">
+                  <div className="inner-buttons flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-4 mb-4 lg:mb-5">
                     <button
                       onClick={() => handleFilterChange("all")}
                       className={`
