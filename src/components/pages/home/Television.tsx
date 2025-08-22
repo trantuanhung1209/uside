@@ -136,7 +136,7 @@ const Television = () => {
       {/* Custom CSS for slider */}
       <style>{sliderStyles}</style>
 
-      <div className="relative md:w-[95%] z-10">
+      <div className="relative md:w-[95%] z-1">
         <div
           className="rounded-[20px] p-3 transition-all duration-300 hover:scale-105"
           style={{

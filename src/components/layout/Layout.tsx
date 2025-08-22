@@ -31,7 +31,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Footer />
 
       {/* Change Accent Color - Floating button available on all pages */}
-      <ChangeAccentColor />
+      <div className={isHomePage ? "fixed top-4 right-4 z-10" : "fixed top-25 right-4 z-10"}>
+        <ChangeAccentColor />
+      </div>
     </>
   );
 };

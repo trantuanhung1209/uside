@@ -148,7 +148,7 @@ const ChangeAccentColor = () => {
     <>
       {/* Color Palette Button */}
       <div
-        className={`fixed top-4 right-4 w-12 h-12 cursor-pointer z-10 group ${
+        className={`w-12 h-12 cursor-pointer group ${
           !hasInteracted ? 'animate-gentle-bounce' : hasNewColors ? 'animate-smooth-pulse' : ''
         }`}
         onClick={togglePopup}
@@ -220,7 +220,7 @@ const ChangeAccentColor = () => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black opacity-20 z-40"
+            className="fixed inset-0 bg-black opacity-20 z-50"
             onClick={() => setIsPopupOpen(false)}
           />
           

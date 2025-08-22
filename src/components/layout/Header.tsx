@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import SearchInput from '../pages/home/SearchInput';
 
 const menu = [
   { name: 'Trang chủ', link: '/' },
@@ -147,57 +148,7 @@ const Header = () => {
             <div className="inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px]">
 
               {/* Search */}
-              <div className="search-container relative group">
-                <div className="search-wrapper relative rounded-2xl transition-all duration-300 hover:shadow-lg focus-within:shadow-lg"
-                     style={{
-                       background: 'var(--color-secondary)',
-                     }}>
-                  <input
-                    type="text"
-                    placeholder="Tìm kiếm..."
-                    className="search-input w-full px-5 py-3 bg-transparent rounded-2xl focus:outline-none transition-all duration-300 max-w-xs sm:max-w-sm"
-                    style={{
-                      color: 'var(--color-text-primary)',
-                      boxShadow: 'inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.8)'
-                    }}
-                  />
-                  <div className="search-icon-wrapper absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg group-hover:shadow-xl"
-                       style={{
-                         background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)',
-                       }}>
-                    <svg
-                      className="w-5 h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                         style={{
-                           background: 'rgba(255, 255, 255, 0.2)'
-                         }}></div>
-                  </div>
-                  
-                  {/* Decorative elements */}
-                  <div className="absolute -top-1 -left-1 w-3 h-3 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                       style={{
-                         background: 'linear-gradient(135deg, var(--color-accent) 0%, #ff6b6b 100%)'
-                       }}></div>
-                  <div className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                       style={{
-                         background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)'
-                       }}></div>
-                  
-                  {/* Floating particles effect */}
-                  <div className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500"
-                       style={{
-                         background: 'var(--color-accent)',
-                         transform: 'translate(-50%, -50%)',
-                         animation: 'floatUp 2s ease-in-out infinite'
-                       }}></div>
-                </div>
-              </div>
+              <SearchInput />
 
               {/* Apps button */}
               <div 

@@ -155,11 +155,11 @@ const NewsPage: React.FC = () => {
       />
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-text-primary mb-8">
+          <h1 className="lg:text-3xl text-2xl font-bold text-text-primary mb-8">
             Tin tức mới nhất
           </h1>
 
-          <div className="inner-actions py-[20px]">
+          <div className="inner-actions lg:py-[20px]">
             {/* Category Filter */}
             <div className="mb-4">
               <div className="flex flex-wrap justify-center gap-3">
@@ -169,7 +169,7 @@ const NewsPage: React.FC = () => {
                     onClick={() => handleFilterChange(category.id)}
                     className={`
                       cursor-pointer
-                      group relative px-6 py-3 rounded-2xl font-medium text-sm
+                      group relative lg:px-6 lg:py-3 xs:px-3 xs:py-2 rounded-2xl font-medium text-sm
                       transition-all duration-300 ease-out
                       transform hover:scale-105 active:scale-95
                       flex items-center gap-2

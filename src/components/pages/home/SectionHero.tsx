@@ -93,7 +93,7 @@ const SectionHero = () => {
             <BlockQuote />
 
             {/* Right side buttons */}
-            <div className="relative z-30 inline-block xs:order-1 xs:w-full xs:scale-80 md:block md:w-[80%] xl:order-2 3xl:w-[50%] 4xl:w-[40%]">
+            <div className="relative z-2 inline-block xs:order-1 xs:w-full xs:scale-80 md:block md:w-[80%] xl:order-2 3xl:w-[50%] 4xl:w-[40%]">
               <div className="flex items-center gap-2 border-gray-200 bg-background shadow-sm px-[20px] py-[8px] rounded-[20px] transition-all duration-300 hover:shadow-lg 5xl:scale-100 3xl:scale-95 2xl:scale-90 xl:scale-85">
                 <div className="search-container relative group flex-1">
                   <div
@@ -194,7 +194,7 @@ const SectionHero = () => {
               />
 
               {/* Robot overlay to hide Spline logo */}
-              <div className="absolute bottom-4 right-4 z-5 xs:scale-90 sm:scale-100 3xl:right-0 xs:bottom-[-16px] xs:right-[26%] xs:w-[20%] md:right-[15%] lg:right-[9%] xl:right-[5%] 2xl:bottom-[-20px] 2xl:right-[20%] 3xl:right-[20%] 4xl:right-[15%] 5xl:right-[10%]">
+              <div className="absolute bottom-4 right-4 z-5 xs:scale-90 sm:scale-100 xs:bottom-[-16px] xs:right-[26%] xs:w-[20%] md:right-[15%] lg:right-[9%] xl:right-[5%] 2xl:bottom-[-20px] 2xl:right-[20%] 3xl:right-[20%] 4xl:right-[15%] 5xl:right-[10%]">
                 <div
                   className="relative w-40 h-20 transition-all duration-300"
                   style={{
