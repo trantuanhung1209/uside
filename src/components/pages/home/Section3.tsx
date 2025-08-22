@@ -66,7 +66,7 @@ const Section3: React.FC = () => {
   const currentStepData = steps.find((step) => step.id === currentStep);
 
   return (
-    <div className="relative px-4 sm:px-6 lg:px-8">
+    <div className="relative">
       {/* Progress indicator */}
       <div className="mb-8 sm:mb-12">
         {/* Mobile view - Vertical progress */}
@@ -219,16 +219,16 @@ const Section3: React.FC = () => {
                 "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
             }}
           >
-            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 space-y-4 lg:space-y-0">
+            <div className="flex flex-col 2xl:grid lg:grid-cols-2 lg:gap-6 space-y-4 lg:space-y-0">
               {/* Text content */}
-              <div className="flex items-start space-x-3 lg:space-x-4">
+              <div className="flex items-start space-x-3 lg:space-x-4 xs:hidden 2xl:flex">
                 <div
                   className="w-2 h-2 rounded-full bg-accent mt-3 flex-shrink-0"
                   style={{
                     boxShadow: "0 0 10px rgba(0, 210, 255, 0.5)",
                   }}
                 />
-                <p className="text-text-primary leading-relaxed text-base lg:text-xl">
+                <p className="text-text-primary opacity-95 leading-relaxed text-base lg:text-lg">
                   {currentStepData.content}
                 </p>
               </div>

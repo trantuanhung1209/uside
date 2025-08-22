@@ -198,7 +198,7 @@ const FloatingStepProgress = () => {
           }}
         >
           {/* Container với neumorphic design */}
-          <div className="relative bg-background pt-[10px] rounded-3xl shadow-sm hover:scale-101 transition-all duration-300 hover:shadow-lg">
+          <div className="relative bg-background pt-[10px] rounded-3xl shadow-sm hover:scale-101 transition-all duration-300 hover:shadow-lg translate-y-[-30%]">
             {/* Progress line */}
             <div className="absolute left-3 top-4 bottom-4 w-1 max-h-full bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
               <div
@@ -214,7 +214,7 @@ const FloatingStepProgress = () => {
             </div>
 
             {/* Steps */}
-            <div className="flex flex-col space-y-6 ml-5">
+            <div className="flex flex-col space-y-6 ml-5 translate-y-[12px]">
               {sections.map((section, index) => (
                 <div
                   key={section.id}

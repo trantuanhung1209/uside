@@ -112,7 +112,7 @@ const Section4 = () => {
 
   return (
     <>
-      <div className="section-4 py-[20px] xs:py-[0] md:py-[40px] lg:py-[60px] xs:scale-85 sm:scale-100">
+      <div className="py-[20px] xs:py-[40px] lg:py-[60px]">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
             title="Tin tức mới nhất"
@@ -122,16 +122,16 @@ const Section4 = () => {
 
           <div className="inner-content">
             <div
-              className="bg-background rounded-2xl p-4 sm:p-6 md:p-8 mb-8 h-[600px] overflow-hidden 2xl:scale-85 3xl:scale-95"
+              className="bg-background rounded-2xl p-4 sm:p-6 md:p-8 h-[500px] overflow-hidden"
               style={{
                 boxShadow:
                   "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
               }}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-[60px]">
-                <div className="relative order-2 lg:order-1">
+              <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6 ">
+                <div className="relative order-2 3xl:order-1 xs:hidden 2xl:block">
                   <div
-                    className="h-48 sm:h-64 md:h-72 lg:h-[300px] w-full lg:w-[90%] overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 relative mx-auto lg:mx-0 cursor-pointer"
+                    className="h-48 sm:h-64 md:h-72 lg:h-[300px] w-full lg:w-[90%] overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 relative mx-auto lg:mx-0 cursor-pointer 2xl:scale-95 4xl:scale-100"
                     onClick={() => {
                       const currentNews = filteredNews[safeActiveSlide];
                       if (currentNews) {
@@ -161,7 +161,7 @@ const Section4 = () => {
                   </div>
                 </div>
 
-                <div className="order-1 lg:order-2">
+                <div className="order-1 2xl:order-2">
                   <div className="inner-buttons flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-4 mb-4 lg:mb-0">
                     <button
                       onClick={() => handleFilterChange("all")}
@@ -309,12 +309,12 @@ const Section4 = () => {
                     </button>
                   </div>
 
-                  <div className="inner-list-news">
-                    <ul className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-6">
+                  <div className="inner-list-news h-100 sm:h-80 md:h-96 lg:h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-accent ">
+                    <ul className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-6 ">
                       {filteredNews.slice(0, 3).map((item, index) => (
                         <li
                           key={item.id}
-                          className={`mb-3 flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-2 p-4 rounded-2xl transition-all duration-500 cursor-pointer
+                          className={`mb-3 flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-2 p-4 rounded-2xl transition-all duration-500 cursor-pointer xs:scale-90 2xl:scale-95 4xl:scale-98
                             bg-background
                             ${
                               safeActiveSlide === index
@@ -345,7 +345,7 @@ const Section4 = () => {
                         >
                           <div className="flex-1 flex flex-col sm:flex-row gap-3 sm:gap-[20px] items-start w-full">
                             <div className="flex flex-col gap-1">
-                              <span className="text-sm sm:text-base hover:text-accent font-semibold text-text-primary transition-all duration-300 line-clamp-2 hover:transform hover:translateX-1 cursor-pointer">
+                              <span className="text-base sm:text-base hover:text-accent font-semibold text-text-primary transition-all duration-300 line-clamp-2 hover:transform hover:translateX-1 cursor-pointer">
                                 {item.title}
                               </span>
                               <p className="text-xs sm:text-sm text-text-secondary line-clamp-2 mt-1 leading-relaxed">

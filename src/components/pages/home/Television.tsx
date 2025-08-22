@@ -454,7 +454,7 @@ const Television = () => {
 
         {/* Floating decorative elements with neumorphic effect */}
         <div
-          className="absolute -top-8 -left-8 w-16 h-16 rounded-full animate-pulse transition-all duration-300 hover:scale-110"
+          className="absolute -top-8 -left-8 w-16 h-16 rounded-full animate-pulse transition-all duration-300 hover:scale-110 xs:scale-0 lg:scale-100"
           style={{
             backgroundColor: "var(--color-primary)",
             boxShadow:
@@ -462,7 +462,7 @@ const Television = () => {
           }}
         ></div>
         <div
-          className="absolute -top-6 -right-10 w-10 h-10 rounded-full animate-pulse transition-all duration-300 hover:scale-110"
+          className="absolute -top-6 -right-10 w-10 h-10 rounded-full animate-pulse transition-all duration-300 hover:scale-110 xs:scale-80 lg:scale-100"
           style={{
             backgroundColor: "var(--color-accent)",
             boxShadow:
@@ -471,7 +471,7 @@ const Television = () => {
           }}
         ></div>
         <div
-          className="absolute bottom-10 -left-10 w-12 h-12 rounded-full animate-pulse transition-all duration-300 hover:scale-110 z-10"
+          className="absolute bottom-10 -left-10 w-12 h-12 rounded-full animate-pulse transition-all duration-300 hover:scale-110 z-10 xs:scale-50 lg:scale-100"
           style={{
             backgroundColor: "var(--color-secondary)",
             boxShadow:
@@ -480,7 +480,7 @@ const Television = () => {
           }}
         ></div>
         <div
-          className="absolute bottom-10 -right-8 w-8 h-8 rounded-full animate-pulse transition-all duration-300 hover:scale-110"
+          className="absolute bottom-10 -right-8 w-8 h-8 rounded-full animate-pulse transition-all duration-300 hover:scale-110 xs:scale-0 lg:scale-100"
           style={{
             backgroundColor: "var(--color-text-accent)",
             boxShadow:

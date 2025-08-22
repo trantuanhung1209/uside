@@ -29,17 +29,6 @@ body {
   --color-shadow: rgba(22, 17, 29, 0.23);
   /* bóng tối nhẹ */
 
-  --breakpoint-sm: 480px;
-  /* nhỏ hơn 480px */
-  --breakpoint-md: 768px;
-  /* nhỏ hơn 768px */
-  --breakpoint-lg: 1024px;
-  /* nhỏ hơn 1024px */
-  --breakpoint-xl: 1280px;
-  /* nhỏ hơn 1280px */
-  --breakpoint-2xl: 1536px;
-  /* nhỏ hơn 1536px */
-
   --color-accent-1: #ffb3ba;
   /* hồng pastel (nhẹ nhàng, nữ tính, dùng cho highlight nhỏ) */
   --color-accent-2: #ffdfba;
@@ -52,6 +41,7 @@ body {
   /* xanh dương pastel (dịu, đồng bộ với cyan) */
 
   --breakpoint-xs: 320px;
+  --breakpoint-xxs: 430px;
   --breakpoint-sm: 480px;
   --breakpoint-md: 576px;
   --breakpoint-lg: 680px;
@@ -471,15 +461,11 @@ body {
 
 /* Apps Popup Styles */
 .apps-popup {
-  position: absolute;
-  top: 100%;
-  right: 0;
   margin-top: 15px;
   width: 320px;
   background: #EFF2F9;
   border-radius: 20px;
   padding: 20px;
-  z-index: 1000;
 
   /* Neumorphic shadow */
   box-shadow:
@@ -576,11 +562,6 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .apps-popup {
-    width: 280px;
-    right: -20px;
-  }
-
   .apps-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;

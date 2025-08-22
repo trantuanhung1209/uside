@@ -6,94 +6,13 @@ const BackgroundRobot = () => {
       <div className="absolute inset-0 pointer-events-none">
         {/* Robot 1 - Large floating robot */}
         <div
-          className="absolute top-10 left-10 w-24 h-32 animate-bounce hidden 5xl:block"
+          className="absolute top-5 left-10 w-24 h-32 animate-bounce hidden 5xl:block"
           style={{
             animationDuration: "3s",
             animationDelay: "0s",
           }}
         >
-          <div
-            className="w-full h-full relative transition-all duration-500 hover:scale-110"
-            style={{
-              background: "var(--color-background)",
-              boxShadow:
-                "-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.2)",
-              borderRadius: "20px",
-            }}
-          >
-            {/* Robot Head */}
-            <div
-              className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-2xl"
-              style={{
-                background: "var(--color-primary)",
-                boxShadow:
-                  "inset -8px -8px 16px #FAFBFF, inset 8px 8px 16px rgba(22, 17, 29, 0.15)",
-              }}
-            >
-              {/* Eyes */}
-              <div className="absolute top-3 left-2 w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-              <div
-                className="absolute top-3 right-2 w-3 h-3 bg-blue-500 rounded-full animate-pulse"
-                style={{ animationDelay: "0.5s" }}
-              ></div>
-              {/* Antenna */}
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-gray-400 rounded-full"></div>
-              <div
-                className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full animate-pulse"
-                style={{ background: "var(--color-accent)" }}
-              ></div>
-            </div>
-
-            {/* Robot Body */}
-            <div
-              className="absolute top-12 left-1/2 transform -translate-x-1/2 w-20 h-16 rounded-xl"
-              style={{
-                background: "var(--color-secondary)",
-                boxShadow:
-                  "inset -6px -6px 12px #FAFBFF, inset 6px 6px 12px rgba(22, 17, 29, 0.1)",
-              }}
-            >
-              {/* Control Panel */}
-              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 flex gap-1">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <div
-                  className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"
-                  style={{ animationDelay: "1s" }}
-                ></div>
-                <div
-                  className="w-2 h-2 bg-red-400 rounded-full animate-pulse"
-                  style={{ animationDelay: "2s" }}
-                ></div>
-              </div>
-            </div>
-
-            {/* Robot Arms */}
-            <div
-              className="absolute top-14 -left-2 w-6 h-3 rounded-lg animate-pulse"
-              style={{
-                background: "var(--color-background)",
-                boxShadow:
-                  "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15)",
-              }}
-            ></div>
-            <div
-              className="absolute top-20 -left-20 w-6 h-3 rounded-lg animate-pulse"
-              style={{
-                background: "var(--color-background)",
-                boxShadow:
-                  "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15)",
-              }}
-            ></div>
-            <div
-              className="absolute top-14 -right-2 w-6 h-3 rounded-lg animate-pulse"
-              style={{
-                background: "var(--color-background)",
-                boxShadow:
-                  "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15)",
-                animationDelay: "1s",
-              }}
-            ></div>
-          </div>
+          <img src="/images_uside/pet_cloud_uside.png" alt="" />
         </div>
 
         {/* Robot 5 - Large background robot */}

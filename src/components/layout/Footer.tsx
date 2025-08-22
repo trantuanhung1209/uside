@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-background py-16 shadow-[inset_0_4px_8px_rgba(0,0,0,0.1),inset_0_8px_16px_rgba(0,0,0,0.05)]">
+    <footer className="overflow-hidden bg-background py-16 shadow-[inset_0_4px_8px_rgba(0,0,0,0.1),inset_0_8px_16px_rgba(0,0,0,0.05)] relative">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
@@ -141,6 +141,23 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      {/* Floating particles */}
+        <div className="absolute inset-0">
+          {[...Array(250)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 rounded-full animate-ping"
+              style={{
+                background: "var(--color-accent)",
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${3 + Math.random() * 2}s`,
+                opacity: 0.6,
+              }}
+            />
+          ))}
+        </div>
     </footer>
   );
 };

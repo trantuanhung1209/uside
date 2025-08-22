@@ -10,7 +10,7 @@ import SearchInput from "./SearchInput";
 const SectionHero = () => {
   const popupRef = useRef<HTMLDivElement>(null);
   const [showAppsPopup, setShowAppsPopup] = useState(false);
-  
+
   const handleRobotClick = () => {
     setShowAppsPopup(!showAppsPopup);
   };
@@ -18,17 +18,20 @@ const SectionHero = () => {
   // Handle click outside to close popup
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target as Node)
+      ) {
         setShowAppsPopup(false);
       }
     };
 
     if (showAppsPopup) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showAppsPopup]);
 
@@ -85,7 +88,7 @@ const SectionHero = () => {
 
         {/* Main Content */}
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center xs:flex-col xs:gap-[10px] xl:flex-row 5xl:justify-between pb-[20px] 3xl:justify-around ">
+          <div className="flex items-center xs:flex-col xs:gap-[10px] xl:flex-row 5xl:justify-between pb-[20px] 3xl:justify-around relative">
             {/* Inner Quote */}
             <BlockQuote />
 
@@ -177,40 +180,38 @@ const SectionHero = () => {
                     />
                     <div className="robot-button-glow"></div>
                   </button>
-
-                  {/* Apps Popup */}
-                  {showAppsPopup && (
-                    <div className="apps-popup absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg border-border p-4 w-64 z-50">
-                      <div className="apps-popup-arrow absolute -top-2 right-4 w-4 h-4 bg-white border-l border-t border-border transform rotate-45"></div>
-                      <div className="apps-grid grid grid-cols-4 gap-3">
-                        {appsData.map((app, index) => (
-                          <a
-                            key={index}
-                            href={app.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="app-item flex flex-col items-center p-2 rounded-lg hover:bg-gray-50 transition-colors text-center"
-                            style={
-                              {
-                                "--app-color": app.color,
-                              } as React.CSSProperties
-                            }
-                            title={app.name}
-                          >
-                            <span className="app-icon text-lg mb-1">
-                              {app.icon}
-                            </span>
-                            <span className="app-name text-xs text-gray-600">
-                              {app.name}
-                            </span>
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
+
+            {/* Apps Popup */}
+            {showAppsPopup && (
+              <div className="apps-popup absolute top-15 right-12 mt-2 bg-white rounded-lg shadow-lg border-border p-4 w-64 z-500 xs:scale-90 md:right-25 lg:right-30 xl:right-20 xl:scale-95 4xl:right-30 5xl:right-20">
+                <div className="apps-popup-arrow absolute -top-2 right-4 w-4 h-4 bg-white border-l border-t border-border transform rotate-45"></div>
+                <div className="apps-grid grid grid-cols-4 gap-3">
+                  {appsData.map((app, index) => (
+                    <a
+                      key={index}
+                      href={app.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="app-item flex flex-col items-center p-2 rounded-lg hover:bg-gray-50 transition-colors text-center"
+                      style={
+                        {
+                          "--app-color": app.color,
+                        } as React.CSSProperties
+                      }
+                      title={app.name}
+                    >
+                      <span className="app-icon text-lg mb-1">{app.icon}</span>
+                      <span className="app-name text-xs text-gray-600">
+                        {app.name}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           <div className="inner-wrap grid grid-cols-2 sm:gap-[40px] xs:grid-cols-1 xs:gap-[10px] 2xl:grid-cols-2 2xl:gap-[20px]">
             <div className="inner-left relative order-2 xs:w-[90%] xs:scale-101 lg:w-[100%] lg:scale-100">

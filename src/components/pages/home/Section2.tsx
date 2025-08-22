@@ -141,7 +141,7 @@ export default function Section2() {
                           "-10px -10px 20px #FAFBFF, 10px 10px 20px rgba(22, 17, 29, 0.12)",
                       }}
                     >
-                      <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                      <h3 className="lg:text-lg text-base font-semibold mb-3 text-gray-800">
                         {card.title}
                       </h3>
                       <p className="text-gray-600 text-sm leading-relaxed">
