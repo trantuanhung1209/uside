@@ -93,7 +93,7 @@ const SectionHero = () => {
             <BlockQuote />
 
             {/* Right side buttons */}
-            <div className="inline-block xs:order-1 xs:w-full xs:scale-80 md:block md:w-[80%] xl:order-2 3xl:w-[50%] 4xl:w-[40%]">
+            <div className="relative z-30 inline-block xs:order-1 xs:w-full xs:scale-80 md:block md:w-[80%] xl:order-2 3xl:w-[50%] 4xl:w-[40%]">
               <div className="flex items-center gap-2 border-gray-200 bg-background shadow-sm px-[20px] py-[8px] rounded-[20px] transition-all duration-300 hover:shadow-lg 5xl:scale-100 3xl:scale-95 2xl:scale-90 xl:scale-85">
                 <div className="search-container relative group flex-1">
                   <div
@@ -103,33 +103,6 @@ const SectionHero = () => {
                     }}
                   >
                     <SearchInput />
-                    <div
-                      className="search-icon-wrapper absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg group-hover:shadow-xl"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)",
-                      }}
-                    >
-                      <svg
-                        className="w-5 h-5 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                      <div
-                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        style={{
-                          background: "rgba(255, 255, 255, 0.2)",
-                        }}
-                      ></div>
-                    </div>
 
                     {/* Decorative elements */}
                     <div
