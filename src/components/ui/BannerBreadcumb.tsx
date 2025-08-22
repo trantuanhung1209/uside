@@ -4,7 +4,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
   return (
     <>
       <section
-        className="section-bg w-full h-[550px] xs:h-[280px] bg-border flex items-end justify-center relative overflow-hidden "
+        className="section-bg w-full xl:h-[550px] xs:h-[280px] bg-border flex items-end justify-center relative overflow-hidden "
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
@@ -46,8 +46,8 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
           ></div>
         </div>
 
-        <div className="breadcrumb-container relative z-10 mb-8 px-6 py-4 bg-background/10 backdrop-blur-md rounded-2xl border border-border shadow-2xl transform hover:scale-105 transition-all duration-300 xs:scale-80">
-          <nav className="breadcrumb flex items-center gap-4 text-lg ">
+        <div className="breadcrumb-container relative z-1 lg:mb-8 lg:px-6 lg:py-4 xs:mb-4 xs:px-3 xs:py-2 bg-background/10 backdrop-blur-md rounded-2xl border border-border shadow-2xl transform hover:scale-105 transition-all duration-300 xs:scale-70 xs:hover:scale-72">
+          <nav className="breadcrumb flex items-center lg:gap-4 lg:text-lg xs:text-base xs:gap-2">
             <NavLink
               to="/"
               className="group flex items-center gap-2 text-text-secondary hover:text-text-primary transition-all duration-300 relative"

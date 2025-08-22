@@ -77,7 +77,7 @@ const Section5 = () => {
                   className="w-full p-6 text-left focus:outline-none group transition-all duration-300"
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-text-primary pr-4 group-hover:text-accent transition-colors duration-300">
+                    <h3 className="text-lg font-semibold text-text-primary pr-4 group-hover:text-accent">
                       {item.question}
                     </h3>
                     <div 

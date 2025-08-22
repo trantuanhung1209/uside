@@ -26,7 +26,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
       className={`
         group relative overflow-hidden rounded-2xl p-6 cursor-pointer
         transition-all duration-500 ease-out
-        transform hover:scale-105 hover:-translate-y-2
+        transform hover:scale-101 hover:-translate-y-2
         opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]
       `}
       style={{

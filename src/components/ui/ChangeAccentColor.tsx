@@ -243,7 +243,7 @@ const ChangeAccentColor = () => {
             
             {/* Main Popup */}
             <div
-              className="relative p-4 rounded-xl backdrop-blur-lg"
+              className="relative p-3 rounded-xl backdrop-blur-lg"
               style={{
                 background: "var(--color-background)",
                 boxShadow: "-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.2)",

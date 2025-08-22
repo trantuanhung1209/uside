@@ -3,10 +3,12 @@ import { Layout } from "../components/layout";
 import { BannerBreadcrumb } from "../components";
 import { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
 
 const NewsPage: React.FC = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [showActions, setShowActions] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; // Số tin tức mỗi trang
@@ -73,7 +75,7 @@ const NewsPage: React.FC = () => {
       excerpt:
         "Khám phá cách USide tích hợp AI để cải thiện trải nghiệm người dùng.",
       category: "technology",
-      image: "/images_uside/Coin-unscreen.gif",
+      image: "/images_uside/pet_cloud_uside.png",
       author: "AI Team",
       tags: ["AI", "Machine Learning", "Innovation"],
     },
@@ -84,7 +86,7 @@ const NewsPage: React.FC = () => {
       excerpt:
         "Sự kiện công nghệ lớn nhất năm với những chuyên gia hàng đầu trong ngành.",
       category: "event",
-      image: "/images_uside/hero-unscreen.gif",
+      image: "/images_uside/pet_cloud_uside.png",
       author: "Event Team",
       tags: ["Conference", "Networking", "Learning"],
     },
@@ -160,104 +162,106 @@ const NewsPage: React.FC = () => {
           </h1>
 
           <div className="inner-actions lg:py-[20px]">
-            {/* Category Filter */}
-            <div className="mb-4">
-              <div className="flex flex-wrap justify-center gap-3">
-                {updatedCategories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => handleFilterChange(category.id)}
-                    className={`
-                      cursor-pointer
-                      group relative lg:px-6 lg:py-3 xs:px-3 xs:py-2 rounded-2xl font-medium text-sm
-                      transition-all duration-300 ease-out
-                      transform hover:scale-105 active:scale-95
-                      flex items-center gap-2
-                    `}
-                    style={{
-                      background:
-                        selectedCategory === category.id
-                          ? `var(--color-background)`
-                          : `var(--color-background)`,
-                      color:
-                        selectedCategory === category.id
-                          ? "var(--color-text-primary)"
-                          : "var(--color-text-primary)",
-                      boxShadow:
-                        selectedCategory === category.id
-                          ? `
-                          -6px -6px 12px #FAFBFF,
-                          6px 6px 12px var(--color-shadow)
-                        `
-                          : `
-                          inset -6px -6px 12px #FAFBFF,
-                          inset 6px 6px 12px var(--color-shadow)
-                        `,
-                    }}
-                    onMouseEnter={(e) => {
-                      if (selectedCategory !== category.id) {
-                        e.currentTarget.style.boxShadow = `
-                          -4px -4px 8px #FAFBFF,
-                          4px 4px 8px var(--color-shadow),
-                          0 0 15px rgba(0, 210, 255, 0.2)
-                        `;
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (selectedCategory !== category.id) {
-                        e.currentTarget.style.boxShadow = `
-                          inset -4px -4px 8px #FAFBFF,
-                          inset 4px 4px 8px var(--color-shadow)
-                        `;
-                      }
-                    }}
-                  >
-                    <span>{category.name}</span>
-                    <span
-                      className={`
-                        px-2 py-1 rounded-full text-xs font-bold
-                        ${
-                          selectedCategory === category.id
-                            ? "bg-white bg-opacity-20"
-                            : ""
-                        }
-                      `}
-                      style={{
-                        background:
-                          selectedCategory === category.id
-                            ? "var(--color-accent)"
-                            : `var(--color-accent)`,
-                        color:
-                          selectedCategory === category.id ? "white" : "white",
-                      }}
-                    >
-                      {category.count}
-                    </span>
-                  </button>
-                ))}
-              </div>
+            {/* Mobile Toggle Icon */}
+            <div className="flex justify-end mb-5 lg:hidden">
+              <button
+                onClick={() => setShowActions(!showActions)}
+                className="p-2 rounded-full bg-[var(--color-background)] shadow-md hover:scale-110 transition cursor-pointer"
+              >
+                <FaFilter className="text-[var(--color-accent)]" />
+              </button>
             </div>
 
-            {/* Results Summary */}
-            <div className="text-center mb-6">
-              <p
-                className="text-sm"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                {filteredNews.length > 0
-                  ? `Tìm thấy ${filteredNews.length} tin tức ${
-                      selectedCategory !== "all"
-                        ? `thuộc chủ đề "${
-                            updatedCategories.find(
-                              (c) => c.id === selectedCategory
-                            )?.name
-                          }"`
-                        : ""
-                    }`
-                  : "Không tìm thấy tin tức nào phù hợp"}
-                {searchTerm && ` với từ khóa "${searchTerm}"`}
-                {totalPages > 1 && ` - Trang ${currentPage}/${totalPages}`}
-              </p>
+            {/* Wrapper: luôn hiện ở desktop, toggle ở mobile */}
+            <div
+              className={`${
+                showActions ? "block" : "hidden"
+              } lg:block bg-[var(--color-background)] rounded-xl p-3 lg:p-0`}
+            >
+              {/* Category Filter */}
+              <div className="mb-4">
+                <div className="flex flex-wrap justify-center gap-3">
+                  {updatedCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => handleFilterChange(category.id)}
+                      className={`
+                  cursor-pointer
+                  group relative lg:px-6 lg:py-3 xs:px-3 xs:py-2 rounded-2xl font-medium text-sm
+                  transition-all duration-300 ease-out
+                  transform hover:scale-105 active:scale-95
+                  flex items-center gap-2
+                `}
+                      style={{
+                        background: `var(--color-background)`,
+                        color: "var(--color-text-primary)",
+                        boxShadow:
+                          selectedCategory === category.id
+                            ? `
+                        -6px -6px 12px #FAFBFF,
+                        6px 6px 12px var(--color-shadow)
+                      `
+                            : `
+                        inset -6px -6px 12px #FAFBFF,
+                        inset 6px 6px 12px var(--color-shadow)
+                      `,
+                      }}
+                      onMouseEnter={(e) => {
+                        if (selectedCategory !== category.id) {
+                          e.currentTarget.style.boxShadow = `
+                      -4px -4px 8px #FAFBFF,
+                      4px 4px 8px var(--color-shadow),
+                      0 0 15px rgba(0, 210, 255, 0.2)
+                    `;
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (selectedCategory !== category.id) {
+                          e.currentTarget.style.boxShadow = `
+                      inset -4px -4px 8px #FAFBFF,
+                      inset 4px 4px 8px var(--color-shadow)
+                    `;
+                        }
+                      }}
+                    >
+                      <span>{category.name}</span>
+                      <span
+                        className={`
+                    px-2 py-1 rounded-full text-xs font-bold
+                  `}
+                        style={{
+                          background: "var(--color-accent)",
+                          color: "white",
+                        }}
+                      >
+                        {category.count}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Results Summary */}
+              <div className="text-center mb-6">
+                <p
+                  className="text-sm"
+                  style={{ color: "var(--color-text-secondary)" }}
+                >
+                  {filteredNews.length > 0
+                    ? `Tìm thấy ${filteredNews.length} tin tức ${
+                        selectedCategory !== "all"
+                          ? `thuộc chủ đề "${
+                              updatedCategories.find(
+                                (c) => c.id === selectedCategory
+                              )?.name
+                            }"`
+                          : ""
+                      }`
+                    : "Không tìm thấy tin tức nào phù hợp"}
+                  {searchTerm && ` với từ khóa "${searchTerm}"`}
+                  {totalPages > 1 && ` - Trang ${currentPage}/${totalPages}`}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -291,13 +295,13 @@ const NewsPage: React.FC = () => {
                   `}
                   />
 
-                  <div className="relative z-10 flex gap-6">
+                  <div className="relative z-10 flex gap-6 xs:flex-col ">
                     {/* Image */}
                     {item.image && (
                       <div
                         className={`
                         flex-shrink-0 w-32 h-24 overflow-hidden rounded-xl
-                        transform transition-transform duration-500 group-hover:scale-110
+                        transform transition-transform duration-500 group-hover:scale-105 xs:w-full
                       `}
                         style={{
                           boxShadow: `
@@ -319,20 +323,40 @@ const NewsPage: React.FC = () => {
                       {/* Category & Author */}
                       <div className="flex items-center gap-3 mb-3">
                         <span
-                          className="px-3 py-1 text-xs font-medium rounded-full"
+                          className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer`}
                           style={{
-                            color: "var(--color-text-secondary)",
-                            boxShadow: `
-                              -3px -3px 6px #FAFBFF,
-                              3px 3px 6px var(--color-shadow)
-                            `,
+                            boxShadow:
+                              "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
+                            background:
+                              item.category === "update"
+                                ? "linear-gradient(90deg, #9fc9e8, #00d2ff)" // xanh dương pastel
+                                : item.category === "security"
+                                ? "linear-gradient(90deg, #e8a9c4, #d98bb0)" // hồng pastel đậm
+                                : item.category === "partnership"
+                                ? "linear-gradient(90deg, #eabf94, #e89b5c)" // cam đào ấm
+                                : item.category === "recruitment"
+                                ? "linear-gradient(90deg, #e8e39a, #d6cf66)" // vàng pastel đậm
+                                : item.category === "technology"
+                                ? "linear-gradient(90deg, #a9d7a1, #7ecb85)" // xanh lá mint
+                                : "linear-gradient(90deg, #d4ecfa, #9fc9e8)", // default: xanh pastel
+                            color: "white",
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleFilterChange(item.category);
                           }}
                         >
-                          {
-                            updatedCategories.find(
-                              (c) => c.id === item.category
-                            )?.name
-                          }
+                          {item.category === "update"
+                            ? "Cập nhật"
+                            : item.category === "security"
+                            ? "Bảo mật"
+                            : item.category === "partnership"
+                            ? "Hợp tác"
+                            : item.category === "recruitment"
+                            ? "Tuyển dụng"
+                            : item.category === "technology"
+                            ? "Công nghệ"
+                            : "Sự kiện"}
                         </span>
                         {item.author && (
                           <span
@@ -346,7 +370,7 @@ const NewsPage: React.FC = () => {
 
                       {/* Title */}
                       <h2
-                        className="text-xl font-bold mb-2 line-clamp-2 leading-tight group-hover:text-[var(--color-accent)] transition-colors duration-300"
+                        className="lg:text-[24] xs:text-[20px] font-bold mb-2 line-clamp-2 leading-tight group-hover:text-[var(--color-accent)] transition-colors duration-300"
                         style={{ color: "var(--color-text-primary)" }}
                       >
                         {item.title}
@@ -357,12 +381,12 @@ const NewsPage: React.FC = () => {
                         className="text-sm mb-3 flex items-center gap-[10px]"
                         style={{ color: "var(--color-text-secondary)" }}
                       >
-                        <FaCalendarAlt />  {item.date}
+                        <FaCalendarAlt /> {item.date}
                       </p>
 
                       {/* Excerpt */}
                       <p
-                        className="leading-relaxed mb-4 line-clamp-2"
+                        className="leading-relaxed mb-4 line-clamp-2 xs:text-base lg:text-lg"
                         style={{ color: "var(--color-text-secondary)" }}
                       >
                         {item.excerpt}
@@ -392,7 +416,7 @@ const NewsPage: React.FC = () => {
 
                       {/* Read More Button */}
                       <button
-                        className={`
+                        className={` xs:w-full
                           neumorphic-button 
                         `}
                         style={{
@@ -498,7 +522,7 @@ const NewsPage: React.FC = () => {
                 <button
                   onClick={goToPrevious}
                   disabled={currentPage === 1}
-                  className={`
+                  className={` cursor-pointer
                     group flex items-center justify-center w-12 h-12 rounded-2xl
                     transition-all duration-300 ease-out
                     transform hover:scale-110 active:scale-95
@@ -513,15 +537,15 @@ const NewsPage: React.FC = () => {
                       currentPage === 1
                         ? `inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px var(--color-shadow)`
                         : `
-                        -8px -8px 16px #FAFBFF,
-                        8px 8px 16px var(--color-shadow)
+                        -4px -4px 8px #FAFBFF,
+                        4px 4px 8px var(--color-shadow)
                       `,
                   }}
                   onMouseEnter={(e) => {
                     if (currentPage !== 1) {
                       e.currentTarget.style.boxShadow = `
-                        -12px -12px 24px #FAFBFF,
-                        12px 12px 24px var(--color-shadow),
+                        -6px -6px 12px #FAFBFF,
+                        6px 12px 12px var(--color-shadow),
                         0 0 20px var(--color-accent)
                       `;
                     }
@@ -529,8 +553,8 @@ const NewsPage: React.FC = () => {
                   onMouseLeave={(e) => {
                     if (currentPage !== 1) {
                       e.currentTarget.style.boxShadow = `
-                        -8px -8px 16px #FAFBFF,
-                        8px 8px 16px var(--color-shadow)
+                        -4px -4px 8px #FAFBFF,
+                        4px 4px 8px var(--color-shadow)
                       `;
                     }
                   }}
@@ -549,7 +573,7 @@ const NewsPage: React.FC = () => {
                 </button>
 
                 {/* Page Numbers */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 xs:hidden lg:flex">
                   {[...Array(totalPages)].map((_, index) => {
                     const pageNum = index + 1;
                     const isActive = pageNum === currentPage;
@@ -558,7 +582,7 @@ const NewsPage: React.FC = () => {
                       <button
                         key={pageNum}
                         onClick={() => goToPage(pageNum)}
-                        className={`
+                        className={` cursor-pointer
                           relative w-12 h-12 rounded-2xl font-bold text-sm
                           transition-all duration-300 ease-out
                           transform hover:scale-110 active:scale-95
@@ -578,7 +602,7 @@ const NewsPage: React.FC = () => {
                               0 0 20px var(--color-accent)
                             `
                             : `
-                              -6px -6px 12px #FAFBFF,
+                              -4px -4px 8px #FAFBFF,
                               6px 6px 12px var(--color-shadow)
                             `,
                         }}
@@ -620,7 +644,7 @@ const NewsPage: React.FC = () => {
                 <button
                   onClick={goToNext}
                   disabled={currentPage === totalPages}
-                  className={`
+                  className={` cursor-pointer
                     group flex items-center justify-center w-12 h-12 rounded-2xl
                     transition-all duration-300 ease-out
                     transform hover:scale-110 active:scale-95

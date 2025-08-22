@@ -59,7 +59,7 @@ const Section4 = () => {
       excerpt:
         "Khám phá cách USide tích hợp AI để cải thiện trải nghiệm người dùng.",
       category: "technology",
-      image: "/images_uside/Coin-unscreen.gif",
+      image: "/images_uside/pet_cloud_uside.png",
       author: "AI Team",
       tags: ["AI", "Machine Learning", "Innovation"],
     },
@@ -70,7 +70,7 @@ const Section4 = () => {
       excerpt:
         "Sự kiện công nghệ lớn nhất năm với những chuyên gia hàng đầu trong ngành.",
       category: "event",
-      image: "/images_uside/hero-unscreen.gif",
+      image: "/images_uside/pet_cloud_uside.png",
       author: "Event Team",
       tags: ["Conference", "Networking", "Learning"],
     },

@@ -150,7 +150,7 @@ const AboutPage: React.FC = () => {
             {/* Bridge Connection - Flowing transition to next section */}
             <div className="relative mt-16 mb-0">
               {/* Flow path container */}
-              <div className="relative h-96 overflow-visible">
+              <div className="relative h-78 overflow-visible">
                 {/* Curved flow path SVG */}
                 <svg 
                   className="absolute inset-0 w-full h-full pointer-events-none" 
@@ -267,7 +267,7 @@ const AboutPage: React.FC = () => {
             {/* Left Side - Title and Description */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <h2 className="text-4xl lg:text-5xl font-bold text-text-primary leading-tight">
+                <h2 className="xs:text-[26px] lg:text-4xl font-bold text-text-primary leading-tight">
                   Tại sao <span className="bg-gradient-to-r from-accent to-[#3aefc4] bg-clip-text text-transparent">USIDE</span>
                   <br />Xuất hiện?
                 </h2>
@@ -279,7 +279,7 @@ const AboutPage: React.FC = () => {
 
               {/* Wireframe Illustration */}
               <div className="relative">
-                <div className="w-80 h-64 relative">
+                <div className="lg:w-80 xs:w-88 h-64 relative">
                   {/* Neumorphic container */}
                   <div className="absolute inset-0 rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.2)]"></div>
                   

@@ -8,6 +8,7 @@ import {
   NewsDetailPage,
   ContactPage 
 } from './pages';
+import NotFoundPage from './pages/NotFoundPage';
 import { RobotImageLoader, FloatingMusicControl } from './components/ui';
 import { useAppLoading } from './hooks';
 import { MusicProvider } from './contexts/MusicContext';
@@ -46,6 +47,8 @@ const App: React.FC = () => {
               <Route path="/tin-tuc" element={<NewsPage />} />
               <Route path="/tin-tuc/:id" element={<NewsDetailPage />} />
               <Route path="/lien-he" element={<ContactPage />} />
+              {/* Route 404 */}
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Router>
           

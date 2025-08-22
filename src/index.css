@@ -130,6 +130,51 @@ body {
   cursor: not-allowed;
 }
 
+.neumorphic-nav {
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  letter-spacing: 1px;
+
+  background: var(--color-accent);
+  border-radius: 12px;
+
+  /* Inner neumorphic shadow only */
+  box-shadow:
+    inset -6px -6px 12px rgba(22, 17, 29, 0.15),
+    inset 4px 4px 8px #FAFBFF;
+  /* Subtle border */
+  border: 1px solid var(--color-background);
+
+  /* Animation */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  @media (max-width: 768px) {
+    padding: 12px 24px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 20px;
+    font-size: 11px;
+    border-radius: 10px;
+  }
+}
+
+.neumorphic-hover:hover {
+  box-shadow:
+    inset -6px -6px 12px rgba(22, 17, 29, 0.15),
+    inset 4px 4px 8px #FAFBFF;
+  color: var(--color-accent);
+}
+
 /* Header Neumorphic Styles */
 .header {
   transition: all 0.3s ease;
@@ -2307,28 +2352,28 @@ body {
 *::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb-color);
   border-radius: 10px;
-  box-shadow: 
+  box-shadow:
     0 0 8px color-mix(in srgb, var(--color-accent) 40%, transparent),
-    inset -2px -2px 4px rgba(255,255,255,0.3), 
-    inset 2px 2px 4px rgba(0,0,0,0.1);
+    inset -2px -2px 4px rgba(255, 255, 255, 0.3),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 *::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-color);
-  box-shadow: 
+  box-shadow:
     0 0 12px color-mix(in srgb, var(--color-accent) 60%, transparent),
-    inset -2px -2px 4px rgba(255,255,255,0.4), 
-    inset 2px 2px 4px rgba(0,0,0,0.15);
+    inset -2px -2px 4px rgba(255, 255, 255, 0.4),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.15);
   transform: scale(1.1);
 }
 
 *::-webkit-scrollbar-thumb:active {
   background: var(--scrollbar-thumb-color);
-  box-shadow: 
+  box-shadow:
     0 0 15px color-mix(in srgb, var(--color-accent) 80%, transparent),
-    inset -1px -1px 2px rgba(255,255,255,0.2), 
-    inset 1px 1px 2px rgba(0,0,0,0.2);
+    inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 *::-webkit-scrollbar-corner {
@@ -2355,35 +2400,38 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: linear-gradient(45deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 80%, #fff));
   border-radius: 15px;
-  box-shadow: 
+  box-shadow:
     0 0 12px color-mix(in srgb, var(--color-accent) 50%, transparent),
-    inset -3px -3px 6px rgba(255,255,255,0.4), 
-    inset 3px 3px 6px rgba(0,0,0,0.1);
+    inset -3px -3px 6px rgba(255, 255, 255, 0.4),
+    inset 3px 3px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 body::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 90%, #fff));
-  box-shadow: 
+  box-shadow:
     0 0 20px color-mix(in srgb, var(--color-accent) 70%, transparent),
-    inset -3px -3px 6px rgba(255,255,255,0.5), 
-    inset 3px 3px 6px rgba(0,0,0,0.15);
+    inset -3px -3px 6px rgba(255, 255, 255, 0.5),
+    inset 3px 3px 6px rgba(0, 0, 0, 0.15);
   transform: scale(1.05);
 }
 
 /* Scrollbar Animation */
 @keyframes scrollbarGlow {
-  0%, 100% {
-    box-shadow: 
+
+  0%,
+  100% {
+    box-shadow:
       0 0 8px color-mix(in srgb, var(--color-accent) 40%, transparent),
-      inset -2px -2px 4px rgba(255,255,255,0.3), 
-      inset 2px 2px 4px rgba(0,0,0,0.1);
+      inset -2px -2px 4px rgba(255, 255, 255, 0.3),
+      inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
+
   50% {
-    box-shadow: 
+    box-shadow:
       0 0 15px color-mix(in srgb, var(--color-accent) 60%, transparent),
-      inset -2px -2px 4px rgba(255,255,255,0.4), 
-      inset 2px 2px 4px rgba(0,0,0,0.15);
+      inset -2px -2px 4px rgba(255, 255, 255, 0.4),
+      inset 2px 2px 4px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -2413,4 +2461,31 @@ body::-webkit-scrollbar-thumb:hover {
 .color-grid::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
   box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent) 60%, transparent);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* neumorphic shadows */
+.drop-shadow-neumorphic {
+  box-shadow: 8px 8px 16px #c9c9c9, -8px -8px 16px #ffffff;
+}
+
+.shadow-neumorphic {
+  box-shadow: 8px 8px 16px #c9c9c9, -8px -8px 16px #ffffff;
+}
+
+.shadow-neumorphic-inset {
+  box-shadow: inset 8px 8px 16px #c9c9c9, inset -8px -8px 16px #ffffff;
 }

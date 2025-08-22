@@ -937,7 +937,7 @@ const DirectionDetailPage: React.FC = () => {
 
           <div className="starter mb-8">
             <div
-              className="p-6 sm:p-8 rounded-3xl text-center transform transition-all duration-700 ease-in-out animate-fade-in-up"
+              className="p-4 lg:p-8 rounded-3xl text-center transform transition-all duration-700 ease-in-out animate-fade-in-up"
               style={{
                 background: "var(--color-background)",
                 boxShadow: `
@@ -971,13 +971,13 @@ const DirectionDetailPage: React.FC = () => {
               {!hasStartedQuiz ? (
                 <div className="flex justify-center">
                   <button
-                  onClick={handleStartQuiz}
-                  className={`
+                    onClick={handleStartQuiz}
+                    className={`
                     neumorphic-button
                   `}
-                >
-                  🚀 Bắt đầu ngay
-                </button>
+                  >
+                    🚀 Bắt đầu ngay
+                  </button>
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-3">
@@ -1005,7 +1005,7 @@ const DirectionDetailPage: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-8 animate-fade-in">
               {/* Question */}
               <div
-                className="p-6 sm:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-left"
+                className="p-4 lg:p-8 rounded-3xl transform transition-all duration-700 ease-in-out animate-slide-in-left"
                 style={{
                   background: "var(--color-background)",
                   boxShadow: `
@@ -1060,7 +1060,7 @@ const DirectionDetailPage: React.FC = () => {
                 </div>
 
                 <h2
-                  className="text-xl sm:text-2xl font-bold mb-6"
+                  className="lg:text-2xl xs:text-xl font-bold mb-6"
                   style={{ color: "var(--color-text-primary)" }}
                 >
                   {currentQuestion.question}
@@ -1074,7 +1074,7 @@ const DirectionDetailPage: React.FC = () => {
                       onClick={() => handleOptionSelect(option.id)}
                       disabled={showResult}
                       className={`
-                      w-full p-4 rounded-2xl text-left transition-all duration-500
+                      w-full lg:p-4 p-3 rounded-2xl text-left transition-all duration-500
                       transform hover:scale-[1.02] active:scale-98 animate-fade-in-up
                       ${selectedOption === option.id ? "ring-2" : ""}
                       ${
@@ -1344,7 +1344,9 @@ const DirectionDetailPage: React.FC = () => {
                             ][i],
                           }}
                         >
-                          🎆
+                          <span>
+                            <PiShootingStarBold />
+                          </span>
                         </div>
                       </div>
                     ))}
@@ -1387,21 +1389,20 @@ const DirectionDetailPage: React.FC = () => {
                     `,
                     }}
                   />
-
                   <div
-                    className="text-8xl mb-6 animate-bounce relative z-10"
+                    className="lg:text-8xl xs:text-4xl mb-6 animate-bounce relative z-10"
                     style={{ color: "var(--color-accent)" }}
                   >
                     🎉
                   </div>
                   <h3
-                    className="text-2xl sm:text-3xl font-bold mb-4"
+                    className="text-xl lg:text-3xl font-bold mb-4"
                     style={{ color: "var(--color-text-primary)" }}
                   >
                     Chúc mừng! Bạn đã hoàn thành quiz
                   </h3>
                   <div
-                    className="p-6 rounded-2xl mb-6"
+                    className="lg:p-6 xs:p-4 rounded-2xl mb-6"
                     style={{
                       background: "var(--color-background)",
                       boxShadow: `
@@ -1411,7 +1412,7 @@ const DirectionDetailPage: React.FC = () => {
                     }}
                   >
                     <p
-                      className="text-lg leading-relaxed mb-4"
+                      className="lg:text-lg xs:text-base leading-relaxed mb-4"
                       style={{ color: "var(--color-text-secondary)" }}
                     >
                       Cảm ơn bạn đã dành thời gian khám phá lĩnh vực{" "}
@@ -1432,22 +1433,14 @@ const DirectionDetailPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <div className="flex flex-col lg:flex-row gap-4 justify-center">
                     <button
                       onClick={handleRestartQuiz}
                       className={`
-                        px-6 py-3 rounded-xl font-medium text-white
-                        transition-all duration-300 transform hover:scale-105 active:scale-95
+                        neumorphic-button
                       `}
-                      style={{
-                        background: "var(--color-accent)",
-                        boxShadow: `
-                          6px 6px 12px var(--color-shadow),
-                          -6px -6px 12px rgba(255,255,255,0.1)
-                        `,
-                      }}
                     >
-                      🔄 Làm lại quiz
+                      Làm lại quiz
                     </button>
 
                     <button
@@ -1458,13 +1451,9 @@ const DirectionDetailPage: React.FC = () => {
                       style={{
                         color: "var(--color-text-primary)",
                         background: "var(--color-background)",
-                        boxShadow: `
-                          6px 6px 12px var(--color-shadow),
-                          -6px -6px 12px #FAFBFF
-                        `,
                       }}
                     >
-                      🏠 Về trang định hướng
+                      Về trang định hướng
                     </button>
                   </div>
                 </div>
