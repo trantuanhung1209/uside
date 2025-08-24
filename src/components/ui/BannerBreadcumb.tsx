@@ -46,7 +46,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
           ></div>
         </div>
 
-        <div className="breadcrumb-container relative z-1 lg:mb-8 lg:px-6 lg:py-4 xs:mb-4 xs:px-3 xs:py-2 bg-background/10 backdrop-blur-md rounded-2xl border border-border shadow-2xl transform hover:scale-105 transition-all duration-300 xs:scale-70 xs:hover:scale-72">
+        <div className="breadcrumb-container relative z-1 lg:mb-8 lg:px-6 lg:py-4 xs:mb-4 xs:px-3 xs:py-2 bg-background/10 backdrop-blur-md rounded-2xl border border-border shadow-2xl transform hover:scale-105 transition-all duration-300 xs:scale-70 xs:hover:scale-72 lg:scale-100 lg:hover:scale-105">
           <nav className="breadcrumb flex items-center lg:gap-4 lg:text-lg xs:text-base xs:gap-2">
             <NavLink
               to="/"

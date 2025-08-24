@@ -215,7 +215,6 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
             <div
               className={`
               w-full h-full flex items-center justify-center
-              bg-accent opacity-20
               group-hover:opacity-30 transition-opacity duration-300
             `}
             >
@@ -223,10 +222,10 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
                 className={`
                 text-4xl sm:text-5xl lg:text-6xl opacity-50 group-hover:opacity-70 
                 transition-all duration-300
-                ${isHovered ? "animate-pulse scale-110" : ""}
+                ${isHovered ? "animate-pulse scale-101" : ""}
               `}
               >
-                {career.icon}
+                <img src={career.image} alt={career.title} className="object-cover"/>
               </div>
             </div>
 

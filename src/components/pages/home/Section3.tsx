@@ -306,7 +306,7 @@ const Section3: React.FC = () => {
 
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-16 h-16 lg:w-20 lg:h-20 bg-accent/10 rounded-full blur-xl" />
-      <div className="absolute bottom-0 right-0 w-24 h-24 lg:w-32 lg:h-32 bg-accent/10 rounded-full blur-xl" />
+      <div className="absolute bottom-0 right-1/2 w-24 h-24 lg:w-32 lg:h-32 bg-accent/10 rounded-full blur-xl" />
 
       {/* Background particles */}
       <div className="absolute inset-0 z-[-1] hidden lg:block">

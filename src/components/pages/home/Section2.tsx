@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAccentColor } from "../../../hooks/useAccentColor";
 import Title from "../../ui/Title";
 import { PiShootingStarBold } from "react-icons/pi";
@@ -6,46 +7,50 @@ import { PiShootingStarBold } from "react-icons/pi";
 export default function Section2() {
   const [shuffleKey, setShuffleKey] = useState(0);
   const { currentAccentColor } = useAccentColor();
+  const navigate = useNavigate();
 
-  // Data cho các cards - sử dụng state để có thể shuffle
+  // Data cho các cards - giới thiệu về team USide
   const [cardData, setCardData] = useState([
     {
       id: 1,
-      title: "Dịch vụ tư vấn",
+      title: "💻 Code Wizards",
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Team dev đam mê công nghệ, chuyên React, Node.js, và những tech stack hot nhất. Chúng mình không chỉ code mà còn tạo ra những trải nghiệm người dùng tuyệt vời! 🚀",
     },
     {
       id: 2,
-      title: "Giải pháp công nghệ",
+      title: "🎨 Design Thinkers",
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "UI/UX designers sáng tạo, luôn đặt user experience lên hàng đầu. Từ wireframe đến prototype, mọi detail đều được chăm chút kỹ lưỡng để tạo nên giao diện đẹp mắt và dễ sử dụng! ✨",
     },
     {
       id: 3,
-      title: "Hỗ trợ 24/7",
+      title: "🤖 Tech Innovators",
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Không ngừng học hỏi và áp dụng công nghệ mới: AI, IoT, Cloud Computing. Team mình luôn tìm kiếm những giải pháp innovative để giải quyết vấn đề thực tế! 🔥",
     },
     {
       id: 4,
-      title: "Đào tạo chuyên nghiệp",
+      title: "🎯 Dream Makers",
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Từ ý tưởng nhỏ đến sản phẩm hoàn chỉnh, chúng mình biến những giấc mơ thành hiện thực. Mỗi dự án đều mang dấu ấn riêng và tình yêu của cả team! 💝",
     },
   ]);
 
   const centerCard = {
     id: 5,
-    title: "Tầm nhìn & Sứ mệnh",
+    title: "🌟 USide Team",
     content:
-      "Chúng tôi cam kết mang đến những giải pháp tối ưu nhất cho khách hàng thông qua công nghệ tiên tiến và dịch vụ chuyên nghiệp.",
+      "Nhóm sinh viên đam mê công nghệ, cùng nhau tạo nên những sản phẩm digital độc đáo. Muốn biết thêm về câu chuyện của chúng mình? Click để khám phá! 👥✨",
     isCenter: true,
   };
 
   const handleCardClick = (cardId: number) => {
-    if (cardId !== 5) {
-      // Không shuffle nếu click vào card giữa
+    if (cardId === 5) {
+      // Click vào center card -> điều hướng đến trang About
+      navigate('/gioi-thieu');
+    } else {
+      // Click vào các card khác -> shuffle
       setShuffleKey((prev) => prev + 1);
       // Xáo trộn mảng cardData
       const shuffledData = [...cardData].sort(() => Math.random() - 0.5);
@@ -57,8 +62,8 @@ export default function Section2() {
       <section className="section-2 py-10 sm:py-[40px] lg:py-[60px] border-b border-border">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Title
-            title="Giới thiệu về chúng tôi"
-            desc=""
+            title="Gặp gỡ Team USide"
+            desc="Nhóm sinh viên đam mê công nghệ, cùng nhau tạo nên những sản phẩm digital đầy cảm hứng!"
             link="gioi-thieu"
           />
 
@@ -69,11 +74,11 @@ export default function Section2() {
               <div className="grid grid-cols-1 gap-4 sm:gap-6 md:hidden">
                 {/* Center Card First on Mobile */}
                 <div
-                  className="relative cursor-pointer transition-all duration-300 hover:scale-105 order-first"
+                  className="relative cursor-pointer transition-all duration-300 hover:scale-105 order-first group"
                   onClick={() => handleCardClick(centerCard.id)}
                 >
                   <div
-                    className="p-6 rounded-2xl flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[200px]"
+                    className="p-6 rounded-2xl flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[200px] group-hover:shadow-lg"
                     style={{
                       background: `linear-gradient(135deg, ${currentAccentColor}15, ${currentAccentColor}25)`,
                       boxShadow:
@@ -82,7 +87,7 @@ export default function Section2() {
                   >
                     {/* Center decoration */}
                     <div
-                      className="w-16 h-16 rounded-full mb-4 flex items-center justify-center"
+                      className="w-16 h-16 rounded-full mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
                       style={{
                         background: `linear-gradient(135deg, ${currentAccentColor}, #3aefc4)`,
                         boxShadow:
@@ -98,6 +103,11 @@ export default function Section2() {
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {centerCard.content}
                     </p>
+
+                    {/* Call to Action hint */}
+                    <div className="mt-3 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Click để tìm hiểu thêm! →
+                    </div>
 
                     {/* Bottom decoration */}
                     <div className="mt-4 flex gap-2">
@@ -209,11 +219,11 @@ export default function Section2() {
                 <div className="flex flex-col gap-6">
                   {/* Center Card */}
                   <div
-                    className="relative cursor-pointer transition-all duration-300 hover:scale-105"
+                    className="relative cursor-pointer transition-all duration-300 hover:scale-105 group"
                     onClick={() => handleCardClick(centerCard.id)}
                   >
                     <div
-                      className="p-6 rounded-3xl flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[240px]"
+                      className="p-6 rounded-3xl flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[240px] group-hover:shadow-lg"
                       style={{
                         background: `linear-gradient(135deg, ${currentAccentColor}15, ${currentAccentColor}25)`,
                         boxShadow:
@@ -221,7 +231,7 @@ export default function Section2() {
                       }}
                     >
                       <div
-                        className="w-16 h-16 rounded-full mb-4 flex items-center justify-center"
+                        className="w-16 h-16 rounded-full mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
                         style={{
                           background: `linear-gradient(135deg, ${currentAccentColor}, #3aefc4)`,
                           boxShadow:
@@ -237,6 +247,11 @@ export default function Section2() {
                       <p className="text-gray-600 text-sm leading-relaxed">
                         {centerCard.content}
                       </p>
+
+                      {/* Call to Action hint */}
+                      <div className="mt-3 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Click để tìm hiểu thêm! →
+                      </div>
 
                       <div className="mt-4 flex gap-2">
                         <div 
@@ -370,11 +385,11 @@ export default function Section2() {
 
                 {/* Center Card - Occupies middle position */}
                 <div
-                  className="relative transition-all duration-300 "
+                  className="relative transition-all duration-300 cursor-pointer group"
                   onClick={() => handleCardClick(centerCard.id)}
                 >
                   <div
-                    className="p-6 rounded-3xl h-full flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[440px]"
+                    className="p-6 rounded-3xl h-full flex flex-col justify-center items-center text-center transition-all duration-300 min-h-[440px] group-hover:shadow-xl"
                     style={{
                       background: `linear-gradient(135deg, ${currentAccentColor}15, ${currentAccentColor}25)`,
                       boxShadow:
@@ -383,7 +398,7 @@ export default function Section2() {
                   >
                     {/* Center decoration */}
                     <div
-                      className="w-20 h-20 rounded-full mb-6 flex items-center justify-center"
+                      className="w-20 h-20 rounded-full mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
                       style={{
                         background: `linear-gradient(135deg, ${currentAccentColor}, #3aefc4)`,
                         boxShadow:
@@ -399,6 +414,11 @@ export default function Section2() {
                     <p className="text-gray-600 leading-relaxed">
                       {centerCard.content}
                     </p>
+
+                    {/* Call to Action hint */}
+                    <div className="mt-4 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      👆 Click để khám phá team USide!
+                    </div>
 
                     {/* Bottom decoration */}
                     <div className="mt-6 flex gap-2">
@@ -477,10 +497,15 @@ export default function Section2() {
                 </div>
               </div>
 
-              {/* Shuffle hint */}
-              {/* <div className="text-center mt-8">
-                <p className="text-gray-500 text-sm">💡 Click vào bất kỳ card nào (trừ card giữa) để xáo trộn bố cục</p>
-              </div> */}
+              {/* Interaction hints */}
+              <div className="text-center mt-8 space-y-2">
+                <p className="text-gray-500 text-sm">
+                  ✨ Click vào <span className="text-accent font-medium">"USide Team"</span> để tìm hiểu thêm về chúng mình
+                </p>
+                <p className="text-gray-400 text-xs">
+                  💡 Hoặc click các cards khác để xáo trộn bố cục
+                </p>
+              </div>
             </div>
           </div>
         </div>

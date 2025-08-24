@@ -33,7 +33,7 @@ const careerPaths: CareerPath[] = [
     title: "Software Tester",
     description:
       "Chuyên gia kiểm thử phần mềm, đảm bảo chất lượng và hiệu suất của các ứng dụng.",
-    image: "/images_uside/career_software_tester.png",
+    image: "/images_uside/tester.jpg",
     icon: "🔍",
     skills: [
       "Manual Testing",
@@ -49,7 +49,7 @@ const careerPaths: CareerPath[] = [
     title: "Web Developer",
     description:
       "Phát triển các ứng dụng web hiện đại với công nghệ tiên tiến.",
-    image: "/images_uside/career_web_developer.png",
+    image: "/images_uside/web_dev.jpg",
     icon: "💻",
     skills: ["HTML/CSS", "JavaScript", "React/Vue", "Node.js", "Database"],
     opportunities: "Cơ hội việc làm đa dạng từ startup đến tập đoàn lớn.",
@@ -59,7 +59,7 @@ const careerPaths: CareerPath[] = [
     id: "app-developer",
     title: "App Developer",
     description: "Tạo ra các ứng dụng di động sáng tạo cho iOS và Android.",
-    image: "/images_uside/career_app_developer.png",
+    image: "/images_uside/dev_app.jpg",
     icon: "📱",
     skills: ["React Native", "Flutter", "Swift", "Kotlin", "UI/UX Design"],
     opportunities:
@@ -70,7 +70,7 @@ const careerPaths: CareerPath[] = [
     id: "designer",
     title: "UI/UX Designer",
     description: "Thiết kế trải nghiệm người dùng trực quan và thân thiện.",
-    image: "/images_uside/career_ui_ux_designer.png",
+    image: "/images_uside/ui_ux.jpg",
     icon: "🎨",
     skills: ["Figma", "Adobe Creative Suite", "User Research", "Prototyping"],
     opportunities:
@@ -78,58 +78,58 @@ const careerPaths: CareerPath[] = [
     gradient: "from-pink-400 to-red-500",
   },
   {
-    id: "data-scientist",
-    title: "Data Scientist",
+    id: "project-management",
+    title: "Project Manager",
     description:
-      "Phân tích dữ liệu lớn để tạo ra những insights có giá trị cho doanh nghiệp.",
-    image: "/images_uside/career_data_scientist.png",
-    icon: "📊",
+      "Quản lý dự án hiệu quả, đảm bảo tiến độ, ngân sách và chất lượng sản phẩm.",
+    image: "/images_uside/pm.jpg",
+    icon: "📈",
     skills: [
-      "Python/R",
-      "Machine Learning",
-      "Statistics",
-      "Data Visualization",
+      "Project Planning",
+      "Agile/Scrum",
+      "Risk Management",
+      "Leadership",
+      "Communication",
     ],
-    opportunities: "Một trong những ngành hot nhất với mức lương hấp dẫn.",
+    opportunities:
+      "Nhu cầu cao trong các công ty phát triển phần mềm, tư vấn và dịch vụ toàn cầu.",
     gradient: "from-cyan-400 to-blue-500",
   },
   {
-    id: "devops-engineer",
-    title: "DevOps Engineer",
+    id: "business-analyst",
+    title: "Business Analyst",
     description:
-      "Kết nối phát triển và vận hành, tự động hóa quy trình triển khai.",
-    image: "/images_uside/career_devops_engineer.png",
-    icon: "⚙️",
-    skills: ["Docker", "Kubernetes", "AWS/Azure", "CI/CD", "Linux"],
+      "Phân tích yêu cầu, tối ưu hóa quy trình và làm cầu nối giữa khách hàng và đội kỹ thuật.",
+    image: "/images_uside/it_ba.jpg",
+    icon: "📊",
+    skills: [
+      "Requirement Analysis",
+      "Process Modeling",
+      "SQL/Data Analysis",
+      "Documentation",
+      "Communication",
+    ],
     opportunities:
-      "Nhu cầu cao trong thời đại cloud computing và microservices.",
+      "Được săn đón trong các doanh nghiệp đang chuyển đổi số và mở rộng quy mô.",
     gradient: "from-orange-400 to-red-500",
   },
   {
-    id: "cybersecurity",
-    title: "Cybersecurity Specialist",
-    description: "Bảo vệ hệ thống và dữ liệu khỏi các mối đe dọa an ninh mạng.",
-    image: "/images_uside/career_cybersecurity.png",
-    icon: "🛡️",
+    id: "product-designer",
+    title: "Product Designer",
+    description:
+      "Thiết kế sản phẩm số với trải nghiệm người dùng tối ưu và giao diện đẹp mắt.",
+    image: "/images_uside/product_designer.jpg",
+    icon: "🎨",
     skills: [
-      "Network Security",
-      "Penetration Testing",
-      "Incident Response",
-      "Risk Assessment",
+      "User Research",
+      "Prototyping",
+      "Visual Design",
+      "Interaction Design",
+      "Design Thinking",
     ],
     opportunities:
-      "Lĩnh vực quan trọng với sự phát triển mạnh mẽ của công nghệ.",
+      "Nhu cầu cao trong các công ty công nghệ, startup sáng tạo và sản phẩm số toàn cầu.",
     gradient: "from-red-400 to-pink-500",
-  },
-  {
-    id: "blockchain-developer",
-    title: "Blockchain Developer",
-    description: "Phát triển các ứng dụng phi tập trung và smart contracts.",
-    image: "/images_uside/career_blockchain_developer.png",
-    icon: "⛓️",
-    skills: ["Solidity", "Web3.js", "Smart Contracts", "DeFi", "NFTs"],
-    opportunities: "Công nghệ tương lai với nhiều cơ hội đột phá.",
-    gradient: "from-yellow-400 to-orange-500",
   },
 ];
 
@@ -424,7 +424,10 @@ const DirectionPage: React.FC = () => {
             style={{ borderColor: "var(--color-border)" }}
           >
             <div className="text-center mb-8">
-              <Title title="Bài viết liên quan" desc="Khám phá thêm những thông tin hữu ích về ngành công nghệ" />
+              <Title
+                title="Bài viết liên quan"
+                desc="Khám phá thêm những thông tin hữu ích về ngành công nghệ"
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

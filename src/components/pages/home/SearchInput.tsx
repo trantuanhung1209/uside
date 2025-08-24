@@ -99,6 +99,8 @@ const SearchInput = () => {
             setNewsSuggestions([]);
           }
         }}
+        onFocus={() => setShowPopup(true)}
+        onClick={() => setShowPopup(true)}
         placeholder={"Tìm kiếm..."}
         className="search-input w-full px-5 xs:py-1 lg:py-2 xs:text-base bg-transparent rounded-xl focus:outline-none transition-all duration-300"
         style={{
@@ -115,7 +117,13 @@ const SearchInput = () => {
           background:
             "linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)",
         }}
-        onClick={handleSearch}
+        onClick={() => {
+          if (searchValue.trim()) {
+            handleSearch();
+          } else {
+            setShowPopup(true);
+          }
+        }}
       >
         <svg
           className="w-5 h-5 text-white"
