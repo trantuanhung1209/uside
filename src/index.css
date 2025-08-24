@@ -15,6 +15,7 @@ body {
   --color-accent: #00d2ff;
   /* xanh cyan (accent, hover, active) */
   --color-background: #f0f1f4;
+  --color-background-secondary: #cbd5e1;
   /* màu nền chính */
   --color-text-primary: #1f1f1f;
   /* màu chữ chính */
@@ -652,17 +653,6 @@ body {
 }
 
 /* Animation Loop Section Styles */
-@keyframes carousel-scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-2844px);
-    /* 9 items * 316px (300px width + 16px gap) */
-  }
-}
-
 .animation-track {
   will-change: transform;
 }
@@ -761,118 +751,6 @@ body {
 
   50% {
     transform: translateY(-20px);
-  }
-}
-
-@keyframes robotBob {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  25% {
-    transform: translateY(-10px) rotate(-1deg);
-  }
-
-  50% {
-    transform: translateY(-15px) rotate(0deg);
-  }
-
-  75% {
-    transform: translateY(-10px) rotate(1deg);
-  }
-}
-
-@keyframes robotSway {
-
-  0%,
-  100% {
-    transform: translateX(0px) rotate(0deg);
-  }
-
-  25% {
-    transform: translateX(-5px) rotate(-2deg);
-  }
-
-  50% {
-    transform: translateX(0px) rotate(0deg);
-  }
-
-  75% {
-    transform: translateX(5px) rotate(2deg);
-  }
-}
-
-@keyframes robotGlow {
-
-  0%,
-  100% {
-    filter: brightness(1) drop-shadow(0 0 10px rgba(0, 210, 255, 0.3));
-  }
-
-  50% {
-    filter: brightness(1.2) drop-shadow(0 0 20px rgba(0, 210, 255, 0.6));
-  }
-}
-
-@keyframes particleFloat {
-  0% {
-    transform: translateY(0px) scale(1);
-    opacity: 0.3;
-  }
-
-  50% {
-    transform: translateY(-30px) scale(1.2);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: translateY(-60px) scale(0.8);
-    opacity: 0;
-  }
-}
-
-@keyframes robotEyeBlink {
-
-  0%,
-  90%,
-  100% {
-    transform: scaleY(1);
-  }
-
-  95% {
-    transform: scaleY(0.1);
-  }
-}
-
-/* Robot Music Button Ripple Effect */
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 0.8;
-  }
-
-  50% {
-    opacity: 0.4;
-  }
-
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
-}
-
-/* Robot Button Hover Glow Animation */
-@keyframes robotButtonGlow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-  }
-
-  50% {
-    box-shadow: 0 0 40px rgba(0, 210, 255, 0.4), 0 0 60px rgba(58, 239, 196, 0.3);
   }
 }
 
@@ -1367,18 +1245,6 @@ body {
   }
 }
 
-@keyframes gradient-x {
-
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
 /* Floating dots animation */
 @keyframes floatUp {
   0% {
@@ -1851,21 +1717,6 @@ body {
   }
 }
 
-
-@keyframes thoughtPulse {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-
-  50% {
-    transform: scale(3);
-    opacity: 1;
-  }
-}
-
 /* Typewriter Effect Styles */
 .typewriter-text {
   display: inline;
@@ -2011,23 +1862,6 @@ body {
   animation: separatorBlink 2s ease-in-out infinite;
 }
 
-/* Glow background effect - smaller and subtle */
-.clock-glow {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: radial-gradient(ellipse at center,
-      color-mix(in srgb, var(--color-accent) 8%, transparent) 0%,
-      color-mix(in srgb, var(--color-accent) 3%, transparent) 50%,
-      transparent 100%);
-  border-radius: 15px;
-  z-index: 1;
-  filter: blur(8px);
-  animation: glowPulse 4s ease-in-out infinite alternate;
-}
-
 /* Reflection effect - smaller */
 .clock-reflection {
   position: absolute;
@@ -2087,19 +1921,6 @@ body {
   }
 }
 
-
-@keyframes popupSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.8);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 /* Weather Component Styles - Compact Neumorphic */
 .weather-container {
   perspective: 1000px;
@@ -2107,63 +1928,88 @@ body {
 
 .weather-wrapper {
   position: relative;
-  padding: 12px 15px;
-  background: var(--color-background);
-  border-radius: 12px;
-  min-width: 140px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: 16px;
+  min-width: 280px;
+  max-width: 320px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
-  /* Inner neumorphic shadow only */
+  /* Enhanced glass morphism effect */
   box-shadow:
-    inset -6px -6px 12px rgba(22, 17, 29, 0.15),
-    inset 6px 6px 12px #FAFBFF;
+    0 8px 32px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 0 0 1px rgba(255,255,255,0.1);
 
   /* Subtle border */
-  border: 1px solid rgba(224, 247, 250, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 
   /* Animation */
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-  /* Flexbox layout */
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .weather-wrapper:hover {
-  transform: translateY(-2px) scale(1.01);
+  transform: translateY(-3px) scale(1.02);
   box-shadow:
-    inset -8px -8px 16px rgba(22, 17, 29, 0.2),
-    inset 8px 8px 16px #FAFBFF,
-    0 0 15px color-mix(in srgb, var(--color-accent) 10%, transparent);
+    0 12px 40px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    0 0 0 1px rgba(255,255,255,0.2),
+    0 0 20px rgba(0, 210, 255, 0.1);
 }
 
 .weather-icon {
   font-size: 1.8rem;
   animation: weatherIconFloat 3s ease-in-out infinite alternate;
-  filter: drop-shadow(0 2px 4px rgba(0, 210, 255, 0.2));
-}
-
-.weather-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  filter: drop-shadow(0 2px 8px rgba(255,255,255,0.3));
 }
 
 .weather-temp {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-  text-shadow:
-    0 0 5px var(--color-accent),
-    0 0 10px var(--color-accent);
-  letter-spacing: 0.5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(255,255,255,0.3);
+  letter-spacing: -0.5px;
+}
+
+.weather-suggestion {
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.weather-suggestion:hover {
+  background: rgba(255,255,255,0.08) !important;
+  transform: translateY(-1px);
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+@keyframes weatherIconFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(2deg);
+  }
 }
 
 .weather-desc {
   font-size: 0.65rem;
-  color: var(--color-text-secondary);
-  font-weight: 600;
   text-transform: capitalize;
   margin-bottom: 2px;
   opacity: 0.8;
@@ -2254,67 +2100,6 @@ body {
   }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .weather-wrapper {
-    padding: 10px 12px;
-    min-width: 120px;
-    gap: 6px;
-  }
-
-  .weather-icon {
-    font-size: 1.5rem;
-  }
-
-  .weather-temp {
-    font-size: 1rem;
-  }
-
-  .weather-desc {
-    font-size: 0.65rem;
-  }
-
-  .humidity,
-  .city {
-    font-size: 0.6rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .weather-wrapper {
-    padding: 8px 10px;
-    min-width: 100px;
-    gap: 4px;
-  }
-
-  .weather-icon {
-    font-size: 1.3rem;
-  }
-
-  .weather-temp {
-    font-size: 0.9rem;
-  }
-
-  .weather-desc {
-    font-size: 0.6rem;
-  }
-
-  .humidity,
-  .city {
-    font-size: 0.55rem;
-  }
-}
-
 .section-neumorphic {
   background: var(--color-background);
   border-radius: 12px;
@@ -2330,17 +2115,21 @@ body {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Global Scrollbar Styles with Dynamic Accent Color */
+/* Global Scrollbar Styles */
 :root {
   --scrollbar-width: 8px;
   --scrollbar-track-color: var(--color-background);
-  --scrollbar-thumb-color: var(--color-accent);
 }
 
 /* Webkit Scrollbar Styles (Chrome, Safari, Edge) */
 *::-webkit-scrollbar {
   width: var(--scrollbar-width);
   height: var(--scrollbar-width);
+}
+
+/* Body has larger scrollbar */
+body::-webkit-scrollbar {
+  width: 12px;
 }
 
 *::-webkit-scrollbar-track {
@@ -2350,28 +2139,28 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-color);
+  background: var(--color-background-secondary);
   border-radius: 10px;
   box-shadow:
-    0 0 8px color-mix(in srgb, var(--color-accent) 40%, transparent),
+    0 0 8px color-mix(in srgb, var(--color-background-secondary) 40%, transparent),
     inset -2px -2px 4px rgba(255, 255, 255, 0.3),
     inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-color);
+  background: var(--color-background-secondary);
   box-shadow:
-    0 0 12px color-mix(in srgb, var(--color-accent) 60%, transparent),
+    0 0 12px color-mix(in srgb, var(--color-background-secondary) 60%, transparent),
     inset -2px -2px 4px rgba(255, 255, 255, 0.4),
     inset 2px 2px 4px rgba(0, 0, 0, 0.15);
   transform: scale(1.1);
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background: var(--scrollbar-thumb-color);
+  background: var(--color-background-secondary);
   box-shadow:
-    0 0 15px color-mix(in srgb, var(--color-accent) 80%, transparent),
+    0 0 15px color-mix(in srgb, var(--color-background-secondary) 80%, transparent),
     inset -1px -1px 2px rgba(255, 255, 255, 0.2),
     inset 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -2383,37 +2172,7 @@ body {
 /* Firefox Scrollbar Styles */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
-}
-
-/* Body scrollbar with special styling */
-body::-webkit-scrollbar {
-  width: 12px;
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--color-background);
-  border-radius: 15px;
-  box-shadow: inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.12);
-}
-
-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 80%, #fff));
-  border-radius: 15px;
-  box-shadow:
-    0 0 12px color-mix(in srgb, var(--color-accent) 50%, transparent),
-    inset -3px -3px 6px rgba(255, 255, 255, 0.4),
-    inset 3px 3px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 90%, #fff));
-  box-shadow:
-    0 0 20px color-mix(in srgb, var(--color-accent) 70%, transparent),
-    inset -3px -3px 6px rgba(255, 255, 255, 0.5),
-    inset 3px 3px 6px rgba(0, 0, 0, 0.15);
-  transform: scale(1.05);
+  scrollbar-color: var(--color-background-secondary) var(--scrollbar-track-color);
 }
 
 /* Scrollbar Animation */
@@ -2422,14 +2181,14 @@ body::-webkit-scrollbar-thumb:hover {
   0%,
   100% {
     box-shadow:
-      0 0 8px color-mix(in srgb, var(--color-accent) 40%, transparent),
+      0 0 8px color-mix(in srgb, var(--color-background-secondary) 40%, transparent),
       inset -2px -2px 4px rgba(255, 255, 255, 0.3),
       inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   50% {
     box-shadow:
-      0 0 15px color-mix(in srgb, var(--color-accent) 60%, transparent),
+      0 0 15px color-mix(in srgb, var(--color-background-secondary) 60%, transparent),
       inset -2px -2px 4px rgba(255, 255, 255, 0.4),
       inset 2px 2px 4px rgba(0, 0, 0, 0.15);
   }
@@ -2452,15 +2211,15 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .color-grid::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: var(--color-background-secondary);
   border-radius: 10px;
-  box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent) 40%, transparent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--color-background-secondary) 40%, transparent);
   transition: all 0.3s ease;
 }
 
 .color-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent) 60%, transparent);
+  background: var(--color-background-secondary);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-background-secondary) 60%, transparent);
 }
 
 @keyframes slideIn {
@@ -2489,3 +2248,4 @@ body::-webkit-scrollbar-thumb:hover {
 .shadow-neumorphic-inset {
   box-shadow: inset 8px 8px 16px #c9c9c9, inset -8px -8px 16px #ffffff;
 }
+

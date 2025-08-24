@@ -226,7 +226,7 @@ const ChangeAccentColor = () => {
           
           {/* Popup */}
           <div
-            className="fixed top-16 right-4 w-48 z-50"
+            className="fixed xs:top-[170px] lg:top-16 right-4 w-48 z-50"
             style={{
               animation: "popupSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
             }}

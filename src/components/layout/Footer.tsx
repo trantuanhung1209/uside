@@ -143,7 +143,7 @@ const Footer = () => {
       </div>
       {/* Floating particles */}
         <div className="absolute inset-0">
-          {[...Array(250)].map((_, i) => (
+          {[...Array(150)].map((_, i) => (
             <div
               key={i}
               className="absolute w-1 h-1 rounded-full animate-ping"

@@ -1,37 +1,17 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [showFoodSuggestions, setShowFoodSuggestions] = useState(false);
-  const [randomSuggestions, setRandomSuggestions] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const [searchHistory, setSearchHistory] = useState<string[]>(() =>
     JSON.parse(localStorage.getItem("searchHistory") || "[]")
   );
   const [newsSuggestions, setNewsSuggestions] = useState<
     { id: number; title: string }[]
-  >([]); 
+  >([]);
   const navigate = useNavigate();
-  const location = useLocation();
   const popupRef = useRef<HTMLDivElement>(null);
-
-  // Danh sách món ăn và đồ uống
-  const foodItems = useMemo(
-    () => [
-      "Phở bò Hà Nội 🍜",
-      "Bún chả Hà Nội 🍢",
-      "Bún bò Huế cay cay 🌶️",
-      "Pizza phô mai tan chảy 🍕",
-      "Sushi cá hồi tươi 🍣",
-      "Tokbokki bánh gạo cay 🔥",
-      "Pad Thái chua ngọt 🍤",
-      "Hamburger bò Mỹ 🍔",
-      "Dimsum Trung Hoa 🥢",
-      "Croissant bơ thơm 🥐",
-    ],
-    []
-  );
 
   const news = [
     { id: 1, title: "USide ra mắt phiên bản 2.0" },
@@ -42,7 +22,12 @@ const SearchInput = () => {
     { id: 6, title: "USide Tech Conference 2025" },
   ];
 
-  const plugins: { id: number; name: string; description: string; link: string }[] = [
+  const plugins: {
+    id: number;
+    name: string;
+    description: string;
+    link: string;
+  }[] = [
     {
       id: 1,
       name: "Tin tức",
@@ -94,23 +79,6 @@ const SearchInput = () => {
     setShowPopup(false);
   };
 
-  // Random gợi ý function
-  const randomizeFood = useCallback(() => {
-    const shuffled = [...foodItems].sort(() => Math.random() - 0.5);
-    setRandomSuggestions(shuffled.slice(0, 5));
-    setShowFoodSuggestions(true);
-  }, [foodItems]);
-
-  // Random khi load + auto 15s random lại, chỉ khi ở trang home
-  useEffect(() => {
-    if (location.pathname === "/") {
-      randomizeFood();
-      const interval = setInterval(randomizeFood, 15000); // mỗi 15s
-      return () => clearInterval(interval);
-    }
-    return undefined;
-  }, [location.pathname, randomizeFood]);
-
   return (
     <div className="relative w-full max-w-xs sm:max-w-sm flex items-center gap-2">
       <input
@@ -131,16 +99,8 @@ const SearchInput = () => {
             setNewsSuggestions([]);
           }
         }}
-        onFocus={() => {
-          setShowPopup(true);
-          if (location.pathname === "/") {
-            randomizeFood();
-          }
-        }}
-        placeholder={
-          location.pathname === "/" ? "Hôm nay ăn gì?" : "Tìm kiếm..."
-        }
-        className="search-input w-full px-5 py-3 bg-transparent rounded-xl focus:outline-none transition-all duration-300"
+        placeholder={"Tìm kiếm..."}
+        className="search-input w-full px-5 xs:py-1 lg:py-2 xs:text-base bg-transparent rounded-xl focus:outline-none transition-all duration-300"
         style={{
           color: "var(--color-text-primary)",
           boxShadow:
@@ -150,7 +110,7 @@ const SearchInput = () => {
 
       {/* Icon search */}
       <div
-        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg"
+        className="absolute right-3 top-1/2 transform -translate-y-1/2 lg:w-10 lg:h-10 w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg"
         style={{
           background:
             "linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)",
@@ -172,68 +132,28 @@ const SearchInput = () => {
         </svg>
       </div>
 
-      {/* Suggestions food chỉ hiện ở trang home */}
-      {location.pathname === "/" &&
-        showFoodSuggestions &&
-        randomSuggestions.length > 0 && (
-          <ul className="absolute left-[20px] top-[-75px] mt-2 w-full z-40 p-2 flex flex-col gap-2">
-            {randomSuggestions.slice(0, 1).map((item) => (
-              <li
-                key={item}
-                className="px-4 py-2 rounded-xl cursor-pointer font-semibold text-text-primary hover:text-accent"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() =>
-                  window.open(
-                    `https://www.google.com/search?q=${encodeURIComponent(
-                      item
-                    )}`,
-                    "_blank"
-                  )
-                }
-              >
-                {item}
-              </li>
-            ))}
-            <div className="inner-circle flex items-center justify-center absolute top-10 left-[-40px] xs:left-[-6%]">
-              {/* Thought bubbles với neumorphic style */}
-              <div className="relative">
-                {/* Bubble lớn nhất - gần blockquote nhất */}
-                <div className="absolute bottom-[-15px] left-[20px] w-4 h-4 section-neumorphic rounded-full border-gray-200 shadow-sm animate-float-slow"></div>
-
-                {/* Bubble trung bình */}
-                <div className="absolute bottom-[-30px] left-[15px] w-3 h-3 section-neumorphic rounded-full border-gray-200 shadow-sm animate-float-medium delay-300"></div>
-
-                {/* Bubble nhỏ nhất */}
-                <div className="absolute bottom-[-40px] left-[12px] w-2 h-2 section-neumorphic rounded-full border-gray-200 shadow-sm animate-float-fast delay-700"></div>
-              </div>
-            </div>
-          </ul>
-        )}
-
       {/* Popup Search */}
       {showPopup && (
         <div
           ref={popupRef}
-          className="absolute left-[-50px] top-[120%] mt-2 w-[320px] sm:w-[380px] z-50 section-neumorphic rounded-2xl shadow-lg p-4 flex flex-col gap-4"
+          className="absolute left-0 lg:left-[-50px] top-[120%] mt-2 w-[280px] lg:w-[380px] z-50 section-neumorphic rounded-2xl shadow-lg p-4 flex flex-col gap-4"
         >
           {/* Plugins */}
           <div>
             <h4 className="text-sm font-semibold mb-2">Plugin</h4>
             <div className="flex gap-2 flex-wrap">
-              {plugins.map(
-                (plugin) => (
-                  <button
-                    key={plugin.id}
-                    className="px-3 cursor-pointer py-2 rounded-xl bg-accent/10 text-accent font-medium text-sm hover:bg-accent hover:text-white transition"
-                    onClick={() => {
-                      setShowPopup(false);
-                      navigate(`/${plugin.link}`);
-                    }}
-                  >
-                    {plugin.name}
-                  </button>
-                )
-              )}
+              {plugins.map((plugin) => (
+                <button
+                  key={plugin.id}
+                  className="px-3 cursor-pointer py-2 rounded-xl bg-accent/10 text-accent font-medium text-sm hover:bg-accent hover:text-white transition"
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate(`/${plugin.link}`);
+                  }}
+                >
+                  {plugin.name}
+                </button>
+              ))}
             </div>
           </div>
 

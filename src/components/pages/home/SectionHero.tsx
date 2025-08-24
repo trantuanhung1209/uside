@@ -6,6 +6,7 @@ import Television from "./Television";
 import Clock from "./Clock";
 import Weather from "./Weather";
 import SearchInput from "./SearchInput";
+import Extensions from "./Extensions";
 
 const SectionHero = () => {
   const popupRef = useRef<HTMLDivElement>(null);
@@ -88,13 +89,13 @@ const SectionHero = () => {
 
         {/* Main Content */}
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center xs:flex-col xs:gap-[10px] xl:flex-row 5xl:justify-between pb-[20px] 3xl:justify-around relative">
+          <div className="flex items-center xs:flex-col xs:gap-[10px] xl:flex-row 4xl:justify-between pb-[20px] 3xl:justify-around relative">
             {/* Inner Quote */}
             <BlockQuote />
 
             {/* Right side buttons */}
-            <div className="relative z-2 inline-block xs:order-1 xs:w-full xs:scale-80 md:block md:w-[80%] xl:order-2 3xl:w-[50%] 4xl:w-[40%]">
-              <div className="flex items-center gap-2 border-gray-200 bg-background shadow-sm px-[20px] py-[8px] rounded-[20px] transition-all duration-300 hover:shadow-lg 5xl:scale-100 3xl:scale-95 2xl:scale-90 xl:scale-85">
+            <div className="relative z-2 xs:order-1 xs:w-full md:block md:w-[80%] xl:order-2 3xl:w-[50%] 4xl:w-[40%]">
+              <div className="flex items-center gap-2 border-gray-200 bg-background shadow-sm px-[10px] lg:px-[15px] lg:py-[6px] rounded-[20px] transition-all duration-300 hover:shadow-lg">
                 <div className="search-container relative group flex-1">
                   <div
                     className="search-wrapper relative rounded-2xl transition-all duration-300 "
@@ -186,90 +187,26 @@ const SectionHero = () => {
               </div>
             )}
           </div>
-          <div className="inner-wrap grid grid-cols-2 sm:gap-[40px] xs:grid-cols-1 xs:gap-[10px] 2xl:grid-cols-2 2xl:gap-[20px]">
-            <div className="inner-left relative order-2 xs:w-[90%] xs:scale-101 lg:w-[100%] lg:scale-100">
-              <SplineViewer
-                url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
-                className="w-full h-full"
-              />
-
-              {/* Robot overlay to hide Spline logo */}
-              <div className="absolute bottom-4 right-4 z-5 xs:scale-90 sm:scale-100 xs:bottom-[-16px] xs:right-[26%] xs:w-[20%] md:right-[15%] lg:right-[9%] xl:right-[5%] 2xl:bottom-[-20px] 2xl:right-[20%] 3xl:right-[20%] 4xl:right-[15%] 5xl:right-[10%]">
-                <div
-                  className="relative w-40 h-20 transition-all duration-300"
-                  style={{
-                    background: "var(--color-background)",
-                    borderRadius: "16px",
-                  }}
-                >
-                  {/* Robot Head */}
-                  <div
-                    className="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-xl"
-                    style={{
-                      background: "var(--color-primary)",
-                      boxShadow:
-                        "inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px rgba(22, 17, 29, 0.15)",
-                    }}
-                  >
-                    {/* Eyes */}
-                    <div className="absolute top-2 left-2 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                    <div
-                      className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.5s" }}
-                    ></div>
-                    {/* Mouth */}
-                    <div
-                      className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-1 rounded-full"
-                      style={{ background: "var(--color-accent)" }}
-                    ></div>
-                  </div>
-
-                  {/* Robot Body */}
-                  <div
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-8 rounded-lg"
-                    style={{
-                      background: "var(--color-secondary)",
-                      boxShadow:
-                        "inset -3px -3px 6px #FAFBFF, inset 3px 3px 6px rgba(22, 17, 29, 0.1)",
-                    }}
-                  >
-                    {/* Control Panel */}
-                    <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex gap-1">
-                      <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                      <div
-                        className="w-1 h-1 bg-yellow-400 rounded-full animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
-                      ></div>
-                      <div
-                        className="w-1 h-1 bg-red-400 rounded-full animate-pulse"
-                        style={{ animationDelay: "1s" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  {/* Hover effect */}
-                  <div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
-                    style={{
-                      background:
-                        "linear-gradient(45deg, var(--color-accent), #3aefc4)",
-                    }}
-                  ></div>
-
-                  {/* Floating particle effect */}
-                  <div
-                    className="absolute -top-1 -right-1 w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-opacity duration-300"
-                    style={{ background: "var(--color-accent)" }}
-                  ></div>
-                </div>
-              </div>
-
-              <Clock />
+          <div className="flex items-center justify-between bg-background pb-[40px]">
+            <div className="grid grid-cols-2 gap-4">
               <Weather />
+              <Extensions />
+            </div>
+            <Clock />
+          </div>
+          <div className="inner-wrap grid grid-cols-2 justify-between">
+            <div className="inner-left">
+              <Television />
             </div>
 
-            <div className="inner-right order-1">
-              <Television />
+            <div className="inner-right flex justify-end overflow-hidden relative">
+              <div className="pr-[470px] translate-y-[-80px]">
+                <SplineViewer
+                url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
+                className="w-0"
+              />
+              </div>
+              <div className="w-30 h-20 bg-background absolute bottom-20 left-0 z-10"></div>
             </div>
           </div>
         </div>
