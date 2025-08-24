@@ -15,7 +15,7 @@ export default function Section2() {
       id: 1,
       title: "💻 Code Wizards",
       content:
-        "Team dev đam mê công nghệ, chuyên React, Node.js, và những tech stack hot nhất. Chúng mình không chỉ code mà còn tạo ra những trải nghiệm người dùng tuyệt vời! 🚀",
+        "Team dev đam mê công nghệ. Chúng mình không chỉ code mà còn tạo ra những trải nghiệm người dùng tuyệt vời! 🚀",
     },
     {
       id: 2,
@@ -27,7 +27,7 @@ export default function Section2() {
       id: 3,
       title: "🤖 Tech Innovators",
       content:
-        "Không ngừng học hỏi và áp dụng công nghệ mới: AI, IoT, Cloud Computing. Team mình luôn tìm kiếm những giải pháp innovative để giải quyết vấn đề thực tế! 🔥",
+        "Luôn sẵn sàng học hỏi. Team mình không ngừng tìm kiếm giải pháp sáng tạo để giải quyết những thách thức thực tế! 🔥",
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ export default function Section2() {
   const handleCardClick = (cardId: number) => {
     if (cardId === 5) {
       // Click vào center card -> điều hướng đến trang About
-      navigate('/gioi-thieu');
+      navigate("/about");
     } else {
       // Click vào các card khác -> shuffle
       setShuffleKey((prev) => prev + 1);
@@ -64,7 +64,7 @@ export default function Section2() {
           <Title
             title="Gặp gỡ Team USide"
             desc="Nhóm sinh viên đam mê công nghệ, cùng nhau tạo nên những sản phẩm digital đầy cảm hứng!"
-            link="gioi-thieu"
+            link="about"
           />
 
           <div className="inner-wrap pt-6 sm:pt-8 lg:pt-12">
@@ -94,7 +94,9 @@ export default function Section2() {
                           "inset -6px -6px 12px rgba(255,255,255,0.2), inset 6px 6px 12px rgba(0,0,0,0.1)",
                       }}
                     >
-                      <div className="text-white text-xl font-bold"><PiShootingStarBold /></div>
+                      <div className="text-white text-xl font-bold">
+                        <PiShootingStarBold />
+                      </div>
                     </div>
 
                     <h3 className="text-xl font-bold mb-3 text-gray-800">
@@ -111,22 +113,22 @@ export default function Section2() {
 
                     {/* Bottom decoration */}
                     <div className="mt-4 flex gap-2">
-                      <div 
+                      <div
                         className="w-2 h-2 rounded-full animate-pulse"
                         style={{ backgroundColor: `${currentAccentColor}80` }}
                       ></div>
                       <div
                         className="w-2 h-2 rounded-full animate-pulse"
-                        style={{ 
+                        style={{
                           backgroundColor: `${currentAccentColor}60`,
-                          animationDelay: "0.5s" 
+                          animationDelay: "0.5s",
                         }}
                       ></div>
                       <div
                         className="w-2 h-2 rounded-full animate-pulse"
-                        style={{ 
+                        style={{
                           backgroundColor: `${currentAccentColor}40`,
-                          animationDelay: "1s" 
+                          animationDelay: "1s",
                         }}
                       ></div>
                     </div>
@@ -136,7 +138,7 @@ export default function Section2() {
                 {/* Regular Cards */}
                 {cardData.map((card) => (
                   <div
-                    key={card.id} 
+                    key={card.id}
                     className="relative cursor-pointer transition-all duration-700 ease-in-out hover:scale-105 hover:-translate-y-1 bg-background rounded-2xl"
                     style={{
                       boxShadow:
@@ -238,7 +240,9 @@ export default function Section2() {
                             "inset -6px -6px 12px rgba(255,255,255,0.2), inset 6px 6px 12px rgba(0,0,0,0.1)",
                         }}
                       >
-                        <div className="text-white text-xl font-bold"><PiShootingStarBold /></div>
+                        <div className="text-white text-xl font-bold">
+                          <PiShootingStarBold />
+                        </div>
                       </div>
 
                       <h3 className="text-xl font-bold mb-3 text-gray-800">
@@ -254,22 +258,22 @@ export default function Section2() {
                       </div>
 
                       <div className="mt-4 flex gap-2">
-                        <div 
+                        <div
                           className="w-2 h-2 rounded-full animate-pulse"
                           style={{ backgroundColor: `${currentAccentColor}80` }}
                         ></div>
                         <div
                           className="w-2 h-2 rounded-full animate-pulse"
-                          style={{ 
+                          style={{
                             backgroundColor: `${currentAccentColor}60`,
-                            animationDelay: "0.5s" 
+                            animationDelay: "0.5s",
                           }}
                         ></div>
                         <div
                           className="w-2 h-2 rounded-full animate-pulse"
-                          style={{ 
+                          style={{
                             backgroundColor: `${currentAccentColor}40`,
-                            animationDelay: "1s" 
+                            animationDelay: "1s",
                           }}
                         ></div>
                       </div>
@@ -405,7 +409,9 @@ export default function Section2() {
                           "inset -8px -8px 16px rgba(255,255,255,0.2), inset 8px 8px 16px rgba(0,0,0,0.1)",
                       }}
                     >
-                      <div className="text-white text-2xl font-bold"><PiShootingStarBold /></div>
+                      <div className="text-white text-2xl font-bold">
+                        <PiShootingStarBold />
+                      </div>
                     </div>
 
                     <h3 className="text-2xl font-bold mb-4 text-gray-800">
@@ -422,22 +428,22 @@ export default function Section2() {
 
                     {/* Bottom decoration */}
                     <div className="mt-6 flex gap-2">
-                      <div 
+                      <div
                         className="w-3 h-3 rounded-full animate-pulse"
                         style={{ backgroundColor: `${currentAccentColor}80` }}
                       ></div>
                       <div
                         className="w-3 h-3 rounded-full animate-pulse"
-                        style={{ 
+                        style={{
                           backgroundColor: `${currentAccentColor}60`,
-                          animationDelay: "0.5s" 
+                          animationDelay: "0.5s",
                         }}
                       ></div>
                       <div
                         className="w-3 h-3 rounded-full animate-pulse"
-                        style={{ 
+                        style={{
                           backgroundColor: `${currentAccentColor}40`,
-                          animationDelay: "1s" 
+                          animationDelay: "1s",
                         }}
                       ></div>
                     </div>
@@ -500,7 +506,9 @@ export default function Section2() {
               {/* Interaction hints */}
               <div className="text-center mt-8 space-y-2">
                 <p className="text-gray-500 text-sm">
-                  ✨ Click vào <span className="text-accent font-medium">"USide Team"</span> để tìm hiểu thêm về chúng mình
+                  ✨ Click vào{" "}
+                  <span className="text-accent font-medium">"USide Team"</span>{" "}
+                  để tìm hiểu thêm về chúng mình
                 </p>
                 <p className="text-gray-400 text-xs">
                   💡 Hoặc click các cards khác để xáo trộn bố cục

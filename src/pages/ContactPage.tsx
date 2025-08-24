@@ -30,15 +30,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
     >
       <div className="flex items-start gap-4">
         <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-          style={{
-            background: "var(--color-accent)",
-            color: "white",
-            boxShadow: `
-              -6px -6px 12px #FAFBFF,
-              6px 6px 12px var(--color-shadow)
-            `,
-          }}
+          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl section-neumorphic text-accent"
         >
           {info.icon}
         </div>
@@ -329,41 +321,9 @@ const ContactPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`
-                        px-8 py-4 rounded-2xl font-bold text-white
-                        transition-all duration-300 ease-out
-                        transform hover:scale-105 active:scale-95
-                        disabled:opacity-70 disabled:cursor-not-allowed
-                        flex items-center gap-3 cursor-pointer
+                      className={`neumorphic-button cursor-pointer flex items-center gap-2
                         ${isSubmitting ? "animate-pulse" : ""}
                       `}
-                      style={{
-                        background:
-                          submitStatus === "success"
-                            ? "#10B981"
-                            : submitStatus === "error"
-                            ? "#EF4444"
-                            : "var(--color-accent)",
-                        boxShadow: `
-                          -8px -8px 16px #FAFBFF,
-                          8px 8px 16px var(--color-shadow)
-                        `,
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isSubmitting) {
-                          e.currentTarget.style.boxShadow = `
-                            -12px -12px 24px #FAFBFF,
-                            12px 12px 24px var(--color-shadow),
-                            0 0 30px var(--color-accent)
-                          `;
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = `
-                          -8px -8px 16px #FAFBFF,
-                          8px 8px 16px var(--color-shadow)
-                        `;
-                      }}
                     >
                       {isSubmitting ? (
                         <>

@@ -5,10 +5,10 @@ import { FaBars } from "react-icons/fa6";
 
 const menu = [
   { name: "Trang chủ", link: "/" },
-  { name: "Giới thiệu", link: "/gioi-thieu" },
-  { name: "Định hướng", link: "/dinh-huong" },
-  { name: "Tin tức", link: "/tin-tuc" },
-  { name: "Liên hệ", link: "/lien-he" },
+  { name: "Giới thiệu", link: "/about" },
+  { name: "Định hướng", link: "/direction" },
+  { name: "Tin tức", link: "/news" },
+  { name: "Liên hệ", link: "/contact" },
 ];
 
 // Apps/Websites data for popup
@@ -121,15 +121,15 @@ const Header = () => {
         }`}
       >
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inner-wrap flex items-center justify-between py-2 sm:py-3 md:py-4">
+          <div className="inner-wrap flex items-center justify-between py-2 sm:py-2 md:py-3">
             {/* Logo */}
             <div
-              className={`inner-logo flex items-center gap-2 md:gap-4 cursor-pointer ${
+              className={`inner-logo flex items-center gap-2 md:gap-3 cursor-pointer ${
                 logoClicked ? "clicked" : ""
               }`}
               onClick={handleLogoClick}
             >
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-[60px] md:h-[60px] flex-shrink-0">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-[48px] md:h-[48px] flex-shrink-0">
                 <img
                   src="/images_uside/pet_cloud_uside.png"
                   className="w-full h-full object-contain scale-120 transition-transform duration-300"
@@ -137,11 +137,11 @@ const Header = () => {
                 />
               </div>
               <div className="">
-                <h1 className="text-base sm:text-lg md:text-2xl text-text-primary font-bold">
+                <h1 className="text-base sm:text-lg md:text-xl text-text-primary font-bold inline-block">
                   Uside
                 </h1>
                 <p className="text-text-secondary text-xs md:text-sm sm:hidden md:block">
-                  Your personal space
+                  Tech Career Platform
                 </p>
               </div>
             </div>
@@ -155,7 +155,7 @@ const Header = () => {
                       to={item.link}
                       end={item.link === "/"}
                       className={({ isActive }) =>
-                        `px-2 py-2 rounded-lg text-sm xl:text-base transition-colors whitespace-nowrap   ${
+                        `px-2 py-1.5 rounded-lg text-sm xl:text-base transition-colors whitespace-nowrap   ${
                           isActive
                             ? "text-white font-semibold bg-color-accent active"
                             : "text-text-primary hover:text-color-accent hover:bg-gray-100"
@@ -170,7 +170,7 @@ const Header = () => {
             </nav>
 
             {/* Right side buttons */}
-            <div className="inner-buttons flex items-center gap-2 sm:gap-3 md:gap-[30px] xs:hidden xl:flex">
+            <div className="inner-buttons flex items-center gap-2 sm:gap-3 md:gap-6 xs:hidden xl:flex">
               {/* Search */}
               <SearchInput />
 
@@ -181,7 +181,7 @@ const Header = () => {
                 onClick={handleRobotClick}
               >
                 <button
-                  className={`robot-apps-button w-8 h-8 md:w-10 md:h-10 ${
+                  className={`robot-apps-button w-8 h-8 md:w-9 md:h-9 ${
                     showAppsPopup ? "active" : ""
                   }`}
                 >

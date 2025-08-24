@@ -175,7 +175,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               ${isHovered ? "animate-pulse" : ""}
             `}
             onClick={() => {
-              navigate(`/dinh-huong/${career.id}`);
+              navigate(`/direction/${career.id}`);
             }}
           >
             <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2 cursor-pointer">

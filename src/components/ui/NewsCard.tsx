@@ -44,7 +44,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
         setIsHovered(false);
       }}
       onClick={() => {
-        Navigate(`/tin-tuc/${article.id}`)
+        Navigate(`/news/${article.id}`)
       }}
     >
       {/* Gradient overlay */}

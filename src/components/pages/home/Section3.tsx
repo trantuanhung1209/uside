@@ -53,7 +53,7 @@ const Section3: React.FC = () => {
       setCurrentStep(currentStep + 1);
     } else {
       // Khi hoàn thành (currentStep = 3), chuyển đến trang định hướng
-      navigate("/dinh-huong");
+      navigate("/direction");
     }
   };
 
@@ -203,7 +203,7 @@ const Section3: React.FC = () => {
         >
           {/* Step header */}
           <div className="text-center mb-6 lg:mb-8">
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-3 lg:mb-4">
+            <h3 className="text-2xl font-bold text-text-primary mb-3 lg:mb-4">
               {currentStepData.title}
             </h3>
             <p className="text-base lg:text-lg text-text-secondary max-w-2xl mx-auto px-4">

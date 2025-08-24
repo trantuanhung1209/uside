@@ -4,6 +4,7 @@ import { BannerBreadcrumb } from "../components";
 import { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
+import { newsData } from "../data";
 
 const NewsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const NewsPage: React.FC = () => {
   const [showActions, setShowActions] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Số tin tức mỗi trang
+  const itemsPerPage = 6; // Số tin tức mỗi trang
 
   const categories = [
     { id: "all", name: "Tất cả", count: 0 },
@@ -23,93 +24,25 @@ const NewsPage: React.FC = () => {
     { id: "event", name: "Sự kiện", count: 0 },
   ];
 
-  const news = [
-    {
-      id: 1,
-      title: "USide ra mắt phiên bản 2.0",
-      date: "7 tháng 8, 2025",
-      excerpt:
-        "Phiên bản mới với nhiều tính năng cải tiến và giao diện được thiết kế lại hoàn toàn.",
-      category: "update",
-      image: "/images_uside/news.png",
-      author: "Đội ngũ USide",
-      tags: ["UI/UX", "Performance", "Features"],
-    },
-    {
-      id: 2,
-      title: "Cập nhật bảo mật quan trọng",
-      date: "5 tháng 8, 2025",
-      excerpt:
-        "Chúng tôi đã cập nhật các biện pháp bảo mật mới nhất để bảo vệ dữ liệu người dùng.",
-      category: "security",
-      image: "/images_uside/mascot_robot.png",
-      author: "Team Security",
-      tags: ["Security", "Privacy", "Protection"],
-    },
-    {
-      id: 3,
-      title: "Hợp tác với các đối tác công nghệ",
-      date: "1 tháng 8, 2025",
-      excerpt:
-        "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
-      category: "partnership",
-      image: "/images_uside/uside_light.png",
-      author: "Ban lãnh đạo",
-      tags: ["Partnership", "Expansion", "Growth"],
-    },
-    {
-      id: 4,
-      title: "Tuyển dụng Frontend Developer",
-      date: "15 tháng 8, 2025",
-      excerpt:
-        "USide đang tìm kiếm Frontend Developer tài năng để gia nhập đội ngũ phát triển.",
-      category: "recruitment",
-      image: "/images_uside/pet_cloud_uside.png",
-      author: "HR Team",
-      tags: ["React", "TypeScript", "Career"],
-    },
-    {
-      id: 5,
-      title: "Ứng dụng AI trong phát triển sản phẩm",
-      date: "12 tháng 8, 2025",
-      excerpt:
-        "Khám phá cách USide tích hợp AI để cải thiện trải nghiệm người dùng.",
-      category: "technology",
-      image: "/images_uside/pet_cloud_uside.png",
-      author: "AI Team",
-      tags: ["AI", "Machine Learning", "Innovation"],
-    },
-    {
-      id: 6,
-      title: "USide Tech Conference 2025",
-      date: "10 tháng 8, 2025",
-      excerpt:
-        "Sự kiện công nghệ lớn nhất năm với những chuyên gia hàng đầu trong ngành.",
-      category: "event",
-      image: "/images_uside/pet_cloud_uside.png",
-      author: "Event Team",
-      tags: ["Conference", "Networking", "Learning"],
-    },
-  ];
 
   // Update category counts
   const updatedCategories = categories.map((cat) => ({
     ...cat,
     count:
       cat.id === "all"
-        ? news.length
-        : news.filter((item) => item.category === cat.id).length,
+        ? newsData.length
+        : newsData.filter((item) => item.category === cat.id).length,
   }));
 
   // Filter news based on selected category and search term
-  const filteredNews = news.filter((item) => {
+  const filteredNews = newsData.filter((item) => {
     const matchesCategory =
       selectedCategory === "all" || item.category === selectedCategory;
     const matchesSearch =
       searchTerm === "" ||
       item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.tags.some((tag) =>
+      item.tags?.some((tag) =>
         tag.toLowerCase().includes(searchTerm.toLowerCase())
       );
     return matchesCategory && matchesSearch;
@@ -265,7 +198,7 @@ const NewsPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid grid-cols-3 gap-[20px]">
             {currentNews.length > 0 ? (
               currentNews.map((item, index) => (
                 <div
@@ -284,7 +217,7 @@ const NewsPage: React.FC = () => {
                     `,
                     animationDelay: `${index * 100}ms`,
                   }}
-                  onClick={() => navigate(`/tin-tuc/${item.id}`)}
+                  onClick={() => navigate(`/news/${item.id}`)}
                 >
                   {/* Gradient overlay */}
                   <div
@@ -300,7 +233,7 @@ const NewsPage: React.FC = () => {
                     {item.image && (
                       <div
                         className={`
-                        flex-shrink-0 w-32 h-24 overflow-hidden rounded-xl
+                        flex-shrink-0 w-32 h-48 overflow-hidden rounded-xl
                         transform transition-transform duration-500 group-hover:scale-105 xs:w-full
                       `}
                         style={{
@@ -343,7 +276,9 @@ const NewsPage: React.FC = () => {
                           }}
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleFilterChange(item.category);
+                            if (item.category) {
+                              handleFilterChange(item.category);
+                            }
                           }}
                         >
                           {item.category === "update"
@@ -370,8 +305,9 @@ const NewsPage: React.FC = () => {
 
                       {/* Title */}
                       <h2
-                        className="lg:text-[24] xs:text-[20px] font-bold mb-2 line-clamp-2 leading-tight group-hover:text-[var(--color-accent)] transition-colors duration-300"
+                        className="lg:text-[24] xs:text-[20px] font-bold mb-2 line-clamp-1 leading-tight group-hover:text-[var(--color-accent)] transition-colors duration-300"
                         style={{ color: "var(--color-text-primary)" }}
+                        title={item.title}
                       >
                         {item.title}
                       </h2>
@@ -392,28 +328,6 @@ const NewsPage: React.FC = () => {
                         {item.excerpt}
                       </p>
 
-                      {/* Tags */}
-                      {item.tags && (
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {item.tags.slice(0, 3).map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="px-2 py-1 text-xs rounded-lg"
-                              style={{
-                                background: `var(--color-secondary)`,
-                                color: "var(--color-text-secondary)",
-                                boxShadow: `
-                                  -2px -2px 4px #FAFBFF,
-                                  2px 2px 4px var(--color-shadow)
-                                `,
-                              }}
-                            >
-                              #{tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
                       {/* Read More Button */}
                       <button
                         className={` xs:w-full
@@ -425,7 +339,7 @@ const NewsPage: React.FC = () => {
                         }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate(`/tin-tuc/${item.id}`);
+                          navigate(`/news/${item.id}`);
                         }}
                       >
                         Đọc thêm

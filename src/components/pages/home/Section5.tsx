@@ -54,7 +54,7 @@ const Section5 = () => {
         <Title 
           title="Câu hỏi & Liên hệ"
           desc="Những câu hỏi thường gặp từ người dùng về chương trình và dịch vụ của chúng tôi."
-          link="lien-he"
+          link="contact"
         />
         
         <div className="max-w-4xl mx-auto mt-16">
@@ -150,7 +150,7 @@ const Section5 = () => {
                 Bạn có câu hỏi khác? 
                 <span className="faq-contact-link text-accent font-semibold ml-1 cursor-pointer transition-colors duration-300"
                 onClick={() => {
-                  navigate('/lien-he'); // Navigate to contact page
+                  navigate('/contact');
                 }}
                 >
                   Liên hệ với chúng tôi

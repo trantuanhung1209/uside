@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
       {/* section 3 - direction */}
       <section id="section-3" className="section-3 2xl:py-[60px] xs:py-[40px]">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Title title="Định hướng sinh viên" desc="Chúng tôi luôn hướng tới việc mang lại giá trị tốt nhất cho khách hàng." link="dinh-huong" />
+          <Title title="Định hướng sinh viên" desc="Chúng tôi luôn hướng tới việc mang lại giá trị tốt nhất cho khách hàng." link="direction" />
 
           <div className="inner-content">
             <Section3 />

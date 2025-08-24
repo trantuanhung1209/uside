@@ -1,80 +1,12 @@
 import { useState } from "react";
 import Title from "../../ui/Title";
 import { useNavigate } from "react-router-dom";
+import { newsData } from "../../../data";
 
 const Section4 = () => {
   const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeFilter, setActiveFilter] = useState<string>("all");
-
-  const news = [
-    {
-      id: 1,
-      title: "USide ra mắt phiên bản 2.0",
-      date: "7 tháng 8, 2025",
-      excerpt:
-        "Phiên bản mới với nhiều tính năng cải tiến và giao diện được thiết kế lại hoàn toàn.",
-      category: "update",
-      image: "/images_uside/news.png",
-      author: "Đội ngũ USide",
-      tags: ["UI/UX", "Performance", "Features"],
-    },
-    {
-      id: 2,
-      title: "Cập nhật bảo mật quan trọng",
-      date: "5 tháng 8, 2025",
-      excerpt:
-        "Chúng tôi đã cập nhật các biện pháp bảo mật mới nhất để bảo vệ dữ liệu người dùng.",
-      category: "security",
-      image: "/images_uside/mascot_robot.png",
-      author: "Team Security",
-      tags: ["Security", "Privacy", "Protection"],
-    },
-    {
-      id: 3,
-      title: "Hợp tác với các đối tác công nghệ",
-      date: "1 tháng 8, 2025",
-      excerpt:
-        "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
-      category: "partnership",
-      image: "/images_uside/uside_light.png",
-      author: "Ban lãnh đạo",
-      tags: ["Partnership", "Expansion", "Growth"],
-    },
-    {
-      id: 4,
-      title: "Tuyển dụng Frontend Developer",
-      date: "15 tháng 8, 2025",
-      excerpt:
-        "USide đang tìm kiếm Frontend Developer tài năng để gia nhập đội ngũ phát triển.",
-      category: "recruitment",
-      image: "/images_uside/pet_cloud_uside.png",
-      author: "HR Team",
-      tags: ["React", "TypeScript", "Career"],
-    },
-    {
-      id: 5,
-      title: "Ứng dụng AI trong phát triển sản phẩm",
-      date: "12 tháng 8, 2025",
-      excerpt:
-        "Khám phá cách USide tích hợp AI để cải thiện trải nghiệm người dùng.",
-      category: "technology",
-      image: "/images_uside/pet_cloud_uside.png",
-      author: "AI Team",
-      tags: ["AI", "Machine Learning", "Innovation"],
-    },
-    {
-      id: 6,
-      title: "USide Tech Conference 2025",
-      date: "10 tháng 8, 2025",
-      excerpt:
-        "Sự kiện công nghệ lớn nhất năm với những chuyên gia hàng đầu trong ngành.",
-      category: "event",
-      image: "/images_uside/pet_cloud_uside.png",
-      author: "Event Team",
-      tags: ["Conference", "Networking", "Learning"],
-    },
-  ];
 
   const handlePaginationClick = (index: number) => {
     setActiveSlide(index);
@@ -82,12 +14,12 @@ const Section4 = () => {
 
   const filteredNews =
     activeFilter === "all"
-      ? news
-      : news.filter((item) =>
+      ? newsData
+      : newsData.filter((item) =>
           activeFilter === "recruitment"
             ? item.category === "recruitment"
             : activeFilter === "news"
-            ? [
+            ? item.category && [
                 "update",
                 "security",
                 "partnership",
@@ -104,7 +36,7 @@ const Section4 = () => {
 
   // Handle click to navigate to news detail
   const handleNewsItemClick = (newsId: number) => {
-    navigate(`/tin-tuc/${newsId}`);
+    navigate(`/news/${newsId}`);
   };
 
   // Make sure activeSlide doesn't exceed the filtered news length
@@ -117,7 +49,7 @@ const Section4 = () => {
           <Title
             title="Tin tức mới nhất"
             desc="Cập nhật những thông tin mới nhất từ chúng tôi."
-            link="tin-tuc"
+            link="news"
           />
 
           <div className="inner-content">
@@ -139,10 +71,10 @@ const Section4 = () => {
                       }
                     }}
                   >
-                    {filteredNews.length > 0 && (
+                    {filteredNews.length > 0 && filteredNews[safeActiveSlide] && (
                       <img
-                        src={filteredNews[safeActiveSlide]?.image}
-                        alt={filteredNews[safeActiveSlide]?.title}
+                        src={filteredNews[safeActiveSlide].image}
+                        alt={filteredNews[safeActiveSlide].title}
                         className="w-full h-full object-cover rounded-2xl transition-all duration-500"
                       />
                     )}
@@ -311,7 +243,7 @@ const Section4 = () => {
 
                   <div className="inner-list-news h-100 sm:h-80 md:h-96 lg:h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-accent ">
                     <ul className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-6 ">
-                      {filteredNews.slice(0, 3).map((item, index) => (
+                      {filteredNews.map((item, index) => (
                         <li
                           key={item.id}
                           className={`mb-3 flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-2 p-4 rounded-2xl transition-all duration-500 cursor-pointer xs:scale-90 2xl:scale-95 4xl:scale-98

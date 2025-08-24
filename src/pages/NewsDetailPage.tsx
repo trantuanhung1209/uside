@@ -2,163 +2,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Layout } from "../components/layout";
 import { Title } from "../components";
 import NewsCard from "../components/ui/NewsCard";
+import { newsData } from "../data";
 
-interface NewsItem {
-  id: number;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-  image?: string;
-  author?: string;
-  category?: string;
-}
 
 const NewsDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // Mock data - trong thực tế bạn sẽ fetch từ API
-  const newsData: NewsItem[] = [
-    {
-      id: 1,
-      title: "USide ra mắt phiên bản 2.0",
-      date: "7 tháng 8, 2025",
-      excerpt:
-        "Phiên bản mới với nhiều tính năng cải tiến và giao diện được thiết kế lại hoàn toàn.",
-      content: `
-        <p>USide tự hào giới thiệu phiên bản 2.0 với nhiều cải tiến đáng kể trong trải nghiệm người dùng và hiệu suất.</p>
-        
-        <h3>Tính năng mới</h3>
-        <ul>
-          <li>Giao diện người dùng được thiết kế lại hoàn toàn</li>
-          <li>Hiệu suất cải thiện 40% so với phiên bản trước</li>
-          <li>Tích hợp AI để cá nhân hóa trải nghiệm</li>
-          <li>Hỗ trợ đa ngôn ngữ</li>
-        </ul>
-        
-        <p>Chúng tôi tin rằng phiên bản 2.0 sẽ mang lại trải nghiệm tốt nhất cho người dùng.</p>
-      `,
-      image: "/images_uside/news.png",
-      author: "Đội ngũ USide",
-      category: "update",
-    },
-    {
-      id: 2,
-      title: "Cập nhật bảo mật quan trọng",
-      date: "5 tháng 8, 2025",
-      excerpt:
-        "Chúng tôi đã cập nhật các biện pháp bảo mật mới nhất để bảo vệ dữ liệu người dùng.",
-      content: `
-        <p>Bảo mật là ưu tiên hàng đầu của USide. Chúng tôi đã triển khai các cập nhật bảo mật quan trọng.</p>
-        
-        <h3>Các cải tiến bảo mật</h3>
-        <ul>
-          <li>Mã hóa end-to-end cho tất cả dữ liệu</li>
-          <li>Xác thực hai yếu tố (2FA)</li>
-          <li>Kiểm tra bảo mật định kỳ</li>
-          <li>Tuân thủ các tiêu chuẩn bảo mật quốc tế</li>
-        </ul>
-        
-        <p>Dữ liệu của bạn được bảo vệ với các công nghệ bảo mật tiên tiến nhất.</p>
-      `,
-      image: "/images_uside/mascot_robot.png",
-      author: "Team Security",
-      category: "security",
-    },
-    {
-      id: 3,
-      title: "Hợp tác với các đối tác công nghệ",
-      date: "1 tháng 8, 2025",
-      excerpt:
-        "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
-      content: `
-        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
-        
-        <h3>Lợi ích từ việc hợp tác</h3>
-        <ul>
-          <li>Mở rộng phạm vi dịch vụ</li>
-          <li>Tích hợp công nghệ tiên tiến</li>
-          <li>Cải thiện trải nghiệm người dùng</li>
-          <li>Tăng cường khả năng cạnh tranh</li>
-        </ul>
-        
-        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
-      `,
-      image: "/images_uside/uside_light.png",
-      author: "Ban lãnh đạo",
-      category: "partnership",
-    },
-    {
-      id: 4,
-      title: "Hợp tác với các đối tác công nghệ",
-      date: "1 tháng 8, 2025",
-      excerpt:
-        "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
-      content: `
-        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
-        
-        <h3>Lợi ích từ việc hợp tác</h3>
-        <ul>
-          <li>Mở rộng phạm vi dịch vụ</li>
-          <li>Tích hợp công nghệ tiên tiến</li>
-          <li>Cải thiện trải nghiệm người dùng</li>
-          <li>Tăng cường khả năng cạnh tranh</li>
-        </ul>
-        
-        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
-      `,
-      image: "/images_uside/uside_light.png",
-      author: "Ban lãnh đạo",
-      category: "partnership",
-    },
-    {
-      id: 5,
-      title: "Hợp tác với các đối tác công nghệ",
-      date: "1 tháng 8, 2025",
-      excerpt:
-        "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
-      content: `
-        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
-        
-        <h3>Lợi ích từ việc hợp tác</h3>
-        <ul>
-          <li>Mở rộng phạm vi dịch vụ</li>
-          <li>Tích hợp công nghệ tiên tiến</li>
-          <li>Cải thiện trải nghiệm người dùng</li>
-          <li>Tăng cường khả năng cạnh tranh</li>
-        </ul>
-        
-        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
-      `,
-      image: "/images_uside/uside_light.png",
-      author: "Ban lãnh đạo",
-      category: "partnership",
-    },
-    {
-      id: 6,
-      title: "Hợp tác với các đối tác công nghệ",
-      date: "1 tháng 8, 2025",
-      excerpt:
-        "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
-      content: `
-        <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
-        
-        <h3>Lợi ích từ việc hợp tác</h3>
-        <ul>
-          <li>Mở rộng phạm vi dịch vụ</li>
-          <li>Tích hợp công nghệ tiên tiến</li>
-          <li>Cải thiện trải nghiệm người dùng</li>
-          <li>Tăng cường khả năng cạnh tranh</li>
-        </ul>
-        
-        <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
-      `,
-      image: "/images_uside/uside_light.png",
-      author: "Ban lãnh đạo",
-      category: "partnership",
-    },
-  ];
 
   const newsItem = newsData.find((item) => item.id === parseInt(id || "0"));
 
@@ -174,7 +24,7 @@ const NewsDetailPage: React.FC = () => {
               Bài viết bạn tìm kiếm không tồn tại hoặc đã bị xóa.
             </p>
             <button
-              onClick={() => navigate("/tin-tuc")}
+              onClick={() => navigate("/news")}
               className="neumorphic-button"
             >
               ← Quay lại tin tức
@@ -192,7 +42,7 @@ const NewsDetailPage: React.FC = () => {
           {/* Breadcrumb */}
           <nav className="mb-6 text-sm text-gray-600">
             <span
-              onClick={() => navigate("/tin-tuc")}
+              onClick={() => navigate("/news")}
               className="cursor-pointer hover:text-accent"
             >
               Tin tức
@@ -283,7 +133,7 @@ const NewsDetailPage: React.FC = () => {
           {/* Navigation */}
           <div className="flex justify-between items-center pt-8 border-t border-border">
             <button
-              onClick={() => navigate("/tin-tuc")}
+              onClick={() => navigate("/news")}
               className="neumorphic-button flex items-center gap-2"
             >
               ← Quay lại tin tức

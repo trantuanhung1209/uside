@@ -1,163 +1,376 @@
+import { HiArrowSmUp } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
+  const careerPaths = [
+    { name: "Software Tester", icon: "🔍", path: "/direction" },
+    { name: "Web Developer", icon: "💻", path: "/direction" },
+    { name: "App Developer", icon: "📱", path: "/direction" },
+    { name: "UI/UX Designer", icon: "🎨", path: "/direction" },
+  ];
+
+  const quickLinks = [
+    { name: "Trang chủ", path: "/" },
+    { name: "Định hướng", path: "/direction" },
+    { name: "Tin tức", path: "/news" },
+    { name: "Giới thiệu", path: "/about" },
+    { name: "Liên hệ", path: "/contact" },
+  ];
+
+  const socialLinks = [
+    { name: "Facebook", icon: "📘", url: "#", color: "from-blue-500 to-blue-600" },
+    { name: "Instagram", icon: "📷", url: "#", color: "from-pink-500 to-purple-600" },
+    { name: "LinkedIn", icon: "💼", url: "#", color: "from-blue-600 to-blue-700" },
+    { name: "YouTube", icon: "🎥", url: "#", color: "from-red-500 to-red-600" },
+    { name: "GitHub", icon: "🔗", url: "#", color: "from-gray-700 to-gray-800" },
+  ];
+
   return (
-    <footer className="overflow-hidden bg-background py-16 shadow-[inset_0_4px_8px_rgba(0,0,0,0.1),inset_0_8px_16px_rgba(0,0,0,0.05)] relative">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="relative py-20 overflow-hidden"
+      style={{
+        background: "var(--color-background)",
+        boxShadow: "inset 0 8px 32px rgba(0,0,0,0.1)"
+      }}
+    >
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Large floating shapes */}
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full opacity-5 animate-pulse"
+            style={{
+              background: "var(--color-accent)",
+              width: `${300 + i * 100}px`,
+              height: `${300 + i * 100}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: `${8 + i * 2}s`,
+            }}
+          />
+        ))}
+        
+        {/* Small particles */}
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 rounded-full animate-ping"
+            style={{
+              background: "var(--color-accent)",
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+              opacity: 0.3,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          {/* Logo Section */}
-          <div className="lg:col-span-1">
-            <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
-              <div className="w-16 h-16 bg-background rounded-xl mb-4 flex items-center justify-center shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff]">
-                <img
-                  src="/images_uside/pet_cloud_uside.png"
-                  className="w-full h-full object-contain scale-120 transition-transform duration-300"
-                  alt="USide Logo"
-                />
-              </div>
-              <p className="text-text-primary text-sm leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                maximus
-              </p>
-              {/* Social Icons */}
-              <div className="flex gap-3 mt-4">
-                {["f", "ig", "in", "yt"].map((icon, index) => (
-                  <button
-                    key={index}
-                    className="w-10 h-10 bg-background rounded-xl flex items-center justify-center shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+          
+          {/* Brand Section */}
+          <div className="lg:col-span-4">
+            <div className="p-8 rounded-3xl"
+              style={{
+                background: "var(--color-background)",
+                boxShadow: `
+                  -12px -12px 24px #FAFBFF,
+                  12px 12px 24px var(--color-shadow)
+                `
+              }}
+            >
+              {/* Logo with floating effect */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                    style={{
+                      background: "var(--color-background)",
+                      boxShadow: `
+                        inset -8px -8px 16px #FAFBFF,
+                        inset 8px 8px 16px var(--color-shadow)
+                      `
+                    }}
                   >
-                    <span className="text-text-primary text-sm font-medium">
-                      {icon}
+                    <img
+                      src="/images_uside/pet_cloud_uside.png"
+                      className="w-12 h-12 object-contain transition-transform duration-500 hover:scale-110 hover:rotate-6"
+                      alt="USide Logo"
+                    />
+                  </div>
+                  {/* Floating rings around logo */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-accent opacity-20 animate-ping" />
+                  <div className="absolute inset-0 rounded-2xl border border-accent opacity-10 animate-pulse" 
+                    style={{ animationDelay: "1s" }} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-text-primary">USide</h3>
+                  <p className="text-sm text-accent">Tech Career Platform</p>
+                </div>
+              </div>
+              
+              <p className="text-text-secondary leading-relaxed mb-6">
+                Nền tảng hướng nghiệp giúp bạn khám phá và phát triển
+                sự nghiệp trong lĩnh vực công nghệ.
+              </p>
+
+              {/* Contact Info */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-text-secondary">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center text-accent"
+                    style={{
+                      background: "var(--color-background)",
+                      boxShadow: `
+                        inset -4px -4px 8px #FAFBFF,
+                        inset 4px 4px 8px var(--color-shadow)
+                      `
+                    }}
+                  >
+                    📍
+                  </div>
+                  <span className="text-sm">Nguyễn Văn Bảo/12 Đ. Hạnh Thông, Phường, Gò Vấp, Hồ Chí Minh</span>
+                </div>
+                <div className="flex items-center gap-3 text-text-secondary">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center text-accent"
+                    style={{
+                      background: "var(--color-background)",
+                      boxShadow: `
+                        inset -4px -4px 8px #FAFBFF,
+                        inset 4px 4px 8px var(--color-shadow)
+                      `
+                    }}
+                  >
+                    📧
+                  </div>
+                  <span className="text-sm">hello@uside.vn</span>
+                </div>
+                <div className="flex items-center gap-3 text-text-secondary">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center text-accent"
+                    style={{
+                      background: "var(--color-background)",
+                      boxShadow: `
+                        inset -4px -4px 8px #FAFBFF,
+                        inset 4px 4px 8px var(--color-shadow)
+                      `
+                    }}
+                  >
+                    📞
+                  </div>
+                  <span className="text-sm">+84 (035) 313 3235</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="lg:col-span-2">
+            <div className="p-6 rounded-3xl h-full"
+              style={{
+                background: "var(--color-background)",
+                boxShadow: `
+                  -8px -8px 16px #FAFBFF,
+                  8px 8px 16px var(--color-shadow)
+                `
+              }}
+            >
+              <h3 className="text-lg font-bold text-text-primary mb-6 flex items-center gap-2">
+                <span className="text-accent">🔗</span> Liên kết nhanh
+              </h3>
+              <ul className="space-y-3">
+                {quickLinks.map((link, index) => (
+                  <li key={index}>
+                    <NavLink
+                      to={link.path}
+                      className="text-text-secondary hover:text-accent transition-all duration-300 
+                        py-2 px-3 rounded-xl hover:bg-accent/5 hover:shadow-inner hover:translate-x-1
+                        group flex items-center gap-2"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
+                      {link.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Career Paths */}
+          <div className="lg:col-span-3">
+            <div className="p-6 rounded-3xl h-full"
+              style={{
+                background: "var(--color-background)",
+                boxShadow: `
+                  -8px -8px 16px #FAFBFF,
+                  8px 8px 16px var(--color-shadow)
+                `
+              }}
+            >
+              <h3 className="text-lg font-bold text-text-primary mb-6 flex items-center gap-2">
+                <span className="text-accent">🎯</span> Hướng nghiệp
+              </h3>
+              <div className="space-y-3">
+                {careerPaths.map((career, index) => (
+                  <NavLink
+                    key={index}
+                    to={career.path}
+                    className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300
+                      hover:bg-accent/5 hover:shadow-inner group"
+                  >
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-sm
+                      bg-accent/10 group-hover:bg-accent/20 transition-colors"
+                    >
+                      {career.icon}
+                    </div>
+                    <span className="text-text-secondary group-hover:text-accent transition-colors text-sm">
+                      {career.name}
                     </span>
-                  </button>
+                  </NavLink>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Solution Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
-            <h3 className="text-text-primary font-semibold text-lg mb-6">
-              Solution
-            </h3>
-            <ul className="space-y-3">
-              {["Marketing", "Analytics", "Commerce", "Insights"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-text-primary hover:text-text-secondary duration-200 block py-1 transition-all hover:-translate-y-1 hover:drop-shadow-md"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-
-          {/* Support Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
-            <h3 className="text-text-primary font-semibold text-lg mb-6">
-              Support
-            </h3>
-            <ul className="space-y-3">
-              {["Pricing", "Documentation", "Guides", "API Status"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-text-primary hover:text-text-secondary duration-200 block py-1 transition-all hover:-translate-y-1 hover:drop-shadow-md"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-
-          {/* Company Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
-            <h3 className="text-text-primary font-semibold text-lg mb-6">
-              Company
-            </h3>
-            <ul className="space-y-3">
-              {["About", "Blog", "Jobs", "Press"].map((item) => (
-                <li key={item}>
+          {/* Social Media & Newsletter */}
+          <div className="lg:col-span-3">
+            <div className="p-6 rounded-3xl h-full"
+              style={{
+                background: "var(--color-background)",
+                boxShadow: `
+                  -8px -8px 16px #FAFBFF,
+                  8px 8px 16px var(--color-shadow)
+                `
+              }}
+            >
+              <h3 className="text-lg font-bold text-text-primary mb-6 flex items-center gap-2">
+                <span className="text-accent">🌐</span> Kết nối với chúng tôi
+              </h3>
+              
+              {/* Social Icons */}
+              <div className="flex flex-wrap gap-3 mb-6">
+                {socialLinks.map((social, index) => (
                   <a
-                    href="#"
-                    className="text-text-primary hover:text-text-secondary duration-200 block py-1 transition-all hover:-translate-y-1 hover:drop-shadow-md"
+                    key={index}
+                    href={social.url}
+                    className="relative group"
+                    title={social.name}
                   >
-                    {item}
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center
+                      transition-all duration-300 transform group-hover:scale-110"
+                      style={{
+                        background: `linear-gradient(135deg, ${social.color.split(' ')[1]}, ${social.color.split(' ')[3]})`,
+                        boxShadow: `
+                          -4px -4px 8px #FAFBFF,
+                          4px 4px 8px var(--color-shadow)
+                        `
+                      }}
+                    >
+                      <span className="text-white text-lg">{social.icon}</span>
+                    </div>
+                    <div className="absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
+                      style={{
+                        background: `linear-gradient(135deg, ${social.color.split(' ')[1]}, ${social.color.split(' ')[3]})`,
+                        filter: "blur(8px)"
+                      }}
+                    />
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+                ))}
+              </div>
 
-          {/* Legal Section */}
-          <div className="bg-background rounded-2xl p-6 shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300">
-            <h3 className="text-text-primary font-semibold text-lg mb-6">
-              Legal
-            </h3>
-            <ul className="space-y-3">
-              {["Claim", "Privacy", "Terms"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-text-primary hover:text-text-secondary duration-200 block py-1 transition-all hover:-translate-y-1 hover:drop-shadow-md"
+              {/* Newsletter Signup */}
+              <div className="space-y-3">
+                <h4 className="text-sm font-semibold text-text-primary">📬 Đăng ký nhận tin</h4>
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    placeholder="Email của bạn"
+                    className="flex-1 px-3 py-2 text-sm rounded-xl border-0 outline-none
+                      bg-transparent text-text-primary placeholder-text-secondary"
+                    style={{
+                      boxShadow: `
+                        inset -4px -4px 8px #FAFBFF,
+                        inset 4px 4px 8px var(--color-shadow)
+                      `
+                    }}
+                  />
+                  <button
+                    className="w-10 h-10 rounded-xl flex items-center justify-center
+                      text-white font-bold transition-all duration-300 transform hover:scale-105"
+                    style={{
+                      background: "var(--color-accent)",
+                      boxShadow: `
+                        -4px -4px 8px #FAFBFF,
+                        4px 4px 8px var(--color-shadow)
+                      `
+                    }}
                   >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+                    ✉️
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-gray-300 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-text-primary text-sm">
-              Copyright © 2025{" "}
-              <span className="font-semibold text-text-primary">Website</span>.
-              All rights reserved.
+        <div className="relative">
+          {/* Decorative line */}
+          <div className="h-px mb-8 mx-8"
+            style={{
+              background: `linear-gradient(90deg, transparent, var(--color-accent), transparent)`,
+              boxShadow: `0 0 20px var(--color-accent)`
+            }}
+          />
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-text-secondary text-sm text-center md:text-left">
+              <p>
+                © 2025 <span className="font-bold text-accent">USide</span> - 
+                Nền tảng hướng nghiệp IT
+              </p>
+              <p className="mt-1 text-xs opacity-75">
+                Được phát triển với ❤️ bởi team USide
+              </p>
             </div>
-            <div className="flex gap-6">
-              <a
-                href="#"
-                className="text-text-primary hover:text-text-secondary transition-colors duration-200 text-sm"
-              >
-                Terms & Conditions
+            
+            <div className="flex items-center gap-6 text-sm">
+              <a href="#" className="text-text-secondary hover:text-accent transition-colors duration-300
+                hover:underline decoration-accent decoration-wavy">
+                Điều khoản sử dụng
               </a>
-              <span className="text-text-primary">|</span>
-              <a
-                href="#"
-                className="text-text-primary hover:text-text-secondary transition-colors duration-200 text-sm"
-              >
-                Privacy Policy
+              <span className="text-accent">•</span>
+              <a href="#" className="text-text-secondary hover:text-accent transition-colors duration-300
+                hover:underline decoration-accent decoration-wavy">
+                Chính sách bảo mật
+              </a>
+              <span className="text-accent">•</span>
+              <a href="#" className="text-text-secondary hover:text-accent transition-colors duration-300
+                hover:underline decoration-accent decoration-wavy">
+                Cookies
               </a>
             </div>
           </div>
         </div>
       </div>
-      {/* Floating particles */}
-        <div className="absolute inset-0">
-          {[...Array(150)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 rounded-full animate-ping"
-              style={{
-                background: "var(--color-accent)",
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 4}s`,
-                animationDuration: `${3 + Math.random() * 2}s`,
-                opacity: 0.6,
-              }}
-            />
-          ))}
-        </div>
+
+      {/* Scroll to top button - positioned to avoid conflict with FloatingMusicControl */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-8 right-20 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer
+          text-white font-bold transition-all duration-300 transform hover:scale-110 z-40"
+        style={{
+          background: "var(--color-accent)",
+          boxShadow: `
+            -6px -6px 12px #FAFBFF,
+            6px 6px 12px var(--color-shadow),
+            0 0 20px var(--color-accent)/20
+          `
+        }}
+      >
+        <HiArrowSmUp />
+      </button>
     </footer>
   );
 };

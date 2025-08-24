@@ -328,10 +328,6 @@ body {
 }
 
 /* Text animations */
-.inner-logo h1 {
-  transition: all 0.3s ease;
-}
-
 .inner-logo:hover h1 {
   color: var(--color-accent);
   text-shadow: 0 2px 4px color-mix(in srgb, var(--color-accent) 30%, transparent);

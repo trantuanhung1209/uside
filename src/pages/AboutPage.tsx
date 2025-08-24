@@ -144,7 +144,7 @@ const AboutPage: React.FC = () => {
                       Frontend & Backend
                     </h3>
                     <p className="text-sm opacity-90 leading-relaxed">
-                      React, TypeScript, Node.js, Python - chúng mình code những
+                      React, TypeScript - chúng mình code những
                       thứ thú vị mỗi ngày! 🚀
                     </p>
                   </div>
@@ -223,8 +223,7 @@ const AboutPage: React.FC = () => {
                   <div className="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl bg-gradient-to-br from-orange-500 to-red-500 p-6 flex flex-col justify-center text-center text-white">
                     <h3 className="text-lg font-bold mb-3">Think Different</h3>
                     <p className="text-sm opacity-90 leading-relaxed">
-                      AI, IoT, Cloud Computing - chúng mình luôn học hỏi và áp
-                      dụng tech mới nhất! 🔥
+                      Chúng mình không ngừng tìm kiếm giải pháp sáng tạo để giải quyết những thách thức thực tế!
                     </p>
                   </div>
                 </div>
@@ -269,7 +268,7 @@ const AboutPage: React.FC = () => {
             </div>
 
             {/* Bridge Connection - Flowing transition to next section */}
-            <div className="relative mt-16 mb-0">
+            <div className="relative mb-0 z-1">
               {/* Flow path container */}
               <div className="relative h-78 overflow-visible">
                 {/* Curved flow path SVG */}
@@ -441,7 +440,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="section-2 pb-[80px] bg-gradient-to-br from-background to-primary/5 -mt-48 pt-48 relative z-10">
+      <section className="section-2 pb-[80px] bg-gradient-to-br from-background to-primary/5 relative z-10">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Title and Description */}

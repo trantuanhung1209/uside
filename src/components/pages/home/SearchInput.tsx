@@ -201,7 +201,7 @@ const SearchInput = () => {
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => {
                       setNewsSuggestions([]);
-                      navigate(`/tin-tuc/${item.id}`);
+                      navigate(`/news/${item.id}`);
                     }}
                   >
                     {item.title}

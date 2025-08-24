@@ -80,7 +80,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
             </div>
 
             <NavLink
-              to="/gioi-thieu"
+              to="/about"
               className="group flex items-center gap-2 text-text-primary font-semibold relative"
             >
               <svg

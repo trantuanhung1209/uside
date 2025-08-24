@@ -41,12 +41,12 @@ const App: React.FC = () => {
           <Router>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/gioi-thieu" element={<AboutPage />} />
-              <Route path="/dinh-huong" element={<DirectionPage />} />
-              <Route path="/dinh-huong/:id" element={<DirectionDetailPage />} />
-              <Route path="/tin-tuc" element={<NewsPage />} />
-              <Route path="/tin-tuc/:id" element={<NewsDetailPage />} />
-              <Route path="/lien-he" element={<ContactPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/direction" element={<DirectionPage />} />
+              <Route path="/direction/:id" element={<DirectionDetailPage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/news/:id" element={<NewsDetailPage />} />
+              <Route path="/contact" element={<ContactPage />} />
               {/* Route 404 */}
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
