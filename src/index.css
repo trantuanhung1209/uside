@@ -1837,9 +1837,8 @@ body {
 
 .digital-date {
   display: inline-block;
-  font-size: 1rem;
+  font-size: 0.8rem;
   line-height: 1;
-  min-width: 0.8em;
   text-align: center;
 
   /* Neon effect with accent color - subtle */
@@ -1856,8 +1855,8 @@ body {
   transition: all 0.3s ease;
   animation: digitalGlow 3s ease-in-out infinite alternate;
 
-  @media screen and (max-width: 768px) {
-    font-size: 0.875rem;
+  @media screen and (max-width: 576px) {
+    font-size: 0.4rem;
   }
 }
 

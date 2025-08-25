@@ -32,19 +32,19 @@ const SearchInput = () => {
       id: 1,
       name: "Tin tức",
       description: "Mô tả plugin 1",
-      link: "tin-tuc",
+      link: "news",
     },
     {
       id: 2,
       name: "Ăn gì?",
       description: "Mô tả plugin 2",
-      link: "an-gi",
+      link: "dishes",
     },
     {
       id: 3,
       name: "Giải trí",
       description: "Mô tả plugin 3",
-      link: "giai-tri",
+      link: "entertainment",
     },
   ];
 

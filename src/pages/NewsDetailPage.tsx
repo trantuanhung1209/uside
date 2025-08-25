@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Layout } from "../components/layout";
-import { Title } from "../components";
+import { Title, SharePopup } from "../components";
 import NewsCard from "../components/ui/NewsCard";
 import { newsData } from "../data";
 
@@ -8,9 +9,12 @@ import { newsData } from "../data";
 const NewsDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
+  const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
 
   const newsItem = newsData.find((item) => item.id === parseInt(id || "0"));
+
+  // Tạo URL hiện tại để chia sẻ
+  const currentUrl = window.location.href;
 
   if (!newsItem) {
     return (
@@ -140,7 +144,12 @@ const NewsDetailPage: React.FC = () => {
             </button>
 
             <div className="flex gap-4">
-              <button className="neumorphic-button">Chia sẻ</button>
+              <button 
+                onClick={() => setIsSharePopupOpen(true)}
+                className="neumorphic-button"
+              >
+                Chia sẻ
+              </button>
               <button className="neumorphic-button">In bài viết</button>
             </div>
           </div>
@@ -166,6 +175,14 @@ const NewsDetailPage: React.FC = () => {
           </section>
         </div>
       </main>
+
+      {/* Share Popup */}
+      <SharePopup
+        isOpen={isSharePopupOpen}
+        onClose={() => setIsSharePopupOpen(false)}
+        url={currentUrl}
+        title={newsItem.title}
+      />
     </Layout>
   );
 };

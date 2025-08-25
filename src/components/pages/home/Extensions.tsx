@@ -155,13 +155,13 @@ const Extensions = () => {
         <div className="inner-left relative">
           <button
             onClick={() => setShowFoodSuggestion(!showFoodSuggestion)}
-            className="w-full p-6 rounded-2xl transition-all duration-300 animate-bounce-gentle"
+            className="w-full rounded-2xl transition-all duration-300 animate-bounce-gentle"
             title="Gợi ý món ăn theo thời gian"
           >
             <div className="flex items-center gap-4 cursor-pointer">
               <span className="text-3xl filter drop-shadow-lg">🍜</span>
               <div className="text-left">
-                <h3 className="text-xl font-bold text-text-secondary mb-1">
+                <h3 className="text-sm xl:text-xl font-bold text-text-secondary mb-1">
                   {currentSuggestion?.meal} nay ăn gì?
                 </h3>
                 {currentSuggestion && (
@@ -171,8 +171,7 @@ const Extensions = () => {
                       background: 'var(--color-accent)',
                       color: 'white'
                     }}
-                  >
-                    {currentSuggestion.meal} ({currentSuggestion.time})
+                  >({currentSuggestion.time})
                   </p>
                 )}
               </div>
@@ -192,7 +191,7 @@ const Extensions = () => {
         >
           <div
             ref={foodPopupRef}
-            className="food-suggestion-popup max-w-lg w-full mx-auto transform transition-all duration-300 scale-100 animate-popup-in p-8 rounded-3xl max-h-[80vh] overflow-hidden flex flex-col"
+            className="food-suggestion-popup max-w-lg w-full mx-auto transform transition-all duration-300 scale-100 animate-popup-in p-4 xl:p-8 rounded-3xl max-h-[80vh] overflow-hidden flex flex-col"
             style={{
               background: 'var(--color-background)',
               boxShadow: `
@@ -206,7 +205,7 @@ const Extensions = () => {
               <div className="flex items-center gap-4">
                 <span className="text-4xl filter drop-shadow-lg">🍜</span>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
+                  <h3 className="text-base xl:text-lg font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
                     Gợi ý món ăn cho bữa {currentSuggestion.meal}
                   </h3>
                   <span 
@@ -247,7 +246,7 @@ const Extensions = () => {
               {currentSuggestion.dishes.map((dish, index) => (
                 <div 
                   key={index}
-                  className="flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 cursor-pointer group"
+                  className="flex items-center gap-4 p-2 xl:p-4 rounded-2xl transition-all duration-300 cursor-pointer group"
                   style={{
                     background: 'var(--color-background)',
                     boxShadow: `

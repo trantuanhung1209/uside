@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <FloatingStepProgress />
           </div>
         )}
-        <main className="overflow-hidden">{children}</main>
+        <main className="overflow-x-hidden">{children}</main>
       </div>
       <Footer />
 

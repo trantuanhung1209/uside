@@ -33,6 +33,18 @@
   }
 }
 
+/* Animation for notification slide in */
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 /* Neumorphic button styles */
 .food-suggestion-btn:hover {
   transform: translateY(-3px) scale(1.02);
@@ -183,77 +195,6 @@
 
 .food-suggestion-btn:hover {
   animation: gentleGlow 2s ease-in-out infinite;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .inner-extensions {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .apps-popup {
-    right: 0 !important;
-    left: auto !important;
-    width: 300px;
-  }
-
-  .food-suggestion-popup {
-    max-width: 90vw;
-    margin: 1rem;
-    padding: 1.5rem !important;
-  }
-
-  .food-suggestion-btn {
-    padding: 1rem !important;
-  }
-
-  /* Điều chỉnh popup cho mobile - hiển thị gần top hơn */
-  .fixed.items-start {
-    padding-top: 10px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .apps-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 0.75rem !important;
-  }
-
-  .app-item {
-    padding: 0.5rem !important;
-  }
-
-  .food-suggestion-popup {
-    padding: 1rem !important;
-    max-height: 85vh !important;
-    margin: 0.5rem !important;
-  }
-
-  .food-suggestion-popup .overflow-y-auto {
-    max-height: 50vh !important;
-  }
-
-  .food-suggestion-popup h3 {
-    font-size: 1.25rem !important;
-  }
-
-  .food-suggestion-popup .group {
-    padding: 0.75rem !important;
-  }
-
-  /* Mobile popup positioning */
-  .fixed.items-start {
-    padding-top: 5px !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-
-  /* Better touch scrolling on mobile */
-  .food-suggestion-popup .overflow-y-auto {
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-  }
 }
 
 /* Dark mode support using CSS variables */

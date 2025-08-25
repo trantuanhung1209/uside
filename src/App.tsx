@@ -9,7 +9,7 @@ import {
   ContactPage 
 } from './pages';
 import NotFoundPage from './pages/NotFoundPage';
-import { RobotImageLoader, FloatingMusicControl } from './components/ui';
+import { RobotImageLoader } from './components/ui';
 import { useAppLoading } from './hooks';
 import { MusicProvider } from './contexts/MusicContext';
 import AccentColorProvider from './contexts/AccentColorContext';
@@ -51,9 +51,6 @@ const App: React.FC = () => {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Router>
-          
-          {/* Floating Music Control - available on all pages */}
-          <FloatingMusicControl />
         </div>
       </MusicProvider>
     </AccentColorProvider>

@@ -34,8 +34,8 @@ const Clock = () => {
 
   return (
     <>
-      <div className="text-center w-[40%]"> 
-        <div className="">
+      <div className=""> 
+        <div className="text-center ">
           {/* Digital Clock Display */}
           <div className="digital-clock">
             <span className="time-digit">{hours.charAt(0)}</span>
@@ -46,12 +46,9 @@ const Clock = () => {
           </div>
           
           {/* Date Display */}
-          <div className="digital-date time-digit">
+          <div className="digital-date w-30">
             {formattedDate}
-          </div>
-          
-          {/* Reflection Effect */}
-          <div className="clock-reflection"></div>
+          </div> 
         </div>
       </div>
     </>
