@@ -126,7 +126,7 @@ const SharePopup: React.FC<SharePopupProps> = ({
       />
 
       {/* Popup */}
-      <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 flex items-start justify-center z-50 p-4 pt-16">
         <div
           className="bg-background rounded-2xl p-6 max-w-md w-full animate-popup-in relative"
           style={{

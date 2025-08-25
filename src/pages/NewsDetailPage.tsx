@@ -16,6 +16,19 @@ const NewsDetailPage: React.FC = () => {
   // Tạo URL hiện tại để chia sẻ
   const currentUrl = window.location.href;
 
+  // Function để xử lý chia sẻ với scroll to top
+  const handleShare = () => {
+    // Scroll lên đầu trang
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    // Mở popup sau khi scroll
+    setTimeout(() => {
+      setIsSharePopupOpen(true);
+    }, 300); // Delay nhỏ để scroll hoàn thành trước
+  };
+
   if (!newsItem) {
     return (
       <Layout>
@@ -145,7 +158,7 @@ const NewsDetailPage: React.FC = () => {
 
             <div className="flex gap-4">
               <button 
-                onClick={() => setIsSharePopupOpen(true)}
+                onClick={handleShare}
                 className="neumorphic-button"
               >
                 Chia sẻ
