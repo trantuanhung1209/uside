@@ -16,88 +16,89 @@ export const newsData: NewsItem[] = [
     title: "USide ra mắt phiên bản 2.0",
     date: "25 tháng 8, 2025",
     excerpt:
-      "Phiên bản mới với nhiều tính năng cải tiến và giao diện được thiết kế lại hoàn toàn.",
+      "Phiên bản mới được nhóm sinh viên cải tiến mạnh mẽ về giao diện và hiệu suất.",
     content: `
-      <p>USide tự hào giới thiệu phiên bản 2.0 với nhiều cải tiến đáng kể trong trải nghiệm người dùng và hiệu suất.</p>
+      <p>USide 2.0 là kết quả của quá trình học hỏi và phát triển liên tục từ nhóm sinh viên.</p>
       
-      <h3>Tính năng mới</h3>
+      <h3>Điểm mới</h3>
       <ul>
-        <li>Giao diện người dùng được thiết kế lại hoàn toàn</li>
+        <li>Giao diện được thiết kế lại trực quan, thân thiện hơn</li>
         <li>Hiệu suất cải thiện 40% so với phiên bản trước</li>
-        <li>Tích hợp AI để cá nhân hóa trải nghiệm</li>
-        <li>Hỗ trợ đa ngôn ngữ</li>
+        <li>Thử nghiệm tích hợp AI để cá nhân hóa trải nghiệm</li>
+        <li>Bổ sung hỗ trợ đa ngôn ngữ</li>
       </ul>
       
-      <p>Chúng tôi tin rằng phiên bản 2.0 sẽ mang lại trải nghiệm tốt nhất cho người dùng.</p>
+      <p>Chúng mình hy vọng phiên bản 2.0 mang lại trải nghiệm mượt mà hơn cho mọi người.</p>
     `,
     image: "/images_uside/news.png",
-    author: "Đội ngũ USide",
+    author: "Nhóm phát triển USide",
     category: "update",
     tags: ["UI/UX", "Performance", "Features"],
   },
   {
     id: 2,
-    title: "Cập nhật bảo mật quan trọng",
+    title: "Cập nhật bảo mật cơ bản",
     date: "5 tháng 8, 2025",
     excerpt:
-      "Chúng tôi đã cập nhật các biện pháp bảo mật mới nhất để bảo vệ dữ liệu người dùng.",
+      "Nhóm đã bổ sung một số cơ chế bảo mật để bảo vệ dữ liệu thử nghiệm.",
     content: `
-      <p>Bảo mật là ưu tiên hàng đầu của USide. Chúng tôi đã triển khai các cập nhật bảo mật quan trọng.</p>
+      <p>Bảo mật luôn là yếu tố quan trọng. Nhóm đã tìm hiểu và áp dụng các cơ chế cơ bản để bảo vệ dữ liệu.</p>
       
-      <h3>Các cải tiến bảo mật</h3>
+      <h3>Các bước thực hiện</h3>
       <ul>
-        <li>Mã hóa end-to-end cho tất cả dữ liệu</li>
-        <li>Xác thực hai yếu tố (2FA)</li>
-        <li>Kiểm tra bảo mật định kỳ</li>
-        <li>Tuân thủ các tiêu chuẩn bảo mật quốc tế</li>
+        <li>Mã hóa dữ liệu khi lưu trữ và truyền tải</li>
+        <li>Tích hợp xác thực hai lớp (2FA) thử nghiệm</li>
+        <li>Thực hiện kiểm tra bảo mật định kỳ</li>
       </ul>
       
-      <p>Dữ liệu của bạn được bảo vệ với các công nghệ bảo mật tiên tiến nhất.</p>
+      <p>Đây là bước khởi đầu để chúng mình học hỏi thêm về bảo mật hệ thống.</p>
     `,
-    image: "/images_uside/mascot_robot.png",
-    author: "Team Security",
+    image: "/images_uside/cloud_2d_2.jpg",
+    author: "Nhóm bảo mật",
     category: "security",
-    tags: ["Security", "Privacy", "Protection"],
+    tags: ["Security", "Privacy"],
   },
   {
     id: 3,
-    title: "Hợp tác với các đối tác công nghệ",
+    title: "Hợp tác và học hỏi từ cộng đồng công nghệ",
     date: "24 tháng 8, 2025",
     excerpt:
-      "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
+      "Nhóm USide tích cực kết nối và trao đổi kiến thức với các bạn cùng đam mê.",
     content: `
-      <p>Chúng tôi vui mừng thông báo về các quan hệ đối tác chiến lược mới với các công ty công nghệ hàng đầu.</p>
+      <p>Trong quá trình phát triển, nhóm luôn tìm cơ hội học hỏi và hợp tác với cộng đồng công nghệ.</p>
       
-      <h3>Lợi ích từ việc hợp tác</h3>
+      <h3>Lợi ích</h3>
       <ul>
-        <li>Mở rộng phạm vi dịch vụ</li>
-        <li>Tích hợp công nghệ tiên tiến</li>
-        <li>Cải thiện trải nghiệm người dùng</li>
-        <li>Tăng cường khả năng cạnh tranh</li>
+        <li>Mở rộng kiến thức và kỹ năng</li>
+        <li>Tiếp cận công nghệ mới</li>
+        <li>Cải thiện sản phẩm qua phản hồi</li>
       </ul>
       
-      <p>Những hợp tác này sẽ giúp USide phát triển mạnh mẽ hơn trong tương lai.</p>
+      <p>Chúng mình tin rằng việc hợp tác sẽ giúp dự án tiến xa hơn.</p>
     `,
-    image: "/images_uside/uside_light.png",
-    author: "Ban lãnh đạo",
+    image: "/images_uside/cloud_2d_1.jpg",
+    author: "Nhóm USide",
     category: "partnership",
-    tags: ["Partnership", "Expansion", "Growth"],
+    tags: ["Community", "Learning", "Growth"],
   },
   {
     id: 4,
-    title: "Tuyển dụng Frontend Developer",
+    title: "Tham gia cùng nhóm USide",
     date: "26 tháng 8, 2025",
     excerpt:
-      "USide đang tìm kiếm Frontend Developer tài năng để gia nhập đội ngũ phát triển.",
+      "Nhóm sinh viên USide luôn chào đón các bạn có đam mê công nghệ, muốn học hỏi và phát triển dự án cùng nhau.",
     content: `
-      <p>USide đang tìm kiếm Frontend Developer tài năng để gia nhập đội ngũ phát triển sản phẩm.</p>
-      <h3>Yêu cầu</h3>
-      <ul>
-        <li>Kinh nghiệm với React và TypeScript</li>
-        <li>Hiểu biết về UI/UX</li>
-        <li>Kỹ năng teamwork tốt</li>
-      </ul>
-      <p>Hãy gia nhập để cùng chúng tôi xây dựng những sản phẩm đột phá!</p>
+      <p>USide được phát triển bởi một nhóm sinh viên yêu thích lập trình và sáng tạo sản phẩm công nghệ. 
+    Chúng mình tin rằng việc học hỏi và xây dựng dự án thực tế sẽ giúp mỗi người trưởng thành hơn về kỹ năng lẫn tư duy.</p>
+    
+    <h3>Chúng mình mong muốn tìm thêm bạn đồng hành:</h3>
+    <ul>
+      <li>Yêu thích công nghệ và lập trình (React, TypeScript, UI/UX…)</li>
+      <li>Sẵn sàng học hỏi, chia sẻ, làm việc nhóm</li>
+      <li>Không cần quá giỏi, chỉ cần tinh thần cầu tiến và kiên nhẫn</li>
+    </ul>
+    
+    <p>Nếu bạn quan tâm, hãy cùng tham gia để vừa học hỏi, vừa tạo ra những sản phẩm ý nghĩa trong thời sinh viên!</p>
     `,
     image: "/images_uside/join_team.png",
     author: "HR Team",
@@ -106,39 +107,39 @@ export const newsData: NewsItem[] = [
   },
   {
     id: 5,
-    title: "Ứng dụng AI trong phát triển sản phẩm",
-    date: "12 tháng 8, 2025",
+    title: "USide Tech Sharing 2025",
+    date: "10 tháng 8, 2025",
     excerpt:
-      "Khám phá cách USide tích hợp AI để cải thiện trải nghiệm người dùng.",
+      "Buổi chia sẻ nội bộ về xu hướng công nghệ và sản phẩm đang phát triển.",
     content: `
-      <p>AI đang được tích hợp mạnh mẽ vào các sản phẩm của USide.</p>
+      <p>Nhóm USide tổ chức một buổi chia sẻ nhỏ về các xu hướng công nghệ mới và sản phẩm của nhóm.</p>
+      <h3>Nội dung chính</h3>
       <ul>
-        <li>Tự động hóa quy trình phát triển</li>
-        <li>Cá nhân hóa trải nghiệm người dùng</li>
-        <li>Phân tích dữ liệu thông minh</li>
+        <li>Trao đổi kiến thức về công nghệ</li>
+        <li>Trình bày demo sản phẩm</li>
+        <li>Thảo luận và đóng góp ý tưởng</li>
       </ul>
-      <p>Đây là bước tiến quan trọng giúp USide duy trì sự đổi mới.</p>
+      <p>Đây là cơ hội để các thành viên cùng học hỏi và phát triển.</p>
     `,
-    image: "/images_uside/pet_cloud_uside.png",
-    author: "AI Team",
-    category: "technology",
-    tags: ["AI", "Machine Learning", "Innovation"],
+    image: "/images_uside/cloud_2d.jpg",
+    author: "Nhóm sự kiện",
+    category: "event",
+    tags: ["Sharing", "Learning", "Community"],
   },
   {
     id: 6,
-    title: "USide Tech Conference 2025",
-    date: "10 tháng 8, 2025",
+    title: "Ứng dụng AI trong phát triển sản phẩm",
+    date: "12 tháng 8, 2025",
     excerpt:
       "Sự kiện công nghệ lớn nhất năm với những chuyên gia hàng đầu trong ngành.",
     content: `
-      <p>USide Tech Conference 2025 sẽ quy tụ nhiều chuyên gia công nghệ trong và ngoài nước.</p>
-      <h3>Nội dung nổi bật</h3>
+       <p>AI là lĩnh vực thú vị và nhóm đang thử nghiệm ứng dụng vào USide.</p>
       <ul>
-        <li>Các phiên thảo luận về xu hướng công nghệ mới</li>
-        <li>Networking với cộng đồng công nghệ</li>
-        <li>Workshop trải nghiệm sản phẩm USide</li>
+        <li>Tự động hóa một số quy trình</li>
+        <li>Cá nhân hóa trải nghiệm</li>
+        <li>Phân tích dữ liệu cơ bản</li>
       </ul>
-      <p>Đừng bỏ lỡ sự kiện công nghệ lớn nhất trong năm!</p>
+      <p>Đây là bước thực hành để rèn luyện kỹ năng nghiên cứu công nghệ.</p>
     `,
     image: "/images_uside/pet_cloud_uside.png",
     author: "Event Team",
@@ -146,4 +147,3 @@ export const newsData: NewsItem[] = [
     tags: ["Conference", "Networking", "Learning"],
   },
 ];
-

@@ -334,7 +334,7 @@ const Section4 = () => {
                               
                               {/* New Tag */}
                               {isNewsNew(filteredNews[safeActiveSlide].date) && !isPinnedRecruitment(filteredNews[safeActiveSlide]) && (
-                                <span className="px-2 py-1 rounded-full text-xs font-bold bg-accent text-white 
+                                <span className="px-2 py-1 rounded-full text-xs font-bold bg-red-400 text-white 
                                                backdrop-blur-sm border border-white/30 inline-flex items-center gap-1
                                                animate-bounce">
                                   <RiNewsLine className="w-3 h-3" />
@@ -525,7 +525,7 @@ const Section4 = () => {
                                   
                                   {/* New Tag for List Items */}
                                   {isNewsNew(item.date) && !isPinnedRecruitment(item) && (
-                                    <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-accent text-white 
+                                    <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-red-400 text-white 
                                                    flex items-center gap-1 animate-bounce">
                                       <RiNewsLine className="w-2.5 h-2.5" />
                                       <span>New</span>

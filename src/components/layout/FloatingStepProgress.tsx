@@ -192,7 +192,7 @@ const FloatingStepProgress = () => {
 
         {/* Main Progress Component */}
         <div
-          className={`transition-all duration-700 ease-out w-[100px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 5xl:scale-95 6xl:scale-100 ${
+          className={`transition-all duration-700 ease-out xs:w-[100px] 2xl:w-[135px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 5xl:scale-95 6xl:scale-100 ${
             isVisible || isExpanded
               ? "opacity-100 pointer-events-auto scale-100"
               : "opacity-0 pointer-events-none scale-95"

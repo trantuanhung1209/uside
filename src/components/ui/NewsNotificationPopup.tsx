@@ -1,28 +1,49 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { X, Bell, Clock } from "lucide-react";
 
 interface NewsNotificationContent {
   type: 'text' | 'html' | 'rich';
   title: string;
-  message?: string; // For simple text
-  content?: React.ReactNode; // For rich content with HTML elements
-  image?: string; // Image URL
-  imageAlt?: string; // Image alt text
-  newsId?: number; // ID của tin tức để xử lý "Xem chi tiết"
-  onDetailClick?: (newsId?: number) => void; // Callback khi click "Xem chi tiết"
+  message?: string;
+  content?: React.ReactNode;
+  image?: string;
+  imageAlt?: string;
+  newsId?: number;
+  onDetailClick?: (newsId?: number) => void;
 }
 
 interface NewsNotificationProps {
   content: NewsNotificationContent;
   onClose?: () => void;
-  autoCloseAfter?: number; // seconds
+  autoCloseAfter?: number;
   priority?: "low" | "medium" | "high";
   showIcon?: boolean;
-  
-  // Backward compatibility
   title?: string;
   message?: string;
 }
+
+// Improved hook để kiểm tra Router context
+const useRouterNavigation = () => {
+  const [isInRouter, setIsInRouter] = useState(false);
+  const [navigate, setNavigate] = useState<ReturnType<typeof useNavigate> | null>(null);
+
+  useEffect(() => {
+    try {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const nav = useNavigate();
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useLocation(); // Test if we're in router context
+      setIsInRouter(true);
+      setNavigate(() => nav);
+    } catch {
+      setIsInRouter(false);
+      setNavigate(null);
+    }
+  }, []);
+
+  return { isInRouter, navigate };
+};
 
 const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
   content,
@@ -35,6 +56,9 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [timeLeft, setTimeLeft] = useState(autoCloseAfter);
+  
+  // Sử dụng hook cải tiến
+  const { isInRouter, navigate } = useRouterNavigation();
 
   // Handle backward compatibility
   const notificationContent: NewsNotificationContent = content || {
@@ -43,27 +67,36 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
     message: legacyMessage || ''
   };
 
-  // Scroll to top when notification appears
-  useEffect(() => {
-    if (isVisible) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }, [isVisible]);
-
   const handleClose = React.useCallback(() => {
     setIsVisible(false);
     setTimeout(() => {
       onClose?.();
-    }, 300); // Wait for animation to complete
+    }, 300);
   }, [onClose]);
+
+  const handleViewDetail = () => {
+    if (notificationContent.newsId) {
+      if (isInRouter && navigate) {
+        // Sử dụng React Router navigation (không reload trang)
+        navigate(`/news/${notificationContent.newsId}`);
+      } else {
+        // Fallback: reload page navigation
+        console.warn('Router context not available, using window.location');
+        window.location.href = `/news/${notificationContent.newsId}`;
+      }
+    }
+    
+    // Gọi callback nếu có
+    if (notificationContent.onDetailClick) {
+      notificationContent.onDetailClick(notificationContent.newsId);
+    }
+    
+    handleClose();
+  };
 
   useEffect(() => {
     if (!isVisible) return;
 
-    // Countdown timer
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
@@ -115,7 +148,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
 
   return (
     <>
-      {/* Backdrop - che phủ nhẹ */}
+      {/* Backdrop */}
       <div
         className={`fixed top-0 left-0 right-0 h-screen bg-black/10 backdrop-blur-sm z-[9998] transition-opacity duration-500 ${
           isVisible ? "opacity-100" : "opacity-0"
@@ -123,8 +156,8 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
         onClick={handleClose}
       />
 
-      {/* Popup Container - hiển thị ở đầu trang */}
-      <div className="fixed top-0 left-0 right-0 z-[9999] p-4 flex justify-center mt-10">
+      {/* Popup Container */}
+      <div className="fixed top-0 left-0 right-0 z-[9999] p-4 flex justify-center items-center mt-10">
         <div
           className={`relative ${
             notificationContent.type === 'rich' ? 'max-w-lg' : 'max-w-md'
@@ -148,17 +181,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className=" cursor-pointer
-                absolute top-4 right-4 
-                w-8 h-8 rounded-full 
-                flex items-center justify-center
-                text-gray-500 hover:text-gray-700
-                bg-white/80 hover:bg-white
-                shadow-neumorphic-sm
-                transition-all duration-200
-                hover:scale-110
-                group
-              "
+              className="cursor-pointer absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 bg-white/80 hover:bg-white shadow-neumorphic-sm transition-all duration-200 hover:scale-110 group"
               aria-label="Đóng thông báo"
             >
               <X
@@ -171,29 +194,17 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
             <div className="flex items-start gap-3 mb-4">
               {showIcon && (
                 <div
-                  className={`
-                  flex-shrink-0 p-2 rounded-xl 
-                  bg-white/80 shadow-neumorphic-xs
-                  ${getIconColor()}
-                  animate-pulse
-                `}
+                  className={`flex-shrink-0 p-2 rounded-xl bg-white/80 shadow-neumorphic-xs ${getIconColor()} animate-pulse`}
                 >
                   <Bell size={20} className="animate-bounce" />
                 </div>
               )}
 
               <div className="flex-1 min-w-0">
-                <h3
-                  className="
-                  text-lg font-bold text-gray-800 
-                  leading-tight mb-1
-                  font-quicksand
-                "
-                >
+                <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1 font-quicksand">
                   {notificationContent.title}
                 </h3>
 
-                {/* Timer */}
                 <div className="flex items-center gap-1 text-sm text-gray-600">
                   <Clock size={14} />
                   <span className="font-mono">
@@ -203,7 +214,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
               </div>
             </div>
 
-            {/* Image (if provided) */}
+            {/* Image */}
             {notificationContent.image && (
               <div className="mb-4">
                 <img
@@ -242,20 +253,15 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
             {/* Progress Bar */}
             <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 overflow-hidden">
               <div
-                className={`
-                  h-full rounded-full transition-all duration-1000 ease-linear
-                  ${
-                    priority === "high"
-                      ? "bg-red-500"
-                      : priority === "medium"
-                      ? "bg-yellow-500"
-                      : "bg-blue-500"
-                  }
-                `}
+                className={`h-full rounded-full transition-all duration-1000 ease-linear ${
+                  priority === "high"
+                    ? "bg-red-500"
+                    : priority === "medium"
+                    ? "bg-yellow-500"
+                    : "bg-blue-500"
+                }`}
                 style={{
-                  width: `${
-                    ((autoCloseAfter - timeLeft) / autoCloseAfter) * 100
-                  }%`,
+                  width: `${((autoCloseAfter - timeLeft) / autoCloseAfter) * 100}%`,
                 }}
               />
             </div>
@@ -264,33 +270,20 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
             <div className="flex gap-3 justify-end">
               <button
                 onClick={handleClose}
-                className=" cursor-pointer
-                  px-4 py-2 text-sm font-medium
-                  text-gray-600 hover:text-gray-800
-                  bg-white/80 hover:bg-white
-                  rounded-lg shadow-neumorphic-sm
-                  transition-all duration-200
-                  hover:scale-105
-                "
+                className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 bg-white/80 hover:bg-white rounded-lg shadow-neumorphic-sm transition-all duration-200 hover:scale-105"
               >
                 Đã hiểu
               </button>
 
-              <button
-                onClick={() => {
-                  // Handle "Xem chi tiết" action here
-                  if (notificationContent.onDetailClick && notificationContent.newsId) {
-                    notificationContent.onDetailClick(notificationContent.newsId);
-                  }
-                  handleClose();
-                }}
-                className="
-                  neumorphic-button cursor-pointer
-                  px-4 py-2 text-sm font-medium
-                "
-              >
-                Xem chi tiết
-              </button>
+              {notificationContent.newsId && (
+                <button
+                  onClick={handleViewDetail}
+                  className="neumorphic-button cursor-pointer px-4 py-2 text-sm font-medium"
+                  title={isInRouter ? "Chuyển trang (không reload)" : "Chuyển trang (reload)"}
+                >
+                  Xem chi tiết
+                </button>
+              )}
             </div>
 
             {/* Decorative elements */}
@@ -300,17 +293,13 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
 
           {/* Glow effect */}
           <div
-            className={`
-              absolute inset-0 rounded-2xl -z-10 blur-xl opacity-20
-              ${
-                priority === "high"
-                  ? "bg-red-400"
-                  : priority === "medium"
-                  ? "bg-yellow-400"
-                  : "bg-blue-400"
-              }
-              animate-pulse
-            `}
+            className={`absolute inset-0 rounded-2xl -z-10 blur-xl opacity-20 ${
+              priority === "high"
+                ? "bg-red-400"
+                : priority === "medium"
+                ? "bg-yellow-400"
+                : "bg-blue-400"
+            } animate-pulse`}
           />
         </div>
       </div>

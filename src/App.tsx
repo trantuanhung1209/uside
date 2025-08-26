@@ -1,79 +1,91 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { 
-  HomePage, 
-  AboutPage, 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  HomePage,
+  AboutPage,
   DirectionPage,
   DirectionDetailPage,
-  NewsPage, 
+  NewsPage,
   NewsDetailPage,
-  ContactPage 
-} from './pages';
-import NotFoundPage from './pages/NotFoundPage';
-import { RobotImageLoader, NewsNotificationContainer, FloatingMusicControl } from './components/ui';
-import { useAppLoading } from './hooks';
-import { useNewsNotificationContext } from './hooks/useNewsNotificationContext';
-import { MusicProvider } from './contexts/MusicContext';
-import AccentColorProvider from './contexts/AccentColorContext';
-import { NewsNotificationProvider } from './contexts/NewsNotificationContext';
+  ContactPage,
+} from "./pages";
+import NotFoundPage from "./pages/NotFoundPage";
+import {
+  RobotImageLoader,
+  NewsNotificationContainer,
+  FloatingMusicControl,
+  FloatingNotificationBell,
+} from "./components/ui";
+import { useAppLoading } from "./hooks";
+import { useNewsNotificationContext } from "./hooks/useNewsNotificationContext";
+import { MusicProvider } from "./contexts/MusicContext";
+import AccentColorProvider from "./contexts/AccentColorContext";
+import { NewsNotificationProvider } from "./contexts/NewsNotificationContext";
 
 // Component để quản lý thông báo và hiển thị chúng
 const AppWithNotifications: React.FC = () => {
   const { notifications, removeNotification } = useNewsNotificationContext();
 
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/direction" element={<DirectionPage />} />
-          <Route path="/direction/:id" element={<DirectionDetailPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/news/:id" element={<NewsDetailPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          {/* Route 404 */}
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/direction" element={<DirectionPage />} />
+        <Route path="/direction/:id" element={<DirectionDetailPage />} />
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/news/:id" element={<NewsDetailPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        {/* Route 404 */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
 
-      {/* Thông báo tin tức sẽ hiển thị toàn cục */}
-      <NewsNotificationContainer 
+      {/* Di chuyển vào trong Router */}
+      <NewsNotificationContainer
         notifications={notifications}
         onRemoveNotification={removeNotification}
       />
-    </>
+    </Router>
   );
 };
 
 const App: React.FC = () => {
   const { isLoading } = useAppLoading({
     minimumLoadingTime: 3500,
-    delayBeforeStart: 0
+    delayBeforeStart: 0,
   });
 
   const handleLoadingComplete = () => {
-    console.log('🤖 Robot đã hoàn thành việc mở màn!');
+    console.log("🤖 Robot đã hoàn thành việc mở màn!");
   };
 
   return (
     <AccentColorProvider>
       <MusicProvider>
         <NewsNotificationProvider>
-          <RobotImageLoader 
-            isVisible={isLoading} 
+          <RobotImageLoader
+            isVisible={isLoading}
             onComplete={handleLoadingComplete}
             duration={3500}
             robotImage="/images_uside/pet_uside_dark.png"
           />
-          
-          <div className={`
+
+          <div
+            className={`
             transition-all duration-1000 ease-out
-            ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
-          `}>
+            ${isLoading ? "opacity-0 scale-95" : "opacity-100 scale-100"}
+          `}
+          >
             <AppWithNotifications />
           </div>
+
+          {/* Floating Notification Bell - Available on all pages */}
+          <FloatingNotificationBell
+            position="bottom-left"
+            className="lg:bottom-6 lg:left-6"
+          />
         </NewsNotificationProvider>
 
+        {/* Floating Music Control - Available on all pages */}
         <FloatingMusicControl />
       </MusicProvider>
     </AccentColorProvider>

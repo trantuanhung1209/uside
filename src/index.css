@@ -2273,3 +2273,176 @@ body::-webkit-scrollbar {
   box-shadow: inset 8px 8px 16px #c9c9c9, inset -8px -8px 16px #ffffff;
 }
 
+/* Floating Notification Bell Styles */
+/* News Notification Container Styles */
+.news-notification-popup {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.news-notification-popup::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--color-accent);
+  opacity: 0.05;
+  animation: shimmerNews 3s linear infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+@keyframes shimmerNews {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Floating Notification Bell Ripple Effects */
+@keyframes bellRipple {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes accentWave {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes bellFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+}
+
+/* Enhanced glow effect for notification bell */
+.notification-bell-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  opacity: 0;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.2);
+  }
+}
+
+/* Notification dot pulse animation */
+.notification-dot-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+/* Advanced ripple effect for clicks */
+.bell-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  pointer-events: none;
+  animation: bellRipple 0.6s ease-out;
+}
+
+/* Accent color loang effect */
+.accent-loang {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 50%);
+  animation: accentWave 2s ease-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Enhanced hover effects */
+.floating-notification-bell:hover {
+  animation: bellFloat 1s ease-in-out;
+}
+
+.floating-notification-bell:hover .notification-bell-glow {
+  opacity: 0.4;
+  animation-duration: 1.5s;
+}
+
+/* Responsive adjustments for notification bell */
+@media (max-width: 768px) {
+  .floating-notification-bell {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .floating-notification-bell svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  .notification-dot-pulse {
+    width: 12px !important;
+    height: 12px !important;
+  }
+}
+
+/* Special animation for active state */
+.notification-bell-active {
+  animation: bellFloat 0.5s ease-in-out, glowPulse 2s ease-in-out infinite;
+}
+
+.notification-bell-active .accent-loang {
+  animation-duration: 1s;
+  opacity: 0.6;
+}
+

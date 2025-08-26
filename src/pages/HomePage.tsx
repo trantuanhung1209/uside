@@ -3,7 +3,6 @@ import { Section1, Section2, Section3, SectionHero } from "../components/pages";
 import Section4 from "../components/pages/home/Section4";
 import Section5 from "../components/pages/home/Section5";
 import Title from "../components/ui/Title";
-import { NewsNotificationTrigger } from "../components/ui";
 import { useScrollToTop } from "../hooks";
 import { careerPaths } from "../data/careerPaths";
 import { useState } from "react";
@@ -14,8 +13,6 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
-      {/* Trigger thông báo tin tức */}
-      <NewsNotificationTrigger />
       
       {/* section-hero */}
       <SectionHero />

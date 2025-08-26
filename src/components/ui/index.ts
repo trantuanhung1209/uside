@@ -12,4 +12,4 @@ export { default as SharePopup } from './SharePopup';
 export { default as NewsletterSubscription } from './NewsletterSubscription';
 export { default as NewsNotificationPopup } from './NewsNotificationPopup';
 export { default as NewsNotificationContainer } from './NewsNotificationContainer';
-export { default as NewsNotificationTrigger } from './NewsNotificationDemo';
+export { default as FloatingNotificationBell } from './FloatingNotificationBell';
