@@ -16,7 +16,7 @@ export const careerPaths: CareerPath[] = [
     description:
       "Chuyên gia kiểm thử phần mềm, đảm bảo chất lượng và hiệu suất của các ứng dụng.",
     image: "/images_uside/tester.jpg",
-    icon: "🔍",
+    icon: "/images_uside/test_icon.png",
     skills: [
       "Manual Testing",
       "Automation Testing",
@@ -32,7 +32,7 @@ export const careerPaths: CareerPath[] = [
     description:
       "Phát triển các ứng dụng web hiện đại với công nghệ tiên tiến.",
     image: "/images_uside/web_dev.jpg",
-    icon: "💻",
+    icon: "/images_uside/web_dev_icon.png",
     skills: ["HTML/CSS", "JavaScript", "React/Vue", "Node.js", "Database"],
     opportunities: "Cơ hội việc làm đa dạng từ startup đến tập đoàn lớn.",
     gradient: "from-green-400 to-blue-500",
@@ -42,7 +42,7 @@ export const careerPaths: CareerPath[] = [
     title: "App Developer",
     description: "Tạo ra các ứng dụng di động sáng tạo cho iOS và Android.",
     image: "/images_uside/dev_app.jpg",
-    icon: "📱",
+    icon: "/images_uside/app_dev_icon.png",
     skills: ["React Native", "Flutter", "Swift", "Kotlin", "UI/UX Design"],
     opportunities:
       "Thị trường mobile đang bùng nổ với triển vọng tăng trưởng mạnh.",
@@ -53,29 +53,11 @@ export const careerPaths: CareerPath[] = [
     title: "UI/UX Designer",
     description: "Thiết kế trải nghiệm người dùng trực quan và thân thiện.",
     image: "/images_uside/ui_ux.jpg",
-    icon: "🎨",
+    icon: "/images_uside/designer_icon.png",
     skills: ["Figma", "Adobe Creative Suite", "User Research", "Prototyping"],
     opportunities:
       "Vai trò quan trọng trong mọi dự án số hóa và chuyển đổi công nghệ.",
     gradient: "from-pink-400 to-red-500",
-  },
-  {
-    id: "project-management",
-    title: "Project Manager",
-    description:
-      "Quản lý dự án hiệu quả, đảm bảo tiến độ, ngân sách và chất lượng sản phẩm.",
-    image: "/images_uside/pm.jpg",
-    icon: "📈",
-    skills: [
-      "Project Planning",
-      "Agile/Scrum",
-      "Risk Management",
-      "Leadership",
-      "Communication",
-    ],
-    opportunities:
-      "Nhu cầu cao trong các công ty phát triển phần mềm, tư vấn và dịch vụ toàn cầu.",
-    gradient: "from-cyan-400 to-blue-500",
   },
   {
     id: "business-analyst",
@@ -83,7 +65,7 @@ export const careerPaths: CareerPath[] = [
     description:
       "Phân tích yêu cầu, tối ưu hóa quy trình và làm cầu nối giữa khách hàng và đội kỹ thuật.",
     image: "/images_uside/it_ba.jpg",
-    icon: "📊",
+    icon: "/images_uside/business_analyst_icon.png",
     skills: [
       "Requirement Analysis",
       "Process Modeling",
@@ -101,7 +83,7 @@ export const careerPaths: CareerPath[] = [
     description:
       "Thiết kế sản phẩm số với trải nghiệm người dùng tối ưu và giao diện đẹp mắt.",
     image: "/images_uside/product_designer.jpg",
-    icon: "🎨",
+    icon: "/images_uside/product_designer_icon.png",
     skills: [
       "User Research",
       "Prototyping",

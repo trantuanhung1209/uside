@@ -138,6 +138,7 @@ const SectionHero = () => {
                   ref={popupRef}
                   className="relative cursor-pointer top-0 right-0 z-50"
                   onClick={handleRobotClick}
+                  title="Open Apps"
                 >
                   <button
                     className={`robot-apps-button section-neumorphic w-8 h-8 md:w-10 md:h-10 ${

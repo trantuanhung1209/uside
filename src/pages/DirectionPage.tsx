@@ -6,9 +6,12 @@ import { CareerCard } from "../components/pages/direction/CareerCard";
 import NewsCard from "../components/ui/NewsCard";
 import { careerPaths } from "../data/careerPaths";
 import { newsData } from "../data/newsData";
+import { useNavigate } from "react-router-dom";
 
 const DirectionPage: React.FC = () => {
   const [currentCareerIndex, setCurrentCareerIndex] = useState(0);
+  const navigate = useNavigate();
+
   const handlePrevious = () => {
     setCurrentCareerIndex((prev) =>
       prev === 0 ? careerPaths.length - 1 : prev - 1
@@ -211,12 +214,17 @@ const DirectionPage: React.FC = () => {
               style={{ color: "var(--color-text-secondary)" }}
             >
               <div className="text-xs">
-                Sử dụng mũi tên hoặc click vào các chấm để chuyển đổi nghề
-                nghiệp
+                Tìm hiểu lĩnh vực bạn quan tâm và khám phá con đường sự nghiệp
+                phù hợp.
               </div>
-              <div className="text-xs hidden sm:block">
-                🎯 Phím mũi tên ← → để điều hướng nhanh
-              </div>
+              <button
+                className="neumorphic-button"
+                onClick={() => {
+                  navigate(`/direction/${currentCareer.id}`);
+                }}
+              >
+                Bắt đầu khám phá →
+              </button>
             </div>
           </div>
 

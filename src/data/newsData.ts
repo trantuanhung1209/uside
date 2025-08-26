@@ -86,7 +86,7 @@ export const newsData: NewsItem[] = [
   {
     id: 4,
     title: "Tuyển dụng Frontend Developer",
-    date: "15 tháng 8, 2025",
+    date: "26 tháng 8, 2025",
     excerpt:
       "USide đang tìm kiếm Frontend Developer tài năng để gia nhập đội ngũ phát triển.",
     content: `
@@ -99,7 +99,7 @@ export const newsData: NewsItem[] = [
       </ul>
       <p>Hãy gia nhập để cùng chúng tôi xây dựng những sản phẩm đột phá!</p>
     `,
-    image: "/images_uside/pet_cloud_uside.png",
+    image: "/images_uside/join_team.png",
     author: "HR Team",
     category: "recruitment",
     tags: ["React", "TypeScript", "Career"],

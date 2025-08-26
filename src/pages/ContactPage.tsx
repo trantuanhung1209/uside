@@ -1,57 +1,11 @@
 import { Layout } from "../components/layout";
-import { BannerBreadcrumb, Title } from "../components";
+import { Title } from "../components";
 import { useState } from "react";
-import { FaLocationDot } from "react-icons/fa6";
-import { FaClock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { FaEnvelope, FaArrowLeft } from "react-icons/fa";
 import { BsRocketTakeoffFill } from "react-icons/bs";
-
-// Contact Card Component
-interface ContactCardProps {
-  info: {
-    icon: React.ReactNode | string;
-    title: string;
-    content: string;
-  };
-  index: number;
-}
-
-const ContactCard: React.FC<ContactCardProps> = ({ info, index }) => {
-  return (
-    <div
-      className="p-6 rounded-2xl transition-all duration-500 transform"
-      style={{
-        background: "var(--color-background)",
-        boxShadow: `
-          -4px -4px 8px #FAFBFF,
-          4px 4px 8px var(--color-shadow)
-        `,
-        animationDelay: `${index * 0.1}s`,
-      }}
-    >
-      <div className="flex items-start gap-4">
-        <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl section-neumorphic text-accent"
-        >
-          {info.icon}
-        </div>
-        <div className="flex-1">
-          <h3
-            className="font-bold text-lg mb-2"
-            style={{ color: "var(--color-text-primary)" }}
-          >
-            {info.title}
-          </h3>
-          <p
-            className="text-sm leading-relaxed whitespace-pre-line"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            {info.content}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+import { useContactForm } from "../hooks";
+import { useNavigate } from "react-router-dom";
+import type { ContactFormData } from "../services";
 
 // Form Field Component
 interface FormFieldProps {
@@ -103,7 +57,8 @@ const FormField: React.FC<FormFieldProps> = ({
 };
 
 const ContactPage: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
@@ -111,27 +66,33 @@ const ContactPage: React.FC = () => {
     message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
+  const { isSubmitting, submitStatus, statusMessage, submitForm, resetStatus } = useContactForm();
+
+  const handleGoBack = () => {
+    navigate(-1); // Quay lại trang trước đó
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Form submitted:", formData);
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    } catch {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus("idle"), 3000);
+    
+    // Validate required fields
+    if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
+      alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+      return;
     }
+
+    // Submit form using the service
+    await submitForm(formData);
+    
+    // Clear form if successful
+    if (submitStatus === 'success') {
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    }
+
+    // Auto hide status message after 5 seconds
+    setTimeout(() => {
+      resetStatus();
+    }, 5000);
   };
 
   const handleChange = (
@@ -145,29 +106,6 @@ const ContactPage: React.FC = () => {
     });
   };
 
-  const contactInfo = [
-    {
-      icon: <FaLocationDot />,
-      title: "Địa chỉ",
-      content: "123 Đường Công Nghệ, Quận 7, TP. Hồ Chí Minh",
-    },
-    {
-      icon: <FaEnvelope />,
-      title: "Email",
-      content: "hello@uside.vn",
-    },
-    {
-      icon: <FaPhoneAlt />,
-      title: "Điện thoại",
-      content: "+84 (028) 123 4567",
-    },
-    {
-      icon: <FaClock />,
-      title: "Giờ làm việc",
-      content: "T2 - T6: 8:00 - 18:00\nT7: 8:00 - 12:00",
-    },
-  ];
-
   const subjects = [
     "Tư vấn dự án",
     "Hỗ trợ kỹ thuật",
@@ -179,13 +117,19 @@ const ContactPage: React.FC = () => {
 
   return (
     <Layout>
-      <BannerBreadcrumb
-        pageName="Liên hệ"
-        image="/images_uside/banner_contact.png"
-      />
-
       <section className="py-[40px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Back Button */}
+          <div className="mb-8">
+            <button
+              onClick={handleGoBack}
+              className="flex items-center gap-2 text-sm section-neumorphic px-4 py-2 rounded-lg hover:shadow-lg transition-shadow duration-300 cursor-pointer text-text-primary hover:text-accent"
+            >
+              <FaArrowLeft />
+              Quay lại
+            </button>
+          </div>
+
           {/* Header Section */}
           <div className="text-center mb-16">
             <Title
@@ -194,16 +138,10 @@ const ContactPage: React.FC = () => {
             />
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-[30px]">
-            {/* Contact Info Cards */}
-            <div className="lg:col-span-1 space-y-6">
-              {contactInfo.map((info, index) => (
-                <ContactCard key={index} info={info} index={index} />
-              ))}
-            </div>
+          <div className="">
 
             {/* Contact Form */}
-            <div className="lg:col-span-2">
+            <div className="">
               <div
                 className="p-8 rounded-3xl"
                 style={{
@@ -248,15 +186,7 @@ const ContactPage: React.FC = () => {
                   </div>
 
                   {/* Phone and Subject Row */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <FormField
-                      label="📞 Số điện thoại"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+84 123 456 789"
-                    />
+                  <div className="grid grid-cols-1 gap-6">
                     <div>
                       <label
                         className="block text-sm font-semibold mb-3"
@@ -344,6 +274,21 @@ const ContactPage: React.FC = () => {
                       )}
                     </button>
                   </div>
+
+                  {/* Status Message */}
+                  {statusMessage && (
+                    <div className="flex justify-center">
+                      <div
+                        className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                          submitStatus === "success"
+                            ? "bg-green-100 text-green-800 border border-green-200"
+                            : "bg-red-100 text-red-800 border border-red-200"
+                        }`}
+                      >
+                        {statusMessage}
+                      </div>
+                    </div>
+                  )}
                 </form>
               </div>
             </div>

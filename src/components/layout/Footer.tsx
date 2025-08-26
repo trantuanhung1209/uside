@@ -1,5 +1,7 @@
 import { HiArrowSmUp } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
+import { NewsletterSubscription } from "../ui";
+import { FaEnvelope } from "react-icons/fa6";
 
 const Footer = () => {
   const careerPaths = [
@@ -145,7 +147,9 @@ const Footer = () => {
                   >
                     📧
                   </div>
-                  <span className="text-sm">hello@uside.vn</span>
+                  <span className="text-sm">
+                    <a href="mailto:usider.tech@gmail.com">usider.tech@gmail.com</a>
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 text-text-secondary">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center text-accent"
@@ -282,33 +286,11 @@ const Footer = () => {
               {/* Newsletter Signup */}
               <div className="space-y-3">
                 <h4 className="text-sm font-semibold text-text-primary">📬 Đăng ký nhận tin</h4>
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="Email của bạn"
-                    className="flex-1 px-3 py-2 text-sm rounded-xl border-0 outline-none
-                      bg-transparent text-text-primary placeholder-text-secondary"
-                    style={{
-                      boxShadow: `
-                        inset -4px -4px 8px #FAFBFF,
-                        inset 4px 4px 8px var(--color-shadow)
-                      `
-                    }}
-                  />
-                  <button
-                    className="w-10 h-10 rounded-xl flex items-center justify-center
-                      text-white font-bold transition-all duration-300 transform hover:scale-105"
-                    style={{
-                      background: "var(--color-accent)",
-                      boxShadow: `
-                        -4px -4px 8px #FAFBFF,
-                        4px 4px 8px var(--color-shadow)
-                      `
-                    }}
-                  >
-                    ✉️
-                  </button>
-                </div>
+                <NewsletterSubscription 
+                  placeholder="Email của bạn"
+                  buttonText={<FaEnvelope />}
+                  className="newsletter-compact"
+                />
               </div>
             </div>
           </div>

@@ -107,10 +107,10 @@ const AboutPage: React.FC = () => {
                         </svg>
                       </div>
                       <h3 className="font-bold text-text-primary">
-                        8 Thành Viên
+                        6 Thành Viên
                       </h3>
                       <p className="text-sm text-text-secondary">
-                        Sinh viên K67
+                        Sinh viên IUH
                       </p>
                     </div>
 
@@ -418,26 +418,6 @@ const AboutPage: React.FC = () => {
                         >
                           {funFacts[currentFactIndex]}
                         </p>
-                      </div>
-                    </div>
-
-                    {/* Quick Stats */}
-                    <div className="grid grid-cols-2 gap-4 mt-6">
-                      <div className="text-center p-4 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.15)]">
-                        <div className="text-2xl font-bold text-accent mb-1">
-                          500+
-                        </div>
-                        <div className="text-xs text-text-secondary">
-                          Bài Nhạc
-                        </div>
-                      </div>
-                      <div className="text-center p-4 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.15)]">
-                        <div className="text-2xl font-bold text-accent mb-1">
-                          10+
-                        </div>
-                        <div className="text-xs text-text-secondary">
-                          Bot Versions
-                        </div>
                       </div>
                     </div>
 

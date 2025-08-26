@@ -5,6 +5,8 @@ export { default as useAppLoading } from './useAppLoading';
 export { useMusic } from './useMusic';
 export { useAccentColor } from './useAccentColor';
 export { useScrollToTop, useScrollToTopInstant } from './useScrollToTop';
+export { useContactForm } from './useContactForm';
+export { useNewsNotification } from './useNewsNotification';
 
 /**
  * Custom hook for managing local storage state

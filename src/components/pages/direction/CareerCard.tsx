@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface CareerPath {
   id: string;
@@ -20,7 +19,6 @@ interface CareerCardProps {
 export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const navigate = useNavigate();
 
   // Animation effect when card appears
   useEffect(() => {
@@ -31,7 +29,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
   return (
     <div
       className={`
-        group relative overflow-hidden rounded-3xl 
+        group relative overflow-hidden rounded-2xl 
         p-4 sm:p-6 md:p-8
         transition-all duration-700 ease-out
         transform hover:scale-[1.02]
@@ -97,7 +95,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
             <div
               className={`
                 text-2xl sm:text-3xl lg:text-4xl p-2 sm:p-3 rounded-xl sm:rounded-2xl
-                transition-all duration-300
+                transition-all duration-300 w-[60px] h-[60px]
                 ${isHovered ? "animate-bounce" : ""}
               `}
               style={{
@@ -108,7 +106,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
                 `,
               }}
             >
-              {career.icon}
+              <img src={career.icon} alt={career.title} className="w-full h-full object-contain" />
             </div>
             <h3
               className="text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-300"
@@ -165,31 +163,6 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
               💡 {career.opportunities}
             </p>
           </div>
-
-          {/* Learn More Button */}
-          <button
-            className={`
-              neumorphic-button
-              relative overflow-hidden
-              w-full sm:w-auto
-              ${isHovered ? "animate-pulse" : ""}
-            `}
-            onClick={() => {
-              navigate(`/direction/${career.id}`);
-            }}
-          >
-            <span className="relative z-10 flex items-center justify-center sm:justify-start gap-2 cursor-pointer">
-              Tìm hiểu thêm
-              <span
-                className={`
-                transform transition-transform duration-300
-                ${isHovered ? "translate-x-1" : ""}
-              `}
-              >
-                →
-              </span>
-            </span>
-          </button>
         </div>
 
         {/* Right Image */}

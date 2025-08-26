@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Title from "../../ui/Title";
+import { useMusic } from "../../../hooks";
 
 const funFacts = [
   "Team USide đã uống hơn 1000 cốc cà phê trong quá trình phát triển dự án này! ☕ Và có thể chúng mình đã debug tới 3AM nhiều hơn số lần ngủ đủ 8 tiếng... 😅",
@@ -15,6 +16,7 @@ const funFacts = [
 export default function Section2() {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [factNumber, setFactNumber] = useState(1);
+  const { toggleMusic, isPlaying } = useMusic();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -104,10 +106,10 @@ export default function Section2() {
                             </svg>
                           </div>
                           <h3 className="font-bold text-text-primary">
-                            8 Thành Viên
+                            6 Thành Viên
                           </h3>
                           <p className="text-sm text-text-secondary">
-                            Sinh viên K67
+                            Sinh viên IUH
                           </p>
                         </div>
 
@@ -156,7 +158,7 @@ export default function Section2() {
                 </div>
 
                 {/* Flip Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mb-10">
                   {/* Flip Card 1 - Code */}
                   <div className="flip-card group relative h-64 [perspective:1000px]">
                     <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
@@ -313,43 +315,6 @@ export default function Section2() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Flip Card 5 - Core Values */}
-                  <div className="flip-card group relative h-64 [perspective:1000px]">
-                    <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                      <div className="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]">
-                        <div className="flex flex-col items-center justify-center h-full p-6 text-center">
-                          <div className="w-16 h-16 mb-4 rounded-2xl bg-background shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] flex items-center justify-center">
-                            <svg
-                              className="w-8 h-8 text-accent"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                              <circle cx="12" cy="12" r="3" />
-                            </svg>
-                          </div>
-                          <h3 className="text-lg font-bold text-text-primary">
-                            Core Values
-                          </h3>
-                          <p className="text-sm text-text-secondary mt-2">
-                            Giá trị cốt lõi
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-600 p-6 flex flex-col justify-center text-center text-white">
-                        <h3 className="text-lg font-bold mb-3">
-                          Values First
-                        </h3>
-                        <p className="text-sm opacity-90 leading-relaxed">
-                          Chất lượng, đam mê, học hỏi và chia sẻ - những giá trị làm nên USide! 💎 Clean code, clean heart! ❤️
-                        </p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Right Side - Robot Fun Fact Box & Bridge Connection */}
@@ -372,11 +337,23 @@ export default function Section2() {
                               viewBox="0 0 64 64"
                               fill="currentColor"
                             >
-                              <rect x="20" y="16" width="24" height="20" rx="4" />
+                              <rect
+                                x="20"
+                                y="16"
+                                width="24"
+                                height="20"
+                                rx="4"
+                              />
                               <circle cx="26" cy="24" r="2" />
                               <circle cx="38" cy="24" r="2" />
                               <rect x="30" y="28" width="4" height="2" rx="1" />
-                              <rect x="18" y="36" width="28" height="16" rx="6" />
+                              <rect
+                                x="18"
+                                y="36"
+                                width="28"
+                                height="16"
+                                rx="6"
+                              />
                               <rect x="12" y="20" width="6" height="8" rx="3" />
                               <rect x="46" y="20" width="6" height="8" rx="3" />
                               <circle cx="16" cy="8" r="2" />
@@ -428,26 +405,6 @@ export default function Section2() {
                           </div>
                         </div>
 
-                        {/* Quick Stats */}
-                        <div className="grid grid-cols-2 gap-4 mt-6">
-                          <div className="text-center p-4 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.15)]">
-                            <div className="text-2xl font-bold text-accent mb-1">
-                              500+
-                            </div>
-                            <div className="text-xs text-text-secondary">
-                              Bài Nhạc
-                            </div>
-                          </div>
-                          <div className="text-center p-4 rounded-2xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.15)]">
-                            <div className="text-2xl font-bold text-accent mb-1">
-                              10+
-                            </div>
-                            <div className="text-xs text-text-secondary">
-                              Bot Versions
-                            </div>
-                          </div>
-                        </div>
-
                         {/* Floating elements */}
                         <div className="absolute top-4 right-4 w-2 h-2 bg-accent/40 rounded-full animate-bounce"></div>
                         <div
@@ -458,69 +415,80 @@ export default function Section2() {
                     </div>
                   </div>
 
-                  {/* Bridge Connection Element */}
-                  <div className="lg:col-span-1 flex justify-center">
+                  {/* Music Toggle Button */}
+                  <div
+                    className="lg:col-span-1 flex justify-center cursor-pointer"
+                    onClick={() => {
+                      toggleMusic();
+                    }}
+                  >
                     <div className="relative group">
-                      {/* Main bridge circle with neumorphic design */}
-                      <div className="w-32 h-32 rounded-full bg-background relative overflow-hidden">
+                      {/* Main music toggle circle with neumorphic design */}
+                      <button
+                        className="w-32 h-32 rounded-full bg-background relative overflow-hidden focus:outline-none transition-transform duration-200 active:scale-95"
+                        aria-label="Toggle Music"
+                      >
                         {/* Neumorphic shadow layers */}
-                        <div className="absolute inset-0 rounded-full shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25)] group-hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.3),0_0_30px_rgba(0,210,255,0.2)] transition-all duration-700"></div>
+                        <div className={`absolute inset-0 rounded-full transition-all duration-700 ${
+                          isPlaying 
+                            ? 'shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25),0_0_20px_rgba(0,210,255,0.4)] animate-pulse' 
+                            : 'shadow-[-15px_-15px_30px_#FAFBFF,15px_15px_30px_rgba(22,17,29,0.25)]'
+                        } group-hover:shadow-[-20px_-20px_40px_#FAFBFF,20px_20px_40px_rgba(22,17,29,0.3),0_0_30px_rgba(0,210,255,0.2)]`}></div>
 
                         {/* Inner pressed effect */}
                         <div className="absolute inset-3 rounded-full bg-background shadow-[inset_-8px_-8px_16px_#FAFBFF,inset_8px_8px_16px_rgba(22,17,29,0.15)]"></div>
 
-                        {/* Mountain illustration */}
+                        {/* Music icon */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <svg
-                            className="w-16 h-16 text-accent"
-                            viewBox="0 0 120 120"
-                            fill="currentColor"
-                          >
-                            <polygon
-                              points="60,25 85,75 35,75"
-                              opacity="0.9"
-                            />
-                            <polygon
-                              points="50,40 75,75 25,75"
-                              opacity="0.7"
-                            />
-                            <circle cx="75" cy="40" r="6" opacity="0.8" />
-                            <circle cx="30" cy="35" r="1.5" opacity="0.6" />
-                            <circle cx="85" cy="30" r="1" opacity="0.6" />
-                          </svg>
+                          {isPlaying ? (
+                            // Pause icon when music is playing
+                            <svg
+                              className="w-16 h-16 text-accent transition-all duration-300 group-hover:scale-110"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                            </svg>
+                          ) : (
+                            // Play icon when music is paused
+                            <svg
+                              className="w-16 h-16 text-accent transition-all duration-300 group-hover:scale-110"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          )}
                         </div>
 
                         {/* Ripple effect on hover */}
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent to-[#3aefc4] opacity-0 group-hover:opacity-20 group-hover:animate-ping transition-all duration-300"></div>
 
-                        {/* Floating particles around bridge */}
+                        {/* Floating music notes around button */}
                         <div
-                          className="absolute -top-2 -right-2 w-1.5 h-1.5 bg-accent rounded-full opacity-70 animate-bounce"
+                          className={`absolute -top-2 -right-2 w-1.5 h-1.5 bg-accent rounded-full opacity-70 ${isPlaying ? 'animate-bounce' : ''}`}
                           style={{ animationDelay: "0s" }}
                         ></div>
                         <div
-                          className="absolute -bottom-3 -left-3 w-1 h-1 bg-[#3aefc4] rounded-full opacity-50 animate-bounce"
+                          className={`absolute -bottom-3 -left-3 w-1 h-1 bg-[#3aefc4] rounded-full opacity-50 ${isPlaying ? 'animate-bounce' : ''}`}
                           style={{ animationDelay: "1s" }}
                         ></div>
                         <div
-                          className="absolute -top-3 -left-2 w-1 h-1 bg-accent rounded-full opacity-60 animate-bounce"
+                          className={`absolute -top-3 -left-2 w-1 h-1 bg-accent rounded-full opacity-60 ${isPlaying ? 'animate-bounce' : ''}`}
                           style={{ animationDelay: "2s" }}
                         ></div>
-                      </div>
+                      </button>
 
                       {/* Orbiting elements */}
                       <div
-                        className="absolute inset-0 animate-spin"
+                        className={`absolute inset-0 ${isPlaying ? 'animate-spin' : ''}`}
                         style={{ animationDuration: "20s" }}
                       >
                         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-accent/40 rounded-full"></div>
                         <div className="absolute top-1/2 -right-8 transform -translate-y-1/2 w-1.5 h-1.5 bg-[#3aefc4]/40 rounded-full"></div>
                         <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-accent/30 rounded-full"></div>
+                        <div className={`absolute bottom-1/2 -left-8 transform -translate-x-1/2 w-2 h-2 bg-[#3aefc4]/40 rounded-full ${isPlaying ? 'animate-bounce' : ''}`}></div>
                       </div>
-
-                      {/* Connection lines to Fun Fact Box */}
-                      <div className="absolute top-1/2 -left-8 w-6 h-0.5 bg-gradient-to-r from-accent/30 to-transparent rounded-full transform -translate-y-1/2 hidden lg:block"></div>
-                      <div className="absolute top-1/3 -left-6 w-4 h-0.5 bg-gradient-to-r from-[#3aefc4]/30 to-transparent rounded-full transform -translate-y-1/2 hidden lg:block"></div>
                     </div>
                   </div>
                 </div>

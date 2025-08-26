@@ -144,18 +144,13 @@ const Section5 = () => {
           {/* Bottom decoration */}
           <div className="text-center mt-12">
             <div 
-              className="faq-bottom-decoration px-8 py-4 rounded-full cursor-pointer group section-neumorphic inline-block"
+              className="faq-bottom-decoration cursor-pointer group section-neumorphic inline-block"
             >
-              <p className="text-text-secondary text-sm">
-                Bạn có câu hỏi khác? 
-                <span className="faq-contact-link text-accent font-semibold ml-1 cursor-pointer transition-colors duration-300"
-                onClick={() => {
-                  navigate('/contact');
-                }}
-                >
-                  Liên hệ với chúng tôi
-                </span>
-              </p>
+              <button className="neumorphic-button"
+                onClick={() => navigate('/contact')}
+              >
+                Liên hệ với chúng tôi
+              </button>
               
               {/* Floating particles decoration */}
               <div className="absolute -top-2 -right-2 w-3 h-3 rounded-full bg-gradient-to-br from-accent to-primary opacity-30 animate-bounce" style={{animationDelay: '0s'}}></div>
