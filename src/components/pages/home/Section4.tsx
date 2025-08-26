@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Title from "../../ui/Title";
 import { useNavigate } from "react-router-dom";
-import { newsData } from "../../../data";
+import { newsData, type NewsItem } from "../../../data";
 import { 
   FiChevronLeft, 
   FiChevronRight, 
@@ -20,6 +20,8 @@ import {
   HiOutlineBolt,
   HiOutlineSparkles
 } from "react-icons/hi2";
+import { TbPinned } from "react-icons/tb";
+import { RiNewsLine } from "react-icons/ri";
 
 const Section4 = () => {
   const navigate = useNavigate();
@@ -32,7 +34,43 @@ const Section4 = () => {
     setIsAutoPlaying(false); // Stop auto-play when user interacts
   };
 
-  const filteredNews =
+  // Function to check if news is new (within last 3 days)
+  const isNewsNew = (dateString: string): boolean => {
+    const newsDate = new Date(dateString.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
+    const currentDate = new Date();
+    const diffTime = Math.abs(currentDate.getTime() - newsDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays <= 3;
+  };
+
+  // Function to check if recruitment news should be pinned
+  const isPinnedRecruitment = (item: NewsItem): boolean => {
+    return item.category === "recruitment" && (item.tags?.includes("Career") ?? false);
+  };
+
+  // Function to sort news by priority
+  const sortNewsByPriority = (news: NewsItem[]) => {
+    return news.sort((a, b) => {
+      // Priority 1: Pinned recruitment posts
+      const aPinned = isPinnedRecruitment(a);
+      const bPinned = isPinnedRecruitment(b);
+      if (aPinned && !bPinned) return -1;
+      if (!aPinned && bPinned) return 1;
+
+      // Priority 2: New posts (within 3 days)
+      const aNew = isNewsNew(a.date);
+      const bNew = isNewsNew(b.date);
+      if (aNew && !bNew) return -1;
+      if (!aNew && bNew) return 1;
+
+      // Priority 3: Sort by date (newest first)
+      const aDate = new Date(a.date.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
+      const bDate = new Date(b.date.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
+      return bDate.getTime() - aDate.getTime();
+    });
+  };
+
+  const baseFilteredNews =
     activeFilter === "all"
       ? newsData
       : newsData.filter((item) =>
@@ -48,6 +86,9 @@ const Section4 = () => {
               ].includes(item.category)
             : true
         );
+
+  // Apply sorting to filtered news
+  const filteredNews = sortNewsByPriority([...baseFilteredNews]);
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
@@ -113,7 +154,7 @@ const Section4 = () => {
 
               {/* Filter Buttons */}
               <div className="relative z-10 mb-8">
-                <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
+                <div className="flex flex-wrap items-center justify-center gap-[10px] xl:gap-4 mb-6">
                   {[
                     { key: "all", label: "Tất cả", icon: FiStar, count: newsData.length },
                     { key: "news", label: "Tin tức", icon: FiRadio, count: newsData.filter(item => 
@@ -173,6 +214,41 @@ const Section4 = () => {
                       </span>
                     </button>
                   ))}
+
+                  {/* View More Button */}
+                  <button
+                    onClick={() => navigate('/news')}
+                    className="
+                      group relative px-5 py-2.5 rounded-xl font-medium text-sm
+                      transition-all duration-300 ease-out cursor-pointer
+                      transform hover:scale-105 active:scale-95
+                      flex items-center gap-2 min-w-[120px] justify-center
+                      bg-background text-accent border-2 border-accent
+                      hover:bg-accent hover:text-white
+                    "
+                    style={{
+                      boxShadow: `
+                        -6px -6px 12px #FAFBFF,
+                        6px 6px 12px rgba(22, 17, 29, 0.15)
+                      `,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = `
+                        -8px -8px 16px #FAFBFF,
+                        8px 8px 16px rgba(22, 17, 29, 0.2),
+                        0 0 15px rgba(0, 210, 255, 0.3)
+                      `;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = `
+                        -6px -6px 12px #FAFBFF,
+                        6px 6px 12px rgba(22, 17, 29, 0.15)
+                      `;
+                    }}
+                  >
+                    <FiArrowRight className="text-lg group-hover:translate-x-1 transition-transform duration-300" />
+                    <span className="relative z-10">Xem thêm</span>
+                  </button>
                 </div>
               </div>
 
@@ -182,16 +258,6 @@ const Section4 = () => {
                 {/* Featured News Image - Left Side */}
                 <div className="2xl:col-span-2 order-2 2xl:order-1">
                   <div className="relative group">
-                    {/* Auto-play indicator */}
-                    <div className="absolute top-4 left-4 z-20">
-                      <div className={` 
-                        px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm
-                        ${isAutoPlaying ? 'bg-green-500/20 text-green-100' : 'bg-gray-500/20 text-gray-100'}
-                        border border-white/20 transition-all duration-300
-                      `}>
-                        {isAutoPlaying ? '🔄 Auto' : '⏸️ Paused'}
-                      </div>
-                    </div>
 
                     <div
                       className="h-80 sm:h-96 md:h-[450px] w-full overflow-hidden rounded-3xl 
@@ -221,8 +287,10 @@ const Section4 = () => {
                                         opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
                           
                           {/* Featured News Info Overlay */}
-                          <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                            <div className="mb-3">
+                          <div className="absolute bottom-0 left-0 right-0 pb-6 px-6 text-white z-10 
+                                        bg-gradient-to-t from-black/50 to-transparent
+                                        backdrop-blur-sm rounded-3xl">
+                            <div className="mb-3 flex items-center gap-2 flex-wrap">
                               <span 
                                 className="px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm border border-white/30 inline-flex items-center gap-1"
                                 style={{
@@ -254,8 +322,27 @@ const Section4 = () => {
                                 : filteredNews[safeActiveSlide].category === "technology" ? "Công nghệ"
                                 : "Sự kiện"}
                               </span>
+                              
+                              {/* Pinned Tag */}
+                              {isPinnedRecruitment(filteredNews[safeActiveSlide]) && (
+                                <span className="px-2 py-1 rounded-full text-xs font-bold bg-red-500/80 text-white 
+                                               backdrop-blur-sm border border-white/30 inline-flex items-center gap-1
+                                               animate-pulse">
+                                  <TbPinned className="w-3 h-3" />
+                                </span>
+                              )}
+                              
+                              {/* New Tag */}
+                              {isNewsNew(filteredNews[safeActiveSlide].date) && !isPinnedRecruitment(filteredNews[safeActiveSlide]) && (
+                                <span className="px-2 py-1 rounded-full text-xs font-bold bg-accent text-white 
+                                               backdrop-blur-sm border border-white/30 inline-flex items-center gap-1
+                                               animate-bounce">
+                                  <RiNewsLine className="w-3 h-3" />
+                                  <span>New</span>
+                                </span>
+                              )}
                             </div>
-                            <h3 className="text-xl font-bold mb-2 line-clamp-2 
+                            <h3 className="xl:text-xl text-base font-bold mb-2 line-clamp-2 
                                          transform group-hover:translate-x-2 transition-transform duration-300">
                               {filteredNews[safeActiveSlide].title}
                             </h3>
@@ -406,7 +493,7 @@ const Section4 = () => {
                               </p>
 
                               <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 flex-wrap">
                                   <span className={`
                                     px-2 py-0.5 rounded text-xs font-medium flex items-center gap-1
                                     ${item.category === "update" ? "bg-blue-100 text-blue-700"
@@ -427,6 +514,24 @@ const Section4 = () => {
                                     : item.category === "technology" ? <HiOutlineBolt className="w-3 h-3" />
                                     : <HiOutlineSparkles className="w-3 h-3" />}
                                   </span>
+                                  
+                                  {/* Pinned Tag for List Items */}
+                                  {isPinnedRecruitment(item) && (
+                                    <span className="px-1.5 py-0.5 rounded text-sm font-bold bg-red-500 text-white 
+                                                   flex items-center gap-1 animate-pulse">
+                                      <TbPinned className="w-2.5 h-2.5" />
+                                    </span>
+                                  )}
+                                  
+                                  {/* New Tag for List Items */}
+                                  {isNewsNew(item.date) && !isPinnedRecruitment(item) && (
+                                    <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-accent text-white 
+                                                   flex items-center gap-1 animate-bounce">
+                                      <RiNewsLine className="w-2.5 h-2.5" />
+                                      <span>New</span>
+                                    </span>
+                                  )}
+                                  
                                   <span className="text-xs text-text-secondary truncate flex items-center gap-1">
                                     <FiUser className="w-3 h-3" />
                                     {item.author}

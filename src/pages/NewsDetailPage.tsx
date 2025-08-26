@@ -59,6 +59,13 @@ const NewsDetailPage: React.FC = () => {
           {/* Breadcrumb */}
           <nav className="mb-6 text-sm text-gray-600">
             <span
+              onClick={() => navigate("/")}
+              className="cursor-pointer hover:text-accent"
+            >
+              Trang chủ
+            </span>
+            <span className="mx-2">→</span>
+            <span
               onClick={() => navigate("/news")}
               className="cursor-pointer hover:text-accent"
             >
@@ -151,7 +158,7 @@ const NewsDetailPage: React.FC = () => {
           <div className="flex justify-between items-center pt-8 border-t border-border">
             <button
               onClick={() => navigate("/news")}
-              className="neumorphic-button flex items-center gap-2"
+              className="section-neumorphic flex items-center gap-2 text-accent px-1 py-1 cursor-pointer hover:scale-103"
             >
               ← Quay lại tin tức
             </button>
@@ -163,7 +170,6 @@ const NewsDetailPage: React.FC = () => {
               >
                 Chia sẻ
               </button>
-              <button className="neumorphic-button">In bài viết</button>
             </div>
           </div>
 

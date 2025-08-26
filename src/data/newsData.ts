@@ -14,7 +14,7 @@ export const newsData: NewsItem[] = [
   {
     id: 1,
     title: "USide ra mắt phiên bản 2.0",
-    date: "7 tháng 8, 2025",
+    date: "25 tháng 8, 2025",
     excerpt:
       "Phiên bản mới với nhiều tính năng cải tiến và giao diện được thiết kế lại hoàn toàn.",
     content: `
@@ -62,7 +62,7 @@ export const newsData: NewsItem[] = [
   {
     id: 3,
     title: "Hợp tác với các đối tác công nghệ",
-    date: "1 tháng 8, 2025",
+    date: "24 tháng 8, 2025",
     excerpt:
       "USide chính thức hợp tác với các công ty công nghệ hàng đầu để mở rộng dịch vụ.",
     content: `

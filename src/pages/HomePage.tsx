@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
             link="direction"
           />
 
-          <div className="inner-list-icon flex justify-center items-center gap-[40px]">
+          <div className="inner-list-icon flex justify-center items-center xl:gap-[40px] gap-[20px]">
             {careerPaths.map((career, index) => (
               <div 
                 key={career.id} 

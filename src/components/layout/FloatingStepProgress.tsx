@@ -1,8 +1,14 @@
+import { ActivityIcon, NewspaperIcon } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
+import { FaHome } from "react-icons/fa";
+import { GrDirections } from "react-icons/gr";
+import { IoInformationCircle } from "react-icons/io5";
+import { MdContactSupport } from "react-icons/md";
 
 interface Section {
   id: string;
   name: string;
+  icon: React.ReactNode;
   position: number;
 }
 
@@ -17,12 +23,12 @@ const FloatingStepProgress = () => {
   // Định nghĩa các sections của trang chủ
   const sections: Section[] = useMemo(
     () => [
-      { id: "hero", name: "Trang chủ", position: 0 },
-      { id: "section-1", name: "Hoạt động", position: 1 },
-      { id: "section-2", name: "Tin tức", position: 2 },
-      { id: "section-3", name: "Định hướng", position: 3 },
-      { id: "section-4", name: "Giới thiệu", position: 4 },
-      { id: "section-5", name: "FAQ & Liên hệ", position: 5 },
+      { id: "hero", name: "Trang chủ", position: 0, icon: <FaHome className="w-6 h-6" /> },
+      { id: "section-1", name: "Hoạt động", position: 1, icon: <ActivityIcon className="w-6 h-6" /> },
+      { id: "section-2", name: "Tin tức", position: 2, icon: <NewspaperIcon className="w-6 h-6" /> },
+      { id: "section-3", name: "Định hướng", position: 3, icon: <GrDirections className="w-6 h-6" /> },
+      { id: "section-4", name: "Giới thiệu", position: 4, icon: <IoInformationCircle className="w-6 h-6" /> },
+      { id: "section-5", name: "FAQ & Liên hệ", position: 5, icon: <MdContactSupport className="w-6 h-6" /> },
     ],
     []
   );
@@ -214,7 +220,7 @@ const FloatingStepProgress = () => {
             </div>
 
             {/* Steps */}
-            <div className="flex flex-col space-y-6 ml-5 translate-y-[12px]">
+            <div className="flex flex-col space-y-6 lg:ml-6 ml-10 translate-y-[12px]">
               {sections.map((section, index) => (
                 <div
                   key={section.id}
@@ -237,7 +243,8 @@ const FloatingStepProgress = () => {
                   group-hover:translate-x-1
                 `}
                   >
-                    {section.name}
+                    <span className="2xl:hidden w-[24px] h-[24px] text-lg flex items-center justify-center">{section.icon}</span>
+                    <span className="2xl:block hidden">{section.name}</span>
                   </div>
 
                   {/* Hover effect background */}

@@ -6,7 +6,7 @@ const FloatingMusicControl = () => {
   const { currentAccentColor } = useAccentColor();
 
   return (
-    <div className="inline-block fixed bottom-[2%] left-[95%] z-50">
+    <div className="inline-block fixed bottom-[3%] left-[85%] lg:left-[95%] z-50">
       <button
         className="w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group relative overflow-hidden flex items-center justify-center focus:outline-none cursor-pointer shadow-lg section-neumorphic"
         onClick={toggleMusic}

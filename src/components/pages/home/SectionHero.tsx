@@ -232,10 +232,10 @@ const SectionHero = () => {
             </div>
 
             <div className="inner-right w-full flex justify-end overflow-hidden relative">
-              <div className="pr-[400px] translate-y-[-20px]">
+              <div className="lg:pr-[400px] translate-y-[-20px] xs:translate-x-[20px] lg:translate-x-0">
                 <SplineViewer
                   url="https://prod.spline.design/ZXsHBKR839LKz3yn/scene.splinecode"
-                  className="w-0"
+                  className="xl:w-0"
                 />
               </div>
               <div className="w-40 h-15 bg-background absolute 5xl:bottom-8 5xl:left-0 z-1 rounded-[8px] hidden 4xl:block 4xl:left-0 6xl:left-10"></div>

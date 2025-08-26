@@ -9,7 +9,7 @@ import {
   ContactPage 
 } from './pages';
 import NotFoundPage from './pages/NotFoundPage';
-import { RobotImageLoader, NewsNotificationContainer } from './components/ui';
+import { RobotImageLoader, NewsNotificationContainer, FloatingMusicControl } from './components/ui';
 import { useAppLoading } from './hooks';
 import { useNewsNotificationContext } from './hooks/useNewsNotificationContext';
 import { MusicProvider } from './contexts/MusicContext';
@@ -73,6 +73,8 @@ const App: React.FC = () => {
             <AppWithNotifications />
           </div>
         </NewsNotificationProvider>
+
+        <FloatingMusicControl />
       </MusicProvider>
     </AccentColorProvider>
   );

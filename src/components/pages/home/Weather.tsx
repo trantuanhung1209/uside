@@ -539,17 +539,50 @@ const Weather = () => {
 
   const suggestion = getActivitySuggestion(weather);
 
+  // Function to get weather icon based on description
+  const getWeatherIcon = (description: string, iconCode: string) => {
+    const desc = description.toLowerCase();
+
+    // Check OpenWeatherMap icon code first
+    if (iconCode.includes("01")) return "☀️"; // clear sky
+    if (iconCode.includes("02")) return "⛅"; // few clouds
+    if (iconCode.includes("03")) return "☁️"; // scattered clouds
+    if (iconCode.includes("04")) return "☁️"; // broken clouds
+    if (iconCode.includes("09")) return "🌧️"; // shower rain
+    if (iconCode.includes("10")) return "🌦️"; // rain
+    if (iconCode.includes("11")) return "⛈️"; // thunderstorm
+    if (iconCode.includes("13")) return "❄️"; // snow
+    if (iconCode.includes("50")) return "🌫️"; // mist
+
+    // Fallback to description matching in Vietnamese
+    if (desc.includes("nắng") || desc.includes("quang đãng")) return "☀️";
+    if (desc.includes("mây ít") || desc.includes("có mây")) return "⛅";
+    if (desc.includes("mây") || desc.includes("âm u")) return "☁️";
+    if (desc.includes("mưa rào") || desc.includes("mưa nhỏ")) return "🌧️";
+    if (desc.includes("mưa") || desc.includes("mưa vừa")) return "🌦️";
+    if (desc.includes("dông") || desc.includes("sấm sét")) return "⛈️";
+    if (desc.includes("tuyết")) return "❄️";
+    if (desc.includes("sương mù") || desc.includes("khói")) return "🌫️";
+    if (desc.includes("gió")) return "🌬️";
+
+    // Default fallback
+    return "🌤️";
+  };
+
   return (
     <div className="flex items-center justify-between gap-[40px]">
       <div className="flex flex-col">
         <div className="flex items-center gap-2">
-          <div className="weather-icon text-2xl">☁️</div>
+          <div className="weather-icon text-2xl">
+            {getWeatherIcon(weather.description, weather.icon)}
+          </div>
           <div className="time-digit text-base font-bold">
             {weather.temperature}°
           </div>
         </div>
         <div className="text-[12px] capitalize pt-[4px]">
-          🌤️ {weather.description}
+          {" "}
+          {weather.description}
         </div>
       </div>
 
