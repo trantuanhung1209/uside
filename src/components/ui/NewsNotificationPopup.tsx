@@ -148,7 +148,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="
+              className=" cursor-pointer
                 absolute top-4 right-4 
                 w-8 h-8 rounded-full 
                 flex items-center justify-center
@@ -264,7 +264,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
             <div className="flex gap-3 justify-end">
               <button
                 onClick={handleClose}
-                className="
+                className=" cursor-pointer
                   px-4 py-2 text-sm font-medium
                   text-gray-600 hover:text-gray-800
                   bg-white/80 hover:bg-white
@@ -285,7 +285,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
                   handleClose();
                 }}
                 className="
-                  neumorphic-button
+                  neumorphic-button cursor-pointer
                   px-4 py-2 text-sm font-medium
                 "
               >

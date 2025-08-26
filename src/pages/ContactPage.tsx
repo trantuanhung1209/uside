@@ -1,6 +1,6 @@
 import { Layout } from "../components/layout";
 import { Title } from "../components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaEnvelope, FaArrowLeft } from "react-icons/fa";
 import { BsRocketTakeoffFill } from "react-icons/bs";
 import { useContactForm } from "../hooks";
@@ -68,6 +68,13 @@ const ContactPage: React.FC = () => {
 
   const { isSubmitting, submitStatus, statusMessage, submitForm, resetStatus } = useContactForm();
 
+  // Reset form when submission is successful
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    }
+  }, [submitStatus]);
+
   const handleGoBack = () => {
     navigate(-1); // Quay lại trang trước đó
   };
@@ -83,11 +90,6 @@ const ContactPage: React.FC = () => {
 
     // Submit form using the service
     await submitForm(formData);
-    
-    // Clear form if successful
-    if (submitStatus === 'success') {
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    }
 
     // Auto hide status message after 5 seconds
     setTimeout(() => {
