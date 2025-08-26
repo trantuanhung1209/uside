@@ -8,7 +8,7 @@ const FloatingMusicControl = () => {
   return (
     <div className="inline-block fixed bottom-[3%] left-[85%] lg:left-[95%] z-50">
       <button
-        className="w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group relative overflow-hidden flex items-center justify-center focus:outline-none cursor-pointer shadow-lg section-neumorphic"
+        className="lg:w-14 lg:h-14 w-10 h-10 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group relative overflow-hidden flex items-center justify-center focus:outline-none cursor-pointer shadow-lg section-neumorphic"
         onClick={toggleMusic}
         title={isPlaying ? "Dừng nhạc" : "Phát nhạc"}
         style={{

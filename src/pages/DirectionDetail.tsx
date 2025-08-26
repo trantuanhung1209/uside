@@ -707,7 +707,7 @@ const DirectionDetailPage: React.FC = () => {
                     </button>
 
                     <button
-                      onClick={() => navigate("/direction")}
+                      onClick={() => navigate("/")}
                       className={`
                         neumorphic-button 
                       `}
@@ -719,7 +719,7 @@ const DirectionDetailPage: React.FC = () => {
                       onMouseEnter={() => setHover(true)}
                       onMouseLeave={() => setHover(false)}
                     >
-                      Về trang định hướng
+                      Về trang chủ
                     </button>
                   </div>
                 </div>

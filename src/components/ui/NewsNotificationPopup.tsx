@@ -170,18 +170,19 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
           {/* Main Popup */}
           <div
             className={`
-              relative p-6 rounded-2xl border-2 
-              ${getPriorityClasses()}
-              backdrop-filter backdrop-blur-20
-              shadow-neumorphic
-              transition-all duration-300
-              news-notification-popup
-            `}
+              relative p-6 rounded-2xl border-2 max-h-[90vh] sm:max-h-[100vh]
+              flex flex-col
+               ${getPriorityClasses()}
+               backdrop-filter backdrop-blur-20
+               shadow-neumorphic
+               transition-all duration-300
+               news-notification-popup
+             `}
           >
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="cursor-pointer absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 bg-white/80 hover:bg-white shadow-neumorphic-sm transition-all duration-200 hover:scale-110 group"
+              className="cursor-pointer absolute top-0 right-1 xl:top-4 xl:right-4 w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 bg-white/80 hover:bg-white shadow-neumorphic-sm transition-all duration-200 hover:scale-110 group"
               aria-label="Đóng thông báo"
             >
               <X
@@ -214,40 +215,42 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
               </div>
             </div>
 
-            {/* Image */}
-            {notificationContent.image && (
-              <div className="mb-4">
-                <img
-                  src={notificationContent.image}
-                  alt={notificationContent.imageAlt || 'News image'}
-                  className="w-full h-40 object-cover rounded-lg shadow-neumorphic-sm"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-              </div>
-            )}
-
-            {/* Content */}
-            <div className="mb-6">
-              {notificationContent.type === 'text' && notificationContent.message && (
-                <p className="text-gray-700 text-base leading-relaxed">
-                  {notificationContent.message}
-                </p>
-              )}
-              
-              {notificationContent.type === 'html' && notificationContent.message && (
-                <div 
-                  className="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none"
-                  dangerouslySetInnerHTML={{ __html: notificationContent.message }}
-                />
-              )}
-              
-              {notificationContent.type === 'rich' && notificationContent.content && (
-                <div className="text-gray-700 text-base leading-relaxed">
-                  {notificationContent.content}
+            {/* Scrollable content (image + message) so header/actions stay visible */}
+            <div className="mb-4 overflow-auto max-h-[45vh] xl:max-h-[80vh] pr-2">
+              {notificationContent.image && (
+                <div className="mb-4">
+                  <img
+                    src={notificationContent.image}
+                    alt={notificationContent.imageAlt || 'News image'}
+                    className="w-full h-28 sm:h-40 object-cover rounded-lg shadow-neumorphic-sm"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
                 </div>
               )}
+              
+              {/* Content */}
+              <div className="mb-4">
+                {notificationContent.type === 'text' && notificationContent.message && (
+                  <p className="text-gray-700 text-base leading-relaxed">
+                    {notificationContent.message}
+                  </p>
+                )}
+                
+                {notificationContent.type === 'html' && notificationContent.message && (
+                  <div 
+                    className="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none"
+                    dangerouslySetInnerHTML={{ __html: notificationContent.message }}
+                  />
+                )}
+                
+                {notificationContent.type === 'rich' && notificationContent.content && (
+                  <div className="text-gray-700 text-base leading-relaxed">
+                    {notificationContent.content}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Progress Bar */}

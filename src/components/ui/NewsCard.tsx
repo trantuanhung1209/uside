@@ -125,7 +125,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
         {/* Title */}
         <h4
           className={`
-            font-bold text-lg mb-3 line-clamp-2 leading-tight
+            font-bold text-lg mb-3 line-clamp-1 leading-tight
             transition-colors duration-300
             ${isHovered ? "text-[var(--color-accent)]" : ""}
           `}
@@ -134,6 +134,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
               ? "var(--color-accent)"
               : "var(--color-text-primary)",
           }}
+          title={article.title}
         >
           {article.title}
         </h4>

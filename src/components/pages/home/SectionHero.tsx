@@ -238,7 +238,7 @@ const SectionHero = () => {
                   className="xl:w-0"
                 />
               </div>
-              <div className="w-40 h-15 bg-background absolute 5xl:bottom-8 5xl:left-0 z-1 rounded-[8px] hidden 4xl:block 4xl:left-0 6xl:left-10"></div>
+              <div className="w-40 h-15 bg-background absolute 5xl:bottom-8 5xl:left-0 z-1 rounded-[8px] hidden 4xl:block 4xl:left-0 6xl:left-0 7xl:left-10"></div>
             </div>
           </div>
         </div>

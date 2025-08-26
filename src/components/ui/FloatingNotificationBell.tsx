@@ -79,7 +79,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
         <button
           onClick={handleClick}
           className={`
-            relative w-14 h-14 rounded-full cursor-pointer
+            relative lg:w-14 lg:h-14 w-10 h-10 rounded-full cursor-pointer
             bg-white/90 backdrop-blur-sm
             shadow-lg hover:shadow-xl
             border-2 border-white/50

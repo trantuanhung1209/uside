@@ -1,5 +1,5 @@
 import { ActivityIcon, NewspaperIcon } from "lucide-react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { FaHome } from "react-icons/fa";
 import { GrDirections } from "react-icons/gr";
 import { IoInformationCircle } from "react-icons/io5";
@@ -17,10 +17,10 @@ const FloatingStepProgress = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isInSection, setIsInSection] = useState(false);
-  const [isManuallyHidden, setIsManuallyHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
 
-  // Định nghĩa các sections của trang chủ
+  // Định nghĩa các sections
   const sections: Section[] = useMemo(
     () => [
       { id: "hero", name: "Trang chủ", position: 0, icon: <FaHome className="w-6 h-6" /> },
@@ -33,158 +33,137 @@ const FloatingStepProgress = () => {
     []
   );
 
-  // Theo dõi scroll để cập nhật progress và current section
-  useEffect(() => {
-    const handleScroll = () => {
-      // Tính scroll progress
-      const scrollTop = window.pageYOffset;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(Math.min(100, Math.max(0, scrollPercent)));
+  // Check if screen is xl or smaller
+  const isXlOrSmaller = () => {
+    return window.innerWidth <= 576; // xl breakpoint is 576px
+  };
 
-      // Tìm section hiện tại dựa trên vị trí scroll
-      const windowHeight = window.innerHeight;
-      const currentScrollY = scrollTop + windowHeight / 2;
-      let foundSection = false;
+  // Handle scroll with auto-hide functionality for xl and smaller screens
+  const handleScroll = useCallback(() => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    setScrollProgress(Math.min(100, Math.max(0, scrollPercent)));
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i].id);
-        if (element) {
-          const elementTop = element.offsetTop;
-          const elementBottom = elementTop + element.offsetHeight;
+    // Auto-hide logic only for xl and smaller screens
+    if (isXlOrSmaller()) {
+      const currentScrollY = scrollTop;
+      const scrollDifference = Math.abs(currentScrollY - lastScrollY);
 
-          // Kiểm tra nếu đang ở trong section
-          if (currentScrollY >= elementTop && currentScrollY <= elementBottom) {
-            setCurrentSection(i);
-            foundSection = true;
-            break;
-          }
-        }
-      }
-
-      // Tự động hiện/ẩn component dựa trên việc có đang ở trong section không
-      setIsInSection(foundSection);
-      if (foundSection && !isVisible && !isExpanded && !isManuallyHidden) {
-        // Tự động hiện khi vào section (chỉ khi chưa bị ẩn thủ công)
-        setIsVisible(true);
-        setIsExpanded(true);
-      } else if (
-        !foundSection &&
-        isVisible &&
-        isExpanded &&
-        !isManuallyHidden
-      ) {
-        // Tự động ẩn khi ra khỏi tất cả sections (có delay nhỏ)
-        setTimeout(() => {
+      if (scrollDifference > 10) {
+        // Threshold to prevent excessive toggling
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          setIsScrollingDown(true);
           setIsVisible(false);
           setIsExpanded(false);
-        }, 1000);
+        } else {
+          // Scrolling up
+          setIsScrollingDown(false);
+          setIsVisible(false);
+          setIsExpanded(false);
+        }
+        setLastScrollY(currentScrollY);
+      }
+    }
+
+    // Section detection
+    const windowHeight = window.innerHeight;
+    const currentScrollY = scrollTop + windowHeight / 2;
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const element = document.getElementById(sections[i].id);
+      if (element) {
+        const elementTop = element.offsetTop;
+        const elementBottom = elementTop + element.offsetHeight;
+        if (currentScrollY >= elementTop && currentScrollY <= elementBottom) {
+          setCurrentSection(i);
+          break;
+        }
+      }
+    }
+  }, [sections, lastScrollY]);
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Handle window resize to show/hide based on screen size
+    const handleResize = () => {
+      if (!isXlOrSmaller()) {
+        // On larger screens (>576px), always show the component
+        setIsVisible(true);
+        setIsExpanded(true);
+      } else {
+        // On smaller screens (<=576px), reset to hidden state
+        setIsVisible(false);
+        setIsExpanded(false);
       }
     };
 
-    // Gọi ngay lần đầu
-    handleScroll();
+    // Initialize visibility based on current screen size
+    handleResize();
 
-    // Thêm event listener
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [sections, isVisible, isExpanded, isManuallyHidden]);
+  }, [handleScroll]);
 
+  // Toggle thủ công
   const handleToggleVisibility = () => {
     if (isVisible || isExpanded) {
-      // Đang hiển thị -> Ẩn đi (đánh dấu là ẩn thủ công)
       setIsVisible(false);
       setIsExpanded(false);
-      setIsManuallyHidden(true);
     } else {
-      // Đang ẩn -> Hiển thị (bỏ đánh dấu ẩn thủ công)
       setIsVisible(true);
       setIsExpanded(true);
-      setIsManuallyHidden(false);
     }
   };
 
   const handleSectionClick = (sectionIndex: number) => {
     setCurrentSection(sectionIndex);
-
-    // Scroll to section
     const sectionId = sections[sectionIndex].id;
-    console.log("Clicking section:", sectionId, "index:", sectionIndex); // Debug log
-
     const element = document.getElementById(sectionId);
-    console.log("Found element:", element); // Debug log
-
     if (element) {
       element.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
-      console.log("Scrolled to:", sectionId); // Debug log
-    } else {
-      console.warn("Element not found:", sectionId); // Debug log
     }
   };
 
   return (
     <>
       <div className="sticky left-2 top-1/2">
-        {/* Toggle Button */}
+        {/* Toggle Button - Only show on small screens */}
         <div
-          className="transition-all duration-700 ease-out 3xl:hidden xs:translate-x-[-10px] xs:scale-70 sm:scale-100"
-          style={{
-            transform: "translateY(-50%)",
-          }}
+          className={"transition-all duration-700 ease-out 3xl:hidden xs:translate-x-[-10px] xs:scale-70 sm:scale-100 sm:hidden" + isScrollingDown}
+          style={{ transform: "translateY(-50%)" }}
         >
           <button
             onClick={handleToggleVisibility}
             className={`bg-background p-3 rounded-full border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group ${
-              isInSection
+              isVisible || isExpanded
                 ? "opacity-100 border-accent shadow-accent/20"
-                : isVisible || isExpanded
-                ? "opacity-100"
                 : "opacity-60 hover:opacity-100"
             }`}
-            title={
-              isVisible || isExpanded
-                ? "Đóng thanh tiến trình"
-                : isInSection
-                ? `Mở thanh tiến trình (Section: ${sections[currentSection]?.name})`
-                : "Mở thanh tiến trình"
-            }
+            title={isVisible || isExpanded ? "Đóng thanh tiến trình" : "Mở thanh tiến trình"}
           >
             <svg
               className={`w-5 h-5 transition-all duration-300 ${
-                isVisible || isExpanded
-                  ? "text-accent"
-                  : isInSection
-                  ? "text-accent scale-110"
-                  : "text-gray-600"
+                isVisible || isExpanded ? "text-accent" : "text-gray-600"
               }`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
               {isVisible || isExpanded ? (
-                // Arrow left khi đang hiện (ẩn đi)
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               ) : (
-                // Arrow right khi đang ẩn (hiện ra)
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               )}
             </svg>
           </button>
@@ -193,28 +172,20 @@ const FloatingStepProgress = () => {
         {/* Main Progress Component */}
         <div
           className={`transition-all duration-700 ease-out xs:w-[100px] 2xl:w-[135px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 5xl:scale-95 6xl:scale-100 ${
-            isVisible || isExpanded
-              ? "opacity-100 pointer-events-auto scale-100"
-              : "opacity-0 pointer-events-none scale-95"
+            isVisible || isExpanded ? "opacity-100 pointer-events-auto scale-100" : "opacity-0 pointer-events-none scale-95"
           }`}
           style={{
-            transform: `translateY(-50%) ${
-              isVisible || isExpanded ? "translateX(3rem)" : "translateX(0)"
-            }`,
+            transform: `translateY(-50%) ${isVisible || isExpanded ? "translateX(3rem)" : "translateX(0)"}`,
           }}
         >
-          {/* Container với neumorphic design */}
+          {/* Container */}
           <div className="relative bg-background pt-[10px] rounded-3xl shadow-sm hover:scale-101 transition-all duration-300 hover:shadow-lg xs:translate-y-[-30%] lg:translate-y-0">
             {/* Progress line */}
             <div className="absolute left-3 top-4 bottom-4 w-1 max-h-full bg-secondary rounded-full shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.15)]">
               <div
                 className="bg-accent rounded-full transition-all duration-700 ease-out relative shadow-[0_0_15px_rgba(0,210,255,0.4)]"
-                style={{
-                  height: `${(scrollProgress / 100) * 100}%`,
-                  width: "100%",
-                }}
+                style={{ height: `${scrollProgress}%`, width: "100%" }}
               >
-                {/* Glowing effect */}
                 <div className="absolute inset-0 bg-accent rounded-full animate-pulse opacity-50"></div>
               </div>
             </div>
@@ -227,27 +198,19 @@ const FloatingStepProgress = () => {
                   className="relative flex items-center cursor-pointer group"
                   onClick={() => handleSectionClick(index)}
                 >
-
-                  {/* Step label */}
                   <div
                     className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-300 transform origin-left opacity-100
-                  ${
-                    index === currentSection
-                      ? "bg-accent/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]"
-                      : index < currentSection
-                      ? "text-gray-400 bg-accent/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]"
-                      : "text-text-secondary bg-accent/20 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)] group-hover:text-accent group-hover:scale-105"
-                  }
-                  whitespace-nowrap
-                  group-hover:bg-background group-hover:shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]
-                  group-hover:translate-x-1
-                `}
+                    ${
+                      index === currentSection
+                        ? "bg-accent/20 text-accent scale-105 shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)]"
+                        : index < currentSection
+                        ? "text-gray-400 bg-accent/10 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)]"
+                        : "text-text-secondary bg-accent/20 shadow-[inset_-2px_-2px_4px_#FAFBFF,inset_2px_2px_4px_rgba(22,17,29,0.08)] group-hover:text-accent group-hover:scale-105"
+                    }`}
                   >
                     <span className="2xl:hidden w-[24px] h-[24px] text-lg flex items-center justify-center">{section.icon}</span>
                     <span className="2xl:block hidden">{section.name}</span>
                   </div>
-
-                  {/* Hover effect background */}
                   <div className="absolute -inset-2 bg-accent/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
                 </div>
               ))}
@@ -256,9 +219,7 @@ const FloatingStepProgress = () => {
             {/* Progress percentage */}
             <div className="mt-6 pt-4 pl-[20px] border-t border-border/30">
               <div className="text-end translate-x-[-10px] translate-y-[-20px]">
-                <div className="text-base font-bold text-accent">
-                  {Math.round(scrollProgress)}%
-                </div>
+                <div className="text-base font-bold text-accent">{Math.round(scrollProgress)}%</div>
               </div>
             </div>
 

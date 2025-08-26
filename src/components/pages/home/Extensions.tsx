@@ -221,7 +221,7 @@ const Extensions = () => {
               </div>
               <button
                 onClick={() => setShowFoodSuggestion(false)}
-                className="cursor-pointertext-2xl font-bold p-2 rounded-xl transition-all duration-300 flex-shrink-0"
+                className="cursor-pointertext-2xl font-bold p-2 rounded-xl transition-all duration-300 flex-shrink-0 cursor-pointer"
                 style={{
                   color: 'var(--color-text-secondary)',
                   background: 'var(--color-background)',
