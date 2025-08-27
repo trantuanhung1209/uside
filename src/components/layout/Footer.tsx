@@ -72,7 +72,7 @@ const Footer = () => {
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div className="grid grid-cols-1 xl:grid-cols-6 gap-8 mb-16">
           
           {/* Brand Section */}
           <div className="lg:col-span-4">

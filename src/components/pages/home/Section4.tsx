@@ -34,13 +34,11 @@ const Section4 = () => {
     setIsAutoPlaying(false); // Stop auto-play when user interacts
   };
 
-  // Function to check if news is new (within last 3 days)
-  const isNewsNew = (dateString: string): boolean => {
-    const newsDate = new Date(dateString.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
-    const currentDate = new Date();
-    const diffTime = Math.abs(currentDate.getTime() - newsDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays <= 3;
+  // Function to check if news is new (within last 5 hours)
+  const isNewsNew = (item: NewsItem): boolean => {
+    const now = new Date();
+    const fiveHoursAgo = new Date(now.getTime() - 5 * 60 * 60 * 1000); // 5 giờ trước
+    return item.timestamp >= fiveHoursAgo.getTime();
   };
 
   // Function to check if news item is pinned
@@ -57,16 +55,14 @@ const Section4 = () => {
       if (aPinned && !bPinned) return -1;
       if (!aPinned && bPinned) return 1;
 
-      // Priority 2: New posts (within 3 days)
-      const aNew = isNewsNew(a.date);
-      const bNew = isNewsNew(b.date);
+      // Priority 2: New posts (within 5 hours)
+      const aNew = isNewsNew(a);
+      const bNew = isNewsNew(b);
       if (aNew && !bNew) return -1;
       if (!aNew && bNew) return 1;
 
-      // Priority 3: Sort by date (newest first)
-      const aDate = new Date(a.date.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
-      const bDate = new Date(b.date.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
-      return bDate.getTime() - aDate.getTime();
+      // Priority 3: Sort by timestamp (newest first)
+      return b.timestamp - a.timestamp;
     });
   };
 
@@ -333,7 +329,7 @@ const Section4 = () => {
                               )}
                               
                               {/* New Tag */}
-                              {isNewsNew(filteredNews[safeActiveSlide].date) && !isPinnedNews(filteredNews[safeActiveSlide]) && (
+                              {isNewsNew(filteredNews[safeActiveSlide]) && !isPinnedNews(filteredNews[safeActiveSlide]) && (
                                 <span className="px-2 py-1 rounded-full text-xs font-bold bg-red-400 text-white 
                                                backdrop-blur-sm border border-white/30 inline-flex items-center gap-1
                                                animate-bounce">
@@ -524,7 +520,7 @@ const Section4 = () => {
                                   )}
                                   
                                   {/* New Tag for List Items */}
-                                  {isNewsNew(item.date) && !isPinnedNews(item) && (
+                                  {isNewsNew(item) && !isPinnedNews(item) && (
                                     <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-red-400 text-white 
                                                    flex items-center gap-1 animate-bounce">
                                       <RiNewsLine className="w-2.5 h-2.5" />

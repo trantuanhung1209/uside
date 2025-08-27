@@ -64,7 +64,7 @@ export const newsData: NewsItem[] = [
     author: "Nhóm phát triển USide",
     category: "update",
     tags: ["UI/UX", "Performance", "Features"],
-    pinned: true, // Ghim tin này
+    pinned: false, // Ghim tin này
   }),
   createNewsItem({
     id: 2,

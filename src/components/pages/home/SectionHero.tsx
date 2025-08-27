@@ -226,7 +226,7 @@ const SectionHero = () => {
             <div className="lg:block hidden">
               <Clock />
             </div>
-            <div className="grid grid-cols-2 justify-between xl:hidden">
+            <div className="grid grid-cols-2 justify-between lg:hidden">
               <div className="w-[100%]">
                 <Extensions />
               </div>
