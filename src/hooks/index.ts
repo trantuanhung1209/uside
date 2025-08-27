@@ -7,6 +7,7 @@ export { useAccentColor } from './useAccentColor';
 export { useScrollToTop, useScrollToTopInstant } from './useScrollToTop';
 export { useContactForm } from './useContactForm';
 export { useNewsNotification } from './useNewsNotification';
+export { useReadNews } from './useReadNews';
 
 /**
  * Custom hook for managing local storage state

@@ -17,6 +17,7 @@ import { useAppLoading } from "./hooks";
 import { MusicProvider } from "./contexts/MusicContext";
 import AccentColorProvider from "./contexts/AccentColorContext";
 import { NewsNotificationProvider } from './contexts/NewsNotificationContext';
+import { ReadNewsProvider } from './contexts/ReadNewsContext';
 
 // Component để quản lý thông báo và hiển thị chúng
 const AppWithNotifications: React.FC = () => {
@@ -65,7 +66,9 @@ const App: React.FC = () => {
           `}
         >
           <NewsNotificationProvider>
-            <AppWithNotifications />
+            <ReadNewsProvider>
+              <AppWithNotifications />
+            </ReadNewsProvider>
           </NewsNotificationProvider>
         </div>
 

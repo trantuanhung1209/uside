@@ -1,7 +1,8 @@
 export interface NewsItem {
   id: number;
   title: string;
-  date: string;
+  date: string; // Giữ string để hiển thị, thêm timestamp để xử lý
+  timestamp: number; // Thêm timestamp cho việc xử lý thời gian
   excerpt: string;
   content: string;
   image?: string;
@@ -9,13 +10,41 @@ export interface NewsItem {
   category?: string;
   tags?: string[];
   pinned?: boolean; // Thêm field cho tin ghim
+  isRead?: boolean; // Thêm field để đánh dấu đã đọc
 }
 
+// Helper function để tạo timestamp từ date string
+const createTimestamp = (dateStr: string): number => {
+  const dateTimeMatch = dateStr.match(/(\d+)\s+tháng\s+(\d+),\s+(\d+)\s+(\d+):(\d+)/);
+  const dateOnlyMatch = dateStr.match(/(\d+)\s+tháng\s+(\d+),\s+(\d+)/);
+  
+  if (dateTimeMatch) {
+    const day = parseInt(dateTimeMatch[1]);
+    const month = parseInt(dateTimeMatch[2]) - 1;
+    const year = parseInt(dateTimeMatch[3]);
+    const hour = parseInt(dateTimeMatch[4]);
+    const minute = parseInt(dateTimeMatch[5]);
+    return new Date(year, month, day, hour, minute).getTime();
+  } else if (dateOnlyMatch) {
+    const day = parseInt(dateOnlyMatch[1]);
+    const month = parseInt(dateOnlyMatch[2]) - 1;
+    const year = parseInt(dateOnlyMatch[3]);
+    return new Date(year, month, day).getTime();
+  }
+  return Date.now();
+};
+
+// Function để tạo tin tức với timestamp tự động
+const createNewsItem = (data: Omit<NewsItem, 'timestamp'>): NewsItem => ({
+  ...data,
+  timestamp: createTimestamp(data.date)
+});
+
 export const newsData: NewsItem[] = [
-  {
+  createNewsItem({
     id: 1,
     title: "USide ra mắt phiên bản 2.0",
-    date: "25 tháng 8, 2025",
+    date: "27 tháng 8, 2025 18:30", // Cập nhật thành thời gian gần đây
     excerpt:
       "Phiên bản mới được nhóm sinh viên cải tiến mạnh mẽ về giao diện và hiệu suất.",
     content: `
@@ -36,11 +65,11 @@ export const newsData: NewsItem[] = [
     category: "update",
     tags: ["UI/UX", "Performance", "Features"],
     pinned: true, // Ghim tin này
-  },
-  {
+  }),
+  createNewsItem({
     id: 2,
     title: "Cập nhật bảo mật cơ bản",
-    date: "5 tháng 8, 2025",
+    date: "27 tháng 8, 2025 19:15", // Cập nhật thành thời gian gần đây
     excerpt:
       "Nhóm đã bổ sung một số cơ chế bảo mật để bảo vệ dữ liệu thử nghiệm.",
     content: `
@@ -59,8 +88,8 @@ export const newsData: NewsItem[] = [
     author: "Nhóm bảo mật",
     category: "security",
     tags: ["Security", "Privacy"],
-  },
-  {
+  }),
+  createNewsItem({
     id: 3,
     title: "Hợp tác và học hỏi từ cộng đồng công nghệ",
     date: "24 tháng 8, 2025",
@@ -82,8 +111,8 @@ export const newsData: NewsItem[] = [
     author: "Nhóm USide",
     category: "partnership",
     tags: ["Community", "Learning", "Growth"],
-  },
-  {
+  }),
+  createNewsItem({
     id: 4,
     title: "Tham gia cùng nhóm USide",
     date: "26 tháng 8, 2025",
@@ -107,8 +136,8 @@ export const newsData: NewsItem[] = [
     category: "recruitment",
     tags: ["React", "TypeScript", "Career"],
     pinned: true, // Ghim tin tuyển dụng quan trọng
-  },
-  {
+  }),
+  createNewsItem({
     id: 5,
     title: "USide Tech Sharing 2025",
     date: "10 tháng 8, 2025",
@@ -128,11 +157,11 @@ export const newsData: NewsItem[] = [
     author: "Nhóm sự kiện",
     category: "event",
     tags: ["Sharing", "Learning", "Community"],
-  },
-  {
+  }),
+  createNewsItem({
     id: 6,
     title: "Ứng dụng AI trong phát triển sản phẩm",
-    date: "12 tháng 8, 2025",
+    date: "27 tháng 8, 2025",
     excerpt:
       "Sự kiện công nghệ lớn nhất năm với những chuyên gia hàng đầu trong ngành.",
     content: `
@@ -148,5 +177,5 @@ export const newsData: NewsItem[] = [
     author: "Event Team",
     category: "event",
     tags: ["Conference", "Networking", "Learning"],
-  },
+  }),
 ];
