@@ -13,3 +13,4 @@ export { default as NewsletterSubscription } from './NewsletterSubscription';
 export { default as NewsNotificationPopup } from './NewsNotificationPopup';
 export { default as NewsNotificationContainer } from './NewsNotificationContainer';
 export { default as FloatingNotificationBell } from './FloatingNotificationBell';
+export { default as NewsNotificationWelcome } from './NewsNotificationWelcome';

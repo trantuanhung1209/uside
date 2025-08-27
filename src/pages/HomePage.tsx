@@ -6,6 +6,7 @@ import Title from "../components/ui/Title";
 import { useScrollToTop } from "../hooks";
 import { careerPaths } from "../data/careerPaths";
 import { useState } from "react";
+import { NewsNotificationWelcome } from "../components";
 
 const HomePage: React.FC = () => {
   useScrollToTop();
@@ -13,7 +14,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
-      
+      <NewsNotificationWelcome />
       {/* section-hero */}
       <SectionHero />
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { X, Bell, Clock } from "lucide-react";
 
 interface NewsNotificationContent {
@@ -23,26 +23,15 @@ interface NewsNotificationProps {
   message?: string;
 }
 
-// Improved hook để kiểm tra Router context
-const useRouterNavigation = () => {
-  const [isInRouter, setIsInRouter] = useState(false);
-  const [navigate, setNavigate] = useState<ReturnType<typeof useNavigate> | null>(null);
+// Simple hook để xử lý navigation
+const useSimpleNavigation = () => {
+  const navigate = useNavigate();
+  
+  const navigateToNews = (newsId: number) => {
+    navigate(`/news/${newsId}`);
+  };
 
-  useEffect(() => {
-    try {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const nav = useNavigate();
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useLocation(); // Test if we're in router context
-      setIsInRouter(true);
-      setNavigate(() => nav);
-    } catch {
-      setIsInRouter(false);
-      setNavigate(null);
-    }
-  }, []);
-
-  return { isInRouter, navigate };
+  return { navigateToNews };
 };
 
 const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
@@ -57,8 +46,8 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
   const [isVisible, setIsVisible] = useState(true);
   const [timeLeft, setTimeLeft] = useState(autoCloseAfter);
   
-  // Sử dụng hook cải tiến
-  const { isInRouter, navigate } = useRouterNavigation();
+  // Sử dụng hook đơn giản
+  const { navigateToNews } = useSimpleNavigation();
 
   // Handle backward compatibility
   const notificationContent: NewsNotificationContent = content || {
@@ -76,12 +65,12 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
 
   const handleViewDetail = () => {
     if (notificationContent.newsId) {
-      if (isInRouter && navigate) {
-        // Sử dụng React Router navigation (không reload trang)
-        navigate(`/news/${notificationContent.newsId}`);
-      } else {
+      try {
+        // Sử dụng React Router navigation
+        navigateToNews(notificationContent.newsId);
+      } catch (error) {
         // Fallback: reload page navigation
-        console.warn('Router context not available, using window.location');
+        console.warn('Router navigation failed, using window.location', error);
         window.location.href = `/news/${notificationContent.newsId}`;
       }
     }
@@ -282,7 +271,6 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
                 <button
                   onClick={handleViewDetail}
                   className="neumorphic-button cursor-pointer px-4 py-2 text-sm font-medium"
-                  title={isInRouter ? "Chuyển trang (không reload)" : "Chuyển trang (reload)"}
                 >
                   Xem chi tiết
                 </button>

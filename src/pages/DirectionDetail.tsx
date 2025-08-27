@@ -170,14 +170,13 @@ const DirectionDetailPage: React.FC = () => {
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Button */}
           <button
-            onClick={() => navigate("/direction")}
+            onClick={() => navigate("/")}
             className={`
               inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-xl
               text-sm font-medium transition-all duration-300
-              transform hover:scale-105 active:scale-95
+              transform hover:scale-105 active:scale-95 cursor-pointer text-accent
             `}
             style={{
-              color: "var(--color-text-primary)",
               background: "var(--color-background)",
               boxShadow: `
                 6px 6px 12px var(--color-shadow),
@@ -199,7 +198,7 @@ const DirectionDetailPage: React.FC = () => {
             }}
           >
             <span>←</span>
-            Quay lại
+            Quay lại trang chủ
           </button>
 
           <div className="starter mb-8">
