@@ -1,12 +1,18 @@
 import { Layout } from "../components/layout";
-import { Section1, Section2, Section3, SectionHero } from "../components/pages";
-import Section4 from "../components/pages/home/Section4";
-import Section5 from "../components/pages/home/Section5";
+import { LazySection, PreloadSection, SkeletonLoader } from "../components/ui";
 import Title from "../components/ui/Title";
 import { useScrollToTop } from "../hooks";
 import { careerPaths } from "../data/careerPaths";
-import { useState } from "react";
+import { useState, lazy } from "react";
 import { NewsNotificationWelcome } from "../components";
+
+// Lazy load các component nặng để tối ưu performance
+const SectionHero = lazy(() => import("../components/pages/home/SectionHero"));
+const Section1 = lazy(() => import("../components/pages/home/Section1"));
+const Section2 = lazy(() => import("../components/pages/home/Section2"));
+const Section3 = lazy(() => import("../components/pages/home/Section3"));
+const Section4 = lazy(() => import("../components/pages/home/Section4"));
+const Section5 = lazy(() => import("../components/pages/home/Section5"));
 
 const HomePage: React.FC = () => {
   useScrollToTop();
@@ -14,19 +20,45 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
+      {/* Preload các component quan trọng */}
+      <PreloadSection 
+        componentLoader={() => import("../components/pages/home/Section1")}
+        delay={1000}
+      />
+      <PreloadSection 
+        componentLoader={() => import("../components/pages/home/Section4")}
+        delay={1500}
+      />
+      
       <NewsNotificationWelcome />
       {/* section-hero */}
-      <SectionHero />
+      <LazySection 
+        threshold={0.1} 
+        rootMargin="50px"
+        fallback={<SkeletonLoader type="hero" />}
+      >
+        <SectionHero />
+      </LazySection>
 
       {/* Section 1 - Animation Loop */}
-      <section id="section-1">
+      <LazySection 
+        id="section-1" 
+        threshold={0.2} 
+        rootMargin="300px"
+        fallback={<SkeletonLoader type="section" />}
+      >
         <Section1 />
-      </section>
+      </LazySection>
 
       {/* section 4 - news */}
-      <section id="section-2">
+      <LazySection 
+        id="section-2" 
+        threshold={0.1} 
+        rootMargin="400px"
+        fallback={<SkeletonLoader type="news" />}
+      >
         <Section4 />
-      </section>
+      </LazySection>
 
       {/* section 3 - direction */}
       <section id="section-3" className="section-3 xl:py-[40px] xs:py-[20px]">
@@ -66,23 +98,39 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="inner-content">
-            <Section3 
-              currentCareerIndex={currentCareerIndex}
-              onCareerIndexChange={setCurrentCareerIndex}
-            />
+            <LazySection 
+              threshold={0.3} 
+              rootMargin="200px"
+              fallback={<SkeletonLoader type="section" />}
+            >
+              <Section3 
+                currentCareerIndex={currentCareerIndex}
+                onCareerIndexChange={setCurrentCareerIndex}
+              />
+            </LazySection>
           </div>
         </div>
       </section>
 
       {/* section 2 - about*/}
-      <section id="section-4">
+      <LazySection 
+        id="section-4" 
+        threshold={0.1} 
+        rootMargin="300px"
+        fallback={<SkeletonLoader type="about" />}
+      >
         <Section2 />
-      </section>
+      </LazySection>
 
       {/* section 5 - FAQ */}
-      <section id="section-5">
+      <LazySection 
+        id="section-5" 
+        threshold={0.1} 
+        rootMargin="200px"
+        fallback={<SkeletonLoader type="faq" />}
+      >
         <Section5 />
-      </section>
+      </LazySection>
     </Layout>
   );
 };

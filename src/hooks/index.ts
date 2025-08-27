@@ -8,6 +8,7 @@ export { useScrollToTop, useScrollToTopInstant } from './useScrollToTop';
 export { useContactForm } from './useContactForm';
 export { useNewsNotification } from './useNewsNotification';
 export { useReadNews } from './useReadNews';
+export { useLazyIntersection } from './useLazyIntersection';
 
 /**
  * Custom hook for managing local storage state
