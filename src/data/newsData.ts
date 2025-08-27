@@ -8,6 +8,7 @@ export interface NewsItem {
   author?: string;
   category?: string;
   tags?: string[];
+  pinned?: boolean; // Thêm field cho tin ghim
 }
 
 export const newsData: NewsItem[] = [
@@ -34,6 +35,7 @@ export const newsData: NewsItem[] = [
     author: "Nhóm phát triển USide",
     category: "update",
     tags: ["UI/UX", "Performance", "Features"],
+    pinned: true, // Ghim tin này
   },
   {
     id: 2,
@@ -104,6 +106,7 @@ export const newsData: NewsItem[] = [
     author: "HR Team",
     category: "recruitment",
     tags: ["React", "TypeScript", "Career"],
+    pinned: true, // Ghim tin tuyển dụng quan trọng
   },
   {
     id: 5,

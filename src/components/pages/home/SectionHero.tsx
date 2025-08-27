@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { SplineViewer } from "../../ui";
+import { FloatingNotificationBell, SplineViewer } from "../../ui";
 import BackgroundRobot from "../../ui/BackgroundRobot";
 import BlockQuote from "./BlockQuote";
 import Television from "./Television";
@@ -174,6 +174,15 @@ const SectionHero = () => {
                       />
                     </svg>
                   </div>
+                </div>
+
+                {/* Notification Bell */}
+                <div className="relative">
+                  <FloatingNotificationBell
+                    className=""
+                    position="bottom-right"
+                    isFixed={false}
+                  />
                 </div>
               </div>
             </div>

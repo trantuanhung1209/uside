@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import SearchInput from "../pages/home/SearchInput";
 import BlockQuote from "../pages/home/BlockQuote";
+import { FloatingNotificationBell } from "../ui";
 
 const Header = () => {
   const [showAppsPopup, setShowAppsPopup] = useState(false);
@@ -223,6 +224,15 @@ const Header = () => {
                       />
                     </svg>
                   </div>
+                </div>
+
+                {/* Notification Bell */}
+                <div className="relative">
+                  <FloatingNotificationBell 
+                    className=""
+                    position="bottom-right"
+                    isFixed={false}
+                  />
                 </div>
               </div>
             </div>

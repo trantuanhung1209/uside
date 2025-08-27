@@ -4,6 +4,7 @@ import { BannerBreadcrumb } from "../components";
 import { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
+import { TbPinned } from "react-icons/tb";
 import { newsData } from "../data";
 
 const NewsPage: React.FC = () => {
@@ -46,6 +47,15 @@ const NewsPage: React.FC = () => {
         tag.toLowerCase().includes(searchTerm.toLowerCase())
       );
     return matchesCategory && matchesSearch;
+  }).sort((a, b) => {
+    // Ưu tiên tin ghim lên đầu
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    
+    // Sau đó sắp xếp theo ngày mới nhất
+    const aDate = new Date(a.date.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
+    const bDate = new Date(b.date.replace(/(\d+) tháng (\d+), (\d+)/, '$3-$2-$1'));
+    return bDate.getTime() - aDate.getTime();
   });
 
   // Pagination calculations
@@ -253,8 +263,22 @@ const NewsPage: React.FC = () => {
 
                     {/* Content */}
                     <div className="flex-1">
-                      {/* Category & Author */}
-                      <div className="flex items-center gap-3 mb-3">
+                      {/* Category & Author & Pinned */}
+                      <div className="flex items-center gap-3 mb-3 flex-wrap">
+                        {/* Pinned Badge */}
+                        {item.pinned && (
+                          <span
+                            className="px-2 py-1 text-xs rounded-full font-semibold bg-red-500 text-white 
+                                     flex items-center gap-1 animate-pulse"
+                            style={{
+                              boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
+                            }}
+                          >
+                            <TbPinned className="w-3 h-3" />
+                            Ghim
+                          </span>
+                        )}
+                        
                         <span
                           className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer`}
                           style={{

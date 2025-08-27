@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Layout } from "../components/layout";
 import { Title, SharePopup } from "../components";
 import NewsCard from "../components/ui/NewsCard";
+import { TbPinned } from "react-icons/tb";
 import { newsData } from "../data";
 
 
@@ -77,7 +78,21 @@ const NewsDetailPage: React.FC = () => {
 
           {/* Article Header */}
           <header className="mb-8">
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-4 mb-4 flex-wrap">
+              {/* Pinned Badge */}
+              {newsItem.pinned && (
+                <span
+                  className="px-3 py-1 text-xs rounded-full font-semibold bg-red-500 text-white 
+                           flex items-center gap-1 animate-pulse"
+                  style={{
+                    boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
+                  }}
+                >
+                  <TbPinned className="w-3 h-3" />
+                  Tin ghim
+                </span>
+              )}
+              
               {newsItem.category && (
                 <span
                   className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer`}

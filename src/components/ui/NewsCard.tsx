@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {useNavigate } from "react-router-dom";
+import { TbPinned } from "react-icons/tb";
 
 interface NewsCardProps {
   article: NewsItem;
@@ -15,6 +16,7 @@ interface NewsItem {
   image?: string;
   author?: string;
   category?: string;
+  pinned?: boolean;
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
@@ -81,39 +83,56 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
           </div>
         )}
 
-        {/* Category & Date */}
-        <div className="flex items-center justify-between mb-3">
-          <span
-            className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer`}
-            style={{
-              boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
-              background:
-                article.category === "update"
-                  ? "linear-gradient(90deg, #9fc9e8, #00d2ff)" // xanh dương pastel
-                  : article.category === "security"
-                  ? "linear-gradient(90deg, #e8a9c4, #d98bb0)" // hồng pastel đậm
-                  : article.category === "partnership"
-                  ? "linear-gradient(90deg, #eabf94, #e89b5c)" // cam đào ấm
-                  : article.category === "recruitment"
-                  ? "linear-gradient(90deg, #e8e39a, #d6cf66)" // vàng pastel đậm
-                  : article.category === "technology"
-                  ? "linear-gradient(90deg, #a9d7a1, #7ecb85)" // xanh lá mint
-                  : "linear-gradient(90deg, #d4ecfa, #9fc9e8)", // default: xanh pastel
-              color: "white",
-            }}
-          >
-            {article.category === "update"
-              ? "Cập nhật"
-              : article.category === "security"
-              ? "Bảo mật"
-              : article.category === "partnership"
-              ? "Hợp tác"
-              : article.category === "recruitment"
-              ? "Tuyển dụng"
-              : article.category === "technology"
-              ? "Công nghệ"
-              : "Sự kiện"}
-          </span>
+        {/* Category & Date & Pinned */}
+        <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <div className="flex items-center gap-2">
+            {/* Pinned Badge */}
+            {article.pinned && (
+              <span
+                className="px-2 py-1 text-xs rounded-full font-semibold bg-red-500 text-white 
+                         flex items-center gap-1 animate-pulse"
+                style={{
+                  boxShadow: "-2px -2px 4px #FAFBFF, 2px 2px 4px rgba(22, 17, 29, 0.15)",
+                }}
+              >
+                <TbPinned className="w-3 h-3" />
+                Ghim
+              </span>
+            )}
+            
+            <span
+              className={`px-3 py-1 text-xs rounded-full font-semibold transition-all duration-300 cursor-pointer`}
+              style={{
+                boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
+                background:
+                  article.category === "update"
+                    ? "linear-gradient(90deg, #9fc9e8, #00d2ff)" // xanh dương pastel
+                    : article.category === "security"
+                    ? "linear-gradient(90deg, #e8a9c4, #d98bb0)" // hồng pastel đậm
+                    : article.category === "partnership"
+                    ? "linear-gradient(90deg, #eabf94, #e89b5c)" // cam đào ấm
+                    : article.category === "recruitment"
+                    ? "linear-gradient(90deg, #e8e39a, #d6cf66)" // vàng pastel đậm
+                    : article.category === "technology"
+                    ? "linear-gradient(90deg, #a9d7a1, #7ecb85)" // xanh lá mint
+                    : "linear-gradient(90deg, #d4ecfa, #9fc9e8)", // default: xanh pastel
+                color: "white",
+              }}
+            >
+              {article.category === "update"
+                ? "Cập nhật"
+                : article.category === "security"
+                ? "Bảo mật"
+                : article.category === "partnership"
+                ? "Hợp tác"
+                : article.category === "recruitment"
+                ? "Tuyển dụng"
+                : article.category === "technology"
+                ? "Công nghệ"
+                : "Sự kiện"}
+            </span>
+          </div>
+          
           <span
             className="text-xs"
             style={{ color: "var(--color-text-placeholder)" }}

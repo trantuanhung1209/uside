@@ -43,17 +43,17 @@ const Section4 = () => {
     return diffDays <= 3;
   };
 
-  // Function to check if recruitment news should be pinned
-  const isPinnedRecruitment = (item: NewsItem): boolean => {
-    return item.category === "recruitment" && (item.tags?.includes("Career") ?? false);
+  // Function to check if news item is pinned
+  const isPinnedNews = (item: NewsItem): boolean => {
+    return item.pinned === true;
   };
 
   // Function to sort news by priority
   const sortNewsByPriority = (news: NewsItem[]) => {
     return news.sort((a, b) => {
-      // Priority 1: Pinned recruitment posts
-      const aPinned = isPinnedRecruitment(a);
-      const bPinned = isPinnedRecruitment(b);
+      // Priority 1: Pinned posts (using the new pinned field)
+      const aPinned = isPinnedNews(a);
+      const bPinned = isPinnedNews(b);
       if (aPinned && !bPinned) return -1;
       if (!aPinned && bPinned) return 1;
 
@@ -324,7 +324,7 @@ const Section4 = () => {
                               </span>
                               
                               {/* Pinned Tag */}
-                              {isPinnedRecruitment(filteredNews[safeActiveSlide]) && (
+                              {isPinnedNews(filteredNews[safeActiveSlide]) && (
                                 <span className="px-2 py-1 rounded-full text-xs font-bold bg-red-500/80 text-white 
                                                backdrop-blur-sm border border-white/30 inline-flex items-center gap-1
                                                animate-pulse">
@@ -333,7 +333,7 @@ const Section4 = () => {
                               )}
                               
                               {/* New Tag */}
-                              {isNewsNew(filteredNews[safeActiveSlide].date) && !isPinnedRecruitment(filteredNews[safeActiveSlide]) && (
+                              {isNewsNew(filteredNews[safeActiveSlide].date) && !isPinnedNews(filteredNews[safeActiveSlide]) && (
                                 <span className="px-2 py-1 rounded-full text-xs font-bold bg-red-400 text-white 
                                                backdrop-blur-sm border border-white/30 inline-flex items-center gap-1
                                                animate-bounce">
@@ -516,7 +516,7 @@ const Section4 = () => {
                                   </span>
                                   
                                   {/* Pinned Tag for List Items */}
-                                  {isPinnedRecruitment(item) && (
+                                  {isPinnedNews(item) && (
                                     <span className="px-1.5 py-0.5 rounded text-sm font-bold bg-red-500 text-white 
                                                    flex items-center gap-1 animate-pulse">
                                       <TbPinned className="w-2.5 h-2.5" />
@@ -524,7 +524,7 @@ const Section4 = () => {
                                   )}
                                   
                                   {/* New Tag for List Items */}
-                                  {isNewsNew(item.date) && !isPinnedRecruitment(item) && (
+                                  {isNewsNew(item.date) && !isPinnedNews(item) && (
                                     <span className="px-1.5 py-0.5 rounded text-xs font-bold bg-red-400 text-white 
                                                    flex items-center gap-1 animate-bounce">
                                       <RiNewsLine className="w-2.5 h-2.5" />
