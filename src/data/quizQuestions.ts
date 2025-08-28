@@ -1182,60 +1182,62 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     // --- Nhóm 2: Self-reflection ---
     {
       id: 11,
-      question: "Bạn có kiên nhẫn khi phải fix bug lặp đi lặp lại?",
+      question:
+        "Bạn có kiên nhẫn tối ưu hiệu năng app để chạy mượt trên nhiều thiết bị không?",
       options: [
         {
           id: "a",
-          text: "Có, mình coi đó là thử thách",
+          text: "Có, mình thích tinh chỉnh và tối ưu",
           isCorrect: true,
           percentage: 55,
         },
         {
           id: "b",
-          text: "Thỉnh thoảng thấy mệt mỏi",
+          text: "Chỉ khi app gặp lỗi lớn mới tối ưu",
           isCorrect: false,
           percentage: 30,
         },
         {
           id: "c",
-          text: "Không, mình dễ nản",
+          text: "Hiếm khi quan tâm, miễn app chạy được",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "App developer thường xuyên phải debug, kiên nhẫn là yếu tố cần thiết.",
+        "App developer cần chú ý đến trải nghiệm người dùng trên mọi thiết bị; kiên nhẫn tối ưu là yếu tố quan trọng.",
     },
     {
       id: 12,
-      question: "Khi làm việc nhóm, bạn thích vai trò nào nhất?",
+      question:
+        "Bạn có quan tâm đến cách người dùng tương tác với app (UX flow, UI responsiveness) không?",
       options: [
         {
           id: "a",
-          text: "Viết code và giải quyết vấn đề kỹ thuật",
+          text: "Có, mình luôn test và cải thiện UX",
           isCorrect: true,
           percentage: 60,
         },
         {
           id: "b",
-          text: "Đưa ra ý tưởng, định hướng sản phẩm",
+          text: "Chỉ thỉnh thoảng xem có vấn đề gì không",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Kiểm thử và tìm lỗi",
+          text: "Không, chỉ tập trung code backend",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "App developers thường đóng vai trò cốt lõi trong coding và giải quyết vấn đề.",
+        "Hiểu hành vi người dùng giúp app dễ dùng và tăng retention; điều này phản ánh tính chủ động và quan tâm đến trải nghiệm người dùng.",
     },
     {
       id: 13,
       question:
-        "Bạn có thường xuyên cập nhật công nghệ mới (framework, thư viện)?",
+        "Bạn có thường xuyên cập nhật công nghệ mới (framework, thư viện) không?",
       options: [
         {
           id: "a",
@@ -1257,7 +1259,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Ngành app thay đổi nhanh, developer cần thích nghi với framework mới.",
+        "Ngành app thay đổi nhanh, developer cần thích nghi với framework mới; đây là dấu hiệu của tính ham học hỏi và linh hoạt.",
     },
     {
       id: 14,
@@ -1277,7 +1279,8 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         { id: "c", text: "Không quan tâm", isCorrect: false, percentage: 10 },
       ],
-      explanation: "Phản hồi người dùng giúp cải thiện trải nghiệm app.",
+      explanation:
+        "Phản hồi người dùng giúp cải thiện trải nghiệm app; khả năng tiếp nhận và học hỏi từ phản hồi là quan trọng cho developer.",
     },
     {
       id: 15,
@@ -1303,7 +1306,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Phát triển app đòi hỏi làm việc liên tục với code, cần khả năng tập trung.",
+        "Phát triển app đòi hỏi làm việc liên tục với code; khả năng tập trung tốt phản ánh tính kiên nhẫn và kỹ năng quản lý công việc.",
     },
     {
       id: 16,
@@ -1324,7 +1327,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         { id: "c", text: "Làm theo cảm xúc", isCorrect: false, percentage: 20 },
       ],
       explanation:
-        "App development cần kỷ luật và quy trình để đảm bảo chất lượng sản phẩm.",
+        "App development cần kỷ luật và quy trình để đảm bảo chất lượng sản phẩm; đây đánh giá tính tổ chức và khả năng làm việc chuyên nghiệp.",
     },
     {
       id: 17,
@@ -1350,7 +1353,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Kỹ năng tìm kiếm và học hỏi là chìa khóa để vượt qua vấn đề kỹ thuật.",
+        "Kỹ năng tìm kiếm thông tin và học hỏi từ cộng đồng là chìa khóa để vượt qua vấn đề kỹ thuật, phản ánh tính chủ động và kiên nhẫn.",
     },
     {
       id: 18,
@@ -1371,7 +1374,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         { id: "c", text: "Tùy dự án cụ thể", isCorrect: false, percentage: 15 },
       ],
       explanation:
-        "App developer đôi khi phải chạm vào UI/UX để hoàn thiện sản phẩm.",
+        "App developer đôi khi cần kết hợp cả UI/UX để hoàn thiện sản phẩm; phản ánh tính linh hoạt và khả năng học hỏi liên ngành.",
     },
     {
       id: 19,
@@ -1392,7 +1395,8 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         { id: "c", text: "Hiếm khi luyện", isCorrect: false, percentage: 15 },
       ],
-      explanation: "Logic tốt giúp code app mượt, ít bug, dễ maintain.",
+      explanation:
+        "Logic tốt giúp code app mượt, ít bug và dễ maintain; đây là thước đo khả năng giải quyết vấn đề.",
     },
     {
       id: 20,
@@ -1418,7 +1422,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Động lực lớn của app developer là sản phẩm được nhiều người sử dụng.",
+        "Động lực lớn của app developer là sản phẩm được nhiều người sử dụng; phản ánh mức độ hứng thú với sản phẩm và tính sáng tạo.",
     },
   ],
   designer: [

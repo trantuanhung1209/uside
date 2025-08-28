@@ -15,9 +15,11 @@ export interface NewsItem {
 
 // Helper function để tạo timestamp từ date string
 const createTimestamp = (dateStr: string): number => {
-  const dateTimeMatch = dateStr.match(/(\d+)\s+tháng\s+(\d+),\s+(\d+)\s+(\d+):(\d+)/);
+  const dateTimeMatch = dateStr.match(
+    /(\d+)\s+tháng\s+(\d+),\s+(\d+)\s+(\d+):(\d+)/
+  );
   const dateOnlyMatch = dateStr.match(/(\d+)\s+tháng\s+(\d+),\s+(\d+)/);
-  
+
   if (dateTimeMatch) {
     const day = parseInt(dateTimeMatch[1]);
     const month = parseInt(dateTimeMatch[2]) - 1;
@@ -35,9 +37,9 @@ const createTimestamp = (dateStr: string): number => {
 };
 
 // Function để tạo tin tức với timestamp tự động
-const createNewsItem = (data: Omit<NewsItem, 'timestamp'>): NewsItem => ({
+const createNewsItem = (data: Omit<NewsItem, "timestamp">): NewsItem => ({
   ...data,
-  timestamp: createTimestamp(data.date)
+  timestamp: createTimestamp(data.date),
 });
 
 export const newsData: NewsItem[] = [
@@ -177,5 +179,30 @@ export const newsData: NewsItem[] = [
     author: "Event Team",
     category: "event",
     tags: ["Conference", "Networking", "Learning"],
+  }),
+  createNewsItem({
+    id: 7,
+    title: "USide ra mắt tính năng phản hồi người dùng qua email",
+    date: "28 tháng 8, 2025 10:00",
+    excerpt:
+      "Có điều gì bạn muốn USide cải thiện? Gửi phản hồi ngay qua email hoặc truy cập trang liên hệ để góp ý và giúp USide ngày càng tốt hơn!",
+    content: `
+    <p>Nhóm USide vừa triển khai tính năng phản hồi người dùng trong phiên bản mới nhất, cho phép liên hệ trực tiếp qua email.</p>
+    
+    <h3>Chi tiết tính năng</h3>
+    <ul>
+      <li>Gửi phản hồi qua email trực tiếp từ ứng dụng hoặc tại <a className="text-accent" href="mailto:usider.tech@gmail.com">usider.tech@gmail.com</a></li>
+      <li>Hỗ trợ đánh giá trải nghiệm người dùng thông qua biểu mẫu email</li>
+      <li>Phản hồi nhanh chóng với đội ngũ hỗ trợ</li>
+      <li>Phân tích ý kiến để cải thiện sản phẩm</li>
+    </ul>
+    
+    <p>Chúng mình mong nhận được nhiều ý kiến đóng góp qua email từ các bạn để USide ngày càng tốt hơn!</p>
+  `,
+    image: "/images_uside/banner_contact.png",
+    author: "Nhóm phát triển USide",
+    category: "update",
+    tags: ["Feedback", "User Experience", "Features", "Email"],
+    pinned: false,
   }),
 ];

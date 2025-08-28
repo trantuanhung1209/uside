@@ -166,7 +166,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
             ref={popupRef}
             className={`absolute top-full ${
               isFixed ? "right-0" : "right-0"
-            } mt-2 w-80 max-h-96 overflow-hidden rounded-xl shadow-xl z-50`}
+            } mt-2 w-80 max-h-[500px] overflow-hidden rounded-xl shadow-xl z-50`}
             style={{
               background: "var(--color-background)",
               boxShadow: `
@@ -196,7 +196,12 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
             </div>
 
             {/* Danh sách tin tức theo 3 nhóm */}
-            <div className="max-h-80 overflow-y-auto">
+            <div className="max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400"
+                 style={{
+                   scrollbarWidth: 'thin',
+                   scrollbarColor: '#cbd5e0 #f7fafc'
+                 }}
+            >
               {/* Tin mới */}
               {newNews.length > 0 && (
                 <div>
@@ -405,7 +410,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                   <div className="px-4 py-2 text-sm font-bold text-gray-600 bg-border border-b border-gray-100/50">
                     Trước đó
                   </div>
-                  {olderNews.slice(0, 3).map((news) => (
+                  {olderNews.map((news) => (
                     <div
                       key={news.id}
                       onClick={() => handleNewsClick(news.id)}
@@ -497,26 +502,11 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                   ))}
                 </div>
               )}
-
-              {/* Hiển thị footer xem thêm nếu có tin tức trong nhóm "Trước đó" */}
-              {olderNews.length > 3 && (
-                <div className="px-4 py-2 text-center">
-                  <button
-                    onClick={() => {
-                      navigate("/news");
-                      setShowPopup(false);
-                    }}
-                    className="text-sm text-gray-500 hover:text-gray-700"
-                  >
-                    Xem thông báo trước đó
-                  </button>
-                </div>
-              )}
             </div>
 
             {/* Footer */}
             <div
-              className="p-3 border-t border-gray-200/50"
+              className="pb-2 border-t border-border"
               style={{
                 boxShadow: "inset 0 1px 2px rgba(0,0,0,0.1)",
               }}
@@ -526,7 +516,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                   navigate("/news");
                   setShowPopup(false);
                 }}
-                className="w-full py-2 text-sm font-medium rounded-lg transition-all duration-200"
+                className="w-full py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer"
                 style={{
                   color: currentAccentColor,
                   background: "var(--color-background)",

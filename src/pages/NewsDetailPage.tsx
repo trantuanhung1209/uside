@@ -75,7 +75,7 @@ const NewsDetailPage: React.FC = () => {
               Tin tức
             </span>
             <span className="mx-2">→</span>
-            <span className="text-gray-900">{newsItem.title}</span>
+            <span className="text-accent">{newsItem.title}</span>
           </nav>
 
           {/* Article Header */}
@@ -158,7 +158,7 @@ const NewsDetailPage: React.FC = () => {
                   <img
                     src={newsItem.image}
                     alt={newsItem.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain lg:object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>

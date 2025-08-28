@@ -52,3 +52,6 @@ export const capitalize = (str: string): string => {
 // Export date utilities
 export * from './dateUtils';
 
+// Export quiz utilities
+export * from './quizUtils';
+

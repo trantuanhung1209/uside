@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BannerBreadcrumb } from "../components";
 import { Layout } from "../components/layout";
 import { PiShootingStarBold } from "react-icons/pi";
 import { 
   careerPaths, 
-  quizQuestionsByCareer 
+  quizQuestionsByCareer,
+  type QuizOption
 } from "../data";
 import { useScrollToTop } from "../hooks";
+import { shuffleQuizOptionsWithSeed } from "../utils";
 
 const DirectionDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,10 +22,45 @@ const DirectionDetailPage: React.FC = () => {
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [answersHistory, setAnswersHistory] = useState<Record<number, string>>({});
   const [hover, setHover] = useState(false);
+  const [quizStartTime, setQuizStartTime] = useState<number>(Date.now()); // Timestamp for consistent shuffling during quiz session
+  const [shuffledQuestions, setShuffledQuestions] = useState<Record<number, QuizOption[]>>({}); // Cache shuffled options
 
   const career = careerPaths.find((item) => item.id === id);
-  const quizQuestions = quizQuestionsByCareer[id || ""] || [];
+  const quizQuestions = useMemo(() => quizQuestionsByCareer[id || ""] || [], [id]);
   const currentQuestion = quizQuestions[currentQuestionIndex];
+
+  // Initialize shuffled questions when quiz starts
+  useEffect(() => {
+    if (hasStartedQuiz && quizQuestions.length > 0 && Object.keys(shuffledQuestions).length === 0) {
+      const newShuffledQuestions: Record<number, QuizOption[]> = {};
+      
+      quizQuestions.forEach(question => {
+        newShuffledQuestions[question.id] = shuffleQuizOptionsWithSeed(
+          question.options,
+          question.id,
+          question.question,
+          quizStartTime
+        );
+      });
+      
+      setShuffledQuestions(newShuffledQuestions);
+    }
+  }, [hasStartedQuiz, quizQuestions, shuffledQuestions, quizStartTime]);
+
+  // Get or create shuffled options for current question
+  const shuffledOptions = useMemo(() => {
+    if (!currentQuestion) return [];
+    
+    const questionId = currentQuestion.id;
+    
+    // Return cached shuffled options if available
+    if (shuffledQuestions[questionId]) {
+      return shuffledQuestions[questionId];
+    }
+    
+    // Fallback: return original options if not shuffled yet
+    return currentQuestion.options;
+  }, [currentQuestion, shuffledQuestions]);
 
   useEffect(() => {
     if (!career || quizQuestions.length === 0) {
@@ -81,6 +118,9 @@ const DirectionDetailPage: React.FC = () => {
     setIsQuizCompleted(false);
     setHasStartedQuiz(true);
     setAnswersHistory({});
+    setShuffledQuestions({}); // Clear cached shuffled options
+    // Generate new timestamp to reshuffle options for a fresh quiz experience
+    setQuizStartTime(Date.now());
   };
 
   if (!career || !currentQuestion) {
@@ -336,7 +376,7 @@ const DirectionDetailPage: React.FC = () => {
 
                 {/* Options */}
                 <div className="space-y-4">
-                  {currentQuestion.options.map((option, index) => (
+                  {shuffledOptions.map((option, index) => (
                     <button
                       key={option.id}
                       onClick={() => handleOptionSelect(option.id)}
@@ -344,6 +384,7 @@ const DirectionDetailPage: React.FC = () => {
                       className={`
                       w-full lg:p-4 p-3 rounded-2xl text-left transition-all duration-500
                       transform hover:scale-[1.02] active:scale-98 animate-fade-in-up
+                      ${!showResult ? "cursor-pointer" : "cursor-default"}
                       ${selectedOption === option.id ? "ring-2" : ""}
                       ${
                         showResult && option.isCorrect ? "border-green-400" : ""
@@ -388,31 +429,22 @@ const DirectionDetailPage: React.FC = () => {
                       }}
                     >
                       <div className="flex items-center gap-3">
-                        <div
-                          className={`
-                          w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold
-                          ${
-                            showResult && option.isCorrect
-                              ? "bg-green-400 text-white"
-                              : ""
-                          }
-                          ${
-                            showResult &&
-                            selectedOption === option.id &&
-                            !option.isCorrect
-                              ? "bg-red-400 text-white"
-                              : ""
-                          }
-                        `}
-                          style={{
-                            background: showResult
-                              ? undefined
-                              : "var(--color-accent)",
-                            color: showResult ? undefined : "white",
-                          }}
-                        >
-                          {option.id.toUpperCase()}
-                        </div>
+                        {showResult && (
+                          <div
+                            className={`
+                            w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold
+                            ${
+                              option.isCorrect
+                                ? "bg-green-400 text-white"
+                                : selectedOption === option.id
+                                ? "bg-red-400 text-white"
+                                : "bg-gray-300 text-gray-600"
+                            }
+                          `}
+                          >
+                            {option.isCorrect ? "✓" : selectedOption === option.id ? "✗" : "○"}
+                          </div>
+                        )}
                         <span className="flex-1">{option.text}</span>
                         {showResult && (
                           <span
@@ -494,14 +526,14 @@ const DirectionDetailPage: React.FC = () => {
 
                     {/* Results Chart */}
                     <div className="space-y-4 mb-6">
-                      {currentQuestion.options.map((option) => (
+                      {shuffledOptions.map((option) => (
                         <div key={option.id} className="space-y-2">
                           <div className="flex justify-between items-center">
                             <span
                               className="text-sm font-medium"
                               style={{ color: "var(--color-text-primary)" }}
                             >
-                              {option.id.toUpperCase()}. {option.text}
+                              {option.text}
                             </span>
                             <span
                               className="text-sm font-bold"
