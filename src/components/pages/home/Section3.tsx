@@ -226,6 +226,8 @@ const Section3: React.FC<Section3Props> = ({
           <button
             className="neumorphic-button"
             onClick={() => {
+              // Lưu vị trí section 3 vào sessionStorage
+              sessionStorage.setItem('homeScrollToSection', 'section-3');
               navigate(`/direction/${currentCareer.id}`);
             }}
           >
@@ -397,6 +399,8 @@ const Section3: React.FC<Section3Props> = ({
           <button
             className="neumorphic-button"
             onClick={() => {
+              // Lưu vị trí section 3 vào sessionStorage
+              sessionStorage.setItem('homeScrollToSection', 'section-3');
               navigate(`/direction/${currentCareer.id}`);
             }}
           >

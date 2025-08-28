@@ -3,7 +3,7 @@ import { Title } from "../components";
 import { useState, useEffect } from "react";
 import { FaEnvelope, FaArrowLeft } from "react-icons/fa";
 import { BsRocketTakeoffFill } from "react-icons/bs";
-import { useContactForm } from "../hooks";
+import { useContactForm, useScrollToTop } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import type { ContactFormData } from "../services";
 
@@ -58,6 +58,7 @@ const FormField: React.FC<FormFieldProps> = ({
 
 const ContactPage: React.FC = () => {
   const navigate = useNavigate();
+  useScrollToTop();
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",

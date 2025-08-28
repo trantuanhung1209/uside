@@ -6,9 +6,11 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import { TbPinned } from "react-icons/tb";
 import { newsData } from "../data";
+import { useScrollToTop } from "../hooks";
 
 const NewsPage: React.FC = () => {
   const navigate = useNavigate();
+  useScrollToTop();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showActions, setShowActions] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");

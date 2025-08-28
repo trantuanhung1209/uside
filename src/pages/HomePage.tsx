@@ -1,9 +1,8 @@
 import { Layout } from "../components/layout";
 import { LazySection, PreloadSection, SkeletonLoader } from "../components/ui";
 import Title from "../components/ui/Title";
-import { useScrollToTop } from "../hooks";
 import { careerPaths } from "../data/careerPaths";
-import { useState, lazy } from "react";
+import { useState, lazy, useEffect } from "react";
 import { NewsNotificationWelcome } from "../components";
 
 // Lazy load các component nặng để tối ưu performance
@@ -15,8 +14,27 @@ const Section4 = lazy(() => import("../components/pages/home/Section4"));
 const Section5 = lazy(() => import("../components/pages/home/Section5"));
 
 const HomePage: React.FC = () => {
-  useScrollToTop();
   const [currentCareerIndex, setCurrentCareerIndex] = useState(0);
+
+  // Scroll đến section 3 nếu có flag trong sessionStorage
+  useEffect(() => {
+    const scrollToSection = sessionStorage.getItem('homeScrollToSection');
+    if (scrollToSection === 'section-3') {
+      // Xóa flag để tránh scroll không mong muốn
+      sessionStorage.removeItem('homeScrollToSection');
+      
+      // Delay một chút để đảm bảo component đã render
+      setTimeout(() => {
+        const section = document.getElementById('section-3');
+        if (section) {
+          section.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 500);
+    }
+  }, []);
 
   return (
     <Layout>
@@ -27,6 +45,10 @@ const HomePage: React.FC = () => {
       />
       <PreloadSection 
         componentLoader={() => import("../components/pages/home/Section4")}
+        delay={1500}
+      />
+      <PreloadSection 
+        componentLoader={() => import("../components/pages/home/Section3")}
         delay={1500}
       />
       

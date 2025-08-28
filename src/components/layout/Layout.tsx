@@ -4,7 +4,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import FloatingStepProgress from "./FloatingStepProgress";
 import { ChangeAccentColor, NewsNotificationContainer } from "../ui";
-import { useScrollToTop } from "../../hooks";
 import { useNewsNotificationContext } from "../../hooks/useNewsNotificationContext";
 
 interface LayoutProps {
@@ -15,9 +14,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const { notifications, removeNotification } = useNewsNotificationContext();
-  
-  // Tự động scroll lên đầu trang khi chuyển route
-  useScrollToTop();
 
   return (
     <>
@@ -39,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       />
 
       {/* Change Accent Color - Floating button available on all pages */}
-      <div className={isHomePage ? "fixed top-28 right-2 lg:top-4 lg:right-4 z-10" : "fixed top-25 right-4 z-10"}>
+      <div className={isHomePage ? "fixed top-28 right-2 lg:top-1 lg:right-2 z-10 3xl:top-4 3xl:right-4" : "fixed top-25 right-4 z-10"}>
         <ChangeAccentColor />
       </div>
     </>

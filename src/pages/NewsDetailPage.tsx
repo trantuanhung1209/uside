@@ -5,12 +5,14 @@ import { Title, SharePopup } from "../components";
 import NewsCard from "../components/ui/NewsCard";
 import { TbPinned } from "react-icons/tb";
 import { newsData } from "../data";
+import { useScrollToTop } from "../hooks";
 
 
 const NewsDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
+  useScrollToTop();
 
   const newsItem = newsData.find((item) => item.id === parseInt(id || "0"));
 

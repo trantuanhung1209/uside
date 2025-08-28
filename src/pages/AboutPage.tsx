@@ -2,6 +2,7 @@ import { BannerBreadcrumb } from "../components";
 import { Layout } from "../components/layout";
 import Title from "../components/ui/Title";
 import { useEffect, useState } from "react";
+import { useScrollToTop } from "../hooks";
 
 const funFacts = [
   "Team USide đã uống hơn 1000 cốc cà phê trong quá trình phát triển dự án này! ☕ Và có thể chúng mình đã debug tới 3AM nhiều hơn số lần ngủ đủ 8 tiếng... 😅",
@@ -17,6 +18,7 @@ const funFacts = [
 const AboutPage: React.FC = () => {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [factNumber, setFactNumber] = useState(1);
+  useScrollToTop();
 
   useEffect(() => {
     const interval = setInterval(() => {

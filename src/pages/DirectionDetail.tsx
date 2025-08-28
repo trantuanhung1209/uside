@@ -7,10 +7,12 @@ import {
   careerPaths, 
   quizQuestionsByCareer 
 } from "../data";
+import { useScrollToTop } from "../hooks";
 
 const DirectionDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  useScrollToTop();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [showResult, setShowResult] = useState(false);

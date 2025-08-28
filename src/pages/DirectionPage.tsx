@@ -7,10 +7,12 @@ import NewsCard from "../components/ui/NewsCard";
 import { careerPaths } from "../data/careerPaths";
 import { newsData } from "../data/newsData";
 import { useNavigate } from "react-router-dom";
+import { useScrollToTop } from "../hooks";
 
 const DirectionPage: React.FC = () => {
   const [currentCareerIndex, setCurrentCareerIndex] = useState(0);
   const navigate = useNavigate();
+  useScrollToTop();
 
   const handlePrevious = () => {
     setCurrentCareerIndex((prev) =>
