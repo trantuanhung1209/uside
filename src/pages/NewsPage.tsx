@@ -1,16 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { Layout } from "../components/layout";
 import { BannerBreadcrumb } from "../components";
+import { NewsDebug } from "../components/debug";
 import { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import { TbPinned } from "react-icons/tb";
-import { newsData } from "../data";
-import { useScrollToTop } from "../hooks";
+import { useScrollToTop, useRealtimeNews } from "../hooks";
 
 const NewsPage: React.FC = () => {
   const navigate = useNavigate();
   useScrollToTop();
+  
+  // Use realtime news hook instead of static data
+  const { news: newsData, loading, error } = useRealtimeNews();
+  
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showActions, setShowActions] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +30,53 @@ const NewsPage: React.FC = () => {
     { id: "technology", name: "Công nghệ", count: 0 },
     { id: "event", name: "Sự kiện", count: 0 },
   ];
+
+  // Show loading state
+  if (loading) {
+    return (
+      <Layout>
+        <BannerBreadcrumb
+          pageName="Tin tức"
+          image="/images_uside/banner_news.png"
+        />
+        <section className="py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center py-16">
+              <div className="text-6xl mb-4">⏳</div>
+              <h3 className="text-xl font-bold mb-2" style={{ color: "var(--color-text-primary)" }}>
+                Đang tải tin tức...
+              </h3>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <Layout>
+        <BannerBreadcrumb
+          pageName="Tin tức"
+          image="/images_uside/banner_news.png"
+        />
+        <section className="py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center py-16">
+              <div className="text-6xl mb-4">❌</div>
+              <h3 className="text-xl font-bold mb-2" style={{ color: "var(--color-text-primary)" }}>
+                Lỗi khi tải tin tức
+              </h3>
+              <p className="text-sm mb-6" style={{ color: "var(--color-text-secondary)" }}>
+                {error}
+              </p>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
 
 
   // Update category counts
@@ -96,6 +147,7 @@ const NewsPage: React.FC = () => {
 
   return (
     <Layout>
+      <NewsDebug />
       <BannerBreadcrumb
         pageName="Tin tức"
         image="/images_uside/banner_news.png"

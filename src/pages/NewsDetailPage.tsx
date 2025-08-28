@@ -4,8 +4,7 @@ import { Layout } from "../components/layout";
 import { Title, SharePopup } from "../components";
 import NewsCard from "../components/ui/NewsCard";
 import { TbPinned } from "react-icons/tb";
-import { newsData } from "../data";
-import { useScrollToTop } from "../hooks";
+import { useRealtimeNews, useScrollToTop } from "../hooks";
 
 
 const NewsDetailPage: React.FC = () => {
@@ -13,8 +12,13 @@ const NewsDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
   useScrollToTop();
+  const { news: newsData, loading, error } = useRealtimeNews();
 
-  const newsItem = newsData.find((item) => item.id === parseInt(id || "0"));
+  // Tìm newsItem theo ID - hỗ trợ cả string và number từ Firestore
+  const newsItem = newsData.find((item) => {
+    // Chuyển về cùng kiểu string để so sánh
+    return String(item.id) === String(id);
+  });
 
   // Tạo URL hiện tại để chia sẻ
   const currentUrl = window.location.href;
@@ -31,6 +35,46 @@ const NewsDetailPage: React.FC = () => {
       setIsSharePopupOpen(true);
     }, 300); // Delay nhỏ để scroll hoàn thành trước
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <Layout>
+        <main className="py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+            </div>
+          </div>
+        </main>
+      </Layout>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <Layout>
+        <main className="py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              Có lỗi xảy ra
+            </h1>
+            <p className="text-gray-600 mb-8">
+              {error}
+            </p>
+            <button
+              onClick={() => navigate("/news")}
+              className="neumorphic-button"
+            >
+              ← Quay lại tin tức
+            </button>
+          </div>
+        </main>
+      </Layout>
+    );
+  }
 
   if (!newsItem) {
     return (

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Bell, X, Clock, ExternalLink, Pin } from "lucide-react";
-import { useAccentColor, useReadNews } from "../../hooks";
-import { newsData } from "../../data/newsData";
+import { useAccentColor, useReadNews, useRealtimeNews } from "../../hooks";
 import { categorizeNewsByDate, getRelativeTimeText } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +15,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
   position = "bottom-right",
   isFixed = true,
 }) => {
+  const { news: newsData, loading, error } = useRealtimeNews();
   const { currentAccentColor } = useAccentColor();
   const { isNewsRead, markAsRead } = useReadNews();
   const navigate = useNavigate();
@@ -202,6 +202,49 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                    scrollbarColor: '#cbd5e0 #f7fafc'
                  }}
             >
+              {/* Hiển thị loading skeleton */}
+              {loading && (
+                <div className="p-4">
+                  {[...Array(3)].map((_, index) => (
+                    <div key={index} className="flex gap-3 p-3 border-b border-border">
+                      {/* Skeleton cho ảnh */}
+                      <div className="w-12 h-12 rounded-lg bg-gray-200 animate-pulse flex-shrink-0"></div>
+                      {/* Skeleton cho nội dung */}
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
+                        <div className="flex gap-2">
+                          <div className="h-3 bg-gray-200 rounded animate-pulse w-16"></div>
+                          <div className="h-3 bg-gray-200 rounded animate-pulse w-20"></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Hiển thị lỗi */}
+              {error && !loading && (
+                <div className="p-4 text-center">
+                  <div className="text-red-500 mb-2">
+                    <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                  </div>
+                  <p className="text-sm text-red-600 mb-3">
+                    Không thể tải tin tức. Vui lòng thử lại sau.
+                  </p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="text-xs px-3 py-1 rounded-full border border-red-300 text-red-600 hover:bg-red-50 transition-colors"
+                  >
+                    Tải lại
+                  </button>
+                </div>
+              )}
+
+              {/* Hiển thị tin tức khi không loading và không lỗi */}
+              {!loading && !error && (
+                <>
               {/* Tin mới */}
               {newNews.length > 0 && (
                 <div>
@@ -501,6 +544,8 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                     </div>
                   ))}
                 </div>
+              )}
+                </>
               )}
             </div>
 

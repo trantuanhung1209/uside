@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRealtimeNews } from "../../../hooks";
 
 const SearchInput = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -13,14 +14,8 @@ const SearchInput = () => {
   const navigate = useNavigate();
   const popupRef = useRef<HTMLDivElement>(null);
 
-  const news = [
-    { id: 1, title: "USide ra mắt phiên bản 2.0" },
-    { id: 2, title: "Cập nhật bảo mật quan trọng" },
-    { id: 3, title: "Hợp tác với các đối tác công nghệ" },
-    { id: 4, title: "Tuyển dụng Frontend Developer" },
-    { id: 5, title: "Ứng dụng AI trong phát triển sản phẩm" },
-    { id: 6, title: "USide Tech Conference 2025" },
-  ];
+  // Use realtime news hook instead of static data
+  const { news: newsData, loading: newsLoading, error: newsError } = useRealtimeNews();
 
   const plugins: {
     id: number;
@@ -87,9 +82,9 @@ const SearchInput = () => {
         onChange={(e) => {
           const value = e.target.value;
           setSearchValue(value);
-          // Suggestion cho news
+          // Suggestion cho news từ realtime data
           if (value.trim().length > 0) {
-            const filtered = news.filter((n) =>
+            const filtered = newsData.filter((n) =>
               n.title.toLowerCase().includes(value.toLowerCase())
             );
             setNewsSuggestions(
@@ -201,6 +196,7 @@ const SearchInput = () => {
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => {
                       setNewsSuggestions([]);
+                      setShowPopup(false);
                       navigate(`/news/${item.id}`);
                     }}
                   >
@@ -208,6 +204,26 @@ const SearchInput = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {/* Loading state cho news suggestions */}
+          {newsLoading && searchValue.trim().length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold mb-2">Tin tức liên quan</h4>
+              <div className="px-3 py-2 text-sm text-text-secondary">
+                Đang tải tin tức...
+              </div>
+            </div>
+          )}
+
+          {/* Error state cho news */}
+          {newsError && searchValue.trim().length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold mb-2">Tin tức liên quan</h4>
+              <div className="px-3 py-2 text-sm text-red-500">
+                Không thể tải tin tức: {newsError}
+              </div>
             </div>
           )}
         </div>

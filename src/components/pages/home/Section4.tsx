@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Title from "../../ui/Title";
 import { useNavigate } from "react-router-dom";
-import { newsData, type NewsItem } from "../../../data";
+import { type NewsItem } from "../../../data";
 import { 
   FiChevronLeft, 
   FiChevronRight, 
@@ -22,8 +22,11 @@ import {
 } from "react-icons/hi2";
 import { TbPinned } from "react-icons/tb";
 import { RiNewsLine } from "react-icons/ri";
+import { useRealtimeNews } from "../../../hooks";
 
 const Section4 = () => {
+  // Use realtime news hook instead of static data
+  const { news: newsData, loading, error } = useRealtimeNews();
   const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeFilter, setActiveFilter] = useState<string>("all");
@@ -112,6 +115,34 @@ const Section4 = () => {
 
   // Make sure activeSlide doesn't exceed the filtered news length
   const safeActiveSlide = Math.min(activeSlide, filteredNews.length - 1);
+
+  // Handle loading state
+  if (loading) {
+    return (
+      <section className="px-4 sm:px-6 md:px-8 lg:px-12 py-24 bg-gradient-to-br from-background-light to-background-soft relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-accent mx-auto"></div>
+            <p className="mt-4 text-text-secondary">Đang tải tin tức...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Handle error state
+  if (error) {
+    return (
+      <section className="px-4 sm:px-6 md:px-8 lg:px-12 py-24 bg-gradient-to-br from-background-light to-background-soft relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <p className="text-red-500 text-lg">Có lỗi xảy ra khi tải tin tức</p>
+            <p className="text-text-secondary mt-2">Vui lòng thử lại sau</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
