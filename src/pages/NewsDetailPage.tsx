@@ -198,7 +198,7 @@ const NewsDetailPage: React.FC = () => {
                     "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
                 }}
               >
-                <div className="overflow-hidden rounded-xl">
+                <div className="xl:h-[600px] overflow-hidden rounded-xl">
                   <img
                     src={newsItem.image}
                     alt={newsItem.title}
@@ -219,7 +219,7 @@ const NewsDetailPage: React.FC = () => {
           <div className="flex justify-between items-center pt-8 border-t border-border">
             <button
               onClick={() => navigate("/news")}
-              className="section-neumorphic flex items-center gap-2 text-accent px-1 py-1 cursor-pointer hover:scale-103"
+              className="flex items-center gap-2 text-accent px-1 py-1 cursor-pointer hover:scale-103 font-bold"
             >
               ← Quay lại tin tức
             </button>
