@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Layout } from "../components/layout";
 import { Title, SharePopup } from "../components";
 import NewsCard from "../components/ui/NewsCard";
@@ -210,10 +212,117 @@ const NewsDetailPage: React.FC = () => {
           )}
 
           {/* Article Content */}
-          <article
-            className="prose prose-lg max-w-none mb-8"
-            dangerouslySetInnerHTML={{ __html: newsItem.content }}
-          />
+          <div 
+            className="bg-background rounded-2xl p-4 mb-8 w-full max-w-none"
+            style={{
+              boxShadow: "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
+            }}
+          >
+            <article className="w-full break-words overflow-wrap-anywhere">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  // Custom styling cho các elements - loại bỏ bg riêng biệt
+                  h1: ({...props}) => (
+                    <h1 
+                      className="text-3xl font-bold text-text-primary mb-6 mt-8 first:mt-0" 
+                      {...props} 
+                    />
+                  ),
+                  h2: ({...props}) => (
+                    <h2 
+                      className="text-2xl font-bold text-text-primary mb-4 mt-6" 
+                      {...props} 
+                    />
+                  ),
+                  h3: ({...props}) => (
+                    <h3 
+                      className="text-xl font-semibold text-text-primary mb-3 mt-4" 
+                      {...props} 
+                    />
+                  ),
+                  p: ({...props}) => (
+                    <p 
+                      className="text-gray-700 leading-8 mb-6 text-justify break-words" 
+                      {...props} 
+                    />
+                  ),
+                  strong: ({...props}) => (
+                    <strong 
+                      className="text-text-primary font-semibold break-words" 
+                      {...props} 
+                    />
+                  ),
+                  a: ({...props}) => (
+                    <a 
+                      className="text-accent hover:underline transition-all duration-200 break-all" 
+                      {...props} 
+                    />
+                  ),
+                  blockquote: ({...props}) => (
+                    <blockquote 
+                      className="border-l-4 border-accent text-gray-600 italic text-lg leading-relaxed pl-6 py-4 my-6" 
+                      {...props} 
+                    />
+                  ),
+                  code: ({...props}) => (
+                    <code 
+                      className="text-text-primary font-mono text-sm font-semibold" 
+                      {...props} 
+                    />
+                  ),
+                  pre: ({...props}) => (
+                    <div
+                      className="my-6 bg-background"
+                    >
+                      <pre 
+                        className="text-white text-sm leading-relaxed m-0" 
+                        {...props} 
+                      />
+                    </div>
+                  ),
+                  ul: ({...props}) => (
+                    <ul 
+                      className="my-6 space-y-3 text-gray-700 list-disc list-inside" 
+                      {...props} 
+                    />
+                  ),
+                  ol: ({...props}) => (
+                    <ol 
+                      className="my-6 space-y-3 text-gray-700 list-decimal list-inside" 
+                      {...props} 
+                    />
+                  ),
+                  li: ({...props}) => (
+                    <li 
+                      className="leading-relaxed" 
+                      {...props} 
+                    />
+                  ),
+                  img: ({...props}) => (
+                    <div className="my-8 text-center">
+                      <img 
+                        className="rounded-lg w-full h-auto object-cover max-h-96 mx-auto"
+                        style={{
+                          boxShadow: "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.1)",
+                        }}
+                        {...props} 
+                      />
+                    </div>
+                  ),
+                  hr: () => (
+                    <div className="my-8 flex justify-center">
+                      <div 
+                        className="w-24 h-1 bg-accent rounded-full opacity-30"
+                      />
+                    </div>
+                  ),
+                }}
+              >
+                {newsItem.content}
+              </ReactMarkdown>
+            </article>
+          </div>
 
           {/* Navigation */}
           <div className="flex justify-between items-center pt-8 border-t border-border">
