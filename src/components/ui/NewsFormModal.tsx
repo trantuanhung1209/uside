@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { X, Save, Tag, Image as ImageIcon, User, Calendar, FileText, Type } from 'lucide-react';
-import type { NewsFormData } from '../../services/newsService';
-import type { FirestoreNewsItem } from '../../services/newsService';
-import { useAccentColor } from '../../hooks/useAccentColor';
-import ImageUploader from './ImageUploader';
+import React, { useState, useEffect } from "react";
+import {
+  X,
+  Save,
+  Tag,
+  Image as ImageIcon,
+  User,
+  Calendar,
+  FileText,
+  Type,
+} from "lucide-react";
+import type { NewsFormData } from "../../services/newsService";
+import type { FirestoreNewsItem } from "../../services/newsService";
+import { useAccentColor } from "../../hooks/useAccentColor";
+import ImageUploader from "./ImageUploader";
 
 interface NewsFormModalProps {
   isOpen: boolean;
@@ -18,56 +27,46 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
   onClose,
   onSubmit,
   editingNews,
-  isLoading = false
+  isLoading = false,
 }) => {
   const { currentAccentColor } = useAccentColor();
-  
-  // Helper functions for neumorphic styling
+
+  // Helper functions for dark glass morphism styling
   const inputStyles = {
-    background: "var(--color-background)",
-    color: "var(--color-text-primary)",
-    border: "none",
-    boxShadow: "inset -3px -3px 6px #FAFBFF, inset 3px 3px 6px rgba(22, 17, 29, 0.1)",
+    background: "rgba(15, 23, 42, 0.7)",
+    backdropFilter: "blur(8px)",
+    border: "1px solid rgba(51, 65, 85, 0.5)",
+    color: "#f1f5f9",
+    boxShadow:
+      "inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1)",
   };
 
   const inputFocusStyles = {
-    boxShadow: `inset -3px -3px 6px #FAFBFF, inset 3px 3px 6px rgba(22, 17, 29, 0.1), 0 0 8px ${currentAccentColor}40`,
-    outline: "none"
-  };
-
-  const buttonStyles = {
-    background: "var(--color-background)",
-    border: "none",
-    boxShadow: "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1)",
-    transition: "all 0.3s ease"
-  };
-
-  const primaryButtonStyles = {
-    ...buttonStyles,
-    background: currentAccentColor,
-    color: "#FFFFFF",
-    boxShadow: `-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1), 0 0 12px ${currentAccentColor}30`
+    background: "rgba(30, 41, 59, 0.8)",
+    border: `1px solid ${currentAccentColor}`,
+    boxShadow: `inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 12px ${currentAccentColor}40`,
+    outline: "none",
   };
 
   const [formData, setFormData] = useState<NewsFormData>({
-    title: '',
-    excerpt: '',
-    content: '',
-    image: '',
-    author: 'Admin',
-    category: 'update',
+    title: "",
+    excerpt: "",
+    content: "",
+    image: "",
+    author: "Admin",
+    category: "update",
     tags: [],
-    pinned: false
+    pinned: false,
   });
 
-  const [tagInput, setTagInput] = useState('');
+  const [tagInput, setTagInput] = useState("");
 
   const categories = [
-    { value: 'update', label: 'Cập nhật' },
-    { value: 'event', label: 'Sự kiện' },
-    { value: 'announcement', label: 'Thông báo' },
-    { value: 'tutorial', label: 'Hướng dẫn' },
-    { value: 'news', label: 'Tin tức' }
+    { value: "update", label: "Cập nhật" },
+    { value: "event", label: "Sự kiện" },
+    { value: "announcement", label: "Thông báo" },
+    { value: "tutorial", label: "Hướng dẫn" },
+    { value: "news", label: "Tin tức" },
   ];
 
   // Load data when editing
@@ -77,25 +76,25 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
         title: editingNews.title,
         excerpt: editingNews.excerpt,
         content: editingNews.content,
-        image: editingNews.image || '',
-        author: editingNews.author || 'Admin',
-        category: editingNews.category || 'update',
+        image: editingNews.image || "",
+        author: editingNews.author || "Admin",
+        category: editingNews.category || "update",
         tags: editingNews.tags || [],
-        pinned: editingNews.pinned || false
+        pinned: editingNews.pinned || false,
       });
     } else {
       // Reset form when not editing
       setFormData({
-        title: '',
-        excerpt: '',
-        content: '',
-        image: '',
-        author: 'Admin',
-        category: 'update',
+        title: "",
+        excerpt: "",
+        content: "",
+        image: "",
+        author: "Admin",
+        category: "update",
         tags: [],
-        pinned: false
+        pinned: false,
       });
-      setTagInput('');
+      setTagInput("");
     }
   }, [editingNews, isOpen]);
 
@@ -107,23 +106,23 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
   const handleAddTag = () => {
     const trimmedTag = tagInput.trim();
     if (trimmedTag && !formData.tags.includes(trimmedTag)) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        tags: [...prev.tags, trimmedTag]
+        tags: [...prev.tags, trimmedTag],
       }));
-      setTagInput('');
+      setTagInput("");
     }
   };
 
   const handleRemoveTag = (tagToRemove: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      tags: prev.tags.filter(tag => tag !== tagToRemove)
+      tags: prev.tags.filter((tag) => tag !== tagToRemove),
     }));
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleAddTag();
     }
@@ -134,48 +133,55 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 transition-opacity"
         style={{
-          background: "rgba(22, 17, 29, 0.4)",
-          backdropFilter: "blur(4px)"
+          background: "rgba(0, 0, 0, 0.7)",
+          backdropFilter: "blur(8px)",
         }}
         onClick={onClose}
       />
-      
+
       <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         {/* Modal */}
-        <div 
+        <div
           className="relative inline-block align-bottom rounded-2xl px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full sm:p-6 z-10"
           style={{
-            background: "var(--color-background)",
-            boxShadow: "-20px -20px 40px #FAFBFF, 20px 20px 40px rgba(22, 17, 29, 0.2)"
+            background: "rgba(15, 23, 42, 0.95)",
+            backdropFilter: "blur(16px)",
+            border: "1px solid rgba(51, 65, 85, 0.5)",
+            boxShadow:
+              "0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
           }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 
-              className="text-2xl font-bold"
-              style={{ color: "var(--color-text-primary)" }}
-            >
-              {editingNews ? 'Chỉnh sửa tin tức' : 'Tạo tin tức mới'}
+            <h2 className="text-2xl font-bold" style={{ color: "#f1f5f9" }}>
+              {editingNews ? "Chỉnh sửa tin tức" : "Tạo tin tức mới"}
             </h2>
             <button
               onClick={onClose}
               className="p-2 rounded-full transition-all duration-300"
               style={{
-                background: "var(--color-background)",
-                color: "var(--color-text-secondary)",
-                boxShadow: "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1)"
+                background: "rgba(15, 23, 42, 0.7)",
+                backdropFilter: "blur(8px)",
+                border: "1px solid rgba(51, 65, 85, 0.5)",
+                color: "#94a3b8",
+                boxShadow:
+                  "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15)";
+                e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
                 e.currentTarget.style.transform = "translateY(-1px)";
+                e.currentTarget.style.boxShadow =
+                  "0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1)";
+                e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
                 e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
+                  "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
               }}
               disabled={isLoading}
             >
@@ -190,9 +196,9 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
               <div className="space-y-4">
                 {/* Title */}
                 <div>
-                  <label 
+                  <label
                     className="flex items-center gap-2 text-sm font-semibold mb-2"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "#94a3b8" }}
                   >
                     <Type className="w-4 h-4" />
                     Tiêu đề *
@@ -200,7 +206,12 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
                   <input
                     type="text"
                     value={formData.title}
-                    onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        title: e.target.value,
+                      }))
+                    }
                     required
                     className="w-full px-3 py-2 rounded-lg transition-all duration-300"
                     style={inputStyles}
@@ -217,16 +228,21 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
 
                 {/* Excerpt */}
                 <div>
-                  <label 
+                  <label
                     className="flex items-center gap-2 text-sm font-semibold mb-2"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "#94a3b8" }}
                   >
                     <FileText className="w-4 h-4" />
                     Tóm tắt *
                   </label>
                   <textarea
                     value={formData.excerpt}
-                    onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        excerpt: e.target.value,
+                      }))
+                    }
                     rows={3}
                     required
                     className="w-full px-3 py-2 rounded-lg resize-none transition-all duration-300"
@@ -244,18 +260,20 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
 
                 {/* Image */}
                 <div>
-                  <label 
+                  <label
                     className="flex items-center gap-2 text-sm font-semibold mb-2"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "#94a3b8" }}
                   >
                     <ImageIcon className="w-4 h-4" />
                     Hình ảnh
                   </label>
                   <ImageUploader
                     value={formData.image}
-                    onChange={(url) => setFormData(prev => ({ ...prev, image: url }))}
+                    onChange={(url) =>
+                      setFormData((prev) => ({ ...prev, image: url }))
+                    }
                     onError={(error) => {
-                      console.error('Image upload error:', error);
+                      console.error("Image upload error:", error);
                       // You can add toast notification here if needed
                     }}
                     disabled={isLoading}
@@ -264,9 +282,9 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
 
                 {/* Author */}
                 <div>
-                  <label 
+                  <label
                     className="flex items-center gap-2 text-sm font-semibold mb-2"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "#94a3b8" }}
                   >
                     <User className="w-4 h-4" />
                     Tác giả
@@ -274,7 +292,12 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
                   <input
                     type="text"
                     value={formData.author}
-                    onChange={(e) => setFormData(prev => ({ ...prev, author: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        author: e.target.value,
+                      }))
+                    }
                     className="w-full px-3 py-2 rounded-lg transition-all duration-300"
                     style={inputStyles}
                     onFocus={(e) => {
@@ -293,16 +316,21 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
               <div className="space-y-4">
                 {/* Category */}
                 <div>
-                  <label 
+                  <label
                     className="flex items-center gap-2 text-sm font-semibold mb-2"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "#94a3b8" }}
                   >
                     <Calendar className="w-4 h-4" />
                     Danh mục
                   </label>
                   <select
                     value={formData.category}
-                    onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        category: e.target.value,
+                      }))
+                    }
                     className="w-full px-3 py-2 rounded-lg transition-all duration-300"
                     style={inputStyles}
                     onFocus={(e) => {
@@ -313,7 +341,7 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
                     }}
                     disabled={isLoading}
                   >
-                    {categories.map(cat => (
+                    {categories.map((cat) => (
                       <option key={cat.value} value={cat.value}>
                         {cat.label}
                       </option>
@@ -323,9 +351,9 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
 
                 {/* Tags */}
                 <div>
-                  <label 
+                  <label
                     className="flex items-center gap-2 text-sm font-semibold mb-2"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "#94a3b8" }}
                   >
                     <Tag className="w-4 h-4" />
                     Tags
@@ -350,32 +378,37 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
                     <button
                       type="button"
                       onClick={handleAddTag}
-                      className="px-4 py-2 rounded-lg transition-all duration-300"
-                      style={primaryButtonStyles}
+                      className="flex items-center justify-center gap-2 px-6 py-2 rounded-lg transition-all duration-300 text-white font-semibold cursor-pointer"
+                      style={{
+                        background: `linear-gradient(135deg, ${currentAccentColor} 0%, ${currentAccentColor}dd 100%)`,
+                        boxShadow: `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`,
+                      }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-1px)";
-                        e.currentTarget.style.boxShadow = `-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15), 0 0 16px ${currentAccentColor}40`;
+                        e.currentTarget.style.transform =
+                          "translateY(-2px) scale(1.02)";
+                        e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.15), 0 0 20px ${currentAccentColor}70`;
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translateY(0)";
-                        e.currentTarget.style.boxShadow = `-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1), 0 0 12px ${currentAccentColor}30`;
+                        e.currentTarget.style.transform =
+                          "translateY(0) scale(1)";
+                        e.currentTarget.style.boxShadow = `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`;
                       }}
                       disabled={isLoading}
                     >
                       Thêm
                     </button>
                   </div>
-                  
+
                   {/* Tag List */}
                   <div className="flex flex-wrap gap-2">
-                    {formData.tags.map(tag => (
+                    {formData.tags.map((tag) => (
                       <span
                         key={tag}
                         className="inline-flex items-center gap-1 px-3 py-1 text-sm rounded-full transition-all duration-300"
                         style={{
                           background: currentAccentColor,
                           color: "#FFFFFF",
-                          boxShadow: `-2px -2px 4px #FAFBFF, 2px 2px 4px rgba(22, 17, 29, 0.1), 0 0 8px ${currentAccentColor}30`
+                          boxShadow: `-2px -2px 4px #FAFBFF, 2px 2px 4px rgba(22, 17, 29, 0.1), 0 0 8px ${currentAccentColor}30`,
                         }}
                       >
                         {tag}
@@ -394,29 +427,44 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
 
                 {/* Pinned Checkbox */}
                 <div className="flex items-center gap-3">
-                  <label 
+                  <label
                     className="flex items-center gap-2 cursor-pointer"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "#94a3b8" }}
                   >
                     <input
                       type="checkbox"
                       checked={formData.pinned}
-                      onChange={(e) => setFormData(prev => ({ ...prev, pinned: e.target.checked }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          pinned: e.target.checked,
+                        }))
+                      }
                       className="hidden"
                       disabled={isLoading}
                     />
-                    <div 
+                    <div
                       className="w-5 h-5 rounded transition-all duration-300 flex items-center justify-center"
                       style={{
-                        background: formData.pinned ? currentAccentColor : "var(--color-background)",
-                        boxShadow: formData.pinned 
+                        background: formData.pinned
+                          ? currentAccentColor
+                          : "rgba(15, 23, 42, 0.7)",
+                        boxShadow: formData.pinned
                           ? `inset -2px -2px 4px #FAFBFF, inset 2px 2px 4px rgba(22, 17, 29, 0.1), 0 0 8px ${currentAccentColor}40`
-                          : "inset -2px -2px 4px #FAFBFF, inset 2px 2px 4px rgba(22, 17, 29, 0.1)"
+                          : "inset -2px -2px 4px #FAFBFF, inset 2px 2px 4px rgba(22, 17, 29, 0.1)",
                       }}
                     >
                       {formData.pinned && (
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       )}
                     </div>
@@ -428,16 +476,18 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
 
             {/* Content */}
             <div>
-              <label 
+              <label
                 className="flex items-center gap-2 text-sm font-semibold mb-2"
-                style={{ color: "var(--color-text-secondary)" }}
+                style={{ color: "#94a3b8" }}
               >
                 <FileText className="w-4 h-4" />
                 Nội dung *
               </label>
               <textarea
                 value={formData.content}
-                onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, content: e.target.value }))
+                }
                 rows={8}
                 required
                 className="w-full px-3 py-2 rounded-lg resize-none transition-all duration-300"
@@ -454,46 +504,57 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
             </div>
 
             {/* Actions */}
-            <div 
+            <div
               className="flex justify-end gap-3 pt-4"
               style={{
-                borderTop: "1px solid var(--color-border)",
-                marginTop: "24px"
+                borderTop: "1px solid rgba(51, 65, 85, 0.5)",
+                marginTop: "24px",
               }}
             >
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2 rounded-lg transition-all duration-300"
-                style={buttonStyles}
+                className="flex items-center justify-center gap-2 px-6 py-2 rounded-lg transition-all duration-300 text-white font-semibold cursor-pointer"
+                style={{
+                  boxShadow: `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`,
+                }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-1px)";
-                  e.currentTarget.style.boxShadow = "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15)";
+                  e.currentTarget.style.transform =
+                    "translateY(-2px) scale(1.02)";
+                  e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.15), 0 0 20px ${currentAccentColor}70`;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1)";
+                  e.currentTarget.style.transform = "translateY(0) scale(1)";
+                  e.currentTarget.style.boxShadow = `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`;
                 }}
                 disabled={isLoading}
               >
-                <span style={{ color: "var(--color-text-secondary)" }}>Hủy</span>
+                <span style={{ color: "#94a3b8" }}>Hủy</span>
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex items-center gap-2 px-6 py-2 rounded-lg transition-all duration-300"
-                style={primaryButtonStyles}
+                className="flex items-center justify-center gap-2 px-6 py-2 rounded-lg transition-all duration-300 text-white font-semibold cursor-pointer"
+                style={{
+                  background: `linear-gradient(135deg, ${currentAccentColor} 0%, ${currentAccentColor}dd 100%)`,
+                  boxShadow: `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`,
+                }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-1px)";
-                  e.currentTarget.style.boxShadow = `-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15), 0 0 16px ${currentAccentColor}40`;
+                  e.currentTarget.style.transform =
+                    "translateY(-2px) scale(1.02)";
+                  e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.15), 0 0 20px ${currentAccentColor}70`;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = `-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1), 0 0 12px ${currentAccentColor}30`;
+                  e.currentTarget.style.transform = "translateY(0) scale(1)";
+                  e.currentTarget.style.boxShadow = `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`;
                 }}
               >
                 <Save className="w-4 h-4" />
-                {isLoading ? 'Đang lưu...' : (editingNews ? 'Cập nhật' : 'Tạo mới')}
+                {isLoading
+                  ? "Đang lưu..."
+                  : editingNews
+                  ? "Cập nhật"
+                  : "Tạo mới"}
               </button>
             </div>
           </form>

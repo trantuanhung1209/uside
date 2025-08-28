@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit2, Trash2, Pin, PinOff, Eye, Calendar, User, Tag } from 'lucide-react';
+import { Edit2, Trash2, Pin, PinOff, Calendar, User, Tag } from 'lucide-react';
 import type { FirestoreNewsItem } from '../../services/newsService';
 import { useAccentColor } from '../../hooks/useAccentColor';
 
@@ -43,24 +43,6 @@ const NewsTable: React.FC<NewsTableProps> = ({
     return colors[category] || '#6B7280';
   };
 
-  const getStatusColor = (status: string) => {
-    const colors: Record<string, string> = {
-      published: '#10B981',
-      draft: '#F59E0B',
-      archived: '#6B7280'
-    };
-    return colors[status] || '#6B7280';
-  };
-
-  const getStatusLabel = (status: string) => {
-    const labels: Record<string, string> = {
-      published: 'Đã xuất bản',
-      draft: 'Bản nháp',
-      archived: 'Đã lưu trữ'
-    };
-    return labels[status] || status;
-  };
-
   const formatDate = (date: Date | string | number) => {
     try {
       // Chuyển đổi về Date object nếu cần
@@ -94,15 +76,17 @@ const NewsTable: React.FC<NewsTableProps> = ({
       <div 
         className="p-8 text-center rounded-2xl"
         style={{
-          background: "var(--color-background)",
-          boxShadow: "-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.15)"
+          background: "rgba(15, 23, 42, 0.9)",
+          backdropFilter: "blur(20px)",
+          boxShadow: "inset -12px -12px 24px rgba(0, 0, 0, 0.4), inset 12px 12px 24px rgba(255, 255, 255, 0.05)",
+          border: "1px solid rgba(255, 255, 255, 0.1)"
         }}
       >
-        <div className="mb-4" style={{ color: "var(--color-text-secondary)" }}>
+        <div className="mb-4" style={{ color: "#94a3b8" }}>
           <Calendar className="w-16 h-16 mx-auto" />
         </div>
-        <h3 className="text-xl font-semibold mb-2" style={{ color: "var(--color-text-primary)" }}>Chưa có tin tức nào</h3>
-        <p style={{ color: "var(--color-text-secondary)" }}>Hãy tạo tin tức đầu tiên của bạn!</p>
+        <h3 className="text-xl font-semibold mb-2" style={{ color: "#f1f5f9" }}>Chưa có tin tức nào</h3>
+        <p style={{ color: "#94a3b8" }}>Hãy tạo tin tức đầu tiên của bạn!</p>
       </div>
     );
   }
@@ -111,48 +95,44 @@ const NewsTable: React.FC<NewsTableProps> = ({
     <div 
       className="rounded-2xl overflow-hidden"
       style={{
-        background: "var(--color-background)",
-        boxShadow: "-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.15)"
+        background: "rgba(15, 23, 42, 0.9)",
+        backdropFilter: "blur(20px)",
+        boxShadow: "inset -12px -12px 24px rgba(0, 0, 0, 0.4), inset 12px 12px 24px rgba(255, 255, 255, 0.05), 0 20px 40px rgba(0, 0, 0, 0.3)",
+        border: "1px solid rgba(255, 255, 255, 0.1)"
       }}
     >
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y" style={{ borderColor: "rgba(224, 247, 250, 0.2)" }}>
-          <thead style={{ background: "var(--color-background-secondary)" }}>
+        <table className="min-w-full divide-y" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
+          <thead style={{ background: "rgba(30, 41, 59, 0.8)" }}>
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
                 Tin tức
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
                 Danh mục
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
-                Trạng thái
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
                 Tác giả
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
-                Thống kê
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
                 Ngày tạo
               </th>
-              <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
+              <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
                 Thao tác
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y" style={{ background: "var(--color-background)", borderColor: "rgba(224, 247, 250, 0.2)" }}>
+          <tbody className="divide-y" style={{ background: "rgba(15, 23, 42, 0.9)", borderColor: "rgba(255, 255, 255, 0.2)" }}>
             {news.map((item) => (
               <tr 
                 key={item.id} 
-                className="transition-all duration-300"
-                style={{ background: "var(--color-background)" }}
+                className="transition-all duration-300 border-gray-800"
+                style={{ background: "rgba(15, 23, 42, 0.9)" }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "var(--color-background-secondary)";
+                  e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "var(--color-background)";
+                  e.currentTarget.style.background = "rgba(15, 23, 42, 0.9)";
                 }}
               >
                 {/* Tin tức */}
@@ -170,14 +150,14 @@ const NewsTable: React.FC<NewsTableProps> = ({
                     )}
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-sm font-semibold truncate" style={{ color: "var(--color-text-primary)" }}>
+                        <h3 className="text-sm font-semibold truncate" style={{ color: "#f1f5f9" }}>
                           {truncateText(item.title, 50)}
                         </h3>
                         {item.pinned && (
                           <Pin className="w-4 h-4 flex-shrink-0" style={{ color: "#EF4444" }} />
                         )}
                       </div>
-                      <p className="text-sm line-clamp-2" style={{ color: "var(--color-text-secondary)" }}>
+                      <p className="text-sm line-clamp-2" style={{ color: "#94a3b8" }}>
                         {truncateText(item.excerpt, 100)}
                       </p>
                       {item.tags && item.tags.length > 0 && (
@@ -189,7 +169,7 @@ const NewsTable: React.FC<NewsTableProps> = ({
                               style={{
                                 backgroundColor: `${currentAccentColor}20`,
                                 color: currentAccentColor,
-                                boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.05), inset 2px 2px 4px #FAFBFF`
+                                boxShadow: `inset -2px -2px 4px rgba(0, 0, 0, 0.3), inset 2px 2px 4px rgba(255, 255, 255, 0.05)`
                               }}
                             >
                               <Tag className="w-3 h-3" />
@@ -197,7 +177,7 @@ const NewsTable: React.FC<NewsTableProps> = ({
                             </span>
                           ))}
                           {item.tags.length > 3 && (
-                            <span className="text-xs" style={{ color: "var(--color-text-secondary)" }}>
+                            <span className="text-xs" style={{ color: "#94a3b8" }}>
                               +{item.tags.length - 3} khác
                             </span>
                           )}
@@ -220,42 +200,19 @@ const NewsTable: React.FC<NewsTableProps> = ({
                   </span>
                 </td>
 
-                {/* Trạng thái */}
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span 
-                    className="inline-flex px-2 py-1 text-xs font-semibold rounded-full text-white"
-                    style={{
-                      backgroundColor: getStatusColor(item.status),
-                      boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`
-                    }}
-                  >
-                    {getStatusLabel(item.status)}
-                  </span>
-                </td>
-
                 {/* Tác giả */}
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center gap-2">
-                    <User className="w-4 h-4" style={{ color: "var(--color-text-secondary)" }} />
-                    <span className="text-sm" style={{ color: "var(--color-text-primary)" }}>{item.author || 'Unknown'}</span>
-                  </div>
-                </td>
-
-                {/* Thống kê */}
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center gap-3 text-sm" style={{ color: "var(--color-text-secondary)" }}>
-                    <div className="flex items-center gap-1">
-                      <Eye className="w-4 h-4" />
-                      <span>{item.viewCount}</span>
-                    </div>
+                    <User className="w-4 h-4" style={{ color: "#94a3b8" }} />
+                    <span className="text-sm" style={{ color: "#f1f5f9" }}>{item.author || 'Unknown'}</span>
                   </div>
                 </td>
 
                 {/* Ngày tạo */}
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4" style={{ color: "var(--color-text-secondary)" }} />
-                    <span className="text-sm" style={{ color: "var(--color-text-primary)" }}>
+                    <Calendar className="w-4 h-4" style={{ color: "#94a3b8" }} />
+                    <span className="text-sm" style={{ color: "#f1f5f9" }}>
                       {formatDate(item.createdAt)}
                     </span>
                   </div>
@@ -266,19 +223,23 @@ const NewsTable: React.FC<NewsTableProps> = ({
                   <div className="flex items-center justify-end gap-2">
                     <button
                       onClick={() => onTogglePin(item.id, !item.pinned)}
-                      className="p-2 rounded-lg transition-all duration-300"
+                      className="p-2 rounded-lg transition-all duration-300 cursor-pointer"
                       style={{
-                        background: "var(--color-background)",
-                        color: item.pinned ? "#EF4444" : "var(--color-text-secondary)",
-                        boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.1)"
+                        background: "rgba(15, 23, 42, 0.7)",
+                        backdropFilter: "blur(8px)",
+                        border: "1px solid rgba(51, 65, 85, 0.5)",
+                        color: item.pinned ? "#EF4444" : "#94a3b8",
+                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15)";
+                        e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
                         e.currentTarget.style.transform = "translateY(-1px)";
+                        e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.1)";
+                        e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
                         e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
                       }}
                       title={item.pinned ? 'Bỏ ghim' : 'Ghim tin tức'}
                       disabled={isLoading}
@@ -287,19 +248,23 @@ const NewsTable: React.FC<NewsTableProps> = ({
                     </button>
                     <button
                       onClick={() => onEdit(item)}
-                      className="p-2 rounded-lg transition-all duration-300"
+                      className="p-2 rounded-lg transition-all duration-300 cursor-pointer"
                       style={{
-                        background: "var(--color-background)",
+                        background: "rgba(15, 23, 42, 0.7)",
+                        backdropFilter: "blur(8px)",
+                        border: "1px solid rgba(51, 65, 85, 0.5)",
                         color: currentAccentColor,
-                        boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.1)"
+                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = `-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15), 0 0 8px ${currentAccentColor}40`;
+                        e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
                         e.currentTarget.style.transform = "translateY(-1px)";
+                        e.currentTarget.style.boxShadow = `0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px ${currentAccentColor}40`;
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.1)";
+                        e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
                         e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
                       }}
                       title="Chỉnh sửa"
                       disabled={isLoading}
@@ -312,19 +277,23 @@ const NewsTable: React.FC<NewsTableProps> = ({
                           onDelete(item.id);
                         }
                       }}
-                      className="p-2 rounded-lg transition-all duration-300"
+                      className="p-2 rounded-lg transition-all duration-300 cursor-pointer"
                       style={{
-                        background: "var(--color-background)",
+                        background: "rgba(15, 23, 42, 0.7)",
+                        backdropFilter: "blur(8px)",
+                        border: "1px solid rgba(51, 65, 85, 0.5)",
                         color: "#EF4444",
-                        boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.1)"
+                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.15), 0 0 8px #EF444440";
+                        e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
                         e.currentTarget.style.transform = "translateY(-1px)";
+                        e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px #EF444440";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.1)";
+                        e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
                         e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
                       }}
                       title="Xóa"
                       disabled={isLoading}

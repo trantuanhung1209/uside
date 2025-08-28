@@ -67,16 +67,18 @@ const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading = false }) => 
             key={index} 
             className="p-6 animate-pulse rounded-2xl"
             style={{
-              background: "var(--color-background)",
-              boxShadow: "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.12)"
+              background: "rgba(15, 23, 42, 0.9)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 8px 8px 16px rgba(255, 255, 255, 0.05)",
+              border: "1px solid rgba(255, 255, 255, 0.1)"
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <div className="h-4 rounded w-20 mb-2" style={{ backgroundColor: "var(--color-background-secondary)" }}></div>
-                <div className="h-8 rounded w-12" style={{ backgroundColor: "var(--color-background-secondary)" }}></div>
+                <div className="h-4 rounded w-20 mb-2" style={{ backgroundColor: "rgba(51, 65, 85, 0.6)" }}></div>
+                <div className="h-8 rounded w-12" style={{ backgroundColor: "rgba(51, 65, 85, 0.6)" }}></div>
               </div>
-              <div className="w-12 h-12 rounded-xl" style={{ backgroundColor: "var(--color-background-secondary)" }}></div>
+              <div className="w-12 h-12 rounded-xl" style={{ backgroundColor: "rgba(51, 65, 85, 0.6)" }}></div>
             </div>
           </div>
         ))}
@@ -93,21 +95,25 @@ const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading = false }) => 
             key={index}
             className="p-6 rounded-2xl transition-all duration-300 cursor-pointer hover:scale-105"
             style={{
-              background: "var(--color-background)",
-              boxShadow: "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.12)"
+              background: "rgba(15, 23, 42, 0.9)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 8px 8px 16px rgba(255, 255, 255, 0.05)",
+              border: "1px solid rgba(255, 255, 255, 0.1)"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = `-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.18), 0 0 20px ${card.color}30`;
+              e.currentTarget.style.boxShadow = `inset -12px -12px 24px rgba(0, 0, 0, 0.5), inset 12px 12px 24px rgba(255, 255, 255, 0.08), 0 0 20px ${card.color}40`;
               e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+              e.currentTarget.style.borderColor = `${card.color}40`;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.12)";
+              e.currentTarget.style.boxShadow = "inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 8px 8px 16px rgba(255, 255, 255, 0.05)";
               e.currentTarget.style.transform = "translateY(0) scale(1)";
+              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium mb-1" style={{ color: "var(--color-text-secondary)" }}>
+                <p className="text-sm font-medium mb-1" style={{ color: "#94a3b8" }}>
                   {card.title}
                 </p>
                 <p className="text-3xl font-bold" style={{ color: card.textColor }}>
@@ -118,7 +124,7 @@ const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading = false }) => 
                 className="p-3 rounded-xl transition-all duration-300"
                 style={{
                   backgroundColor: card.bgColor,
-                  boxShadow: `inset -4px -4px 8px rgba(22, 17, 29, 0.08), inset 4px 4px 8px #FAFBFF`
+                  boxShadow: `inset -4px -4px 8px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.05)`
                 }}
               >
                 <Icon className="w-6 h-6" style={{ color: card.textColor }} />

@@ -55,40 +55,42 @@ const AdminLoginPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--color-background)" }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)" }}>
         <div 
           className="flex items-center gap-3 px-6 py-4 rounded-2xl"
           style={{
-            background: "var(--color-background)",
-            boxShadow: "-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.15)"
+            background: "rgba(15, 23, 42, 0.8)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 8px 8px 16px rgba(255, 255, 255, 0.05)",
+            border: "1px solid rgba(255, 255, 255, 0.1)"
           }}
         >
           <div className="loading-spinner"></div>
-          <span style={{ color: "var(--color-text-primary)" }}>Đang kiểm tra quyền truy cập...</span>
+          <span style={{ color: "#e2e8f0" }}>Đang kiểm tra quyền truy cập...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "var(--color-background)" }}>
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)" }}>
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating geometric shapes */}
         <div 
-          className="absolute top-20 left-20 w-32 h-32 rounded-full opacity-10 animate-float-slow"
+          className="absolute top-20 left-20 w-32 h-32 rounded-full opacity-20 animate-float-slow"
           style={{ background: currentAccentColor }}
         />
         <div 
-          className="absolute top-40 right-32 w-24 h-24 rounded-lg opacity-10 animate-float-medium"
+          className="absolute top-40 right-32 w-24 h-24 rounded-lg opacity-20 animate-float-medium"
           style={{ background: currentAccentColor, transform: "rotate(45deg)" }}
         />
         <div 
-          className="absolute bottom-32 left-32 w-40 h-40 rounded-full opacity-10 animate-float-fast"
+          className="absolute bottom-32 left-32 w-40 h-40 rounded-full opacity-20 animate-float-fast"
           style={{ background: currentAccentColor }}
         />
         <div 
-          className="absolute bottom-20 right-20 w-20 h-20 rounded-lg opacity-10 animate-float-slow"
+          className="absolute bottom-20 right-20 w-20 h-20 rounded-lg opacity-20 animate-float-slow"
           style={{ background: currentAccentColor, transform: "rotate(30deg)" }}
         />
       </div>
@@ -97,22 +99,26 @@ const AdminLoginPage: React.FC = () => {
         {/* Logo and Title */}
         <div className="text-center mb-8">
           <div 
-            className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-6"
+            className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-6 cursor-pointer hover:scale-105 transition-all duration-300"
             style={{
-              background: "var(--color-background)",
-              boxShadow: "-12px -12px 24px #FAFBFF, 12px 12px 24px rgba(22, 17, 29, 0.15)"
+              background: "rgba(15, 23, 42, 0.8)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "inset -12px -12px 24px rgba(0, 0, 0, 0.4), inset 12px 12px 24px rgba(255, 255, 255, 0.05)",
+              border: "1px solid rgba(255, 255, 255, 0.1)"
             }}
+
+            onClick={() => navigate('/')}
           >
             <img 
-              src="/images_uside/uside_dark.png" 
+              src="/images_uside/pet_cloud_uside.png" 
               alt="USide Logo" 
               className="w-12 h-12 object-contain"
             />
             <div className="text-left">
-              <h1 className="text-xl font-bold" style={{ color: "var(--color-text-primary)" }}>
+              <h1 className="text-xl font-bold" style={{ color: "#f1f5f9" }}>
                 USide
               </h1>
-              <p className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
+              <p className="text-sm" style={{ color: "#94a3b8" }}>
                 Admin Panel
               </p>
             </div>
@@ -120,11 +126,11 @@ const AdminLoginPage: React.FC = () => {
           
           <div className="flex items-center justify-center gap-2 mb-2">
             <Shield className="w-6 h-6" style={{ color: currentAccentColor }} />
-            <h2 className="text-2xl font-bold" style={{ color: "var(--color-text-primary)" }}>
+            <h2 className="text-2xl font-bold" style={{ color: "#f1f5f9" }}>
               Đăng nhập Admin
             </h2>
           </div>
-          <p style={{ color: "var(--color-text-secondary)" }}>
+          <p style={{ color: "#94a3b8" }}>
             Vui lòng đăng nhập để truy cập bảng điều khiển
           </p>
         </div>
@@ -133,14 +139,15 @@ const AdminLoginPage: React.FC = () => {
         <div 
           className="rounded-3xl p-8 relative overflow-hidden backdrop-blur-lg"
           style={{
-            background: "var(--color-background)",
-            boxShadow: "-20px -20px 40px #FAFBFF, 20px 20px 40px rgba(22, 17, 29, 0.15)",
-            border: "1px solid rgba(224, 247, 250, 0.2)"
+            background: "rgba(15, 23, 42, 0.9)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "inset -20px -20px 40px rgba(0, 0, 0, 0.5), inset 20px 20px 40px rgba(255, 255, 255, 0.03), 0 25px 50px rgba(0, 0, 0, 0.3)",
+            border: "1px solid rgba(255, 255, 255, 0.1)"
           }}
         >
           {/* Form glow effect */}
           <div 
-            className="absolute inset-0 opacity-10 pointer-events-none"
+            className="absolute inset-0 opacity-15 pointer-events-none"
             style={{
               background: `radial-gradient(circle at 50% 50%, ${currentAccentColor} 0%, transparent 70%)`
             }}
@@ -152,7 +159,7 @@ const AdminLoginPage: React.FC = () => {
               <label 
                 htmlFor="username" 
                 className="block text-sm font-semibold mb-3"
-                style={{ color: "var(--color-text-primary)" }}
+                style={{ color: "#f1f5f9" }}
               >
                 Tài khoản
               </label>
@@ -169,16 +176,18 @@ const AdminLoginPage: React.FC = () => {
                   placeholder="Nhập tài khoản admin"
                   className="w-full pl-12 pr-4 py-4 rounded-xl transition-all duration-300 focus:outline-none"
                   style={{
-                    background: "var(--color-background)",
-                    color: "var(--color-text-primary)",
-                    border: "1px solid rgba(224, 247, 250, 0.2)",
-                    boxShadow: "inset -6px -6px 12px rgba(22, 17, 29, 0.1), inset 6px 6px 12px #FAFBFF"
+                    background: "rgba(30, 41, 59, 0.8)",
+                    color: "#f1f5f9",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    boxShadow: "inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 6px 6px 12px rgba(255, 255, 255, 0.05)"
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(22, 17, 29, 0.15), inset 8px 8px 16px #FAFBFF, 0 0 12px ${currentAccentColor}30`;
+                    e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 8px 8px 16px rgba(255, 255, 255, 0.08), 0 0 12px ${currentAccentColor}40`;
+                    e.currentTarget.style.borderColor = currentAccentColor + "40";
                   }}
                   onBlur={(e) => {
-                    e.currentTarget.style.boxShadow = "inset -6px -6px 12px rgba(22, 17, 29, 0.1), inset 6px 6px 12px #FAFBFF";
+                    e.currentTarget.style.boxShadow = "inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 6px 6px 12px rgba(255, 255, 255, 0.05)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
                   }}
                 />
               </div>
@@ -189,7 +198,7 @@ const AdminLoginPage: React.FC = () => {
               <label 
                 htmlFor="password" 
                 className="block text-sm font-semibold mb-3"
-                style={{ color: "var(--color-text-primary)" }}
+                style={{ color: "#f1f5f9" }}
               >
                 Mật khẩu
               </label>
@@ -206,16 +215,18 @@ const AdminLoginPage: React.FC = () => {
                   placeholder="Nhập mật khẩu"
                   className="w-full pl-12 pr-12 py-4 rounded-xl transition-all duration-300 focus:outline-none"
                   style={{
-                    background: "var(--color-background)",
-                    color: "var(--color-text-primary)",
-                    border: "1px solid rgba(224, 247, 250, 0.2)",
-                    boxShadow: "inset -6px -6px 12px rgba(22, 17, 29, 0.1), inset 6px 6px 12px #FAFBFF"
+                    background: "rgba(30, 41, 59, 0.8)",
+                    color: "#f1f5f9",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    boxShadow: "inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 6px 6px 12px rgba(255, 255, 255, 0.05)"
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(22, 17, 29, 0.15), inset 8px 8px 16px #FAFBFF, 0 0 12px ${currentAccentColor}30`;
+                    e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 8px 8px 16px rgba(255, 255, 255, 0.08), 0 0 12px ${currentAccentColor}40`;
+                    e.currentTarget.style.borderColor = currentAccentColor + "40";
                   }}
                   onBlur={(e) => {
-                    e.currentTarget.style.boxShadow = "inset -6px -6px 12px rgba(22, 17, 29, 0.1), inset 6px 6px 12px #FAFBFF";
+                    e.currentTarget.style.boxShadow = "inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 6px 6px 12px rgba(255, 255, 255, 0.05)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
                   }}
                 />
                 <button
@@ -224,9 +235,9 @@ const AdminLoginPage: React.FC = () => {
                   className="absolute inset-y-0 right-0 pr-4 flex items-center"
                 >
                   {showPassword ? (
-                    <EyeOff className="w-5 h-5" style={{ color: "var(--color-text-secondary)" }} />
+                    <EyeOff className="w-5 h-5" style={{ color: "#94a3b8" }} />
                   ) : (
-                    <Eye className="w-5 h-5" style={{ color: "var(--color-text-secondary)" }} />
+                    <Eye className="w-5 h-5" style={{ color: "#94a3b8" }} />
                   )}
                 </button>
               </div>
@@ -237,9 +248,10 @@ const AdminLoginPage: React.FC = () => {
               <div 
                 className="p-4 rounded-xl text-sm text-center"
                 style={{
-                  background: "rgba(255, 59, 48, 0.1)",
-                  color: "#ff3b30",
-                  border: "1px solid rgba(255, 59, 48, 0.2)"
+                  background: "rgba(239, 68, 68, 0.15)",
+                  color: "#fca5a5",
+                  border: "1px solid rgba(239, 68, 68, 0.3)",
+                  backdropFilter: "blur(10px)"
                 }}
               >
                 {error}
@@ -252,19 +264,19 @@ const AdminLoginPage: React.FC = () => {
               disabled={isSubmitting}
               className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                background: currentAccentColor,
-                boxShadow: `inset -6px -6px 12px rgba(22, 17, 29, 0.15), inset 4px 4px 8px #FAFBFF, 0 0 15px ${currentAccentColor}40`
+                background: `linear-gradient(135deg, ${currentAccentColor} 0%, ${currentAccentColor}dd 100%)`,
+                boxShadow: `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`
               }}
               onMouseEnter={(e) => {
                 if (!isSubmitting) {
                   e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
-                  e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(22, 17, 29, 0.2), inset 4px 4px 8px #FAFBFF, 0 0 20px ${currentAccentColor}60`;
+                  e.currentTarget.style.boxShadow = `inset -8px -8px 16px rgba(0, 0, 0, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.15), 0 0 20px ${currentAccentColor}70`;
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isSubmitting) {
                   e.currentTarget.style.transform = "translateY(0) scale(1)";
-                  e.currentTarget.style.boxShadow = `inset -6px -6px 12px rgba(22, 17, 29, 0.15), inset 4px 4px 8px #FAFBFF, 0 0 15px ${currentAccentColor}40`;
+                  e.currentTarget.style.boxShadow = `inset -6px -6px 12px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.1), 0 0 15px ${currentAccentColor}50`;
                 }
               }}
             >
@@ -288,12 +300,12 @@ const AdminLoginPage: React.FC = () => {
           <button
             onClick={() => navigate('/')}
             className="text-sm transition-all duration-300"
-            style={{ color: "var(--color-text-secondary)" }}
+            style={{ color: "#94a3b8" }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = currentAccentColor;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = "var(--color-text-secondary)";
+              e.currentTarget.style.color = "#94a3b8";
             }}
           >
             ← Quay về trang chủ
