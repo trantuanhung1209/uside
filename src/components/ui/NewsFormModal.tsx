@@ -162,7 +162,7 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
             </h2>
             <button
               onClick={onClose}
-              className="p-2 rounded-full transition-all duration-300"
+              className="p-2 rounded-full transition-all duration-300 cursor-pointer"
               style={{
                 background: "rgba(15, 23, 42, 0.7)",
                 backdropFilter: "blur(8px)",

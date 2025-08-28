@@ -85,17 +85,20 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
   };
 
   const containerStyles = {
-    background: "var(--color-background)",
-    border: `2px dashed ${dragActive ? currentAccentColor : 'var(--color-border)'}`,
+    background: "rgba(15, 23, 42, 0.7)",
+    backdropFilter: "blur(8px)",
+    border: `2px dashed ${dragActive ? currentAccentColor : 'rgba(51, 65, 85, 0.5)'}`,
     borderRadius: "12px",
-    transition: "all 0.3s ease"
+    transition: "all 0.3s ease",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
   };
 
   const uploadButtonStyles = {
-    background: "var(--color-background)",
-    color: "var(--color-text-primary)",
-    border: "none",
-    boxShadow: "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1)",
+    background: "rgba(15, 23, 42, 0.7)",
+    backdropFilter: "blur(8px)",
+    border: "1px solid rgba(51, 65, 85, 0.5)",
+    color: "#f1f5f9",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
     transition: "all 0.3s ease"
   };
 
@@ -144,13 +147,13 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             <div>
               <p 
                 className="text-lg font-semibold mb-1"
-                style={{ color: "var(--color-text-primary)" }}
+                style={{ color: "#f1f5f9" }}
               >
                 {isUploading ? 'Đang tải lên...' : 'Chọn hoặc kéo thả ảnh'}
               </p>
               <p 
                 className="text-sm"
-                style={{ color: "var(--color-text-secondary)" }}
+                style={{ color: "#94a3b8" }}
               >
                 Hỗ trợ JPG, PNG, GIF (tối đa 5MB)
               </p>
@@ -159,15 +162,17 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             {!isUploading && (
               <button
                 type="button"
-                className="px-6 py-2 rounded-lg font-medium transition-all duration-300"
+                className="px-6 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer"
                 style={uploadButtonStyles}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-1px)";
-                  e.currentTarget.style.boxShadow = "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15)";
+                  e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
+                  e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1)";
+                  e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
+                  e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
                 }}
               >
                 Chọn file
@@ -182,8 +187,10 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
         <div 
           className="relative p-3 rounded-lg"
           style={{
-            background: "var(--color-background)",
-            boxShadow: "inset -3px -3px 6px #FAFBFF, inset 3px 3px 6px rgba(22, 17, 29, 0.1)"
+            background: "rgba(15, 23, 42, 0.7)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(51, 65, 85, 0.5)",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
           }}
         >
           <div className="relative">
@@ -200,7 +207,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             <button
               type="button"
               onClick={handleRemove}
-              className="absolute top-2 right-2 p-2 rounded-full transition-all duration-300"
+              className="absolute top-2 right-2 p-2 rounded-full transition-all duration-300 cursor-pointer"
               style={{
                 background: "rgba(255, 255, 255, 0.9)",
                 color: "#ef4444",
@@ -228,11 +235,13 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             style={uploadButtonStyles}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.15)";
+              e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
+              e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "-4px -4px 8px #FAFBFF, 4px 4px 8px rgba(22, 17, 29, 0.1)";
+              e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
+              e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
             }}
             disabled={disabled}
           >
@@ -256,7 +265,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
         <div 
           className="absolute inset-0 flex items-center justify-center rounded-lg"
           style={{
-            background: "rgba(var(--color-background-rgb), 0.8)",
+            background: "rgba(15, 23, 42, 0.8)",
             backdropFilter: "blur(4px)"
           }}
         >
@@ -267,7 +276,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             />
             <p 
               className="text-sm font-medium"
-              style={{ color: "var(--color-text-primary)" }}
+              style={{ color: "#f1f5f9" }}
             >
               Đang tải lên...
             </p>
