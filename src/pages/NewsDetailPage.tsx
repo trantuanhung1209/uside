@@ -198,7 +198,7 @@ const NewsDetailPage: React.FC = () => {
                     "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
                 }}
               >
-                <div className="h-[400px] overflow-hidden rounded-xl">
+                <div className="overflow-hidden rounded-xl">
                   <img
                     src={newsItem.image}
                     alt={newsItem.title}
