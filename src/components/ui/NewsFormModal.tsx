@@ -60,6 +60,7 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
   });
 
   const [tagInput, setTagInput] = useState("");
+  const [imageError, setImageError] = useState("");
 
   const categories = [
     { value: "update", label: "Cập nhật" },
@@ -82,6 +83,7 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
         tags: editingNews.tags || [],
         pinned: editingNews.pinned || false,
       });
+      setImageError(""); // Reset image error when editing
     } else {
       // Reset form when not editing
       setFormData({
@@ -95,11 +97,22 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
         pinned: false,
       });
       setTagInput("");
+      setImageError(""); // Reset image error when creating new
     }
   }, [editingNews, isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Reset image error
+    setImageError("");
+
+    // Validate image is required
+    if (!formData.image || formData.image.trim() === "") {
+      setImageError("Hình ảnh là bắt buộc để tạo tin tức");
+      return;
+    }
+
     await onSubmit(formData);
   };
 
@@ -265,19 +278,29 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
                     style={{ color: "#94a3b8" }}
                   >
                     <ImageIcon className="w-4 h-4" />
-                    Hình ảnh
+                    Hình ảnh *
                   </label>
                   <ImageUploader
                     value={formData.image}
-                    onChange={(url) =>
-                      setFormData((prev) => ({ ...prev, image: url }))
-                    }
+                    onChange={(url) => {
+                      setFormData((prev) => ({ ...prev, image: url }));
+                      // Clear image error when user selects an image
+                      if (imageError && url.trim() !== "") {
+                        setImageError("");
+                      }
+                    }}
                     onError={(error) => {
                       console.error("Image upload error:", error);
-                      // You can add toast notification here if needed
+                      setImageError("Lỗi tải lên hình ảnh. Vui lòng thử lại.");
                     }}
                     disabled={isLoading}
                   />
+                  {imageError && (
+                    <p className="text-red-400 text-sm mt-2 flex items-center gap-1">
+                      <span className="w-1 h-1 bg-red-400 rounded-full"></span>
+                      {imageError}
+                    </p>
+                  )}
                 </div>
 
                 {/* Author */}
@@ -483,6 +506,47 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
                 <FileText className="w-4 h-4" />
                 Nội dung *
               </label>
+
+              {/* Markdown Guide */}
+              <div
+                className="mb-3 p-3 rounded-lg border text-sm"
+                style={{
+                  background: "rgba(59, 130, 246, 0.1)",
+                  border: "1px solid rgba(59, 130, 246, 0.3)",
+                  color: "#93c5fd",
+                }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="font-semibold">💡 Hướng dẫn Markdown:</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <span className="text-blue-300">**Đậm**</span> →{" "}
+                    <strong>Đậm</strong>
+                  </div>
+                  <div>
+                    <span className="text-blue-300">*Nghiêng*</span> →{" "}
+                    <em>Nghiêng</em>
+                  </div>
+                  <div>
+                    <span className="text-blue-300"># Tiêu đề 1</span> → H1
+                  </div>
+                  <div>
+                    <span className="text-blue-300">## Tiêu đề 2</span> → H2
+                  </div>
+                  <div>
+                    <span className="text-blue-300">- Danh sách</span> → • Danh
+                    sách
+                  </div>
+                  <div>
+                    <span className="text-blue-300">[Link](url)</span> →{" "}
+                    <a href="#" className="text-blue-400">
+                      Link
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               <textarea
                 value={formData.content}
                 onChange={(e) =>
@@ -498,7 +562,15 @@ const NewsFormModal: React.FC<NewsFormModalProps> = ({
                 onBlur={(e) => {
                   Object.assign(e.target.style, inputStyles);
                 }}
-                placeholder="Nhập nội dung chi tiết... (Hỗ trợ HTML cơ bản)"
+                placeholder="Nhập nội dung theo định dạng Markdown... 
+
+                Ví dụ:
+                # Tiêu đề chính
+                ## Tiêu đề phụ
+                **Văn bản đậm** và *văn bản nghiêng*
+                - Mục 1
+                - Mục 2
+                [Liên kết](https://example.com)"
                 disabled={isLoading}
               />
             </div>

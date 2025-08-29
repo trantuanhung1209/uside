@@ -160,7 +160,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
 
         {/* Excerpt */}
         <p
-          className="text-sm line-clamp-3 mb-4 leading-relaxed"
+          className="text-sm line-clamp-2 mb-4 leading-relaxed"
           style={{ color: "var(--color-text-secondary)" }}
         >
           {article.excerpt}

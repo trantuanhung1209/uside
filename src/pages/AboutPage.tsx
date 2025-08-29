@@ -109,7 +109,7 @@ const AboutPage: React.FC = () => {
                         </svg>
                       </div>
                       <h3 className="font-bold text-text-primary">
-                        6 Thành Viên
+                        8 Thành Viên
                       </h3>
                       <p className="text-sm text-text-secondary">
                         Sinh viên IUH

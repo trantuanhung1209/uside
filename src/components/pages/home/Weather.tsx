@@ -60,7 +60,7 @@ const Weather = () => {
           {
             icon: "📚",
             activity: "Đọc sách và ghi chú",
-            reason: "Mưa sáng tạo không khí tập trung hoàn hảo",
+            reason: "Mưa sáng tạo không khí tập trung hoàn hảo để đọc sách",
             color: "text-emerald-600",
           },
           {
@@ -75,7 +75,48 @@ const Weather = () => {
             reason: "Mưa sáng kích thích cảm hứng sáng tạo",
             color: "text-purple-600",
           },
+          {
+            icon: "🧘",
+            activity: "Thiền hoặc yoga nhẹ",
+            reason:
+              "Buổi sáng tĩnh lặng giúp tâm trí thư thái và khởi động cơ thể",
+            color: "text-pink-600",
+          },
+          {
+            icon: "✍️",
+            activity: "Viết nhật ký buổi sáng",
+            reason: "Ghi lại ý tưởng và cảm xúc để bắt đầu ngày mới rõ ràng",
+            color: "text-indigo-600",
+          },
+          {
+            icon: "🎧",
+            activity: "Nghe podcast hoặc nhạc nhẹ",
+            reason: "Âm nhạc buổi sáng giúp khơi gợi năng lượng tích cực",
+            color: "text-teal-600",
+          },
+          {
+            icon: "📝",
+            activity: "Lập kế hoạch công việc",
+            reason:
+              "Buổi sáng là thời điểm lý tưởng để sắp xếp lịch trình hiệu quả",
+            color: "text-orange-600",
+          },
+          {
+            icon: "🌱",
+            activity: "Chăm sóc cây hoặc ban công",
+            reason:
+              "Không khí trong lành giúp bạn thư giãn và khởi đầu nhẹ nhàng",
+            color: "text-green-700",
+          },
+          {
+            icon: "🌐",
+            activity: "Học ngoại ngữ",
+            reason:
+              "Buổi sáng yên tĩnh là thời điểm tốt nhất để tiếp thu từ mới",
+            color: "text-cyan-700",
+          },
         ];
+
         return getRandomSuggestion(morningSuggestions);
       } else if (timeOfDay === "afternoon") {
         const afternoonSuggestions = [
@@ -92,18 +133,55 @@ const Weather = () => {
             color: "text-green-600",
           },
           {
-            icon: "🎮",
-            activity: "Chơi game cùng bạn online",
-            reason: "Mưa chiều, thư giãn với bạn bè qua mạng",
-            color: "text-cyan-600",
-          },
-          {
             icon: "🧘",
             activity: "Yoga/meditation trong phòng",
             reason: "Tiếng mưa giúp thư giãn và tĩnh tâm",
             color: "text-indigo-600",
           },
+          {
+            icon: "🍵",
+            activity: "Pha trà và thư giãn",
+            reason: "Chiều mưa nhâm nhi tách trà giúp tâm hồn nhẹ nhàng",
+            color: "text-amber-700",
+          },
+          {
+            icon: "📖",
+            activity: "Đọc tiểu thuyết hoặc truyện ngắn",
+            reason: "Chiều mưa là lúc hoàn hảo để đắm mình trong câu chuyện",
+            color: "text-rose-700",
+          },
+          {
+            icon: "🎧",
+            activity: "Nghe nhạc chill",
+            reason: "Tiếng mưa kết hợp nhạc tạo vibe thư giãn dễ chịu",
+            color: "text-purple-700",
+          },
+          {
+            icon: "👨‍🍳",
+            activity: "Nấu ăn hoặc thử công thức mới",
+            reason: "Chiều mưa rảnh rỗi, nấu nướng giúp giải tỏa căng thẳng",
+            color: "text-orange-600",
+          },
+          {
+            icon: "😴",
+            activity: "Ngủ trưa ngắn",
+            reason: "Tiếng mưa ru ngủ, giúp tái tạo năng lượng cho buổi tối",
+            color: "text-slate-500",
+          },
+          {
+            icon: "🖌️",
+            activity: "Vẽ hoặc viết sáng tạo",
+            reason: "Chiều mưa là nguồn cảm hứng cho sáng tạo nghệ thuật",
+            color: "text-pink-700",
+          },
+          {
+            icon: "📂",
+            activity: "Sắp xếp góc học tập",
+            reason: "Chiều mưa dọn dẹp không gian làm việc thêm gọn gàng",
+            color: "text-lime-700",
+          },
         ];
+
         return getRandomSuggestion(afternoonSuggestions);
       } else {
         const eveningSuggestions = [
@@ -131,7 +209,50 @@ const Weather = () => {
             reason: "Thời gian rảnh để thử nghiệm ẩm thực",
             color: "text-orange-600",
           },
+          {
+            icon: "🎬",
+            activity: "Xem phim hoặc series",
+            reason: "Tối mưa là lúc tuyệt vời để cuộn chăn xem phim",
+            color: "text-blue-600",
+          },
+          {
+            icon: "📝",
+            activity: "Viết journal cuối ngày",
+            reason: "Tổng kết lại một ngày và ghi nhận cảm xúc",
+            color: "text-green-600",
+          },
+          {
+            icon: "🧘",
+            activity: "Thư giãn thiền/nghe nhạc nhẹ",
+            reason: "Buổi tối là thời gian xả stress, lấy lại cân bằng",
+            color: "text-indigo-600",
+          },
+          {
+            icon: "📚",
+            activity: "Ôn lại kiến thức/tiếng Anh",
+            reason: "Tối yên tĩnh, tập trung ôn luyện hiệu quả",
+            color: "text-cyan-600",
+          },
+          {
+            icon: "🛁",
+            activity: "Tắm nước ấm/thư giãn spa tại nhà",
+            reason: "Giúp cơ thể nhẹ nhõm và dễ ngủ hơn",
+            color: "text-teal-600",
+          },
+          {
+            icon: "🎮",
+            activity: "Chơi game cùng bạn online",
+            reason: "Tối mưa rảnh rỗi, kết nối vui vẻ với bạn bè qua game",
+            color: "text-fuchsia-600",
+          },
+          {
+            icon: "🌙",
+            activity: "Lên kế hoạch cho ngày mai",
+            reason: "Chuẩn bị trước để sáng hôm sau bắt đầu suôn sẻ",
+            color: "text-slate-600",
+          },
         ];
+
         return getRandomSuggestion(eveningSuggestions);
       }
     }
@@ -142,13 +263,13 @@ const Weather = () => {
           {
             icon: "🧊",
             activity: "Học bài trong thư viện có AC",
-            reason: "Sáng nóng, thư viện mát mẻ và yên tĩnh",
+            reason: "Thư viện mát mẻ và yên tĩnh thích hợp để học tập",
             color: "text-blue-600",
           },
           {
-            icon: "�",
+            icon: "🏊🏻‍♂️",
             activity: "Đi bể bơi/gym có AC",
-            reason: "Tập thể dục trong môi trường mát mẻ",
+            reason: "Đi bể bơi/gym trong môi trường mát mẻ",
             color: "text-cyan-600",
           },
           {
@@ -158,7 +279,7 @@ const Weather = () => {
             color: "text-green-600",
           },
           {
-            icon: "☕",
+            icon: "☕️",
             activity: "Cafe học bài có AC",
             reason: "Không gian mát mẻ để học và socializing",
             color: "text-amber-600",
@@ -188,10 +309,48 @@ const Weather = () => {
           {
             icon: "🎮",
             activity: "Chơi game trong phòng mát",
-            reason: "Tránh nóng bằng hoạt động trong nhà",
+            reason: "Chơi game trong phòng mát để tránh nóng",
             color: "text-purple-600",
           },
+          {
+            icon: "📺",
+            activity: "Xem series/phim ngắn",
+            reason:
+              "Chiều nóng, ở trong phòng mát xem phim là lựa chọn dễ chịu",
+            color: "text-amber-600",
+          },
+          {
+            icon: "📖",
+            activity: "Đọc sách/truyện",
+            reason: "Ở trong phòng mát, đọc sách giúp đầu óc nhẹ nhàng hơn",
+            color: "text-green-600",
+          },
+          {
+            icon: "🎧",
+            activity: "Nghe nhạc chill",
+            reason: "Nhạc nhẹ kết hợp điều hòa giúp giảm bớt oi nóng",
+            color: "text-indigo-600",
+          },
+          {
+            icon: "🛍️",
+            activity: "Đi siêu thị/mall có AC",
+            reason: "Vừa tránh nóng vừa tiện mua sắm đồ cần thiết",
+            color: "text-cyan-600",
+          },
+          {
+            icon: "🧘",
+            activity: "Thiền/yoga trong phòng mát",
+            reason: "Vừa vận động nhẹ, vừa tránh nóng hiệu quả",
+            color: "text-teal-600",
+          },
+          {
+            icon: "🍧",
+            activity: "Ăn kem/đồ lạnh",
+            reason: "Món lạnh giúp cơ thể giải nhiệt tức thì",
+            color: "text-rose-600",
+          },
         ];
+
         return getRandomSuggestion(hotAfternoonSuggestions);
       } else {
         const hotEveningSuggestions = [
@@ -210,16 +369,53 @@ const Weather = () => {
           {
             icon: "🏪",
             activity: "Đi convenience store",
-            reason: "Mua đồ ăn nhẹ trong không gian mát",
+            reason: "Mua đồ ăn nhẹ trong convenience store",
             color: "text-green-600",
           },
           {
             icon: "📱",
             activity: "Chat/call bạn bè",
-            reason: "Thư giãn và kết nối trong phòng mát",
+            reason: "Thư giãn và kết nối với bạn bè",
             color: "text-blue-600",
           },
+          {
+            icon: "🍨",
+            activity: "Ăn kem buổi tối",
+            reason: "Món lạnh giúp xua đi cái nóng còn lại trong ngày",
+            color: "text-pink-600",
+          },
+          {
+            icon: "🎶",
+            activity: "Nghe nhạc chill",
+            reason: "Nghe nhạc chill",
+            color: "text-purple-600",
+          },
+          {
+            icon: "🎬",
+            activity: "Xem phim trong phòng mát",
+            reason: "Một bộ phim hay giúp quên đi cái nóng bên ngoài",
+            color: "text-amber-600",
+          },
+          {
+            icon: "🚶",
+            activity: "Đi dạo công viên",
+            reason: "Không khí tối dễ chịu hơn, thích hợp để đi bộ nhẹ nhàng",
+            color: "text-lime-600",
+          },
+          {
+            icon: "🧘",
+            activity: "Thiền/yoga nhẹ",
+            reason: "Giúp cơ thể thả lỏng và giảm căng thẳng sau ngày nóng",
+            color: "text-teal-600",
+          },
+          {
+            icon: "📖",
+            activity: "Đọc sách trong phòng mát",
+            reason: "Buổi tối yên tĩnh, thích hợp để đọc và thư giãn",
+            color: "text-emerald-600",
+          },
         ];
+
         return getRandomSuggestion(hotEveningSuggestions);
       }
     }
@@ -436,15 +632,27 @@ const Weather = () => {
         },
         {
           icon: "📱",
-          activity: "Video call với người yêu",
+          activity: "Thích hợp video call với người yêu",
           reason: "Thời gian riêng tư để kết nối",
           color: "text-pink-600",
         },
         {
-          icon: "🧘",
-          activity: "Meditation/reflection",
-          reason: "Kết thúc ngày với tâm trạng peaceful",
-          color: "text-purple-600",
+          icon: "🍵",
+          activity: "Uống trà thảo mộc",
+          reason: "Thư giãn cơ thể, dễ chìm vào giấc ngủ",
+          color: "text-amber-600",
+        },
+        {
+          icon: "🎧",
+          activity: "Nghe nhạc chill",
+          reason: "Âm nhạc giúp thư giãn đầu óc và dễ ngủ hơn",
+          color: "text-teal-600",
+        },
+        {
+          icon: "📖",
+          activity: "Đọc sách nhẹ nhàng",
+          reason: "Giúp mở rộng kiến thức và tạo cảm giác thư thái",
+          color: "text-green-600",
         },
       ];
       return getRandomSuggestion(nightSuggestions);
