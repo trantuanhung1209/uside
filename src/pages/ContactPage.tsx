@@ -77,7 +77,7 @@ const ContactPage: React.FC = () => {
   }, [submitStatus]);
 
   const handleGoBack = () => {
-    navigate(-1); // Quay lại trang trước đó
+    navigate("/"); // Quay lại trang trước đó
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
