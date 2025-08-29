@@ -1,0 +1,35 @@
+{
+  "name": "USide - Hệ Thống Tiện Ích Hỗ Trợ Sinh Viên IUH",
+  "short_name": "USide",
+  "description": "USide - Hệ thống tiện ích hỗ trợ sinh viên Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH). Công cụ học tập và hỗ trợ sinh viên IUH.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f1f4",
+  "theme_color": "#00d2ff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "vi",
+  "categories": ["education", "utilities"],
+  "icons": [
+    {
+      "src": "/images_uside/pet_cloud_uside.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images_uside/pet_cloud_uside.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images_uside/uside_welcome.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

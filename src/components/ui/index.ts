@@ -19,6 +19,7 @@ export { default as LazySection } from './LazySection';
 export { default as PreloadSection } from './PreloadSection';
 export { default as SkeletonLoader } from './SkeletonLoader';
 export { default as ProtectedRoute } from './ProtectedRoute';
+export { default as SEO } from './SEO';
 
 // Dashboard UI components
 export { default as NewsFormModal } from './NewsFormModal';

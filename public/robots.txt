@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.uside.studio/sitemap.xml
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+
+# Allow important resources
+Allow: /images_uside/
+Allow: /music_uside/
+Allow: /*.css
+Allow: /*.js
+
+# Crawl delay (optional)
+Crawl-delay: 1

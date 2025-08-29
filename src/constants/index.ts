@@ -22,3 +22,4 @@ export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 // Export accent colors
 export * from './accentColors';
 export * from './tvChannels';
+export * from './seoConfig';
