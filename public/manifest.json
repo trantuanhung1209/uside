@@ -1,7 +1,7 @@
 {
-  "name": "USide - Hệ Thống Tiện Ích Hỗ Trợ Sinh Viên IUH",
-  "short_name": "USide",
-  "description": "USide - Hệ thống tiện ích hỗ trợ sinh viên Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH). Công cụ học tập và hỗ trợ sinh viên IUH.",
+  "name": "USide Studio - Hệ Thống Tiện Ích Hỗ Trợ Sinh Viên IUH",
+  "short_name": "USide Studio",
+  "description": "USide Studio - Hệ thống tiện ích hỗ trợ sinh viên Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH). Công cụ học tập và hỗ trợ sinh viên IUH.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f0f1f4",

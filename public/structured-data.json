@@ -1,0 +1,50 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "USide Studio",
+  "alternateName": ["USide", "uside", "uside studio", "U Side", "U-Side"],
+  "url": "https://www.uside.studio",
+  "description": "USide Studio - Hệ thống tiện ích hỗ trợ sinh viên Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH). Công cụ học tập và hỗ trợ sinh viên IUH.",
+  "inLanguage": "vi-VN",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.uside.studio/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "USide Studio",
+    "alternateName": ["USide", "uside", "uside studio"],
+    "url": "https://www.uside.studio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.uside.studio/images_uside/uside_light.png",
+      "width": 300,
+      "height": 300
+    },
+    "sameAs": [
+      "https://www.uside.studio"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "student support",
+      "areaServed": "VN",
+      "availableLanguage": "Vietnamese"
+    }
+  },
+  "mainEntity": {
+    "@type": "WebApplication",
+    "name": "USide Studio",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web Browser",
+    "description": "Hệ thống tiện ích hỗ trợ sinh viên IUH",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "VND"
+    }
+  }
+}
