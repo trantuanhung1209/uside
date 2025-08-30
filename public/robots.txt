@@ -4,16 +4,30 @@ Allow: /
 # Sitemap
 Sitemap: https://www.uside.studio/sitemap.xml
 
-# Disallow admin areas (if any)
+# Disallow admin areas and sensitive files
 Disallow: /admin/
 Disallow: /private/
 Disallow: /.env
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /src/
+Disallow: /node_modules/
 
-# Allow important resources
+# Allow important resources for SEO
 Allow: /images_uside/
 Allow: /music_uside/
 Allow: /*.css
 Allow: /*.js
+Allow: /favicon.ico
+Allow: /favicon-*.png
+Allow: /manifest.json
 
-# Crawl delay (optional)
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Allow: /images_uside/
+Allow: /*.css
+Allow: /*.js
+
+# Crawl delay (be gentle with server)
 Crawl-delay: 1
