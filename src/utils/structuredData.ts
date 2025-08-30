@@ -3,8 +3,8 @@ export const createOrganizationSchema = () => ({
   "@type": "Organization",
   "name": "USide",
   "description": "Hệ thống tiện ích hỗ trợ sinh viên Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH)",
-  "url": "https://uside.vercel.app",
-  "logo": "https://uside.vercel.app/images_uside/uside_light.png",
+  "url": "https://www.uside.studio",
+  "logo": "https://www.uside.studio/images_uside/uside_light.png",
   "foundingDate": "2025",
   "areaServed": "Vietnam",
   "serviceType": ["Student Support System", "Educational Tools"],
@@ -29,14 +29,14 @@ export const createWebsiteSchema = () => ({
   "@type": "WebSite",
   "name": "USide",
   "description": "Hệ thống tiện ích hỗ trợ sinh viên Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH)",
-  "url": "https://uside.vercel.app",
+  "url": "https://www.uside.studio",
   "audience": {
     "@type": "Audience",
     "audienceType": "IUH Students"
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://uside.vercel.app/search?q={search_term_string}",
+  "target": "https://www.uside.studio/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 });
@@ -64,7 +64,7 @@ export const createArticleSchema = (article: {
   "publisher": {
     "@type": "Organization",
     "name": "USide",
-    "logo": "https://uside.vercel.app/images_uside/uside_light.png"
+  "logo": "https://www.uside.studio/images_uside/uside_light.png"
   },
   "url": article.url
 });
@@ -104,7 +104,7 @@ export const createJobPostingSchema = (job: {
   "hiringOrganization": {
     "@type": "Organization",
     "name": "USide",
-    "sameAs": "https://uside.vercel.app"
+  "sameAs": "https://www.uside.studio"
   },
   "jobLocation": {
     "@type": "Place",

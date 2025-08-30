@@ -15,8 +15,8 @@ export default function SEO({
   title = "USide - Hệ Thống Tiện Ích Hỗ Trợ Sinh Viên & Định Hướng Nghề Nghiệp IT",
   description = "USide - Hệ thống tiện ích toàn diện hỗ trợ sinh viên công nghệ thông tin. Định hướng nghề nghiệp, công cụ học tập, tin tức ngành IT, và kết nối cộng đồng developer.",
   keywords = "USide, hỗ trợ sinh viên IT, định hướng nghề nghiệp, công cụ học tập, tin tức IT, cộng đồng developer, sinh viên CNTT, career path IT",
-  image = "https://uside.vercel.app/images_uside/uside_welcome.png",
-  url = "https://uside.vercel.app/",
+  image = "https://www.uside.studio/images_uside/uside_welcome.png",
+  url = "https://www.uside.studio/",
   type = "website",
   noIndex = false,
   structuredData

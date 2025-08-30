@@ -2,7 +2,7 @@
 export const SEO_CONFIG = {
   // Website Info
   SITE_NAME: 'USide',
-  SITE_URL: 'https://uside.vercel.app',
+  SITE_URL: 'https://www.uside.studio',
   
   // Main titles and descriptions
   DEFAULT_TITLE: 'USide - Hệ Thống Tiện Ích Hỗ Trợ Sinh Viên IUH',
