@@ -16,10 +16,9 @@ Disallow: /node_modules/
 # Allow important resources for SEO
 Allow: /images_uside/
 Allow: /music_uside/
+Allow: /favicon/
 Allow: /*.css
 Allow: /*.js
-Allow: /favicon.ico
-Allow: /favicon-*.png
 Allow: /manifest.json
 
 # Specific rules for Google
