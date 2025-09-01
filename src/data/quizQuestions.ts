@@ -90,7 +90,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Một bug report chuẩn cần mô tả rõ để dev dễ tái hiện và sửa lỗi.",
+        "Một bug report chuẩn cần mô tả rõ để deverloper dễ tái hiện và sửa lỗi.",
     },
     {
       id: 4,
@@ -203,7 +203,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: false,
           percentage: 15,
         },
-        { id: "c", text: "Quy trình dev", isCorrect: false, percentage: 10 },
+        {
+          id: "c",
+          text: "Quy trình developer",
+          isCorrect: false,
+          percentage: 10,
+        },
       ],
       explanation:
         "Performance test đo tốc độ, độ ổn định và khả năng chịu tải của hệ thống.",
@@ -247,7 +252,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Chỉ báo miệng với dev",
+          text: "Chỉ báo miệng với deverloper",
           isCorrect: false,
           percentage: 15,
         },
@@ -273,13 +278,13 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Gửi ngay cho dev không cần chi tiết",
+          text: "Gửi ngay cho developer không cần chi tiết",
           isCorrect: false,
           percentage: 20,
         },
       ],
       explanation:
-        "Tester cần cố gắng tái hiện và ghi rõ môi trường, bước thực hiện để dev có thể fix.",
+        "Tester cần cố gắng tái hiện và ghi rõ môi trường, bước thực hiện để developer có thể fix.",
     },
     {
       id: 13,
@@ -313,7 +318,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
       options: [
         {
           id: "a",
-          text: "Chủ động trao đổi với dev/BA",
+          text: "Chủ động trao đổi với developer/business analyst",
           isCorrect: true,
           percentage: 70,
         },
@@ -331,7 +336,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Tester giỏi cần hợp tác chặt chẽ với dev, BA, PM để đảm bảo chất lượng.",
+        "Tester giỏi cần hợp tác chặt chẽ với developer, business analyst, project manager để đảm bảo chất lượng.",
     },
     {
       id: 15,
@@ -362,7 +367,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 16,
       question:
-        "Bạn xử lý như thế nào nếu bị dev phản hồi gay gắt về bug bạn báo?",
+        "Bạn xử lý như thế nào nếu bị developer phản hồi gay gắt về bug bạn báo?",
       options: [
         {
           id: "a",
@@ -436,7 +441,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Đổ lỗi cho dev ngay",
+          text: "Đổ lỗi cho developer ngay",
           isCorrect: false,
           percentage: 15,
         },
@@ -621,33 +626,34 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Git là hệ thống quản lý phiên bản, giúp dev theo dõi và phối hợp trong dự án.",
+        "Git là hệ thống quản lý phiên bản, giúp developer theo dõi và phối hợp trong dự án.",
     },
     {
       id: 7,
-      question: "Fullstack Developer nghĩa là gì?",
+      question:
+        "Nếu bạn muốn trở thành một Web Developer toàn diện, kỹ năng nào sau đây nên học trước tiên?",
       options: [
         {
           id: "a",
-          text: "Người làm cả Frontend và Backend",
+          text: "HTML, CSS và JavaScript để xây dựng nền tảng Frontend",
           isCorrect: true,
-          percentage: 80,
+          percentage: 75,
         },
         {
           id: "b",
-          text: "Người chỉ quản lý cơ sở dữ liệu",
+          text: "Các framework nâng cao như React hoặc Angular ngay từ đầu",
           isCorrect: false,
-          percentage: 10,
+          percentage: 12,
         },
         {
           id: "c",
-          text: "Người chuyên thiết kế UI/UX",
+          text: "Cấu hình máy chủ và cơ sở dữ liệu phức tạp",
           isCorrect: false,
-          percentage: 10,
+          percentage: 13,
         },
       ],
       explanation:
-        "Fullstack Developer có khả năng làm cả frontend (giao diện) và backend (xử lý logic).",
+        "Sinh viên muốn theo đuổi web development nên bắt đầu từ **HTML, CSS và JavaScript** vì đây là nền tảng căn bản để hiểu cách một trang web được xây dựng và hiển thị. Sau khi nắm vững, mới nên học tiếp framework (React, Angular, Vue) hoặc backend (Node.js, PHP, Python...). Điều này giúp phát triển tư duy hệ thống, tránh học 'mất gốc' và dễ dàng tiếp cận các công nghệ nâng cao.",
     },
     {
       id: 8,
@@ -673,294 +679,332 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "API (Application Programming Interface) cho phép các ứng dụng giao tiếp và trao đổi dữ liệu.",
+        "API (Application Programming Interface) là một bộ quy tắc và giao thức cho phép các ứng dụng khác nhau giao tiếp và trao đổi dữ liệu với nhau.",
     },
     {
       id: 9,
-      question: "Responsive Design có nghĩa là gì?",
+      question: "Responsive Design nghĩa là gì trong phát triển web?",
       options: [
         {
           id: "a",
-          text: "Website hiển thị tốt trên nhiều thiết bị",
+          text: "Thiết kế web phản hồi linh hoạt, hiển thị phù hợp trên nhiều loại thiết bị và kích thước màn hình",
           isCorrect: true,
-          percentage: 80,
+          percentage: 82,
         },
         {
           id: "b",
-          text: "Website tự động tạo nội dung mới",
+          text: "Thiết kế web tự động sinh ra nội dung mới cho người dùng",
           isCorrect: false,
-          percentage: 10,
+          percentage: 9,
         },
         {
           id: "c",
-          text: "Website không cần dùng CSS",
+          text: "Thiết kế web không cần sử dụng CSS để định dạng",
           isCorrect: false,
-          percentage: 10,
+          percentage: 9,
         },
       ],
       explanation:
-        "Responsive Design giúp website hiển thị tốt trên PC, tablet, mobile.",
+        "Responsive Design dịch nghĩa là **'thiết kế đáp ứng'**. Trong phát triển web, nó chỉ cách xây dựng giao diện có khả năng **tự điều chỉnh bố cục, hình ảnh, chữ và các thành phần** sao cho phù hợp với nhiều thiết bị khác nhau (máy tính, máy tính bảng, điện thoại). \n\nCụ thể, kỹ thuật này thường sử dụng **media queries trong CSS, grid/flexbox layout và hình ảnh co giãn** để website vẫn dễ đọc, dễ dùng dù trên màn hình lớn hay nhỏ. \nVí dụ: cùng một website, trên PC hiển thị 3 cột nội dung, nhưng khi mở trên điện thoại nó sẽ tự động sắp xếp thành 1 cột duy nhất.",
     },
     {
       id: 10,
-      question: "Database phổ biến cho Web Developer là gì?",
-      options: [
-        {
-          id: "a",
-          text: "MySQL, PostgreSQL, MongoDB",
-          isCorrect: true,
-          percentage: 70,
-        },
-        {
-          id: "b",
-          text: "Photoshop, Illustrator",
-          isCorrect: false,
-          percentage: 15,
-        },
-        { id: "c", text: "Excel, Word", isCorrect: false, percentage: 15 },
-      ],
-      explanation:
-        "Web Developer thường làm việc với cơ sở dữ liệu như MySQL, PostgreSQL, MongoDB.",
-    },
-    {
-      id: 11,
-      question: "Bạn có thích tìm tòi giải quyết lỗi (bug) khi code không?",
-      options: [
-        {
-          id: "a",
-          text: "Có, đó là cách mình học nhanh nhất",
-          isCorrect: true,
-          percentage: 65,
-        },
-        {
-          id: "b",
-          text: "Không, mình rất ghét phải sửa lỗi",
-          isCorrect: false,
-          percentage: 20,
-        },
-        {
-          id: "c",
-          text: "Tùy lỗi nhỏ hay lớn",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "Tinh thần kiên nhẫn xử lý bug là một kỹ năng quan trọng với Web Developer.",
-    },
-    {
-      id: 12,
-      question: "Bạn cảm thấy thế nào khi phải học công nghệ mới liên tục?",
-      options: [
-        {
-          id: "a",
-          text: "Hứng thú vì luôn được cập nhật",
-          isCorrect: true,
-          percentage: 60,
-        },
-        {
-          id: "b",
-          text: "Áp lực vì thay đổi quá nhanh",
-          isCorrect: false,
-          percentage: 25,
-        },
-        {
-          id: "c",
-          text: "Không quan tâm lắm",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "Ngành web thay đổi nhanh, phù hợp với người thích học hỏi công nghệ mới.",
-    },
-    {
-      id: 13,
-      question: "Bạn có thường xuyên rèn luyện khả năng làm việc nhóm không?",
-      options: [
-        {
-          id: "a",
-          text: "Có, vì teamwork rất quan trọng",
-          isCorrect: true,
-          percentage: 70,
-        },
-        {
-          id: "b",
-          text: "Không, mình chỉ muốn làm một mình",
-          isCorrect: false,
-          percentage: 15,
-        },
-        { id: "c", text: "Tùy dự án", isCorrect: false, percentage: 15 },
-      ],
-      explanation:
-        "Phát triển web thường cần teamwork để phối hợp giữa frontend, backend và designer.",
-    },
-    {
-      id: 14,
-      question: "Bạn có thấy thoải mái khi ngồi máy tính nhiều giờ liền không?",
-      options: [
-        {
-          id: "a",
-          text: "Có, mình dễ tập trung khi code",
-          isCorrect: true,
-          percentage: 55,
-        },
-        {
-          id: "b",
-          text: "Không, mình khó chịu nếu ngồi lâu",
-          isCorrect: false,
-          percentage: 25,
-        },
-        { id: "c", text: "Tùy hôm", isCorrect: false, percentage: 20 },
-      ],
-      explanation:
-        "Web Developer thường phải ngồi máy tính nhiều giờ để code và kiểm thử.",
-    },
-    {
-      id: 15,
-      question: "Bạn có kiên nhẫn đọc tài liệu kỹ thuật không?",
-      options: [
-        {
-          id: "a",
-          text: "Có, vì đọc docs giúp hiểu sâu",
-          isCorrect: true,
-          percentage: 65,
-        },
-        {
-          id: "b",
-          text: "Không, mình chỉ thích xem video hướng dẫn",
-          isCorrect: false,
-          percentage: 20,
-        },
-        {
-          id: "c",
-          text: "Tùy độ dài của tài liệu",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "Kỹ năng đọc tài liệu kỹ thuật rất cần thiết cho Web Developer.",
-    },
-    {
-      id: 16,
-      question: "Bạn xử lý thế nào khi deadline gấp?",
-      options: [
-        {
-          id: "a",
-          text: "Lập kế hoạch và ưu tiên việc quan trọng",
-          isCorrect: true,
-          percentage: 70,
-        },
-        {
-          id: "b",
-          text: "Cố gắng làm nhanh mà không cần plan",
-          isCorrect: false,
-          percentage: 20,
-        },
-        {
-          id: "c",
-          text: "Chờ người khác nhắc mới làm",
-          isCorrect: false,
-          percentage: 10,
-        },
-      ],
-      explanation:
-        "Kỹ năng quản lý thời gian và ưu tiên công việc giúp đáp ứng deadline hiệu quả.",
-    },
-    {
-      id: 17,
-      question: "Bạn có thích chia sẻ kiến thức với người khác không?",
-      options: [
-        {
-          id: "a",
-          text: "Có, vì chia sẻ cũng là cách học",
-          isCorrect: true,
-          percentage: 65,
-        },
-        {
-          id: "b",
-          text: "Không, mình giữ kiến thức cho riêng mình",
-          isCorrect: false,
-          percentage: 20,
-        },
-        { id: "c", text: "Tùy trường hợp", isCorrect: false, percentage: 15 },
-      ],
-      explanation:
-        "Người chia sẻ kiến thức thường tiến bộ nhanh hơn trong cộng đồng lập trình.",
-    },
-    {
-      id: 18,
-      question: "Bạn phản ứng thế nào khi code bị người khác review lỗi?",
-      options: [
-        {
-          id: "a",
-          text: "Xem lại và học hỏi từ feedback",
-          isCorrect: true,
-          percentage: 70,
-        },
-        {
-          id: "b",
-          text: "Khó chịu khi bị góp ý",
-          isCorrect: false,
-          percentage: 20,
-        },
-        { id: "c", text: "Bỏ qua góp ý", isCorrect: false, percentage: 10 },
-      ],
-      explanation:
-        "Tiếp nhận feedback tích cực giúp bạn cải thiện kỹ năng code.",
-    },
-    {
-      id: 19,
-      question: "Bạn thích dự án cá nhân hay làm dự án nhóm hơn?",
-      options: [
-        {
-          id: "a",
-          text: "Cả hai, miễn được học hỏi",
-          isCorrect: true,
-          percentage: 60,
-        },
-        {
-          id: "b",
-          text: "Chỉ thích làm cá nhân",
-          isCorrect: false,
-          percentage: 25,
-        },
-        {
-          id: "c",
-          text: "Chỉ thích làm nhóm",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "Web Developer cần linh hoạt, có thể làm cá nhân và cũng hợp tác tốt với nhóm.",
-    },
-    {
-      id: 20,
       question:
-        "Bạn có thường xuyên tự học thêm kỹ năng ngoài lớp/ công ty không?",
+        "Database là gì và có những loại phổ biến nào trong phát triển web?",
       options: [
         {
           id: "a",
-          text: "Có, vì công nghệ luôn thay đổi",
+          text: "Hệ thống lưu trữ và quản lý dữ liệu, phổ biến nhất là SQL và NoSQL",
           isCorrect: true,
           percentage: 75,
         },
         {
           id: "b",
-          text: "Không, chỉ học khi bắt buộc",
+          text: "Công cụ thiết kế giao diện đồ họa cho website",
+          isCorrect: false,
+          percentage: 12,
+        },
+        {
+          id: "c",
+          text: "Một phần mềm soạn thảo văn bản và bảng tính",
+          isCorrect: false,
+          percentage: 13,
+        },
+      ],
+      explanation:
+        "Database (cơ sở dữ liệu) là hệ thống dùng để **lưu trữ, tổ chức và truy xuất dữ liệu** một cách hiệu quả. Trong phát triển web, hai loại database phổ biến nhất là:\n\n- **SQL (Relational Database)**: tổ chức dữ liệu theo bảng (table), quan hệ (relation) – ví dụ MySQL, PostgreSQL, SQL Server.\n- **NoSQL (Non-relational Database)**: lưu trữ dữ liệu linh hoạt (document, key-value, column, graph) – ví dụ MongoDB, Redis, Cassandra.\n\nNgoài ra còn có các loại database chuyên biệt như:\n- **Graph Database**: lưu trữ dữ liệu theo đồ thị, dùng trong mạng xã hội, recommendation (ví dụ: Neo4j).\n- **Vector Database**: tối ưu cho AI/ML, tìm kiếm ngữ nghĩa và dữ liệu embedding (ví dụ: Pinecone, Weaviate).\n\nTuy nhiều loại tồn tại, nhưng SQL và NoSQL là nền tảng quan trọng nhất mà sinh viên nên tìm hiểu trước khi đi sâu vào các hệ thống đặc thù.",
+    },
+    {
+      id: 11,
+      question:
+        "Theo bạn, kỹ năng nào quan trọng hơn với Web Developer: viết code nhanh hay viết code dễ bảo trì?",
+      options: [
+        {
+          id: "a",
+          text: "Viết code dễ bảo trì quan trọng hơn vì giúp dự án phát triển lâu dài",
+          isCorrect: true,
+          percentage: 70,
+        },
+        {
+          id: "b",
+          text: "Viết code nhanh quan trọng hơn để hoàn thành deadline",
+          isCorrect: false,
+          percentage: 18,
+        },
+        {
+          id: "c",
+          text: "Cả hai đều quan trọng như nhau tùy tình huống",
+          isCorrect: false,
+          percentage: 12,
+        },
+      ],
+      explanation:
+        "Trong thực tế, tốc độ viết code ban đầu có thể giúp bạn ra sản phẩm nhanh, nhưng về lâu dài thì **chất lượng và khả năng bảo trì** mới quyết định sự thành công của dự án. Code dễ đọc, dễ mở rộng sẽ tiết kiệm thời gian fix bug và thêm tính năng sau này. Vì vậy, kỹ năng 'viết code rõ ràng, có cấu trúc' là thứ sinh viên nên rèn luyện ngay từ sớm, thay vì chỉ tập trung vào tốc độ.",
+    },
+    {
+      id: 12,
+      question:
+        "Trong ngành Web Development, tại sao việc học công nghệ mới liên tục lại quan trọng?",
+      options: [
+        {
+          id: "a",
+          text: "Vì công nghệ web luôn thay đổi, giúp developer bắt kịp xu hướng và cơ hội nghề nghiệp",
+          isCorrect: true,
+          percentage: 68,
+        },
+        {
+          id: "b",
+          text: "Vì học công nghệ mới giúp bỏ qua hoàn toàn kiến thức cũ",
+          isCorrect: false,
+          percentage: 17,
+        },
+        {
+          id: "c",
+          text: "Vì chỉ cần học 1 framework là đủ cho cả sự nghiệp",
           isCorrect: false,
           percentage: 15,
         },
-        { id: "c", text: "Hiếm khi", isCorrect: false, percentage: 10 },
       ],
       explanation:
-        "Khả năng tự học là yếu tố then chốt để thành công trong ngành Web Developer.",
+        "Web Development là một trong những lĩnh vực công nghệ thay đổi nhanh nhất: framework mới, chuẩn web mới, công cụ tối ưu mới xuất hiện liên tục. Developer nào cập nhật tốt sẽ dễ dàng tiếp cận các dự án hiện đại và có lợi thế cạnh tranh trong sự nghiệp. Tuy nhiên, việc học công nghệ mới không có nghĩa là bỏ qua nền tảng — kiến thức cơ bản như HTML, CSS, JavaScript và nguyên lý lập trình vẫn là nền móng quan trọng để tiếp thu nhanh các công nghệ mới.",
+    },
+    {
+      id: 13,
+      question:
+        "Tại sao kỹ năng làm việc nhóm lại quan trọng trong phát triển web?",
+      options: [
+        {
+          id: "a",
+          text: "Vì dự án web thường cần phối hợp frontend, backend và thiết kế",
+          isCorrect: true,
+          percentage: 72,
+        },
+        {
+          id: "b",
+          text: "Vì teamwork giúp tiết kiệm chi phí phần cứng",
+          isCorrect: false,
+          percentage: 15,
+        },
+        {
+          id: "c",
+          text: "Vì teamwork giúp tránh phải học công nghệ mới",
+          isCorrect: false,
+          percentage: 13,
+        },
+      ],
+      explanation:
+        "Trong phát triển web, teamwork đảm bảo sự phối hợp giữa các vai trò khác nhau (frontend, backend, UI/UX, tester). Một developer giỏi không chỉ biết code, mà còn biết giao tiếp và hợp tác để dự án hoàn thành đúng hạn, chất lượng.",
+    },
+    {
+      id: 14,
+      question:
+        "Một Web Developer cần chú ý gì khi phải làm việc nhiều giờ liên tục trước máy tính?",
+      options: [
+        {
+          id: "a",
+          text: "Quản lý thời gian, nghỉ giải lao và bảo vệ sức khỏe",
+          isCorrect: true,
+          percentage: 66,
+        },
+        {
+          id: "b",
+          text: "Cố gắng làm liên tục để tiết kiệm thời gian",
+          isCorrect: false,
+          percentage: 18,
+        },
+        {
+          id: "c",
+          text: "Không cần quan tâm vì ngồi càng lâu càng giỏi",
+          isCorrect: false,
+          percentage: 16,
+        },
+      ],
+      explanation:
+        "Web Developer thường phải ngồi lâu trước máy tính. Biết cách quản lý thời gian, nghỉ ngắn giữa giờ, tập thể dục nhẹ sẽ giúp duy trì năng suất và tránh các vấn đề sức khỏe lâu dài.",
+    },
+    {
+      id: 15,
+      question:
+        "Tại sao kỹ năng đọc tài liệu (documentation) quan trọng với Web Developer?",
+      options: [
+        {
+          id: "a",
+          text: "Vì documentation là nguồn chính thống để hiểu công nghệ",
+          isCorrect: true,
+          percentage: 70,
+        },
+        {
+          id: "b",
+          text: "Vì documentation luôn có video hướng dẫn",
+          isCorrect: false,
+          percentage: 15,
+        },
+        {
+          id: "c",
+          text: "Vì chỉ cần đọc tài liệu là không phải code",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Documentation là nguồn chính xác và cập nhật nhất từ nhà phát triển công nghệ. Biết cách đọc và tra cứu docs giúp Web Developer giải quyết vấn đề nhanh hơn và hiểu sâu hơn, thay vì chỉ phụ thuộc vào tutorial.",
+    },
+    {
+      id: 16,
+      question: "Khi đối mặt với deadline gấp, phương pháp nào hiệu quả nhất?",
+      options: [
+        {
+          id: "a",
+          text: "Lập kế hoạch, ưu tiên công việc quan trọng",
+          isCorrect: true,
+          percentage: 74,
+        },
+        {
+          id: "b",
+          text: "Làm thật nhanh mà không cần plan",
+          isCorrect: false,
+          percentage: 16,
+        },
+        {
+          id: "c",
+          text: "Để đến gần deadline mới bắt đầu",
+          isCorrect: false,
+          percentage: 10,
+        },
+      ],
+      explanation:
+        "Quản lý thời gian và sắp xếp ưu tiên là kỹ năng sống còn trong lập trình. Lập kế hoạch hợp lý giúp tránh bug gấp rút và đảm bảo chất lượng sản phẩm.",
+    },
+    {
+      id: 17,
+      question:
+        "Chia sẻ kiến thức trong cộng đồng lập trình mang lại lợi ích gì?",
+      options: [
+        {
+          id: "a",
+          text: "Giúp củng cố kiến thức của bản thân và xây dựng uy tín",
+          isCorrect: true,
+          percentage: 69,
+        },
+        {
+          id: "b",
+          text: "Làm mất thời gian mà không có ích lợi",
+          isCorrect: false,
+          percentage: 17,
+        },
+        {
+          id: "c",
+          text: "Khi chia sẻ thì kiến thức của mình sẽ bị người khác lấy mất",
+          isCorrect: false,
+          percentage: 14,
+        },
+      ],
+      explanation:
+        "Việc chia sẻ kiến thức (qua blog, talk, mentoring) vừa giúp củng cố kiến thức của bản thân, vừa đóng góp cho cộng đồng. Đây cũng là cách để xây dựng uy tín và mở rộng cơ hội nghề nghiệp.",
+    },
+    {
+      id: 18,
+      question:
+        "Code review giúp ích gì cho quá trình học tập của Web Developer?",
+      options: [
+        {
+          id: "a",
+          text: "Giúp học hỏi từ feedback và cải thiện kỹ năng",
+          isCorrect: true,
+          percentage: 71,
+        },
+        {
+          id: "b",
+          text: "Chỉ làm mất thời gian mà không có giá trị",
+          isCorrect: false,
+          percentage: 19,
+        },
+        {
+          id: "c",
+          text: "Chủ yếu để chấm điểm hơn là để học",
+          isCorrect: false,
+          percentage: 10,
+        },
+      ],
+      explanation:
+        "Code review không chỉ để tìm bug mà còn để học hỏi coding style, best practice và tư duy giải quyết vấn đề từ người khác. Đây là công cụ học tập rất mạnh cho developer.",
+    },
+    {
+      id: 19,
+      question: "Làm dự án cá nhân và dự án nhóm khác nhau thế nào?",
+      options: [
+        {
+          id: "a",
+          text: "Dự án cá nhân giúp tự chủ, dự án nhóm giúp rèn teamwork",
+          isCorrect: true,
+          percentage: 65,
+        },
+        {
+          id: "b",
+          text: "Dự án nhóm luôn khó hơn cá nhân",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
+          id: "c",
+          text: "Dự án cá nhân không có giá trị thực tế",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Dự án cá nhân giúp sinh viên chủ động học kỹ năng mới và thể hiện năng lực riêng, trong khi dự án nhóm rèn khả năng phối hợp. Cả hai đều quan trọng để phát triển sự nghiệp.",
+    },
+    {
+      id: 20,
+      question:
+        "Vì sao tự học là kỹ năng quan trọng hàng đầu với Web Developer?",
+      options: [
+        {
+          id: "a",
+          text: "Vì công nghệ luôn thay đổi, developer phải tự cập nhật",
+          isCorrect: true,
+          percentage: 76,
+        },
+        {
+          id: "b",
+          text: "Vì công nghệ không bao giờ thay đổi",
+          isCorrect: false,
+          percentage: 12,
+        },
+        {
+          id: "c",
+          text: "Vì chỉ cần học một lần là đủ cho cả sự nghiệp",
+          isCorrect: false,
+          percentage: 12,
+        },
+      ],
+      explanation:
+        "Ngành web biến đổi liên tục: framework mới, chuẩn mới, công cụ mới. Khả năng tự học giúp developer bắt kịp xu hướng, thích nghi nhanh với dự án và có lợi thế cạnh tranh trên thị trường việc làm.",
     },
   ],
 
-  "app-developer": [
+  "mobile-developer": [
     {
       id: 1,
       question: "App developer thường làm việc với nền tảng nào nhiều nhất?",
@@ -1183,246 +1227,265 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 11,
       question:
-        "Bạn có kiên nhẫn tối ưu hiệu năng app để chạy mượt trên nhiều thiết bị không?",
+        "Tại sao việc tối ưu hiệu năng app trên nhiều thiết bị lại quan trọng?",
       options: [
         {
           id: "a",
-          text: "Có, mình thích tinh chỉnh và tối ưu",
+          text: "Giúp app mượt, giữ chân người dùng",
           isCorrect: true,
           percentage: 55,
         },
         {
           id: "b",
-          text: "Chỉ khi app gặp lỗi lớn mới tối ưu",
+          text: "Chỉ để backend chạy nhanh hơn",
           isCorrect: false,
           percentage: 30,
         },
         {
           id: "c",
-          text: "Hiếm khi quan tâm, miễn app chạy được",
+          text: "Không ảnh hưởng gì đến trải nghiệm",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "App developer cần chú ý đến trải nghiệm người dùng trên mọi thiết bị; kiên nhẫn tối ưu là yếu tố quan trọng.",
+        "App lag chỉ 1–2 giây có thể khiến 50% user rời đi. Tối ưu hiệu năng chính là tối ưu trải nghiệm người dùng.",
     },
     {
       id: 12,
       question:
-        "Bạn có quan tâm đến cách người dùng tương tác với app (UX flow, UI responsiveness) không?",
+        "Vì sao hiểu cách người dùng tương tác với app (UX flow, UI responsiveness) lại quan trọng?",
       options: [
         {
           id: "a",
-          text: "Có, mình luôn test và cải thiện UX",
+          text: "Để cải thiện UX, tăng retention",
           isCorrect: true,
           percentage: 60,
         },
         {
           id: "b",
-          text: "Chỉ thỉnh thoảng xem có vấn đề gì không",
+          text: "Để code backend dễ hơn",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Không, chỉ tập trung code backend",
+          text: "Không quan trọng, miễn chức năng chạy",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Hiểu hành vi người dùng giúp app dễ dùng và tăng retention; điều này phản ánh tính chủ động và quan tâm đến trải nghiệm người dùng.",
+        "UX tốt giúp app dễ dùng, tăng tỉ lệ quay lại. Developer hiểu UX sẽ nâng chất lượng sản phẩm toàn diện.",
     },
     {
       id: 13,
       question:
-        "Bạn có thường xuyên cập nhật công nghệ mới (framework, thư viện) không?",
+        "Nếu developer không cập nhật công nghệ mới, hậu quả thường là gì?",
       options: [
         {
           id: "a",
-          text: "Có, luôn thử cái mới",
+          text: "Dễ tụt hậu và khó cạnh tranh",
           isCorrect: true,
           percentage: 65,
         },
         {
           id: "b",
-          text: "Thỉnh thoảng khi cần",
+          text: "Code chậm đi ngay lập tức",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Không, chỉ dùng cái quen thuộc",
+          text: "Không có hậu quả gì",
           isCorrect: false,
           percentage: 10,
         },
       ],
       explanation:
-        "Ngành app thay đổi nhanh, developer cần thích nghi với framework mới; đây là dấu hiệu của tính ham học hỏi và linh hoạt.",
+        "Framework/thư viện thay đổi nhanh. Không cập nhật dễ gặp lỗ hổng bảo mật và khó tìm việc.",
     },
     {
       id: 14,
-      question: "Bạn phản ứng thế nào khi app của bạn bị người dùng chê?",
+      question: "Feedback tiêu cực từ người dùng có giá trị gì?",
       options: [
         {
           id: "a",
-          text: "Xem đó là feedback để cải thiện",
+          text: "Là dữ liệu quý để cải thiện app",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Cảm thấy nản lòng",
+          text: "Chỉ khiến developer nản lòng",
           isCorrect: false,
           percentage: 20,
         },
-        { id: "c", text: "Không quan tâm", isCorrect: false, percentage: 10 },
+        {
+          id: "c",
+          text: "Không liên quan đến dev",
+          isCorrect: false,
+          percentage: 10,
+        },
       ],
       explanation:
-        "Phản hồi người dùng giúp cải thiện trải nghiệm app; khả năng tiếp nhận và học hỏi từ phản hồi là quan trọng cho developer.",
+        "Feedback là cơ hội cải tiến sản phẩm. Các công ty lớn coi feedback như tài sản để phát triển.",
     },
     {
       id: 15,
-      question: "Bạn có hay bị mất tập trung khi làm việc lâu?",
+      question: "Tại sao khả năng tập trung lâu lại quan trọng với developer?",
       options: [
         {
           id: "a",
-          text: "Không, mình tập trung khá tốt",
+          text: "Vì coding đòi hỏi xử lý liên tục và chi tiết",
           isCorrect: true,
           percentage: 50,
         },
         {
           id: "b",
-          text: "Có, cần nhắc nhở hoặc giải lao",
+          text: "Vì tập trung giúp code chạy nhanh hơn",
           isCorrect: false,
           percentage: 35,
         },
         {
           id: "c",
-          text: "Rất dễ mất tập trung",
+          text: "Không quan trọng, cứ làm chậm cũng được",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Phát triển app đòi hỏi làm việc liên tục với code; khả năng tập trung tốt phản ánh tính kiên nhẫn và kỹ năng quản lý công việc.",
+        "Làm app thường cần hàng giờ suy nghĩ liên tục. Tập trung tốt giúp giảm bug và nâng hiệu suất.",
     },
     {
       id: 16,
-      question: "Bạn thích làm việc theo kiểu nào?",
+      question: "Tại sao quy trình rõ ràng lại cần thiết khi phát triển app?",
       options: [
         {
           id: "a",
-          text: "Có quy trình rõ ràng, từng bước",
+          text: "Đảm bảo chất lượng và dễ kiểm soát",
           isCorrect: true,
           percentage: 55,
         },
         {
           id: "b",
-          text: "Thích tự do, ngẫu hứng",
-          isCorrect: false,
-          percentage: 25,
-        },
-        { id: "c", text: "Làm theo cảm xúc", isCorrect: false, percentage: 20 },
-      ],
-      explanation:
-        "App development cần kỷ luật và quy trình để đảm bảo chất lượng sản phẩm; đây đánh giá tính tổ chức và khả năng làm việc chuyên nghiệp.",
-    },
-    {
-      id: 17,
-      question: "Khi gặp lỗi khó, bạn thường làm gì?",
-      options: [
-        {
-          id: "a",
-          text: "Tìm kiếm tài liệu, hỏi cộng đồng",
-          isCorrect: true,
-          percentage: 65,
-        },
-        {
-          id: "b",
-          text: "Thử mò mẫm mãi đến khi xong",
+          text: "Để hạn chế sự sáng tạo",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Bỏ qua và làm việc khác",
+          text: "Không cần, làm theo cảm xúc cũng được",
+          isCorrect: false,
+          percentage: 20,
+        },
+      ],
+      explanation:
+        "Quy trình giúp team phối hợp hiệu quả, sản phẩm ổn định hơn và dễ maintain.",
+    },
+    {
+      id: 17,
+      question: "Cách hiệu quả nhất để giải quyết lỗi khó trong code là gì?",
+      options: [
+        {
+          id: "a",
+          text: "Tìm tài liệu, hỏi cộng đồng",
+          isCorrect: true,
+          percentage: 65,
+        },
+        {
+          id: "b",
+          text: "Mò mẫm mãi đến khi xong",
+          isCorrect: false,
+          percentage: 25,
+        },
+        {
+          id: "c",
+          text: "Bỏ qua lỗi và làm việc khác",
           isCorrect: false,
           percentage: 10,
         },
       ],
       explanation:
-        "Kỹ năng tìm kiếm thông tin và học hỏi từ cộng đồng là chìa khóa để vượt qua vấn đề kỹ thuật, phản ánh tính chủ động và kiên nhẫn.",
+        "Kỹ năng search và khai thác cộng đồng (StackOverflow, GitHub) là chìa khóa vượt qua vấn đề kỹ thuật.",
     },
     {
       id: 18,
-      question: "Bạn có sẵn sàng học thêm UI/UX khi cần cho dự án không?",
+      question: "Học thêm UI/UX mang lại lợi ích gì cho developer?",
       options: [
         {
           id: "a",
-          text: "Có, mình muốn hiểu cả design",
+          text: "Hiểu design để làm app hoàn thiện hơn",
           isCorrect: true,
           percentage: 60,
         },
         {
           id: "b",
-          text: "Không, chỉ muốn code",
-          isCorrect: false,
-          percentage: 25,
-        },
-        { id: "c", text: "Tùy dự án cụ thể", isCorrect: false, percentage: 15 },
-      ],
-      explanation:
-        "App developer đôi khi cần kết hợp cả UI/UX để hoàn thiện sản phẩm; phản ánh tính linh hoạt và khả năng học hỏi liên ngành.",
-    },
-    {
-      id: 19,
-      question:
-        "Bạn có hay luyện kỹ năng logic (giải thuật, cấu trúc dữ liệu)?",
-      options: [
-        {
-          id: "a",
-          text: "Có, luyện thường xuyên",
-          isCorrect: true,
-          percentage: 55,
-        },
-        {
-          id: "b",
-          text: "Thỉnh thoảng khi cần",
-          isCorrect: false,
-          percentage: 30,
-        },
-        { id: "c", text: "Hiếm khi luyện", isCorrect: false, percentage: 15 },
-      ],
-      explanation:
-        "Logic tốt giúp code app mượt, ít bug và dễ maintain; đây là thước đo khả năng giải quyết vấn đề.",
-    },
-    {
-      id: 20,
-      question: "Bạn thấy hứng thú nhất với điều gì khi làm app?",
-      options: [
-        {
-          id: "a",
-          text: "Thấy người dùng trải nghiệm sản phẩm mình làm ra",
-          isCorrect: true,
-          percentage: 65,
-        },
-        {
-          id: "b",
-          text: "Quá trình viết code",
+          text: "Không có lợi ích gì, chỉ tốn thời gian",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Thử thách kỹ thuật",
+          text: "Chỉ hữu ích với designer",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Biết UI/UX giúp dev code hợp lý hơn và giao tiếp với designer hiệu quả, sản phẩm cuối chất lượng hơn.",
+    },
+    {
+      id: 19,
+      question: "Luyện giải thuật và cấu trúc dữ liệu giúp ích gì?",
+      options: [
+        {
+          id: "a",
+          text: "Giúp code mượt, ít bug, dễ maintain",
+          isCorrect: true,
+          percentage: 55,
+        },
+        {
+          id: "b",
+          text: "Chỉ để thi phỏng vấn",
+          isCorrect: false,
+          percentage: 30,
+        },
+        {
+          id: "c",
+          text: "Không ảnh hưởng gì đến dev thực tế",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Logic tốt giúp xử lý vấn đề hiệu quả, tối ưu hiệu năng và viết code sạch hơn.",
+    },
+    {
+      id: 20,
+      question: "Động lực lớn nhất của developer khi làm app là gì?",
+      options: [
+        {
+          id: "a",
+          text: "Thấy người dùng trải nghiệm sản phẩm mình tạo ra",
+          isCorrect: true,
+          percentage: 65,
+        },
+        {
+          id: "b",
+          text: "Chỉ để code cho vui",
+          isCorrect: false,
+          percentage: 25,
+        },
+        {
+          id: "c",
+          text: "Chỉ để thử thách kỹ thuật",
           isCorrect: false,
           percentage: 10,
         },
       ],
       explanation:
-        "Động lực lớn của app developer là sản phẩm được nhiều người sử dụng; phản ánh mức độ hứng thú với sản phẩm và tính sáng tạo.",
+        "Niềm vui lớn nhất của dev là sản phẩm được dùng trong thực tế, tạo giá trị thật cho cộng đồng.",
     },
   ],
   designer: [
@@ -1819,7 +1882,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Để dev tự xử lý sau",
+          text: "Để developer tự xử lý sau",
           isCorrect: false,
           percentage: 12,
         },
@@ -1855,7 +1918,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     },
     {
       id: 18,
-      question: "Khi handoff cho dev, bạn thường…",
+      question: "Khi handoff cho developer, bạn thường…",
       options: [
         {
           id: "a",
@@ -1871,7 +1934,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Để dev tự suy ra từ màn hình",
+          text: "Để developer tự suy ra từ màn hình",
           isCorrect: false,
           percentage: 12,
         },
@@ -2087,13 +2150,13 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
       options: [
         {
           id: "a",
-          text: "BRD (Business Requirements Document) nêu mục tiêu & nhu cầu kinh doanh; FRD (Functional Requirements Document) mô tả chi tiết chức năng để dev thực hiện",
+          text: "BRD (Business Requirements Document) nêu mục tiêu & nhu cầu kinh doanh; FRD (Functional Requirements Document) mô tả chi tiết chức năng để developer thực hiện",
           isCorrect: true,
           percentage: 68,
         },
         {
           id: "b",
-          text: "BRD do dev viết; FRD do business viết",
+          text: "BRD do developer viết; FRD do business viết",
           isCorrect: false,
           percentage: 12,
         },
@@ -2587,7 +2650,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Wireframe biểu diễn cấu trúc & thứ tự thông tin; low-fidelity prototype minh hoạ flow & tương tác cơ bản; high-fidelity prototype thể hiện visual, micro-interactions và cảm giác gần giống sản phẩm thật — dùng để test sâu và handoff cho dev.",
+        "Wireframe biểu diễn cấu trúc & thứ tự thông tin; low-fidelity prototype minh hoạ flow & tương tác cơ bản; high-fidelity prototype thể hiện visual, micro-interactions và cảm giác gần giống sản phẩm thật — dùng để test sâu và handoff cho developer.",
     },
     {
       id: 6,
@@ -2614,7 +2677,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Design system gồm design tokens, components, guidelines và patterns giúp giữ đồng nhất trải nghiệm, tái sử dụng, giảm tráo đổi giữa design-dev, đồng thời hỗ trợ scale sản phẩm khi team lớn lên.",
+        "Design system gồm design tokens, components, guidelines và patterns giúp giữ đồng nhất trải nghiệm, tái sử dụng, giảm tráo đổi giữa design-developer, đồng thời hỗ trợ scale sản phẩm khi team lớn lên.",
     },
     {
       id: 7,
@@ -2764,7 +2827,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "b",
-          text: "Chỉ dùng dữ liệu khi PM hoặc data team cung cấp",
+          text: "Chỉ dùng dữ liệu khi project manager hoặc data team cung cấp",
           isCorrect: false,
           percentage: 26,
         },
@@ -2835,7 +2898,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 15,
       question:
-        "Bạn có thói quen viết spec/handoff rõ ràng khi chuyển giao cho dev không?",
+        "Bạn có thói quen viết spec/handoff rõ ràng khi chuyển giao cho developer không?",
       options: [
         {
           id: "a",
@@ -2851,13 +2914,13 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Để dev tự hiểu khi build",
+          text: "Để developer tự hiểu khi build",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Handoff chất lượng (spec rõ ràng, component variants, accessibility notes) giảm rework, tăng tốc dev và đảm bảo sản phẩm triển khai trùng với kỳ vọng thiết kế.",
+        "Handoff chất lượng (spec rõ ràng, component variants, accessibility notes) giảm rework, tăng tốc developer và đảm bảo sản phẩm triển khai trùng với kỳ vọng thiết kế.",
     },
     {
       id: 16,
@@ -2905,13 +2968,13 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Theo ý dev nếu họ nói khó",
+          text: "Theo ý developer nếu họ nói khó",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Product design thực tế cần trade-off: designer phối hợp với PM và dev để tìm giải pháp tối ưu giữa trải nghiệm, thời gian và chi phí phát triển.",
+        "Product design thực tế cần trade-off: designer phối hợp với Product Manager và developer để tìm giải pháp tối ưu giữa trải nghiệm, thời gian và chi phí phát triển.",
     },
     {
       id: 18,

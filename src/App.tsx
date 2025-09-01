@@ -60,8 +60,11 @@ const App: React.FC = () => {
   // Optimize loading time for better LCP
   const optimizedLoadingTime = lcpOptimizer.reduceLoadingTime();
   
+  // Ensure minimum loading time for robot visibility
+  const robotDisplayTime = Math.max(optimizedLoadingTime, 2000); // Tối thiểu 2 giây để robot hiển thị
+  
   const { isLoading } = useAppLoading({
-    minimumLoadingTime: optimizedLoadingTime, // Reduced from 3500ms to 1500ms
+    minimumLoadingTime: robotDisplayTime,
     delayBeforeStart: 0,
   });
 
@@ -89,10 +92,10 @@ const App: React.FC = () => {
     // Remove LCP optimization class after initial load
     const timer = setTimeout(() => {
       document.documentElement.classList.remove('lcp-optimized');
-    }, optimizedLoadingTime + 500);
+    }, robotDisplayTime + 500);
 
     return () => clearTimeout(timer);
-  }, [optimizedLoadingTime]);
+  }, [robotDisplayTime]);
 
   return (
     <AccentColorProvider>
@@ -101,7 +104,7 @@ const App: React.FC = () => {
           <RobotImageLoader
             isVisible={isLoading}
             onComplete={handleLoadingComplete}
-            duration={optimizedLoadingTime}
+            duration={robotDisplayTime}
           />
 
           <div

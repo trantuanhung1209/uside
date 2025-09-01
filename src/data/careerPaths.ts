@@ -38,8 +38,8 @@ export const careerPaths: CareerPath[] = [
     gradient: "from-green-400 to-blue-500",
   },
   {
-    id: "app-developer",
-    title: "App Developer",
+    id: "mobile-developer",
+    title: "Mobile Developer",
     description: "Tạo ra các ứng dụng di động sáng tạo cho iOS và Android.",
     image: "/images_uside/dev_app.jpg",
     icon: "/images_uside/app_dev_icon.png",
