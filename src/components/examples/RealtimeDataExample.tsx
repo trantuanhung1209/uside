@@ -218,7 +218,6 @@ const RealtimeDataExample: React.FC = () => {
                     </td>
                     <td className="px-4 py-3 text-sm">
                       <button
-                        onClick={() => console.log('Item details:', item)}
                         className="text-blue-600 hover:text-blue-800 mr-2"
                       >
                         👁️ View

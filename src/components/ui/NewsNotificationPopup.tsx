@@ -159,7 +159,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
           {/* Main Popup */}
           <div
             className={`
-              relative p-6 rounded-2xl border-2 max-h-[90vh] sm:max-h-[100vh]
+              relative p-6 rounded-2xl border-2 max-h-[80vh]
               flex flex-col
                ${getPriorityClasses()}
                backdrop-filter backdrop-blur-20

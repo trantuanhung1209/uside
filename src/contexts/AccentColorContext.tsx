@@ -20,11 +20,9 @@ const AccentColorProvider: React.FC<AccentColorProviderProps> = ({ children }) =
         if (savedColor && colorValues.includes(savedColor as typeof colorValues[number])) {
           setCurrentAccentColor(savedColor);
           updateCSSVariable(savedColor);
-          console.log('🎨 Đã tải màu accent đã lưu:', savedColor);
         } else {
           // Nếu màu đã lưu không hợp lệ, sử dụng màu mặc định
           updateCSSVariable(ACCENT_COLORS.default);
-          console.log('🎨 Sử dụng màu accent mặc định:', ACCENT_COLORS.default);
         }
       } catch (error) {
         console.error('❌ Lỗi khi tải màu accent từ localStorage:', error);
@@ -43,7 +41,6 @@ const AccentColorProvider: React.FC<AccentColorProviderProps> = ({ children }) =
         if (colorValues.includes(e.newValue as typeof colorValues[number])) {
           setCurrentAccentColor(e.newValue);
           updateCSSVariable(e.newValue);
-          console.log('🔄 Đồng bộ màu accent từ tab khác:', e.newValue);
         }
       }
     };
@@ -66,7 +63,6 @@ const AccentColorProvider: React.FC<AccentColorProviderProps> = ({ children }) =
       setCurrentAccentColor(color);
       updateCSSVariable(color);
       localStorage.setItem('uside-accent-color', color);
-      console.log('✅ Đã thay đổi và lưu màu accent:', color);
     } catch (error) {
       console.error('❌ Lỗi khi lưu màu accent:', error);
     }
@@ -76,7 +72,6 @@ const AccentColorProvider: React.FC<AccentColorProviderProps> = ({ children }) =
     try {
       changeAccentColor(ACCENT_COLORS.default);
       localStorage.removeItem('uside-accent-color');
-      console.log('🔄 Đã reset về màu mặc định');
     } catch (error) {
       console.error('❌ Lỗi khi reset màu accent:', error);
     }

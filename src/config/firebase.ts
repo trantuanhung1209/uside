@@ -30,7 +30,6 @@ if (missingFields.length > 0) {
 let app;
 try {
   app = initializeApp(firebaseConfig);
-  console.log('✅ Firebase initialized successfully');
 } catch (error) {
   console.error('❌ Firebase initialization failed:', error);
   throw error;

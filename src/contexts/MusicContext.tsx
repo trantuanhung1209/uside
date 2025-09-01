@@ -52,7 +52,6 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
-      console.log('Volume effect triggered:', volume, 'Audio paused:', audio.paused);
       audio.volume = volume;
     }
   }, [volume]);
@@ -61,7 +60,6 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
   const setVolume = (newVolume: number) => {
     // Clamp volume between 0 and 1
     const clampedVolume = Math.max(0, Math.min(1, newVolume));
-    console.log('Setting volume to:', clampedVolume, 'Current playing:', isPlaying);
     setVolumeState(clampedVolume);
     
     // Volume will be updated via useEffect to prevent audio interruption

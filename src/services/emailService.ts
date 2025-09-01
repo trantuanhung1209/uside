@@ -88,9 +88,6 @@ class EmailService {
     } catch (error) {
       console.error('Error sending email to backend:', error);
       
-      // Nếu cả EmailJS và backend đều không hoạt động, log thông tin để debug
-      console.log('Form data:', formData);
-      
       return {
         success: false,
         message: 'Chức năng gửi email đang được phát triển. Vui lòng liên hệ trực tiếp qua usider.tech@gmail.com'

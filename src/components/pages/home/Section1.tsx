@@ -1,3 +1,5 @@
+import { OptimizedImage } from "../../ui";
+
 const Section1 = () => {
   // Tạo danh sách hình ảnh đa dạng cho infinite scroll
   const images = [
@@ -14,7 +16,7 @@ const Section1 = () => {
   return (
     <section className="section-1 overflow-x-hidden bg-background ml-[-100px]">
       <div
-        className="bg-background p-3 mb-8"
+        className="bg-background px-3 mb-8"
         style={{
           boxShadow:
             "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -24,22 +26,28 @@ const Section1 = () => {
           {/* First set of logos for seamless loop */}
           <div className="logos">
             {images.map((src, index) => (
-              <img
+              <OptimizedImage
                 key={`first-${index}`}
                 src={src}
                 alt={`USide mascot ${index + 1}`}
                 loading="lazy"
+                className="w-[125px] h-[100px] mx-[40px] inline-block object-contain"
+                width={125}
+                height={100}
               />
             ))}
           </div>
           {/* Duplicate set for seamless infinite effect */}
           <div className="logos">
             {images.map((src, index) => (
-              <img
+              <OptimizedImage
                 key={`second-${index}`}
                 src={src}
                 alt={`USide mascot duplicate ${index + 1}`}
                 loading="lazy"
+                className="w-[125px] h-[100px] mx-[40px] inline-block object-contain"
+                width={125}
+                height={100}
               />
             ))}
           </div>

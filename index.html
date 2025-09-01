@@ -3,6 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     
+    <!-- Preload critical LCP resources -->
+    <link rel="preload" href="/images_uside/pet_cloud_uside.png" as="image" fetchpriority="high">
+    <link rel="preload" href="/images_uside/pet_uside_dark.png" as="image" fetchpriority="high">
+    <link rel="preload" href="/images_uside/cloud_2d.jpg" as="image" fetchpriority="high">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Prefetch secondary resources -->
+    <link rel="prefetch" href="/images_uside/cloud_loadding.mp4">
+    <link rel="prefetch" href="/music_uside/music1.mp3">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//prod.spline.design">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <!-- Resource hints -->
+    <link rel="preconnect" href="https://prod.spline.design" crossorigin>
+    
     <!-- Primary Meta Tags -->
     <title>USide Studio - Hệ Thống Tiện Ích Hỗ Trợ Sinh Viên IUH</title>
     <meta name="title" content="USide Studio - Hệ Thống Tiện Ích Hỗ Trợ Sinh Viên IUH" />
@@ -92,6 +112,80 @@
       }
     }
     </script>
+    
+    <!-- Critical CSS inline for LCP optimization -->
+    <style>
+      /* Critical above-the-fold styles for better LCP */
+      html { 
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
+        color-scheme: light;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+      }
+      
+      body { 
+        margin: 0; 
+        background: #FAFBFF;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      
+      /* LCP optimization - disable animations during initial load */
+      .lcp-optimized *, 
+      .lcp-optimized *::before, 
+      .lcp-optimized *::after { 
+        animation-duration: 0ms !important; 
+        animation-delay: 0ms !important;
+        transition-duration: 0ms !important; 
+        transition-delay: 0ms !important;
+      }
+      
+      /* Critical loading state */
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Prevent layout shift */
+      img, video {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* Critical hero section styles */
+      .hero-section {
+        background: #FAFBFF;
+        position: relative;
+      }
+      
+      /* Critical button styles */
+      button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+      }
+      
+      /* Critical animation containers */
+      .inf-scroll-hozizon {
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+      }
+      
+      /* Prevent CLS with fixed aspect ratios */
+      .aspect-video {
+        aspect-ratio: 16 / 9;
+      }
+      
+      .aspect-square {
+        aspect-ratio: 1 / 1;
+      }
+    </style>
     
     <!-- Spline 3D Viewer -->
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.48/build/spline-viewer.js"></script>

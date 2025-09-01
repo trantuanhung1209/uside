@@ -25,6 +25,8 @@ import { NewsNotificationProvider } from './contexts/NewsNotificationContext';
 import { ReadNewsProvider } from './contexts/ReadNewsContext';
 import QuickPushNews from "./components/examples/QuickPushNews";
 import FirebaseDebug from "./components/debug/FirebaseDebug";
+import { preloader, lcpOptimizer } from "./utils/lcpOptimizer";
+import { useEffect } from "react";
 
 // Component để quản lý thông báo và hiển thị chúng
 const AppWithNotifications: React.FC = () => {
@@ -55,14 +57,42 @@ const AppWithNotifications: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  // Optimize loading time for better LCP
+  const optimizedLoadingTime = lcpOptimizer.reduceLoadingTime();
+  
   const { isLoading } = useAppLoading({
-    minimumLoadingTime: 3500,
+    minimumLoadingTime: optimizedLoadingTime, // Reduced from 3500ms to 1500ms
     delayBeforeStart: 0,
   });
 
   const handleLoadingComplete = () => {
     console.log("🤖 Robot đã hoàn thành việc mở màn!");
   };
+
+  // Initialize LCP optimizations
+  useEffect(() => {
+    // Preload critical LCP resources immediately
+    preloader.preloadLCPResources();
+    
+    // Optimize font loading to prevent LCP delays
+    lcpOptimizer.optimizeFontLoading();
+    
+    // Apply initial animation optimizations
+    lcpOptimizer.optimizeInitialAnimations();
+    
+    // Prefetch non-critical resources
+    preloader.prefetchResources();
+    
+    // Mark the document as LCP optimized
+    document.documentElement.classList.add('lcp-optimized');
+    
+    // Remove LCP optimization class after initial load
+    const timer = setTimeout(() => {
+      document.documentElement.classList.remove('lcp-optimized');
+    }, optimizedLoadingTime + 500);
+
+    return () => clearTimeout(timer);
+  }, [optimizedLoadingTime]);
 
   return (
     <AccentColorProvider>
@@ -71,8 +101,7 @@ const App: React.FC = () => {
           <RobotImageLoader
             isVisible={isLoading}
             onComplete={handleLoadingComplete}
-            duration={3500}
-            robotImage="/images_uside/pet_uside_dark.png"
+            duration={optimizedLoadingTime}
           />
 
           <div

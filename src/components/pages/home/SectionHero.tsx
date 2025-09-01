@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { FloatingNotificationBell, SplineViewer } from "../../ui";
+import { FloatingNotificationBell, SplineViewer, OptimizedImage } from "../../ui";
 import BackgroundRobot from "../../ui/BackgroundRobot";
 import BlockQuote from "./BlockQuote";
 import Television from "./Television";
@@ -7,14 +7,23 @@ import Clock from "./Clock";
 import Weather from "./Weather";
 import SearchInput from "./SearchInput";
 import Extensions from "./Extensions";
+import { lcpOptimizer } from "../../../utils/lcpOptimizer";
 
 const SectionHero = () => {
   const popupRef = useRef<HTMLDivElement>(null);
   const [showAppsPopup, setShowAppsPopup] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   const handleRobotClick = () => {
     setShowAppsPopup(!showAppsPopup);
   };
+
+  // Mark this section as LCP critical
+  useEffect(() => {
+    if (heroRef.current) {
+      lcpOptimizer.markLCPElement(heroRef.current);
+    }
+  }, []);
 
   // Handle click outside to close popup
   useEffect(() => {
@@ -81,9 +90,11 @@ const SectionHero = () => {
   return (
     <>
       <section
+        ref={heroRef}
         id="hero"
         className="relative border-b border-border py-[40px]"
         style={{ background: "var(--color-background)" }}
+        data-lcp="true"
       >
         <BackgroundRobot />
 
@@ -148,10 +159,14 @@ const SectionHero = () => {
                       borderRadius: "50%",
                     }}
                   >
-                    <img
+                    <OptimizedImage
                       src="/images_uside/pet_cloud_uside.png"
                       alt="Apps"
                       className="w-full h-full object-contain scale-[1.2]"
+                      priority={true}
+                      loading="eager"
+                      width={40}
+                      height={40}
                     />
                     <div className="robot-button-glow"></div>
                   </button>

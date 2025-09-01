@@ -171,7 +171,7 @@ const Television = () => {
             {/* Inner TV Bezel */}
             <div className="w-full h-full rounded-[8px] relative overflow-hidden">
               {/* Video content */}
-              <div className="relative z-10 w-full h-full rounded-[6px] overflow-hidden">
+              <div className="relative z-10 w-full h-full rounded-[6px] overflow-hidden flex items-center justify-center">
                 <video
                   ref={videoRef}
                   className="w-full h-full object-cover cursor-pointer transition-all duration-300 hover:brightness-110"
@@ -179,6 +179,9 @@ const Television = () => {
                   muted={true} // Keep video muted since we use separate music track for better control
                   playsInline
                   onClick={handleToggleMusic}
+                  style={{
+                    objectPosition: 'center center'
+                  }}
                 >
                   <source src={currentChannel.video} type="video/mp4" />
                   {/* Fallback for browsers that don't support video */}

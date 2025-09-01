@@ -17,7 +17,6 @@ export const useRealtimeNews = (): UseRealtimeNewsReturn => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('🔥 Setting up Firestore realtime listener...');
     
     // Tạo query KHÔNG dùng orderBy để lấy tất cả documents
     // Sau đó sẽ sort ở client-side để handle documents thiếu timestamp
@@ -28,12 +27,6 @@ export const useRealtimeNews = (): UseRealtimeNewsReturn => {
       newsQuery,
       (snapshot) => {
         try {
-          console.log(`📥 Received ${snapshot.docs.length} news items from Firestore`);
-          console.log('📊 Snapshot metadata:', {
-            hasPendingWrites: snapshot.metadata.hasPendingWrites,
-            fromCache: snapshot.metadata.fromCache,
-            size: snapshot.size
-          });
           
           // Debug each document
           snapshot.docs.forEach((doc, index) => {
@@ -44,16 +37,10 @@ export const useRealtimeNews = (): UseRealtimeNewsReturn => {
               : (data.timestamp ? convertFirestoreTimestamp(data.timestamp) : Date.now());
               
             console.log(`📄 Doc ${index + 1}:`, {
-              docId: doc.id,
-              hasCreatedAt: !!createdAtField,
               createdAtType: createdAtField ? typeof createdAtField : 'undefined',
               createdAtValue: createdAtField,
               processedTimestamp: processedTimestamp,
               timestampDate: new Date(processedTimestamp).toLocaleString('vi-VN'),
-              hasTimestamp: !!data.timestamp,
-              timestamp: data.timestamp,
-              title: data.title?.substring(0, 30) + '...',
-              hasRequiredFields: !!(data.title && data.date)
             });
           });
           
@@ -99,9 +86,6 @@ export const useRealtimeNews = (): UseRealtimeNewsReturn => {
             return b.timestamp - a.timestamp;
           });
 
-          console.log('✅ Final processed news:', sortedNews.length, 'items');
-          console.log('📋 News IDs:', sortedNews.map(n => n.id));
-
           setNews(sortedNews);
           setError(null);
           setLoading(false);
@@ -122,14 +106,12 @@ export const useRealtimeNews = (): UseRealtimeNewsReturn => {
 
     // Cleanup listener khi component unmount
     return () => {
-      console.log('🧹 Cleaning up Firestore listener...');
       unsubscribe();
     };
   }, []);
 
   // Function để force refresh (thực tế không cần thiết với realtime listener)
   const refreshNews = () => {
-    console.log('🔄 Manual refresh triggered (realtime listener handles updates automatically)');
     setLoading(true);
     // Realtime listener sẽ tự động cập nhật data
   };

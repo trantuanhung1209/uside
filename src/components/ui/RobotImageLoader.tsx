@@ -1,275 +1,243 @@
 import React, { useEffect, useState } from 'react';
+import { useAccentColor } from '../../hooks/useAccentColor';
 
 interface RobotImageLoaderProps {
   isVisible: boolean;
   onComplete?: () => void;
   duration?: number;
-  robotImage?: string; // đường dẫn đến hình ảnh robot
 }
 
 const RobotImageLoader: React.FC<RobotImageLoaderProps> = ({ 
   isVisible, 
   onComplete, 
-  duration = 3000,
-  robotImage = '/images_uside/mascot_robot.png'
+  duration = 1500
 }) => {
+  const [progress, setProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const { currentAccentColor } = useAccentColor();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
-  const [stage, setStage] = useState<'appearing' | 'working' | 'lifting' | 'complete'>('appearing');
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Tự động scroll lên đầu trang khi component mount
-
 
   useEffect(() => {
     if (!isVisible) return;
 
-    const timer1 = setTimeout(() => setStage('working'), 500);
-    const timer2 = setTimeout(() => setStage('lifting'), duration - 1000);
-    const timer3 = setTimeout(() => {
-      setStage('complete');
-      onComplete?.();
-    }, duration);
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setIsComplete(true);
+            setTimeout(() => onComplete?.(), 300);
+          }, 200);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, duration / 50);
 
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-    };
+    return () => clearInterval(interval);
   }, [isVisible, duration, onComplete]);
-
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-  };
 
   if (!isVisible) return null;
 
   return (
     <div className={`
       fixed inset-0 z-50 flex items-center justify-center
-      transition-all duration-1000 ease-in-out
-      ${stage === 'complete' ? 'opacity-0 pointer-events-none' : 'opacity-100'}
-    `}>
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-        <div className="absolute inset-0 opacity-20">
-          {/* Floating particles */}
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-white rounded-full animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      transition-all duration-500 ease-out overflow-hidden
+      ${isComplete ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+    `} style={{
+      background: `linear-gradient(135deg, 
+        #e3f2fd 0%, 
+        #f3e5f5 25%, 
+        #fff3e0 50%, 
+        #f1f8e9 75%, 
+        #e8f5e8 100%)`
+    }}>
       
-      {/* Curtain effect - Left */}
-      <div className={`
-        absolute top-0 left-0 w-1/2 h-full z-10
-        transition-transform duration-1000 ease-in-out
-        ${stage === 'lifting' || stage === 'complete' ? '-translate-y-full' : 'translate-y-0'}
-        bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900
-      `}>
-        {/* Curtain details */}
-        <div className="absolute inset-0">
-          <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-purple-600 to-purple-400 shadow-lg" />
-          <div className="absolute bottom-2 left-0 right-0 h-1 bg-purple-300" />
-          {/* Curtain folds */}
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute top-0 bottom-8 w-px bg-gray-700 opacity-30"
-              style={{ left: `${20 + i * 15}%` }}
-            />
-          ))}
-        </div>
-      </div>
-      
-      {/* Curtain effect - Right */}
-      <div className={`
-        absolute top-0 right-0 w-1/2 h-full z-10
-        transition-transform duration-1000 ease-in-out
-        ${stage === 'lifting' || stage === 'complete' ? '-translate-y-full' : 'translate-y-0'}
-        bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900
-      `}>
-        {/* Curtain details */}
-        <div className="absolute inset-0">
-          <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-purple-600 to-purple-400 shadow-lg" />
-          <div className="absolute bottom-2 left-0 right-0 h-1 bg-purple-300" />
-          {/* Curtain folds */}
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute top-0 bottom-8 w-px bg-gray-700 opacity-30"
-              style={{ left: `${20 + i * 15}%` }}
-            />
-          ))}
-        </div>
+      {/* Animated Cloud Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Large background clouds */}
+        <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full opacity-30 animate-pulse"
+             style={{ 
+               background: `radial-gradient(circle, ${currentAccentColor}40 0%, transparent 70%)`,
+               animation: 'float 8s ease-in-out infinite'
+             }} />
+        <div className="absolute -top-32 right-20 w-80 h-80 rounded-full opacity-25 animate-pulse"
+             style={{ 
+               background: `radial-gradient(circle, ${currentAccentColor}30 0%, transparent 60%)`,
+               animation: 'float 10s ease-in-out infinite reverse'
+             }} />
+        <div className="absolute bottom-10 -left-32 w-72 h-72 rounded-full opacity-35"
+             style={{ 
+               background: `radial-gradient(circle, ${currentAccentColor}35 0%, transparent 65%)`,
+               animation: 'float 12s ease-in-out infinite'
+             }} />
+        <div className="absolute -bottom-20 right-10 w-64 h-64 rounded-full opacity-20"
+             style={{ 
+               background: `radial-gradient(circle, ${currentAccentColor}25 0%, transparent 70%)`,
+               animation: 'float 9s ease-in-out infinite reverse'
+             }} />
+        
+        {/* Floating cloud particles */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full opacity-15"
+            style={{
+              width: `${40 + Math.random() * 60}px`,
+              height: `${40 + Math.random() * 60}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: `radial-gradient(circle, ${currentAccentColor}20 0%, transparent 50%)`,
+              animation: `float ${6 + Math.random() * 4}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 4}s`
+            }}
+          />
+        ))}
       </div>
 
-      {/* Robot Container */}
-      <div className={`
-        relative z-20 flex flex-col items-center
-        transition-all duration-500 ease-out
-        ${stage === 'appearing' ? 'scale-0 rotate-12 opacity-0' : 'scale-100 rotate-0 opacity-100'}
-        ${stage === 'lifting' ? 'translate-y-8 scale-110' : 'translate-y-0'}
-      `}>
-        {/* Robot Image */}
-        <div className={`
-          relative mb-8
-          transition-all duration-500
-          ${stage === 'working' ? 'animate-bounce' : ''}
-          ${stage === 'lifting' ? 'animate-pulse' : ''}
-        `}>
-          <div className="relative">
-            {/* Robot Shadow */}
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-black opacity-20 rounded-full blur-md" />
-            
-            {/* Robot Image */}
-            <img 
-              src={robotImage} 
-              alt="Loading Robot"
-              className={`
-                w-32 h-32 object-contain drop-shadow-2xl
-                transition-all duration-300
-                ${!imageLoaded ? 'opacity-0' : 'opacity-100'}
-                ${stage === 'lifting' ? 'filter brightness-110 contrast-110' : ''}
-              `}
-              onLoad={handleImageLoad}
-              onError={() => setImageLoaded(true)} // Fallback if image fails to load
-            />
-            
-            {/* Glow effect */}
-            <div className={`
-              absolute inset-0 rounded-full
-              ${stage === 'lifting' ? 'bg-blue-400 opacity-20 animate-ping' : ''}
-            `} />
-          </div>
-          
-          {/* Robot working indicators */}
-          {stage === 'working' && (
-            <>
-              {/* Spinning gears */}
-              <div className="absolute top-2 right-2 w-4 h-4 border-2 border-purple-400 border-dotted rounded-full animate-spin" />
-              <div className="absolute bottom-2 left-2 w-3 h-3 border-2 border-blue-400 border-dotted rounded-full animate-spin" 
-                   style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
-            </>
-          )}
-        </div>
-
-        {/* Rope/Chain effect for lifting */}
-        {stage === 'lifting' && (
-          <>
-            {/* Left rope */}
-            <div className="absolute top-16 left-8 w-1 h-32 bg-gradient-to-b from-purple-600 to-purple-800 transform -rotate-12">
-              {[...Array(16)].map((_, i) => (
-                <div 
-                  key={i}
-                  className="absolute w-3 h-1 bg-purple-500 rounded-full left-1/2 transform -translate-x-1/2"
-                  style={{ top: `${i * 2}px` }}
-                />
-              ))}
+      {/* Neumorphic Loading Card */}
+      <div className="relative z-10 p-12 rounded-3xl backdrop-blur-sm"
+           style={{
+             background: `linear-gradient(145deg, 
+               rgba(255,255,255,0.25) 0%, 
+               rgba(255,255,255,0.1) 100%)`,
+             boxShadow: `
+               20px 20px 60px rgba(0,0,0,0.1),
+               -20px -20px 60px rgba(255,255,255,0.8),
+               inset 5px 5px 10px rgba(0,0,0,0.05),
+               inset -5px -5px 10px rgba(255,255,255,0.8)
+             `,
+             border: '1px solid rgba(255,255,255,0.3)'
+           }}>
+        
+        {/* Neumorphic Logo Container */}
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-8 relative">
+            {/* Main neumorphic logo with pet cloud image */}
+            <div className="w-24 h-24 rounded-3xl flex items-center justify-center relative overflow-hidden"
+                 style={{
+                   background: `linear-gradient(145deg, 
+                     rgba(255,255,255,0.9) 0%, 
+                     rgba(240,240,240,0.7) 100%)`,
+                   boxShadow: `
+                     15px 15px 30px rgba(0,0,0,0.15),
+                     -15px -15px 30px rgba(255,255,255,0.9),
+                     inset 3px 3px 6px rgba(0,0,0,0.1),
+                     inset -3px -3px 6px rgba(255,255,255,0.9)
+                   `
+                 }}>
+              <img 
+                src="/images_uside/pet_cloud_uside.png" 
+                alt="USide Cloud Pet"
+                className="w-16 h-16 object-contain drop-shadow-sm"
+              />
+              
+              {/* Inner glow effect */}
+              <div className="absolute inset-2 rounded-2xl opacity-50"
+                   style={{
+                     background: `radial-gradient(circle, ${currentAccentColor}20 0%, transparent 70%)`
+                   }} />
             </div>
             
-            {/* Right rope */}
-            <div className="absolute top-16 right-8 w-1 h-32 bg-gradient-to-b from-purple-600 to-purple-800 transform rotate-12">
-              {[...Array(16)].map((_, i) => (
-                <div 
-                  key={i}
-                  className="absolute w-3 h-1 bg-purple-500 rounded-full left-1/2 transform -translate-x-1/2"
-                  style={{ top: `${i * 2}px` }}
-                />
-              ))}
-            </div>
+            {/* Rotating orbital ring */}
+            <div className="absolute inset-0 w-24 h-24 rounded-full animate-spin"
+                 style={{
+                   background: `conic-gradient(from 0deg, transparent 0%, ${currentAccentColor}80 50%, transparent 100%)`,
+                   mask: 'radial-gradient(circle, transparent 40px, black 42px, black 44px, transparent 46px)'
+                 }} />
             
-            {/* Pulleys */}
-            <div className="absolute top-12 left-8 w-6 h-6 bg-gray-600 rounded-full border-2 border-gray-400 animate-spin" />
-            <div className="absolute top-12 right-8 w-6 h-6 bg-gray-600 rounded-full border-2 border-gray-400 animate-spin" 
-                 style={{ animationDirection: 'reverse' }} />
-          </>
-        )}
-
-        {/* Loading Text */}
-        <div className="text-center">
-          <div className={`
-            text-white text-2xl font-bold mb-4 drop-shadow-lg
-            transition-all duration-300
-            ${stage === 'appearing' ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}
-          `}>
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {stage === 'appearing' && 'Khởi tạo USide...'}
-              {stage === 'working' && 'Robot đang chuẩn bị...'}
-              {stage === 'lifting' && 'Đang mở màn...'}
-            </span>
+            {/* Pulse rings */}
+            <div className="absolute inset-0 w-24 h-24 rounded-full animate-ping opacity-30"
+                 style={{
+                   background: `radial-gradient(circle, ${currentAccentColor}30 0%, transparent 60%)`
+                 }} />
           </div>
+
+          {/* Neumorphic Text */}
+          <h2 className="text-2xl font-bold mb-3 text-gray-700" 
+              style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.8), -2px -2px 4px rgba(0,0,0,0.1)' }}>
+            Đang tải USide
+          </h2>
           
-          {/* Loading Progress */}
-          <div className="w-80 h-3 bg-gray-800 rounded-full overflow-hidden shadow-inner border border-gray-600">
-            <div className={`
-              h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full
-              transition-all duration-1000 ease-out relative
-              ${stage === 'appearing' ? 'w-0' : ''}
-              ${stage === 'working' ? 'w-3/4' : ''}
-              ${stage === 'lifting' ? 'w-full' : ''}
-            `}>
+          <p className="text-gray-600 text-sm mb-8 opacity-80"
+             style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.8)' }}>
+            Chuẩn bị trải nghiệm đám mây tuyệt vời...
+          </p>
+
+          {/* Neumorphic Progress Container */}
+          <div className="w-80 h-4 rounded-2xl mb-4 relative overflow-hidden"
+               style={{
+                 background: `linear-gradient(145deg, 
+                   rgba(230,230,230,0.8) 0%, 
+                   rgba(255,255,255,0.9) 100%)`,
+                 boxShadow: `
+                   inset 8px 8px 16px rgba(0,0,0,0.1),
+                   inset -8px -8px 16px rgba(255,255,255,0.9)
+                 `
+               }}>
+            
+            {/* Progress fill */}
+            <div className="h-full rounded-2xl transition-all duration-200 ease-out relative overflow-hidden"
+                 style={{ 
+                   width: `${progress}%`,
+                   background: `linear-gradient(90deg, 
+                     ${currentAccentColor} 0%, 
+                     ${currentAccentColor}cc 50%, 
+                     ${currentAccentColor}aa 100%)`,
+                   boxShadow: `
+                     0 2px 10px ${currentAccentColor}40,
+                     inset 0 2px 4px rgba(255,255,255,0.3)
+                   `
+                 }}>
+              
+              {/* Shimmer effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-pulse" />
             </div>
           </div>
-          
-          {/* Loading Percentage */}
-          <div className="mt-2 text-gray-300 text-sm font-medium">
-            {stage === 'appearing' && '0%'}
-            {stage === 'working' && '75%'}
-            {stage === 'lifting' && '100%'}
+
+          {/* Progress percentage */}
+          <div className="text-gray-600 text-sm font-semibold"
+               style={{ 
+                 textShadow: '1px 1px 2px rgba(255,255,255,0.8)',
+                 color: currentAccentColor 
+               }}>
+            {Math.round(progress)}%
           </div>
         </div>
       </div>
 
-      {/* Magic Sparkles */}
-      {stage === 'lifting' && (
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
-              }}
-            >
-              <div className="w-2 h-2 bg-purple-400 rounded-full animate-ping" />
-              <div className="absolute top-0 left-0 w-2 h-2 bg-white rounded-full animate-pulse" />
-            </div>
-          ))}
-        </div>
-      )}
-      
-      {/* Light rays effect */}
-      {stage === 'lifting' && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-purple-200 to-transparent opacity-20"
-                style={{
-                  transform: `rotate(${i * 45}deg)`,
-                  transformOrigin: 'center bottom',
-                  animation: 'pulse 2s ease-in-out infinite'
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Floating cloud elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full opacity-40"
+            style={{
+              width: '8px',
+              height: '8px',
+              background: `radial-gradient(circle, ${currentAccentColor} 0%, transparent 70%)`,
+              left: `${20 + Math.random() * 60}%`,
+              top: `${20 + Math.random() * 60}%`,
+              animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 3}s`,
+              boxShadow: `0 0 10px ${currentAccentColor}60`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* CSS animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          25% { transform: translateY(-10px) translateX(5px); }
+          50% { transform: translateY(-5px) translateX(-5px); }
+          75% { transform: translateY(-15px) translateX(3px); }
+        }
+      `}</style>
     </div>
   );
 };
