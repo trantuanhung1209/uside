@@ -157,7 +157,7 @@ const AboutPage: React.FC = () => {
             </div>
 
             {/* Flip Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 mb-10">
+            <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-6 mb-10">
               {/* Flip Card 1 - Code */}
               <div className="flip-card group relative h-64 [perspective:1000px]">
                 <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
@@ -306,42 +306,6 @@ const AboutPage: React.FC = () => {
                     <p className="text-sm opacity-90 leading-relaxed">
                       Git, Slack, Discord - teamwork makes the dream work! Cùng
                       nhau coding và chill! 🎮
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Flip Card 5 - Core Values */}
-              <div className="flip-card group relative h-64 [perspective:1000px]">
-                <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                  <div className="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]">
-                    <div className="flex flex-col items-center justify-center h-full p-6 text-center">
-                      <div className="w-16 h-16 mb-4 rounded-2xl bg-background shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] flex items-center justify-center">
-                        <svg
-                          className="w-8 h-8 text-accent"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                          <circle cx="12" cy="12" r="3" />
-                        </svg>
-                      </div>
-                      <h3 className="text-lg font-bold text-text-primary">
-                        Core Values
-                      </h3>
-                      <p className="text-sm text-text-secondary mt-2">
-                        Giá trị cốt lõi
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-600 p-6 flex flex-col justify-center text-center text-white">
-                    <h3 className="text-lg font-bold mb-3">Values First</h3>
-                    <p className="text-sm opacity-90 leading-relaxed">
-                      Chất lượng, đam mê, học hỏi và chia sẻ - những giá trị làm
-                      nên USide! 💎 Clean code, clean heart! ❤️
                     </p>
                   </div>
                 </div>

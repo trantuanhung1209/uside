@@ -16,210 +16,210 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
   "software-tester": [
     {
       id: 1,
-      question: "Tester chủ yếu làm công việc gì?",
+      question:
+        "Trong một dự án phần mềm, bạn nghĩ tester mang lại giá trị lớn nhất ở giai đoạn nào: khi phát triển, khi bàn giao hay khi bảo trì?",
       options: [
-        {
-          id: "a",
-          text: "Viết code chính cho sản phẩm",
-          isCorrect: false,
-          percentage: 15,
-        },
-        {
-          id: "b",
-          text: "Kiểm tra và đảm bảo chất lượng phần mềm",
-          isCorrect: true,
-          percentage: 70,
-        },
-        {
-          id: "c",
-          text: "Thiết kế giao diện người dùng",
-          isCorrect: false,
-          percentage: 15,
-        },
+        { id: "a", text: "Khi phát triển", isCorrect: false, percentage: 20 },
+        { id: "b", text: "Khi bàn giao", isCorrect: true, percentage: 60 },
+        { id: "c", text: "Khi bảo trì", isCorrect: false, percentage: 20 },
       ],
       explanation:
-        "Tester chịu trách nhiệm kiểm tra, phát hiện lỗi và đảm bảo sản phẩm hoạt động đúng yêu cầu.",
+        "Tester giúp đảm bảo chất lượng sản phẩm trước khi bàn giao cho khách hàng.",
     },
     {
       id: 2,
-      question: "Automation Testing là gì?",
+      question:
+        "Nếu team đang test thủ công 100 test case lặp lại hàng ngày, bạn sẽ thuyết phục sếp đầu tư automation bằng lập luận nào?",
       options: [
         {
           id: "a",
-          text: "Việc tester test thủ công",
-          isCorrect: false,
-          percentage: 20,
-        },
-        {
-          id: "b",
-          text: "Sử dụng công cụ để tự động chạy test case",
+          text: "Automation giúp tiết kiệm thời gian, giảm sai sót",
           isCorrect: true,
           percentage: 65,
         },
         {
+          id: "b",
+          text: "Vẫn test thủ công cho quen",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
           id: "c",
-          text: "Test do khách hàng thực hiện",
+          text: "Đợi khách hàng yêu cầu rồi mới làm",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Automation Testing giúp tiết kiệm thời gian bằng cách dùng tool/script để chạy test lặp lại.",
+        "Automation Testing giúp tiết kiệm chi phí và tăng độ tin cậy trong dài hạn.",
     },
     {
       id: 3,
-      question: "Bug report cần chứa thông tin gì?",
+      question:
+        "Nếu bạn gửi một bug report thiếu thông tin, developer thường phản ứng thế nào? Bạn sẽ làm gì để bug report của mình luôn hữu ích?",
       options: [
         {
           id: "a",
-          text: "Tên bug, bước tái hiện, mức độ ảnh hưởng",
+          text: "Ghi rõ tên bug, bước tái hiện, mức độ ảnh hưởng",
           isCorrect: true,
           percentage: 75,
         },
         {
           id: "b",
-          text: "Chỉ ảnh chụp màn hình",
+          text: "Chỉ gửi ảnh chụp màn hình",
           isCorrect: false,
           percentage: 15,
         },
         {
           id: "c",
-          text: "Mã nguồn chi tiết",
+          text: "Đưa luôn mã nguồn chi tiết",
           isCorrect: false,
           percentage: 10,
         },
       ],
       explanation:
-        "Một bug report chuẩn cần mô tả rõ để deverloper dễ tái hiện và sửa lỗi.",
+        "Bug report rõ ràng giúp developer tái hiện lỗi dễ dàng và tiết kiệm thời gian fix.",
     },
     {
       id: 4,
-      question: "Unit Testing kiểm thử ở mức nào?",
+      question:
+        "Nếu chỉ viết Unit Test mà không có Integration Test thì rủi ro gì có thể xảy ra?",
       options: [
-        { id: "a", text: "Toàn bộ hệ thống", isCorrect: false, percentage: 20 },
         {
-          id: "b",
-          text: "Từng module hoặc hàm nhỏ",
+          id: "a",
+          text: "Không phát hiện được lỗi khi các module kết hợp",
           isCorrect: true,
           percentage: 65,
         },
         {
+          id: "b",
+          text: "Không kiểm tra giao diện",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
           id: "c",
-          text: "Trải nghiệm người dùng",
+          text: "Không kiểm tra được tốc độ hệ thống",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Unit Testing tập trung kiểm tra các thành phần nhỏ nhất của chương trình.",
+        "Unit Test chỉ đảm bảo từng phần nhỏ chạy đúng, cần Integration Test để đảm bảo sự phối hợp.",
     },
     {
       id: 5,
-      question: "Regression Testing nhằm mục đích gì?",
+      question:
+        "Bạn đã bao giờ gặp tình huống fix một bug xong lại làm hỏng tính năng cũ chưa? Regression Testing sẽ giúp xử lý tình huống đó như thế nào?",
       options: [
         {
           id: "a",
-          text: "Đảm bảo tính năng cũ vẫn hoạt động sau khi sửa/chỉnh",
+          text: "Đảm bảo tính năng cũ vẫn hoạt động sau khi sửa",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Tìm tính năng mới",
+          text: "Tìm ra tính năng mới",
           isCorrect: false,
           percentage: 15,
         },
         {
           id: "c",
-          text: "Đánh giá giao diện",
+          text: "Đánh giá lại giao diện",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Regression test giúp phát hiện lỗi phát sinh khi có sự thay đổi trong code.",
+        "Regression Test giúp phát hiện lỗi phát sinh sau khi code thay đổi.",
     },
     {
       id: 6,
-      question: "Công cụ phổ biến để quản lý bug là gì?",
+      question:
+        "Bạn thường dùng Jira, Trello hay Excel để quản lý bug? Với team nhỏ hoặc startup, công cụ nào là tối ưu hơn?",
       options: [
         { id: "a", text: "Jira", isCorrect: true, percentage: 75 },
         { id: "b", text: "MS Word", isCorrect: false, percentage: 10 },
         { id: "c", text: "Figma", isCorrect: false, percentage: 15 },
       ],
       explanation:
-        "Jira là công cụ phổ biến dùng để quản lý bug, task, và theo dõi tiến độ.",
+        "Jira phổ biến cho team lớn, Trello/Excel đơn giản phù hợp team nhỏ.",
     },
     {
       id: 7,
-      question: "Smoke Testing thường được dùng khi nào?",
+      question:
+        "Nếu build mới bị lỗi ngay ở smoke test, bạn sẽ xử lý ra sao để tiết kiệm thời gian cho team?",
       options: [
         {
           id: "a",
-          text: "Ngay sau khi build mới",
+          text: "Thông báo ngay để dừng test chi tiết",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Chỉ khi kết thúc dự án",
+          text: "Vẫn tiếp tục test cho đủ checklist",
           isCorrect: false,
           percentage: 20,
         },
         {
           id: "c",
-          text: "Sau khi release ra thị trường",
+          text: "Đợi release ra thị trường mới xử lý",
           isCorrect: false,
           percentage: 10,
         },
       ],
       explanation:
-        "Smoke test nhanh để kiểm tra build có ổn định trước khi test chi tiết hay không.",
+        "Smoke Test giúp phát hiện sớm build lỗi, tiết kiệm công sức test chi tiết.",
     },
     {
       id: 8,
-      question: "API Testing được thực hiện bằng công cụ nào?",
+      question:
+        "Nếu Postman không đủ cho API phức tạp (nhiều flow, dữ liệu động), bạn sẽ chọn giải pháp nào khác?",
       options: [
         { id: "a", text: "Postman", isCorrect: true, percentage: 70 },
         { id: "b", text: "Photoshop", isCorrect: false, percentage: 15 },
         { id: "c", text: "Excel", isCorrect: false, percentage: 15 },
       ],
       explanation:
-        "Postman là công cụ phổ biến để test API, kiểm tra request và response.",
+        "Postman phổ biến, nhưng với hệ thống lớn có thể dùng Newman, RestAssured, JMeter.",
     },
     {
       id: 9,
-      question: "Performance Testing giúp kiểm tra điều gì?",
+      question:
+        "Nếu hệ thống bị chậm khi có 1,000 người dùng cùng lúc, bạn sẽ dùng performance testing để chứng minh vấn đề này như thế nào?",
       options: [
         {
           id: "a",
-          text: "Khả năng chịu tải và tốc độ phản hồi",
+          text: "Đo khả năng chịu tải và tốc độ phản hồi",
           isCorrect: true,
           percentage: 75,
         },
         {
           id: "b",
-          text: "Tính thân thiện giao diện",
+          text: "Đánh giá tính thân thiện giao diện",
           isCorrect: false,
           percentage: 15,
         },
         {
           id: "c",
-          text: "Quy trình developer",
+          text: "Đo quy trình developer",
           isCorrect: false,
           percentage: 10,
         },
       ],
       explanation:
-        "Performance test đo tốc độ, độ ổn định và khả năng chịu tải của hệ thống.",
+        "Performance Test giúp đo tải, tốc độ, ổn định của hệ thống.",
     },
     {
       id: 10,
-      question: "Test case là gì?",
+      question:
+        "Bạn từng viết test case nào giúp phát hiện bug nghiêm trọng chưa? Bạn có thể kể lại ví dụ?",
       options: [
         {
           id: "a",
-          text: "Một kịch bản mô tả bước test và kết quả mong đợi",
+          text: "Kịch bản mô tả bước test và kết quả mong đợi",
           isCorrect: true,
           percentage: 70,
         },
@@ -232,11 +232,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         { id: "c", text: "Đoạn code mẫu", isCorrect: false, percentage: 15 },
       ],
       explanation:
-        "Test case định nghĩa cách kiểm tra một tính năng cụ thể và kết quả mong đợi.",
+        "Test case giúp kiểm tra tính năng cụ thể và phát hiện bug tiềm ẩn.",
     },
     {
       id: 11,
-      question: "Bạn thường làm gì khi phát hiện bug?",
+      question:
+        "Khi phát hiện bug, bạn sẽ làm thế nào để đảm bảo team xử lý nhanh và hiệu quả?",
       options: [
         {
           id: "a",
@@ -246,23 +247,24 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "b",
-          text: "Ghi bug report chi tiết",
+          text: "Ghi bug report chi tiết và gửi kịp thời",
           isCorrect: true,
           percentage: 75,
         },
         {
           id: "c",
-          text: "Chỉ báo miệng với deverloper",
+          text: "Chỉ báo miệng với developer",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Một tester chuyên nghiệp luôn báo cáo bug có hệ thống để dễ theo dõi và sửa.",
+        "Một bug report chuẩn giúp team fix nhanh và giảm tranh cãi.",
     },
     {
       id: 12,
-      question: "Khi gặp lỗi khó tái hiện, bạn sẽ làm gì?",
+      question:
+        "Khi gặp lỗi khó tái hiện, bạn thường xử lý thế nào để không bỏ sót bug?",
       options: [
         {
           id: "a",
@@ -272,7 +274,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "b",
-          text: "Thử tái hiện nhiều lần và ghi rõ điều kiện",
+          text: "Thử nhiều lần và ghi rõ điều kiện tái hiện",
           isCorrect: true,
           percentage: 70,
         },
@@ -284,12 +286,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Tester cần cố gắng tái hiện và ghi rõ môi trường, bước thực hiện để developer có thể fix.",
+        "Ghi rõ môi trường, bước thực hiện sẽ giúp developer fix dễ dàng.",
     },
     {
       id: 13,
       question:
-        "Bạn có kiên nhẫn khi phải test đi test lại cùng một chức năng?",
+        "Nếu phải test đi test lại cùng một chức năng, bạn sẽ giữ động lực như thế nào?",
       options: [
         {
           id: "a",
@@ -310,15 +312,16 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           percentage: 10,
         },
       ],
-      explanation: "Tính kiên nhẫn là một phẩm chất quan trọng với tester.",
+      explanation: "Kiên nhẫn và kỷ luật là phẩm chất quan trọng với tester.",
     },
     {
       id: 14,
-      question: "Khi làm việc nhóm, bạn thường...",
+      question:
+        "Khi làm việc nhóm, bạn sẽ trao đổi với developer và business analyst như thế nào để tránh hiểu nhầm?",
       options: [
         {
           id: "a",
-          text: "Chủ động trao đổi với developer/business analyst",
+          text: "Chủ động trao đổi và xác nhận yêu cầu",
           isCorrect: true,
           percentage: 70,
         },
@@ -335,12 +338,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           percentage: 15,
         },
       ],
-      explanation:
-        "Tester giỏi cần hợp tác chặt chẽ với developer, business analyst, project manager để đảm bảo chất lượng.",
+      explanation: "Giao tiếp hiệu quả giúp giảm bug từ yêu cầu chưa rõ ràng.",
     },
     {
       id: 15,
-      question: "Bạn có thích tìm tòi, phân tích lỗi không?",
+      question:
+        "Khi gặp một lỗi lạ, bạn có thấy hứng thú tìm nguyên nhân sâu xa không?",
       options: [
         {
           id: "a",
@@ -361,13 +364,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           percentage: 10,
         },
       ],
-      explanation:
-        "Niềm yêu thích phân tích, tìm lỗi là động lực quan trọng để gắn bó với nghề tester.",
+      explanation: "Tò mò và phân tích lỗi là động lực quan trọng của tester.",
     },
     {
       id: 16,
       question:
-        "Bạn xử lý như thế nào nếu bị developer phản hồi gay gắt về bug bạn báo?",
+        "Nếu developer phản hồi gay gắt về bug bạn báo, bạn sẽ xử lý như thế nào?",
       options: [
         {
           id: "a",
@@ -381,14 +383,14 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: false,
           percentage: 15,
         },
-        { id: "c", text: "Bỏ qua luôn bug", isCorrect: false, percentage: 15 },
+        { id: "c", text: "Bỏ qua bug luôn", isCorrect: false, percentage: 15 },
       ],
       explanation:
-        "Tester cần giữ bình tĩnh, đưa bằng chứng cụ thể để làm rõ bug thay vì tranh cãi.",
+        "Bằng chứng rõ ràng giúp giải quyết mâu thuẫn hiệu quả hơn tranh cãi.",
     },
     {
       id: 17,
-      question: "Nếu deadline gấp, bạn sẽ chọn cách nào?",
+      question: "Nếu deadline gấp, bạn sẽ chọn ưu tiên test theo cách nào?",
       options: [
         {
           id: "a",
@@ -400,11 +402,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         { id: "c", text: "Không test nữa", isCorrect: false, percentage: 15 },
       ],
       explanation:
-        "Kỹ năng quản lý ưu tiên giúp tester kiểm soát chất lượng trong thời gian giới hạn.",
+        "Kỹ năng ưu tiên giúp đảm bảo chất lượng trong thời gian giới hạn.",
     },
     {
       id: 18,
-      question: "Bạn có hay tò mò cách sản phẩm hoạt động bên trong?",
+      question:
+        "Bạn có hay tò mò cách sản phẩm hoạt động bên trong không? Sự tò mò này giúp ích gì khi test?",
       options: [
         {
           id: "a",
@@ -421,11 +424,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         { id: "c", text: "Tuỳ dự án", isCorrect: false, percentage: 10 },
       ],
       explanation:
-        "Tính tò mò giúp tester đặt nhiều câu hỏi và phát hiện ra bug tiềm ẩn.",
+        "Tính tò mò giúp đặt nhiều câu hỏi và phát hiện bug tiềm ẩn.",
     },
     {
       id: 19,
-      question: "Bạn phản ứng thế nào khi test case thất bại?",
+      question:
+        "Khi test case thất bại, bạn thường phản ứng thế nào để xử lý tình huống?",
       options: [
         {
           id: "a",
@@ -441,7 +445,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Đổ lỗi cho developer ngay",
+          text: "Đổ lỗi ngay cho developer",
           isCorrect: false,
           percentage: 15,
         },
@@ -451,7 +455,8 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     },
     {
       id: 20,
-      question: "Bạn thấy điều gì quan trọng nhất khi làm tester?",
+      question:
+        "Theo bạn, yếu tố quan trọng nhất để trở thành một tester giỏi là gì?",
       options: [
         {
           id: "a",
@@ -473,160 +478,164 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Kiên nhẫn và sự tỉ mỉ là yếu tố then chốt để trở thành một tester giỏi.",
+        "Kiên nhẫn và sự tỉ mỉ là yếu tố then chốt để trở thành tester giỏi.",
     },
   ],
   "web-developer": [
     {
       id: 1,
-      question: "HTML là gì trong phát triển web?",
+      question:
+        "Nếu không có HTML, bạn nghĩ website sẽ gặp vấn đề gì trong việc hiển thị?",
       options: [
         {
           id: "a",
-          text: "Ngôn ngữ lập trình tạo ra logic cho web",
-          isCorrect: false,
-          percentage: 15,
+          text: "Không có cấu trúc và nội dung rõ ràng",
+          isCorrect: true,
+          percentage: 72,
         },
         {
           id: "b",
-          text: "Ngôn ngữ đánh dấu để tạo cấu trúc trang web",
-          isCorrect: true,
-          percentage: 70,
-        },
-        {
-          id: "c",
-          text: "Phần mềm để vẽ giao diện",
+          text: "Không thể kết nối cơ sở dữ liệu",
           isCorrect: false,
           percentage: 15,
         },
+        {
+          id: "c",
+          text: "Không thể thêm hiệu ứng động",
+          isCorrect: false,
+          percentage: 13,
+        },
       ],
       explanation:
-        "HTML (HyperText Markup Language) dùng để tạo cấu trúc cơ bản cho trang web.",
+        "HTML là nền tảng để trình duyệt hiểu cấu trúc của website. Nếu thiếu HTML, website chỉ còn là văn bản rời rạc, không có bố cục.",
     },
     {
       id: 2,
-      question: "CSS được dùng để làm gì?",
+      question: "Bạn sẽ thuyết phục một người không dùng CSS như thế nào?",
       options: [
         {
           id: "a",
-          text: "Tạo hiệu ứng và định dạng giao diện web",
+          text: "Không có CSS thì website sẽ chỉ là văn bản thô, khó sử dụng",
           isCorrect: true,
-          percentage: 65,
+          percentage: 74,
         },
         {
           id: "b",
-          text: "Quản lý cơ sở dữ liệu",
+          text: "Vẫn đẹp như bình thường nhưng chạy chậm hơn",
           isCorrect: false,
-          percentage: 20,
+          percentage: 14,
         },
         {
           id: "c",
-          text: "Viết logic xử lý nghiệp vụ",
+          text: "Không ảnh hưởng gì vì CSS chỉ là phần phụ",
           isCorrect: false,
-          percentage: 15,
+          percentage: 12,
         },
       ],
       explanation:
-        "CSS (Cascading Style Sheets) giúp định dạng giao diện, màu sắc, bố cục của trang web.",
+        "CSS quyết định giao diện và trải nghiệm người dùng. Không có CSS thì website không thể tạo layout, màu sắc hay responsive.",
     },
     {
       id: 3,
-      question: "JavaScript đóng vai trò gì trong website?",
+      question:
+        "Nếu không có JavaScript, người dùng sẽ gặp khó khăn gì trên web?",
       options: [
         {
           id: "a",
-          text: "Tạo sự tương tác động trên website",
+          text: "Không có tương tác động như form validation, popup",
           isCorrect: true,
-          percentage: 75,
+          percentage: 77,
         },
         {
           id: "b",
-          text: "Chỉ để lưu trữ dữ liệu",
+          text: "Không thể viết văn bản lên website",
           isCorrect: false,
-          percentage: 10,
+          percentage: 11,
         },
         {
           id: "c",
-          text: "Thay thế hoàn toàn HTML và CSS",
+          text: "Không thể hiển thị hình ảnh",
           isCorrect: false,
-          percentage: 15,
+          percentage: 12,
         },
       ],
       explanation:
-        "JavaScript dùng để xử lý tương tác, sự kiện và logic động cho website.",
+        "JavaScript tạo sự tương tác và logic động cho website. Thiếu nó, web chỉ còn hiển thị tĩnh.",
     },
     {
       id: 4,
-      question: "Frontend Developer thường làm việc với công cụ nào?",
+      question:
+        "Nếu không có framework như React/Vue/Angular, Frontend Developer sẽ gặp khó khăn gì?",
       options: [
         {
           id: "a",
-          text: "React, Angular, Vue",
-          isCorrect: true,
-          percentage: 65,
-        },
-        { id: "b", text: "MySQL, MongoDB", isCorrect: false, percentage: 20 },
-        {
-          id: "c",
-          text: "Docker, Kubernetes",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "Frontend Developer thường sử dụng framework/libraries như React, Angular, Vue.",
-    },
-    {
-      id: 5,
-      question: "Backend Developer thường đảm nhận công việc gì?",
-      options: [
-        {
-          id: "a",
-          text: "Quản lý logic, dữ liệu và API cho hệ thống",
+          text: "Phải tự viết lại nhiều logic phức tạp, khó bảo trì",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Chỉ thiết kế giao diện",
+          text: "Không thể kết nối cơ sở dữ liệu",
           isCorrect: false,
-          percentage: 10,
+          percentage: 15,
         },
         {
           id: "c",
-          text: "Làm SEO và quảng cáo",
-          isCorrect: false,
-          percentage: 20,
-        },
-      ],
-      explanation:
-        "Backend Developer chịu trách nhiệm về logic xử lý, kết nối cơ sở dữ liệu và API.",
-    },
-    {
-      id: 6,
-      question: "Git được dùng để làm gì?",
-      options: [
-        {
-          id: "a",
-          text: "Quản lý phiên bản code và làm việc nhóm",
-          isCorrect: true,
-          percentage: 75,
-        },
-        {
-          id: "b",
-          text: "Viết CSS nhanh hơn",
-          isCorrect: false,
-          percentage: 10,
-        },
-        {
-          id: "c",
-          text: "Tạo hosting miễn phí",
+          text: "Không thể viết HTML",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Git là hệ thống quản lý phiên bản, giúp developer theo dõi và phối hợp trong dự án.",
+        "Framework frontend giúp tái sử dụng component, quản lý state và tối ưu trải nghiệm. Nếu không có, code dễ bị lặp và khó mở rộng.",
+    },
+    {
+      id: 5,
+      question:
+        "Nếu một website chỉ có frontend mà không có backend thì hạn chế lớn nhất là gì?",
+      options: [
+        {
+          id: "a",
+          text: "Không thể xử lý logic phức tạp và lưu trữ dữ liệu",
+          isCorrect: true,
+          percentage: 73,
+        },
+        {
+          id: "b",
+          text: "Website sẽ chạy chậm hơn",
+          isCorrect: false,
+          percentage: 13,
+        },
+        {
+          id: "c",
+          text: "Không thể hiển thị hình ảnh",
+          isCorrect: false,
+          percentage: 14,
+        },
+      ],
+      explanation:
+        "Backend chịu trách nhiệm xử lý dữ liệu, logic nghiệp vụ và API. Nếu không có, website chỉ dừng ở mức tĩnh.",
+    },
+    {
+      id: 6,
+      question: "Khi làm việc nhóm, Git giúp bạn tránh rắc rối gì?",
+      options: [
+        {
+          id: "a",
+          text: "Tránh ghi đè code của nhau và theo dõi thay đổi",
+          isCorrect: true,
+          percentage: 78,
+        },
+        { id: "b", text: "Tự động viết CSS", isCorrect: false, percentage: 12 },
+        {
+          id: "c",
+          text: "Tự động deploy web",
+          isCorrect: false,
+          percentage: 10,
+        },
+      ],
+      explanation:
+        "Git giúp quản lý phiên bản code, hỗ trợ merge, rollback và cộng tác mà không lo mất dữ liệu.",
     },
     {
       id: 7,
@@ -657,52 +666,47 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     },
     {
       id: 8,
-      question: "API là gì?",
+      question: "Nếu không có API, các ứng dụng web sẽ bị hạn chế thế nào?",
       options: [
         {
           id: "a",
-          text: "Giao diện cho phép ứng dụng giao tiếp với nhau",
+          text: "Không thể giao tiếp và chia sẻ dữ liệu giữa hệ thống",
           isCorrect: true,
-          percentage: 70,
+          percentage: 71,
         },
         {
           id: "b",
-          text: "Một ngôn ngữ lập trình mới",
+          text: "Không thể viết CSS",
           isCorrect: false,
-          percentage: 15,
+          percentage: 14,
         },
         {
           id: "c",
-          text: "Công cụ để vẽ giao diện",
+          text: "Không thể hiển thị giao diện",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "API (Application Programming Interface) là một bộ quy tắc và giao thức cho phép các ứng dụng khác nhau giao tiếp và trao đổi dữ liệu với nhau.",
+        "API (Application Programming Interface) là một bộ quy tắc và giao thức cho phép các ứng dụng khác nhau giao tiếp và trao đổi dữ liệu với nhau. Không có API thì ứng dụng bị cô lập.",
     },
     {
       id: 9,
-      question: "Responsive Design nghĩa là gì trong phát triển web?",
+      question: "Nếu một website không responsive thì hậu quả là gì?",
       options: [
         {
           id: "a",
-          text: "Thiết kế web phản hồi linh hoạt, hiển thị phù hợp trên nhiều loại thiết bị và kích thước màn hình",
+          text: "Người dùng di động khó sử dụng, trải nghiệm tệ",
           isCorrect: true,
-          percentage: 82,
+          percentage: 81,
         },
         {
           id: "b",
-          text: "Thiết kế web tự động sinh ra nội dung mới cho người dùng",
+          text: "Website tự động tạo nội dung mới",
           isCorrect: false,
-          percentage: 9,
+          percentage: 10,
         },
-        {
-          id: "c",
-          text: "Thiết kế web không cần sử dụng CSS để định dạng",
-          isCorrect: false,
-          percentage: 9,
-        },
+        { id: "c", text: "Không cần CSS nữa", isCorrect: false, percentage: 9 },
       ],
       explanation:
         "Responsive Design dịch nghĩa là **'thiết kế đáp ứng'**. Trong phát triển web, nó chỉ cách xây dựng giao diện có khả năng **tự điều chỉnh bố cục, hình ảnh, chữ và các thành phần** sao cho phù hợp với nhiều thiết bị khác nhau (máy tính, máy tính bảng, điện thoại). \n\nCụ thể, kỹ thuật này thường sử dụng **media queries trong CSS, grid/flexbox layout và hình ảnh co giãn** để website vẫn dễ đọc, dễ dùng dù trên màn hình lớn hay nhỏ. \nVí dụ: cùng một website, trên PC hiển thị 3 cột nội dung, nhưng khi mở trên điện thoại nó sẽ tự động sắp xếp thành 1 cột duy nhất.",
@@ -710,25 +714,25 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 10,
       question:
-        "Database là gì và có những loại phổ biến nào trong phát triển web?",
+        "Nếu một website không có database, giới hạn lớn nhất sẽ là gì?",
       options: [
         {
           id: "a",
-          text: "Hệ thống lưu trữ và quản lý dữ liệu, phổ biến nhất là SQL và NoSQL",
+          text: "Không thể lưu trữ và quản lý dữ liệu người dùng",
           isCorrect: true,
-          percentage: 75,
+          percentage: 76,
         },
         {
           id: "b",
-          text: "Công cụ thiết kế giao diện đồ họa cho website",
+          text: "Không thể viết HTML",
           isCorrect: false,
           percentage: 12,
         },
         {
           id: "c",
-          text: "Một phần mềm soạn thảo văn bản và bảng tính",
+          text: "Không thể thay đổi màu sắc",
           isCorrect: false,
-          percentage: 13,
+          percentage: 12,
         },
       ],
       explanation:
@@ -737,23 +741,23 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 11,
       question:
-        "Theo bạn, kỹ năng nào quan trọng hơn với Web Developer: viết code nhanh hay viết code dễ bảo trì?",
+        "Bạn sẽ chọn code nhanh nhưng khó bảo trì hay code chậm hơn nhưng dễ bảo trì?",
       options: [
         {
           id: "a",
-          text: "Viết code dễ bảo trì quan trọng hơn vì giúp dự án phát triển lâu dài",
+          text: "Chọn code dễ bảo trì để dự án phát triển lâu dài",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Viết code nhanh quan trọng hơn để hoàn thành deadline",
+          text: "Chọn code nhanh để chạy deadline",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Cả hai đều quan trọng như nhau tùy tình huống",
+          text: "Tùy tình huống, cả hai đều quan trọng",
           isCorrect: false,
           percentage: 12,
         },
@@ -871,7 +875,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     },
     {
       id: 16,
-      question: "Khi đối mặt với deadline gấp, phương pháp nào hiệu quả nhất?",
+      question: "Khi đối mặt với deadline gấp, bạn sẽ chọn cách nào?",
       options: [
         {
           id: "a",
@@ -1007,89 +1011,138 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
   "mobile-developer": [
     {
       id: 1,
-      question: "App developer thường làm việc với nền tảng nào nhiều nhất?",
-      options: [
-        { id: "a", text: "iOS và Android", isCorrect: true, percentage: 70 },
-        { id: "b", text: "Windows và macOS", isCorrect: false, percentage: 15 },
-        { id: "c", text: "Linux và Ubuntu", isCorrect: false, percentage: 15 },
-      ],
-      explanation:
-        "Phần lớn ứng dụng di động tập trung vào iOS (App Store) và Android (Google Play).",
-    },
-    {
-      id: 2,
-      question: "Ngôn ngữ chính để phát triển Android native app là gì?",
-      options: [
-        { id: "a", text: "Swift", isCorrect: false, percentage: 20 },
-        { id: "b", text: "Kotlin", isCorrect: true, percentage: 60 },
-        { id: "c", text: "C#", isCorrect: false, percentage: 20 },
-      ],
-      explanation:
-        "Kotlin hiện là ngôn ngữ chính thức của Android, thay thế Java dần dần.",
-    },
-    {
-      id: 3,
       question:
-        "Swift thường được dùng để lập trình ứng dụng cho hệ điều hành nào?",
-      options: [
-        { id: "a", text: "Android", isCorrect: false, percentage: 15 },
-        { id: "b", text: "iOS", isCorrect: true, percentage: 70 },
-        { id: "c", text: "Windows", isCorrect: false, percentage: 15 },
-      ],
-      explanation: "Swift được Apple phát triển, dùng cho iOS, macOS, watchOS.",
-    },
-    {
-      id: 4,
-      question: "Cross-platform app development nghĩa là gì?",
+        "Startup nhỏ cần ra mắt app trên cả iOS và Android với chi phí hạn chế. Bạn nên chọn native hay cross-platform? Vì sao?",
       options: [
         {
           id: "a",
-          text: "Ứng dụng chạy được nhiều hệ điều hành khác nhau",
-          isCorrect: true,
-          percentage: 65,
-        },
-        {
-          id: "b",
-          text: "Ứng dụng có nhiều giao diện",
-          isCorrect: false,
-          percentage: 20,
-        },
-        {
-          id: "c",
-          text: "Ứng dụng không cần kết nối mạng",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "Cross-platform giúp một codebase chạy trên nhiều nền tảng (Android/iOS).",
-    },
-    {
-      id: 5,
-      question:
-        "React Native vs Flutter - điểm mạnh chính của React Native là gì?",
-      options: [
-        {
-          id: "a",
-          text: "Performance tốt hơn",
+          text: "Native (Swift/Kotlin) để có hiệu năng tối đa",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "b",
-          text: "Sử dụng JavaScript quen thuộc",
+          text: "Cross-platform (Flutter/React Native) để tiết kiệm chi phí và codebase chung",
+          isCorrect: true,
+          percentage: 60,
+        },
+        {
+          id: "c",
+          text: "Web app chạy trên trình duyệt, không cần app store",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Cross-platform phù hợp với startup cần tốc độ và chi phí thấp. Native cho hiệu năng tối đa, web app ít trải nghiệm native.",
+    },
+    {
+      id: 2,
+      question:
+        "Nếu team bạn đã có nhiều developer JavaScript, chọn React Native hay Flutter sẽ hợp lý hơn?",
+      options: [
+        {
+          id: "a",
+          text: "React Native vì tận dụng kiến thức JS sẵn có",
+          isCorrect: true,
+          percentage: 65,
+        },
+        {
+          id: "b",
+          text: "Flutter vì UI đẹp và performance ổn định",
+          isCorrect: false,
+          percentage: 25,
+        },
+        {
+          id: "c",
+          text: "Viết app bằng C++ để tối ưu đa nền tảng",
+          isCorrect: false,
+          percentage: 10,
+        },
+      ],
+      explanation:
+        "Với team mạnh JavaScript, React Native là lựa chọn tối ưu vì tận dụng kỹ năng sẵn có, giảm thời gian học tập. Bạn có thể bắt tay vào dự án ngay nhờ cú pháp gần với React và hệ sinh thái JavaScript phong phú. Flutter cho UI mượt mà và hiệu suất cao, nhưng yêu cầu học Dart từ đầu, tốn thời gian hơn.",
+    },
+    {
+      id: 3,
+      question:
+        "App chat của bạn bị delay khi load tin nhắn. Bạn nghĩ nên kiểm tra API hay UI trước?",
+      options: [
+        {
+          id: "a",
+          text: "API trước, vì thường liên quan tốc độ server và dữ liệu",
           isCorrect: true,
           percentage: 55,
         },
         {
-          id: "c",
-          text: "UI giống native 100%",
+          id: "b",
+          text: "UI trước, vì render giao diện cũng có thể gây chậm",
           isCorrect: false,
-          percentage: 20,
+          percentage: 35,
+        },
+        {
+          id: "c",
+          text: "Kiểm tra màu sắc của theme app",
+          isCorrect: false,
+          percentage: 10,
         },
       ],
       explanation:
-        "React Native tận dụng JavaScript – ngôn ngữ phổ biến, dễ học.",
+        "Hầu hết delay do API hoặc network. Nếu API ổn, mới kiểm tra UI render.",
+    },
+    {
+      id: 4,
+      question:
+        "Một user review 1★ chê app lag. Team nên làm gì để biến feedback này thành cơ hội?",
+      options: [
+        {
+          id: "a",
+          text: "Phân tích nguyên nhân, fix bug và phản hồi user",
+          isCorrect: true,
+          percentage: 70,
+        },
+        {
+          id: "b",
+          text: "Bỏ qua vì feedback tiêu cực không hữu ích",
+          isCorrect: false,
+          percentage: 15,
+        },
+        {
+          id: "c",
+          text: "Trả lời bằng bình luận châm biếm",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Feedback tiêu cực giúp phát hiện lỗi và tăng uy tín nếu team phản hồi tích cực.",
+    },
+    {
+      id: 5,
+      question:
+        "Bạn cần app hiển thị mượt trên cả máy flagship và máy tầm trung. Bạn sẽ ưu tiên tối ưu ở đâu?",
+      options: [
+        {
+          id: "a",
+          text: "Giảm animation và tối ưu bộ nhớ cho máy yếu",
+          isCorrect: true,
+          percentage: 65,
+        },
+        {
+          id: "b",
+          text: "Tập trung tính năng cao cấp cho flagship",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
+          id: "c",
+          text: "Bỏ qua tối ưu, chờ thiết bị mới ra mắt",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Tối ưu cho máy tầm trung quan trọng vì nhóm user này chiếm số đông.",
     },
     {
       id: 6,
@@ -1227,83 +1280,82 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 11,
       question:
-        "Tại sao việc tối ưu hiệu năng app trên nhiều thiết bị lại quan trọng?",
+        "App chạy mượt trên iPhone nhưng lag trên máy Android tầm trung. Hệ quả lớn nhất sẽ là gì?",
       options: [
         {
           id: "a",
-          text: "Giúp app mượt, giữ chân người dùng",
-          isCorrect: true,
-          percentage: 55,
-        },
-        {
-          id: "b",
-          text: "Chỉ để backend chạy nhanh hơn",
-          isCorrect: false,
-          percentage: 30,
-        },
-        {
-          id: "c",
-          text: "Không ảnh hưởng gì đến trải nghiệm",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "App lag chỉ 1–2 giây có thể khiến 50% user rời đi. Tối ưu hiệu năng chính là tối ưu trải nghiệm người dùng.",
-    },
-    {
-      id: 12,
-      question:
-        "Vì sao hiểu cách người dùng tương tác với app (UX flow, UI responsiveness) lại quan trọng?",
-      options: [
-        {
-          id: "a",
-          text: "Để cải thiện UX, tăng retention",
+          text: "User Android rời bỏ app trước, giảm retention",
           isCorrect: true,
           percentage: 60,
         },
         {
           id: "b",
-          text: "Để code backend dễ hơn",
+          text: "Không quan trọng, flagship mới vẫn chạy tốt",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Không quan trọng, miễn chức năng chạy",
+          text: "Chỉ ảnh hưởng đến developer, không liên quan đến user",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "UX tốt giúp app dễ dùng, tăng tỉ lệ quay lại. Developer hiểu UX sẽ nâng chất lượng sản phẩm toàn diện.",
+        "Nhóm user Android phổ biến, nếu trải nghiệm kém sẽ rời bỏ nhanh, ảnh hưởng retention.",
     },
     {
-      id: 13,
+      id: 12,
       question:
-        "Nếu developer không cập nhật công nghệ mới, hậu quả thường là gì?",
+        "Người dùng bấm nút nhưng app phản hồi chậm 2 giây. Điều này tác động thế nào?",
       options: [
         {
           id: "a",
-          text: "Dễ tụt hậu và khó cạnh tranh",
+          text: "User thấy app kém UX, dễ bỏ dùng",
           isCorrect: true,
           percentage: 65,
         },
         {
           id: "b",
-          text: "Code chậm đi ngay lập tức",
+          text: "Chỉ làm backend chạy chậm hơn",
           isCorrect: false,
-          percentage: 25,
+          percentage: 20,
         },
         {
           id: "c",
-          text: "Không có hậu quả gì",
+          text: "Không ảnh hưởng, miễn là kết quả đúng",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation: "UX flow và responsiveness quyết định sự hài lòng của user.",
+    },
+    {
+      id: 13,
+      question:
+        "Nếu developer không cập nhật framework mới trong 3–5 năm, rủi ro lớn nhất là gì?",
+      options: [
+        {
+          id: "a",
+          text: "Khó duy trì sản phẩm, dễ tụt hậu và bảo mật kém",
+          isCorrect: true,
+          percentage: 70,
+        },
+        {
+          id: "b",
+          text: "Code chậm hơn ngay lập tức",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
+          id: "c",
+          text: "Không có rủi ro gì nghiêm trọng",
           isCorrect: false,
           percentage: 10,
         },
       ],
       explanation:
-        "Framework/thư viện thay đổi nhanh. Không cập nhật dễ gặp lỗ hổng bảo mật và khó tìm việc.",
+        "Công nghệ thay đổi nhanh, không cập nhật dễ dẫn đến lỗ hổng và tụt hậu.",
     },
     {
       id: 14,
@@ -1333,55 +1385,55 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     },
     {
       id: 15,
-      question: "Tại sao khả năng tập trung lâu lại quan trọng với developer?",
+      question: "Bạn đang debug một bug khó. Điều gì giúp bạn nhất?",
       options: [
         {
           id: "a",
-          text: "Vì coding đòi hỏi xử lý liên tục và chi tiết",
-          isCorrect: true,
-          percentage: 50,
-        },
-        {
-          id: "b",
-          text: "Vì tập trung giúp code chạy nhanh hơn",
-          isCorrect: false,
-          percentage: 35,
-        },
-        {
-          id: "c",
-          text: "Không quan trọng, cứ làm chậm cũng được",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "Làm app thường cần hàng giờ suy nghĩ liên tục. Tập trung tốt giúp giảm bug và nâng hiệu suất.",
-    },
-    {
-      id: 16,
-      question: "Tại sao quy trình rõ ràng lại cần thiết khi phát triển app?",
-      options: [
-        {
-          id: "a",
-          text: "Đảm bảo chất lượng và dễ kiểm soát",
+          text: "Khả năng tập trung liên tục nhiều giờ để phân tích",
           isCorrect: true,
           percentage: 55,
         },
         {
           id: "b",
-          text: "Để hạn chế sự sáng tạo",
+          text: "Chỉ code chậm rãi từng chút cho chắc",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Không cần, làm theo cảm xúc cũng được",
+          text: "Không cần tập trung, cứ làm linh tinh cũng ra",
           isCorrect: false,
           percentage: 20,
         },
       ],
+      explanation: "Debug cần sự tập trung cao độ để không bỏ sót chi tiết.",
+    },
+    {
+      id: 16,
+      question:
+        "Team phát triển app mà không có quy trình rõ ràng sẽ dễ gặp vấn đề gì?",
+      options: [
+        {
+          id: "a",
+          text: "Khó kiểm soát chất lượng và dễ xung đột teamwork",
+          isCorrect: true,
+          percentage: 65,
+        },
+        {
+          id: "b",
+          text: "Giảm sáng tạo của developer",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
+          id: "c",
+          text: "Không có vấn đề gì, làm freestyle vẫn ổn",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
       explanation:
-        "Quy trình giúp team phối hợp hiệu quả, sản phẩm ổn định hơn và dễ maintain.",
+        "Quy trình rõ ràng đảm bảo phối hợp hiệu quả, sản phẩm ổn định hơn.",
     },
     {
       id: 17,
@@ -1411,23 +1463,23 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     },
     {
       id: 18,
-      question: "Học thêm UI/UX mang lại lợi ích gì cho developer?",
+      question: "Developer học thêm UI/UX sẽ có lợi thế gì trong team?",
       options: [
         {
           id: "a",
-          text: "Hiểu design để làm app hoàn thiện hơn",
+          text: "Hiểu design, giao tiếp với designer tốt hơn",
           isCorrect: true,
-          percentage: 60,
+          percentage: 65,
         },
         {
           id: "b",
           text: "Không có lợi ích gì, chỉ tốn thời gian",
           isCorrect: false,
-          percentage: 25,
+          percentage: 20,
         },
         {
           id: "c",
-          text: "Chỉ hữu ích với designer",
+          text: "Chỉ hữu ích với designer, không liên quan dev",
           isCorrect: false,
           percentage: 15,
         },
@@ -1463,103 +1515,122 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     },
     {
       id: 20,
-      question: "Động lực lớn nhất của developer khi làm app là gì?",
+      question:
+        "Bạn phải chọn: tính năng khó về kỹ thuật nhưng ít user dùng, hoặc tính năng đơn giản nhưng có hàng nghìn user dùng. Bạn chọn gì?",
       options: [
         {
           id: "a",
-          text: "Thấy người dùng trải nghiệm sản phẩm mình tạo ra",
-          isCorrect: true,
-          percentage: 65,
-        },
-        {
-          id: "b",
-          text: "Chỉ để code cho vui",
-          isCorrect: false,
-          percentage: 25,
-        },
-        {
-          id: "c",
-          text: "Chỉ để thử thách kỹ thuật",
-          isCorrect: false,
-          percentage: 10,
-        },
-      ],
-      explanation:
-        "Niềm vui lớn nhất của dev là sản phẩm được dùng trong thực tế, tạo giá trị thật cho cộng đồng.",
-    },
-  ],
-  designer: [
-    {
-      id: 1,
-      question: "UI và UX khác nhau chủ yếu ở điểm nào?",
-      options: [
-        {
-          id: "a",
-          text: "UI là giao diện; UX là trải nghiệm tổng thể",
+          text: "Tính năng đơn giản nhưng impact lớn cho user",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "UI là backend; UX là frontend",
-          isCorrect: false,
-          percentage: 15,
-        },
-        {
-          id: "c",
-          text: "UI là nghiên cứu người dùng; UX là vẽ layout",
-          isCorrect: false,
-          percentage: 15,
-        },
-      ],
-      explanation:
-        "UI tập trung vào lớp trình bày (màu, layout, thành phần hiển thị), còn UX bao quát hành trình người dùng, dòng chảy tác vụ và cảm nhận khi sử dụng.",
-    },
-    {
-      id: 2,
-      question: "Wireframe thường dùng để làm gì trong quy trình thiết kế?",
-      options: [
-        {
-          id: "a",
-          text: "Phác thảo bố cục và luồng chức năng ở mức độ thấp",
-          isCorrect: true,
-          percentage: 66,
-        },
-        {
-          id: "b",
-          text: "Tối ưu hiệu năng code",
-          isCorrect: false,
-          percentage: 14,
-        },
-        {
-          id: "c",
-          text: "Hoàn thiện hệ thống màu và ảnh cuối cùng",
+          text: "Tính năng khó để thử thách bản thân",
           isCorrect: false,
           percentage: 20,
         },
+        {
+          id: "c",
+          text: "Không chọn gì, để team quyết định",
+          isCorrect: false,
+          percentage: 10,
+        },
       ],
       explanation:
-        "Wireframe là bản khung ít chi tiết dùng để xác định bố cục, thứ tự ưu tiên thông tin và luồng tương tác trước khi đi vào chi tiết hình ảnh.",
+        "Developer thường ưu tiên giá trị cho user, giúp sản phẩm thành công hơn.",
+    },
+  ],
+  designer: [
+    {
+      id: 1,
+      question:
+        "Bạn đang thiết kế app đặt đồ ăn. Khách hàng than phiền rằng app khó tìm món ăn, dù giao diện màu sắc đẹp. Vấn đề này liên quan nhiều hơn đến yếu tố nào?",
+      options: [
+        {
+          id: "a",
+          text: "UX – hành trình và trải nghiệm tìm món",
+          isCorrect: true,
+          percentage: 70,
+        },
+        {
+          id: "b",
+          text: "UI – màu sắc và icon chưa bắt mắt",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
+          id: "c",
+          text: "Performance – tốc độ tải dữ liệu",
+          isCorrect: false,
+          percentage: 10,
+        },
+      ],
+      explanation:
+        "Đây là vấn đề về trải nghiệm (UX), không phải chỉ là giao diện (UI).",
+    },
+    {
+      id: 2,
+      question:
+        "Client yêu cầu chỉnh màu sắc và icon ngay, nhưng người dùng gặp khó khăn khi checkout. Bạn ưu tiên xử lý gì trước?",
+      options: [
+        {
+          id: "a",
+          text: "Tối ưu UX ở bước checkout để giảm tỷ lệ bỏ giỏ hàng",
+          isCorrect: true,
+          percentage: 65,
+        },
+        {
+          id: "b",
+          text: "Chỉnh màu sắc và icon theo yêu cầu client",
+          isCorrect: false,
+          percentage: 20,
+        },
+        {
+          id: "c",
+          text: "Làm song song cả hai mà không ưu tiên",
+          isCorrect: false,
+          percentage: 15,
+        },
+      ],
+      explanation:
+        "Checkout ảnh hưởng trực tiếp đến doanh thu, nên cần ưu tiên cải thiện UX.",
     },
     {
       id: 3,
-      question: "Hệ màu nào phù hợp cho thiết kế hiển thị trên màn hình?",
+      question:
+        "Bạn đang làm landing page. Người dùng test nói không thấy nút 'Đăng ký'. Bạn xử lý thế nào?",
       options: [
-        { id: "a", text: "RGB", isCorrect: true, percentage: 72 },
-        { id: "b", text: "CMYK", isCorrect: false, percentage: 18 },
-        { id: "c", text: "Pantone (PMS)", isCorrect: false, percentage: 10 },
+        {
+          id: "a",
+          text: "Điều chỉnh visual hierarchy: tăng kích thước, màu tương phản, vị trí nổi bật",
+          isCorrect: true,
+          percentage: 72,
+        },
+        {
+          id: "b",
+          text: "Thêm nhiều màu sặc sỡ để gây chú ý",
+          isCorrect: false,
+          percentage: 18,
+        },
+        {
+          id: "c",
+          text: "Ẩn bớt nội dung khác để nút nổi bật",
+          isCorrect: false,
+          percentage: 10,
+        },
       ],
       explanation:
-        "RGB (Red–Green–Blue) là mô hình ánh sáng cộng, dùng cho màn hình. CMYK phục vụ in ấn; Pantone là hệ màu chuẩn cho in, không phù hợp trực tiếp cho hiển thị.",
+        "Visual hierarchy giúp dẫn hướng mắt người dùng đến hành động chính.",
     },
     {
       id: 4,
       question:
-        "Mục đích chính của grid system trong thiết kế giao diện là gì?",
+        "Team bạn bàn cãi giữa việc dùng grid system hay thiết kế tự do. Vì sao grid system nên được chọn?",
       options: [
         {
           id: "a",
-          text: "Tạo cấu trúc nhất quán và căn chỉnh nội dung",
+          text: "Giúp bố cục nhất quán và dễ căn chỉnh",
           isCorrect: true,
           percentage: 68,
         },
@@ -1571,95 +1642,103 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Tự động sinh wireframe",
+          text: "Tự động tạo wireframe",
           isCorrect: false,
           percentage: 20,
         },
       ],
       explanation:
-        "Grid cung cấp trục căn lề, nhịp (gutter) và cột giúp bố cục gọn gàng, nhất quán giữa các màn hình.",
+        "Grid tạo sự đồng bộ và gọn gàng, dễ maintain hơn trong team.",
     },
     {
       id: 5,
-      question: "Visual hierarchy (thứ bậc thị giác) đạt được bằng cách nào?",
+      question:
+        "Một user nói rằng họ không biết đâu là thông tin chính trên dashboard. Bạn sẽ ưu tiên cách nào để xử lý?",
       options: [
         {
           id: "a",
-          text: "Kích thước, tương phản, khoảng cách và vị trí",
+          text: "Dùng kích thước, tương phản, khoảng trắng và vị trí để tạo thứ bậc thị giác",
           isCorrect: true,
           percentage: 64,
         },
         {
           id: "b",
-          text: "Chỉ cần dùng nhiều màu sặc sỡ",
+          text: "Dùng thật nhiều màu sặc sỡ",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Ẩn bớt thông tin đi",
+          text: "Ẩn bớt thông tin phụ đi",
           isCorrect: false,
           percentage: 18,
         },
       ],
       explanation:
-        "Thứ bậc thị giác hướng mắt người dùng bằng kích thước (scale), độ đậm/nhạt (contrast), khoảng trắng và vị trí để ưu tiên thông tin quan trọng.",
+        "Visual hierarchy điều hướng sự chú ý của người dùng hiệu quả hơn.",
     },
     {
       id: 6,
       question:
-        "Trong typography, 'leading' (line-height) điều chỉnh chủ yếu yếu tố nào?",
+        "Trong một bài viết dài, người dùng phản hồi rằng chữ quá dày đặc và khó đọc. Bạn nên chỉnh gì trước?",
       options: [
         {
           id: "a",
-          text: "Khoảng cách giữa các dòng chữ",
+          text: "Tăng line-height (leading) để giãn dòng",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Khoảng cách giữa hai ký tự cụ thể",
+          text: "Điều chỉnh kerning (khoảng cách giữa ký tự)",
           isCorrect: false,
           percentage: 16,
         },
         {
           id: "c",
-          text: "Độ dày của nét chữ",
+          text: "Đổi font chữ sang bold",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Leading là khoảng cách dòng; kerning điều chỉnh khoảng cách giữa cặp ký tự; tracking (letter-spacing) áp dụng cho cả chuỗi ký tự.",
+        "Leading giúp văn bản thoáng và dễ đọc hơn, đặc biệt trên màn hình.",
     },
     {
       id: 7,
-      question: "WCAG trong thiết kế đề cập chủ yếu đến vấn đề nào?",
+      question:
+        "Một trang web có text màu xám nhạt trên nền trắng khiến người mù màu khó đọc. Theo WCAG, bạn nên làm gì?",
       options: [
         {
           id: "a",
-          text: "Khả năng tiếp cận cho mọi người dùng (accessibility)",
+          text: "Tăng độ tương phản màu để cải thiện accessibility",
           isCorrect: true,
           percentage: 66,
         },
         {
           id: "b",
-          text: "Chuẩn hoá hiệu năng frontend",
+          text: "Tối ưu hiệu năng frontend",
           isCorrect: false,
           percentage: 18,
         },
-        { id: "c", text: "Bảo mật UI", isCorrect: false, percentage: 16 },
+        {
+          id: "c",
+          text: "Tập trung vào bảo mật UI",
+          isCorrect: false,
+          percentage: 16,
+        },
       ],
       explanation:
-        "WCAG (Web Content Accessibility Guidelines) là bộ hướng dẫn giúp nội dung dễ tiếp cận cho người khiếm thị, khiếm thính, mù màu…",
+        "WCAG nhấn mạnh accessibility – đảm bảo mọi người đều sử dụng được.",
     },
     {
       id: 8,
-      question: "Trong Figma, Component giúp ích gì nhiều nhất?",
+      question:
+        "Trong Figma, bạn cần đảm bảo button giữ đồng bộ trên nhiều màn hình. Giải pháp nào hiệu quả nhất?",
       options: [
         {
           id: "a",
-          text: "Tái sử dụng, đồng bộ hoá các phần tử UI trên nhiều màn hình",
+          text: "Tạo Component và tái sử dụng",
           isCorrect: true,
           percentage: 69,
         },
@@ -1671,44 +1750,45 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Tự động tạo nội dung lorem ipsum",
+          text: "Dán nội dung lorem ipsum vào",
           isCorrect: false,
           percentage: 17,
         },
       ],
       explanation:
-        "Component tạo nguồn duy nhất (single source of truth); instance kế thừa và có thể override thuộc tính cho phù hợp ngữ cảnh.",
+        "Component tạo một nguồn duy nhất (single source of truth) cho UI element.",
     },
     {
       id: 9,
-      question: "Responsive design khác adaptive design ở điểm cốt lõi nào?",
+      question:
+        "Bạn đang làm web cho nhiều thiết bị. Khi nào nên chọn responsive thay vì adaptive design?",
       options: [
         {
           id: "a",
-          text: "Responsive dùng layout linh hoạt theo tỉ lệ; adaptive dùng layout cố định theo các breakpoint",
+          text: "Khi muốn layout linh hoạt, co giãn theo tỷ lệ màn hình",
           isCorrect: true,
           percentage: 62,
         },
         {
           id: "b",
-          text: "Responsive chỉ dành cho mobile; adaptive chỉ cho desktop",
+          text: "Khi chỉ cần thiết kế riêng cho mobile và desktop",
           isCorrect: false,
           percentage: 20,
         },
         {
           id: "c",
-          text: "Không có khác biệt đáng kể",
+          text: "Khi không có khác biệt gì giữa hai phương pháp",
           isCorrect: false,
           percentage: 18,
         },
       ],
       explanation:
-        "Responsive co giãn dựa trên phần trăm/đơn vị linh hoạt; adaptive chuyển giữa một vài layout tiền định theo độ rộng màn hình.",
+        "Responsive phù hợp khi muốn 1 layout co giãn tự nhiên, thay vì nhiều layout cố định.",
     },
     {
       id: 10,
       question:
-        "Theo Atomic Design, đơn vị sắp xếp đúng theo thứ tự từ nhỏ đến lớn là gì?",
+        "Team đang áp dụng Atomic Design. Bạn cần sắp xếp từ nhỏ đến lớn, thứ tự đúng là gì?",
       options: [
         {
           id: "a",
@@ -1730,225 +1810,233 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Atomic Design tổ chức UI từ phần tử nhỏ nhất (atoms) kết hợp thành molecules, organisms và cuối cùng là templates/pages để đảm bảo nhất quán và tái sử dụng.",
+        "Atomic Design đi từ phần tử nhỏ nhất (atoms) đến layout hoàn chỉnh (pages).",
     },
 
     {
       id: 11,
-      question: "Khi nhận brief, bạn thường làm gì trước tiên?",
+      question:
+        "Khi nhận brief từ client nhưng yêu cầu còn mơ hồ, bạn sẽ làm gì đầu tiên?",
       options: [
         {
           id: "a",
-          text: "Tìm hiểu người dùng và mục tiêu kinh doanh",
+          text: "Phỏng vấn hoặc khảo sát để hiểu người dùng và mục tiêu kinh doanh",
           isCorrect: true,
           percentage: 64,
         },
         {
           id: "b",
-          text: "Mở Figma/PS và thiết kế ngay",
+          text: "Mở ngay Figma và thiết kế theo cảm nhận",
           isCorrect: false,
           percentage: 22,
         },
         {
           id: "c",
-          text: "Tìm template sẵn để ráp",
+          text: "Tìm template có sẵn để ráp thử",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Bắt đầu từ user & business goals giúp mô hình hoá vấn đề đúng, tránh thiết kế 'đẹp nhưng sai mục tiêu'.",
+        "Bắt đầu từ user & business goals giúp tránh thiết kế 'đẹp nhưng sai mục tiêu'.",
     },
     {
       id: 12,
-      question: "Bạn đón nhận feedback như thế nào?",
+      question:
+        "Khi client góp ý rằng màu sắc chưa hợp lý, bạn thường phản ứng thế nào?",
       options: [
         {
           id: "a",
-          text: "Ghi nhận, hỏi lại tiêu chí đánh giá và thử A/B nếu cần",
+          text: "Hỏi lại tiêu chí đánh giá, đưa ra lựa chọn A/B test",
           isCorrect: true,
           percentage: 68,
         },
         {
           id: "b",
-          text: "Cố bảo vệ phương án cũ đến cùng",
+          text: "Cố bảo vệ phương án ban đầu đến cùng",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Bỏ qua vì 'thị hiếu mỗi người mỗi khác'",
+          text: "Bỏ qua vì 'thẩm mỹ mỗi người mỗi khác'",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Designer hiệu quả chuyển hoá ý kiến thành giả thuyết kiểm chứng được thay vì tranh luận cảm tính.",
+        "Designer hiệu quả chuyển feedback thành giả thuyết để kiểm chứng, thay vì tranh luận cảm tính.",
     },
     {
       id: 13,
-      question: "Khi yêu cầu chưa rõ, bạn sẽ…",
+      question:
+        "Khi yêu cầu sản phẩm chưa rõ ràng, bạn chọn cách tiếp cận nào?",
       options: [
         {
           id: "a",
-          text: "Đặt câu hỏi làm rõ và phác thảo nhanh (sketch/prototype)",
+          text: "Đặt câu hỏi làm rõ, phác thảo nhanh để test ý tưởng",
           isCorrect: true,
           percentage: 65,
         },
         {
           id: "b",
-          text: "Tự suy diễn và làm theo cảm nhận",
+          text: "Tự suy diễn và thiết kế theo kinh nghiệm",
           isCorrect: false,
           percentage: 20,
         },
         {
           id: "c",
-          text: "Chờ đến khi PM tự bổ sung",
+          text: "Chờ đến khi PM gửi tài liệu chi tiết",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Làm rõ sớm tiết kiệm thời gian iteration về sau và giảm rủi ro lệch kỳ vọng.",
+        "Làm rõ sớm giúp tiết kiệm iteration về sau và tránh lệch kỳ vọng.",
     },
     {
       id: 14,
-      question: "Bạn quản lý deadline thế nào?",
+      question:
+        "Bạn có deadline gấp cho một dự án nhiều màn hình. Cách quản lý hiệu quả nhất là gì?",
       options: [
         {
           id: "a",
-          text: "Chia nhỏ mốc (wireframe → visual → prototype → handoff) và báo sớm khi có rủi ro",
+          text: "Chia nhỏ thành mốc (wireframe → visual → prototype) và báo sớm rủi ro",
           isCorrect: true,
           percentage: 62,
         },
         {
           id: "b",
-          text: "Dồn việc cuối kỳ để 'nước rút'",
+          text: "Dồn việc về cuối tuần để làm nước rút",
           isCorrect: false,
           percentage: 24,
         },
         {
           id: "c",
-          text: "Làm tuần tự không theo kế hoạch",
+          text: "Làm tuần tự theo cảm hứng, không kế hoạch",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Quản trị tiến độ theo pha giúp minh bạch trạng thái và giảm trễ hạn.",
+        "Quản lý tiến độ theo pha giúp minh bạch trạng thái và giảm nguy cơ trễ hạn.",
     },
     {
       id: 15,
       question:
-        "Bạn ưu tiên xây dựng hệ thống thành phần (design system) ra sao?",
+        "Khi team phát triển sản phẩm lâu dài, bạn ưu tiên gì trong việc thiết kế?",
       options: [
         {
           id: "a",
-          text: "Tạo token, component, guideline để tái sử dụng",
+          text: "Xây dựng design system (token, component, guideline) để tái sử dụng",
           isCorrect: true,
           percentage: 66,
         },
         {
           id: "b",
-          text: "Thiết kế từng màn độc lập",
+          text: "Thiết kế từng màn hình riêng biệt",
           isCorrect: false,
           percentage: 20,
         },
         {
           id: "c",
-          text: "Chỉ dùng component có sẵn không điều chỉnh",
+          text: "Chỉ dùng component có sẵn, không tinh chỉnh",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Tư duy hệ thống giúp nhất quán, tăng tốc độ và giảm lỗi khi scale sản phẩm.",
+        "Design system giúp sản phẩm nhất quán, tăng tốc độ phát triển và giảm lỗi khi scale.",
     },
     {
       id: 16,
-      question: "Về accessibility, thói quen của bạn là…",
+      question:
+        "Một người dùng khiếm thị than phiền không thể điều hướng sản phẩm. Bạn sẽ kiểm tra yếu tố nào trước?",
       options: [
         {
           id: "a",
-          text: "Kiểm tra độ tương phản, kích cỡ chữ, trạng thái focus/hover",
+          text: "Độ tương phản, kích cỡ chữ, trạng thái focus/hover",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Chỉ kiểm tra trên màn hình của mình",
+          text: "Chỉ kiểm tra trên màn hình của chính mình",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Để developer tự xử lý sau",
+          text: "Để developer xử lý khi code",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Thiết kế bao trùm (inclusive) đòi hỏi cân nhắc contrast, kích thước, khoảng trắng và trạng thái tương tác ngay từ giai đoạn thiết kế.",
+        "Accessibility nên được cân nhắc ngay từ thiết kế, không đợi đến giai đoạn phát triển.",
     },
     {
       id: 17,
-      question: "Bạn xử lý vòng lặp cải tiến (iteration) như thế nào?",
+      question:
+        "Khi prototype chưa đạt, cách tiếp cận nào giúp cải tiến hiệu quả?",
       options: [
         {
           id: "a",
-          text: "Thiết kế → test nhanh với user/stakeholder → rút kinh nghiệm → lặp lại",
+          text: "Thiết kế → test nhanh với user → điều chỉnh → lặp lại",
           isCorrect: true,
           percentage: 64,
         },
         {
           id: "b",
-          text: "Làm một lần cho xong để tiết kiệm công",
+          text: "Cố hoàn thiện một lần để tiết kiệm công",
           isCorrect: false,
           percentage: 22,
         },
         {
           id: "c",
-          text: "Chỉ sửa khi bị yêu cầu",
+          text: "Chỉ sửa khi client yêu cầu",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Tư duy lặp (iterative) giúp tiến gần hơn đến fit thực tế thay vì kỳ vọng ban đầu.",
+        "Iteration liên tục giúp tiệm cận nhu cầu thực tế thay vì dự đoán ban đầu.",
     },
     {
       id: 18,
-      question: "Khi handoff cho developer, bạn thường…",
+      question:
+        "Bạn cần handoff thiết kế cho developer. Cách nào giảm rủi ro sai lệch nhất?",
       options: [
         {
           id: "a",
-          text: "Cung cấp spec rõ (spacing, token màu, trạng thái), variant và asset chuẩn",
+          text: "Chuẩn bị spec rõ (spacing, token màu, trạng thái), variant và asset",
           isCorrect: true,
           percentage: 68,
         },
         {
           id: "b",
-          text: "Gửi file hình và mô tả sơ bộ",
+          text: "Gửi file ảnh kèm mô tả sơ bộ",
           isCorrect: false,
           percentage: 20,
         },
         {
           id: "c",
-          text: "Để developer tự suy ra từ màn hình",
+          text: "Để developer tự suy luận từ màn hình",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Handoff chất lượng giúp giảm sai lệch xây dựng, tiết kiệm thời gian cho cả team.",
+        "Handoff chi tiết giúp tiết kiệm thời gian debug và build đúng ý định thiết kế.",
     },
     {
       id: 19,
-      question: "Bạn cập nhật xu hướng thiết kế như thế nào?",
+      question:
+        "Bạn muốn sản phẩm vừa hiện đại vừa bền vững. Cách tiếp cận phù hợp nhất là gì?",
       options: [
         {
           id: "a",
-          text: "Theo dõi trend nhưng ưu tiên nguyên lý nền tảng và dữ liệu",
+          text: "Theo dõi trend nhưng ưu tiên nguyên lý nền tảng (typography, usability)",
           isCorrect: true,
           percentage: 63,
         },
@@ -1966,11 +2054,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Cân bằng giữa nguyên tắc bền vững (typography, layout, khả dụng) và cập nhật xu hướng giúp sản phẩm hiện đại mà vẫn hiệu quả.",
+        "Kết hợp trend và nguyên tắc nền tảng giúp sản phẩm vừa mới mẻ vừa lâu bền.",
     },
     {
       id: 20,
-      question: "Điều khiến bạn hứng thú nhất khi làm designer là gì?",
+      question:
+        "Điều gì khiến bạn cảm thấy hứng thú và có động lực nhất khi làm designer?",
       options: [
         {
           id: "a",
@@ -1980,19 +2069,19 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "b",
-          text: "Làm mọi thứ thật bắt mắt",
+          text: "Biến mọi sản phẩm thành thứ thật bắt mắt",
           isCorrect: false,
           percentage: 22,
         },
         {
           id: "c",
-          text: "Thử nghiệm công cụ mới",
+          text: "Thử nghiệm công cụ, plugin mới",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Động lực bền vững của designer là tạo giá trị cho người dùng và doanh nghiệp; thẩm mỹ và công cụ là phương tiện, không phải mục tiêu cuối.",
+        "Động lực bền vững đến từ việc tạo giá trị cho user & business, thẩm mỹ và công cụ chỉ là phương tiện.",
     },
   ],
 
@@ -2253,50 +2342,49 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 11,
       question:
-        "Bạn có thoải mái giao tiếp với nhiều loại stakeholder (business, dev, ops, legal)?",
+        "Khi làm việc với nhiều stakeholder (business, dev, ops, legal), bạn sẽ làm gì để đảm bảo họ hiểu nhau?",
       options: [
         {
           id: "a",
-          text: "Có, mình dễ chuyển ngôn ngữ kỹ thuật và phi-kỹ thuật",
+          text: "Dịch ngôn ngữ kỹ thuật sang phi-kỹ thuật và ngược lại, đảm bảo mọi bên hiểu đúng ý nhau",
           isCorrect: true,
           percentage: 62,
         },
         {
           id: "b",
-          text: "Chỉ thoải mái với một nhóm nhất định",
+          text: "Chỉ giao tiếp tốt với một nhóm mà mình quen thuộc",
           isCorrect: false,
           percentage: 26,
         },
         {
           id: "c",
-          text: "Không, mình ngại giao tiếp nhiều",
+          text: "Tránh giao tiếp nhiều, để tự họ hiểu nhau",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Giao tiếp linh hoạt là yếu tố then chốt cho BA: phải vừa lắng nghe yêu cầu business, vừa diễn giải rõ ràng cho technical team mà không mất ý nghĩa.",
+        "Giao tiếp linh hoạt là then chốt cho BA: vừa lắng nghe yêu cầu business, vừa diễn giải rõ ràng cho technical team mà không mất ý nghĩa.",
     },
     {
       id: 12,
-      question:
-        "Bạn cảm thấy thế nào khi yêu cầu không rõ ràng hoặc mâu thuẫn?",
+      question: "Khi nhận yêu cầu mơ hồ hoặc mâu thuẫn, bạn sẽ xử lý thế nào?",
       options: [
         {
           id: "a",
-          text: "Mình chủ động đặt câu hỏi, tổ chức workshop để làm rõ",
+          text: "Chủ động đặt câu hỏi, tổ chức workshop để làm rõ trước khi design/implement",
           isCorrect: true,
           percentage: 64,
         },
         {
           id: "b",
-          text: "Mình chờ người khác làm rõ",
+          text: "Chờ người khác giải thích hoặc xác nhận",
           isCorrect: false,
           percentage: 22,
         },
         {
           id: "c",
-          text: "Mình tự đưa giải pháp mặc định mà không hỏi thêm",
+          text: "Tự đưa giải pháp mặc định mà không hỏi thêm",
           isCorrect: false,
           percentage: 14,
         },
@@ -2307,69 +2395,70 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 13,
       question:
-        "Bạn có thiên về 'chi tiết nhỏ' hay 'tầm nhìn lớn' khi phân tích?",
+        "Bạn thiên về 'chi tiết nhỏ' hay 'bức tranh lớn'? Trong tình huống yêu cầu phức tạp, bạn xử lý ra sao?",
       options: [
         {
           id: "a",
-          text: "Mình cân bằng: vừa nắm bức tranh lớn vừa chú trọng chi tiết",
+          text: "Cân bằng: vừa nắm big picture vừa chú trọng chi tiết nhỏ để dev/test implement đúng",
           isCorrect: true,
           percentage: 60,
         },
         {
           id: "b",
-          text: "Chỉ quan tâm bức tranh lớn",
+          text: "Chỉ tập trung bức tranh lớn, bỏ qua chi tiết nhỏ",
           isCorrect: false,
           percentage: 25,
         },
         {
           id: "c",
-          text: "Chỉ chú ý chi tiết nhỏ",
+          text: "Chỉ chú ý chi tiết nhỏ, bỏ tầm nhìn tổng thể",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "BA hiệu quả cần vừa hiểu mục tiêu kinh doanh (big picture), vừa đảm bảo các yêu cầu chi tiết để dev/test implement đúng chức năng.",
+        "BA hiệu quả cần vừa hiểu mục tiêu kinh doanh, vừa đảm bảo các yêu cầu chi tiết để dev/test implement đúng chức năng.",
     },
     {
       id: 14,
-      question: "Khi dẫn workshop thu thập yêu cầu, bạn cảm thấy thế nào?",
+      question:
+        "Khi dẫn workshop thu thập yêu cầu, bạn làm thế nào để buổi họp hiệu quả?",
       options: [
         {
           id: "a",
-          text: "Thoải mái dẫn dắt, điều phối ý kiến và tóm tắt kết luận",
+          text: "Dẫn dắt, điều phối ý kiến, tóm tắt kết luận và đưa ra next step rõ ràng",
           isCorrect: true,
           percentage: 63,
         },
         {
           id: "b",
-          text: "Ngại làm chủ buổi, thích để PM/UX chủ trì",
+          text: "Ngại làm chủ buổi, để PM/UX dẫn",
           isCorrect: false,
           percentage: 23,
         },
         {
           id: "c",
-          text: "Thích chỉ lắng nghe, không can thiệp",
+          text: "Chỉ lắng nghe, không can thiệp",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Facilitation là kỹ năng quan trọng: BA cần điều phối stakeholder khác nhau, giữ mục tiêu buổi rõ ràng và đưa ra kết luận có thể hành động.",
+        "Facilitation giúp BA điều phối stakeholder, giữ mục tiêu buổi rõ ràng, tạo kết luận có thể hành động.",
     },
     {
       id: 15,
-      question: "Bạn xử lý ưu tiên khi tài nguyên hạn chế bằng cách nào?",
+      question: "Khi tài nguyên hạn chế, bạn ưu tiên yêu cầu nào trước?",
       options: [
         {
           id: "a",
-          text: "Thảo luận với stakeholder, dùng framework (MoSCoW, RICE) và quyết định dựa trên giá trị & rủi ro",
+          text: "Thảo luận với stakeholder, dùng framework MoSCoW/RICE, quyết định dựa trên giá trị & rủi ro",
           isCorrect: true,
           percentage: 66,
         },
         {
           id: "b",
-          text: "Ưu tiên theo yêu cầu người dễ tiếp cận nhất",
+          text: "Ưu tiên theo người dễ tiếp cận nhất",
           isCorrect: false,
           percentage: 18,
         },
@@ -2381,16 +2470,15 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "BA tốt dùng dữ liệu/tiêu chí để ưu tiên: giá trị kinh doanh, chi phí triển khai, rủi ro, dependencies—thay vì cảm tính hay thứ tự ngẫu nhiên.",
+        "BA tốt dùng tiêu chí giá trị, chi phí, rủi ro, dependencies để ưu tiên thay vì cảm tính.",
     },
     {
       id: 16,
-      question:
-        "Bạn có tự tin làm việc với dữ liệu (Excel/SQL/basic analytics) để kiểm chứng giả thuyết không?",
+      question: "Khi cần kiểm chứng giả thuyết, bạn dùng dữ liệu như thế nào?",
       options: [
         {
           id: "a",
-          text: "Có, mình thường dùng Excel và SQL cơ bản để phân tích",
+          text: "Dùng Excel/SQL cơ bản để phân tích, đo lường impact, test giả thuyết",
           isCorrect: true,
           percentage: 60,
         },
@@ -2402,28 +2490,27 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Không, mình giao việc phân tích cho data team",
+          text: "Giao phân tích cho data team",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Kỹ năng đọc dữ liệu giúp BA kiểm chứng giả thuyết, đo lường impact, và đặt KPI thực tế; không cần là data scientist nhưng hiểu SQL/Excel là lợi thế lớn.",
+        "Đọc dữ liệu giúp BA kiểm chứng giả thuyết, đo lường impact, và đặt KPI thực tế.",
     },
     {
       id: 17,
-      question:
-        "Bạn có thói quen viết acceptance criteria rõ ràng cho mỗi user story?",
+      question: "Bạn viết acceptance criteria cho user story thế nào?",
       options: [
         {
           id: "a",
-          text: "Có, mình luôn viết GIVEN-WHEN-THEN hoặc checklist rõ ràng",
+          text: "Luôn viết GIVEN-WHEN-THEN hoặc checklist rõ ràng để dev/test hiểu chuẩn đầu ra",
           isCorrect: true,
           percentage: 65,
         },
         {
           id: "b",
-          text: "Không, mình nghĩ miệng là đủ",
+          text: "Không, nói miệng là đủ",
           isCorrect: false,
           percentage: 20,
         },
@@ -2435,69 +2522,68 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "Acceptance criteria rõ ràng giúp dev/test hiểu chuẩn đầu ra, giảm tranh luận và tăng khả năng pass user acceptance ngay lần đầu.",
+        "Acceptance criteria rõ ràng giảm tranh luận, tăng khả năng pass UAT ngay lần đầu.",
     },
     {
       id: 18,
-      question: "Khi có xung đột giữa stakeholder về scope, bạn thường làm gì?",
+      question: "Khi stakeholder mâu thuẫn về scope, bạn xử lý ra sao?",
       options: [
         {
           id: "a",
-          text: "Thu thập quan điểm, phân tích tác động (chi phí/lợi ích), đề xuất trade-off hoặc escalation nếu cần",
+          text: "Thu thập quan điểm, phân tích chi phí/lợi ích, đề xuất trade-off hoặc escalate nếu cần",
           isCorrect: true,
           percentage: 67,
         },
         {
           id: "b",
-          text: "Theo ý kiến người có tiếng nói lớn nhất",
+          text: "Theo ý người có tiếng nói lớn nhất",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Bỏ qua xung đột và tiếp tục công việc",
+          text: "Bỏ qua xung đột, tiếp tục công việc",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "BA cần làm trung gian: minh bạch các tác động, dùng dữ liệu/tiêu chí để đưa ra đề xuất hoặc đưa vấn đề lên sponsor khi không thể cân bằng nội bộ.",
+        "BA cần minh bạch các tác động, dùng dữ liệu/tiêu chí đưa ra đề xuất hoặc escalate khi không thể cân bằng.",
     },
     {
       id: 19,
-      question:
-        "Bạn quản lý time và task trong các vòng lặp (iteration) như thế nào?",
+      question: "Bạn quản lý time và task trong vòng lặp iteration thế nào?",
       options: [
         {
           id: "a",
-          text: "Chia nhỏ công việc, đặt milestone (wireframe → spec → review → handoff) và cập nhật thường xuyên",
+          text: "Chia nhỏ công việc, đặt milestone (wireframe → spec → review → handoff), cập nhật thường xuyên",
           isCorrect: true,
           percentage: 64,
         },
         {
           id: "b",
-          text: "Làm tất cả spec trước rồi mới review",
+          text: "Làm tất cả spec trước rồi review",
           isCorrect: false,
           percentage: 20,
         },
         {
           id: "c",
-          text: "Để từng task phát sinh rồi giải quyết",
+          text: "Để task phát sinh rồi giải quyết",
           isCorrect: false,
           percentage: 16,
         },
       ],
       explanation:
-        "Phân chia giai đoạn giúp kiểm soát scope, giảm rework; cập nhật liên tục với team giúp phát hiện sớm sai lệch và điều chỉnh kịp thời.",
+        "Phân chia giai đoạn giúp kiểm soát scope, giảm rework, phát hiện sai lệch sớm và điều chỉnh kịp thời.",
     },
     {
       id: 20,
       question:
-        "Bạn có động lực học hỏi liên tục (công cụ BA, domain knowledge, phân tích dữ liệu)?",
+        "Bạn làm gì để học hỏi liên tục công cụ BA, domain knowledge và phân tích dữ liệu?",
       options: [
         {
           id: "a",
-          text: "Có, mình thường cập nhật kỹ năng và tìm hiểu domain sâu",
+          text: "Thường xuyên cập nhật kỹ năng, tìm hiểu domain sâu, áp dụng vào công việc",
           isCorrect: true,
           percentage: 68,
         },
@@ -2515,7 +2601,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
       ],
       explanation:
-        "BA hiệu quả liên tục cập nhật công cụ (Jira, Confluence, Figma), kỹ thuật (process mapping, SQL) và domain knowledge để đưa ra giải pháp phù hợp và có độ tin cậy cao.",
+        "Cập nhật liên tục giúp BA đưa ra giải pháp phù hợp, đáng tin cậy và nâng cao hiệu quả công việc.",
     },
   ],
 
@@ -2790,227 +2876,226 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
     {
       id: 11,
       question:
-        "Bạn có cảm thấy mình dễ đặt mình vào vị trí người dùng (empathy)?",
+        "Khi gặp một yêu cầu thiết kế mới, bạn sẽ làm gì trước tiên để hiểu người dùng?",
       options: [
         {
           id: "a",
-          text: "Có — mình cố gắng hiểu mục tiêu, bối cảnh và cảm xúc của người dùng trước khi thiết kế",
+          text: "Phỏng vấn hoặc khảo sát người dùng, tìm hiểu mục tiêu và bối cảnh",
           isCorrect: true,
           percentage: 64,
         },
         {
           id: "b",
-          text: "Một phần — thường dựa vào ý kiến stakeholders nhiều hơn",
+          text: "Hỏi ý kiến stakeholders và dựa vào đó",
           isCorrect: false,
           percentage: 22,
         },
         {
           id: "c",
-          text: "Hiếm khi — mình chủ yếu theo ý mình",
+          text: "Bắt đầu vẽ theo cảm nhận của mình",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Empathy là kỹ năng nền tảng của product designer: hiểu người dùng giúp đặt câu hỏi đúng, tạo giả thuyết có giá trị và thiết kế giải pháp thực sự hữu ích.",
+        "Hiểu người dùng qua research giúp định hướng thiết kế đúng, tạo giả thuyết có giá trị và giảm rủi ro thiết kế sai mục tiêu.",
     },
     {
       id: 12,
       question:
-        "Bạn có thoải mái làm việc với dữ liệu (analytics, funnel, retention metrics)?",
+        "Nếu dữ liệu user cho thấy một feature bạn thiết kế ít được dùng, bạn sẽ xử lý thế nào?",
       options: [
         {
           id: "a",
-          text: "Có — mình dùng dữ liệu để validate giả thuyết và đo impact",
+          text: "Phân tích dữ liệu, thảo luận với PM/developer và đề xuất cải tiến",
           isCorrect: true,
           percentage: 62,
         },
         {
           id: "b",
-          text: "Chỉ dùng dữ liệu khi project manager hoặc data team cung cấp",
+          text: "Bỏ qua vì dữ liệu do người khác cung cấp",
           isCorrect: false,
           percentage: 26,
         },
         {
           id: "c",
-          text: "Không — mình làm theo cảm tính và trực giác",
+          text: "Tin vào cảm giác của mình và không thay đổi",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Data literacy giúp designer ưu tiên các thay đổi có ảnh hưởng, đánh giá kết quả A/B test và chứng minh impact của thiết kế với stakeholder.",
+        "Sử dụng data giúp ưu tiên cải tiến có tác động thực sự, chứng minh quyết định với stakeholder.",
     },
     {
       id: 13,
       question:
-        "Bạn có sẵn sàng prototype nhanh (paper/low-fi) để validate ý tưởng không?",
+        "Bạn có hai lựa chọn: prototype nhanh low-fi hay làm high-fi hoàn chỉnh. Bạn chọn thế nào?",
       options: [
         {
           id: "a",
-          text: "Có — mình ưu tiên học nhanh qua prototype trước khi làm chi tiết",
+          text: "Prototype nhanh low-fi để kiểm chứng ý tưởng trước khi đầu tư nhiều",
           isCorrect: true,
           percentage: 66,
         },
         {
           id: "b",
-          text: "Thích làm ngay high-fi cho vừa mắt",
+          text: "Làm ngay high-fi để vừa mắt team và stakeholders",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Không — mình cần time chuyên sâu để suy nghĩ",
+          text: "Tốn nhiều thời gian suy nghĩ trước khi làm bất cứ prototype nào",
           isCorrect: false,
           percentage: 16,
         },
       ],
       explanation:
-        "Prototype nhanh giúp kiểm chứng giả thuyết sớm, tiết kiệm thời gian và tiền bạc bằng cách loại bỏ ý tưởng không phù hợp trước khi đầu tư cao.",
+        "Prototype nhanh giúp kiểm chứng giả thuyết sớm, tiết kiệm thời gian và chi phí trước khi đầu tư sâu.",
     },
     {
       id: 14,
       question:
-        "Bạn phản ứng thế nào khi nhận feedback trái chiều từ stakeholders?",
+        "Nếu nhận feedback trái chiều từ các stakeholder, bạn sẽ làm gì?",
       options: [
         {
           id: "a",
-          text: "Lắng nghe, tổng hợp, hỏi rõ mục tiêu/tiêu chí và đề xuất trade-offs dựa trên dữ liệu",
+          text: "Lắng nghe, tổng hợp, hỏi rõ tiêu chí và đề xuất trade-off dựa trên dữ liệu",
           isCorrect: true,
           percentage: 67,
         },
         {
           id: "b",
-          text: "Cố bảo vệ thiết kế ban đầu",
+          text: "Bảo vệ thiết kế ban đầu vì bạn tin nó đúng",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Bỏ qua feedback để tiếp tục ý mình",
+          text: "Bỏ qua và tiếp tục theo ý mình",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Kỹ năng xử lý feedback hiệu quả là tách biệt cảm xúc cá nhân khỏi dữ liệu, tập trung vào mục tiêu sản phẩm và đưa ra giải pháp cân bằng giữa các yêu cầu.",
+        "Tách cảm xúc khỏi dữ liệu, tập trung vào mục tiêu sản phẩm và đưa ra giải pháp cân bằng.",
     },
     {
       id: 15,
-      question:
-        "Bạn có thói quen viết spec/handoff rõ ràng khi chuyển giao cho developer không?",
+      question: "Khi handoff cho developer, bạn sẽ làm gì để tránh sai lệch?",
       options: [
         {
           id: "a",
-          text: "Có — mình cung cấp spacing, token, variant, states và assets để giảm sai khác",
+          text: "Viết spec rõ ràng, cung cấp spacing, token, variant, states và assets",
           isCorrect: true,
           percentage: 70,
         },
         {
           id: "b",
-          text: "Gửi file Figma và nói chuyện miệng là đủ",
+          text: "Chỉ gửi file Figma và trao đổi miệng",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Để developer tự hiểu khi build",
+          text: "Để developer tự suy ra từ màn hình",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Handoff chất lượng (spec rõ ràng, component variants, accessibility notes) giảm rework, tăng tốc developer và đảm bảo sản phẩm triển khai trùng với kỳ vọng thiết kế.",
+        "Handoff chất lượng giảm rework, tăng tốc dev và đảm bảo sản phẩm đúng thiết kế.",
     },
     {
       id: 16,
       question:
-        "Bạn có ưu tiên xây dựng và duy trì design system khi sản phẩm scale không?",
+        "Bạn có nên xây dựng design system cho project nhỏ và project lớn không?",
       options: [
         {
           id: "a",
-          text: "Có — mình thấy design system tiết kiệm thời gian dài hạn và giữ nhất quán",
+          text: "Có — scale lớn cần design system, project nhỏ vẫn nên có tư duy component",
           isCorrect: true,
           percentage: 65,
         },
         {
           id: "b",
-          text: "Không quá cần thiết cho sản phẩm nhỏ",
+          text: "Không cần thiết cho project nhỏ",
           isCorrect: false,
           percentage: 20,
         },
         {
           id: "c",
-          text: "Không thích vì cảm thấy hạn chế sáng tạo",
+          text: "Tránh vì giới hạn sáng tạo",
           isCorrect: false,
           percentage: 15,
         },
       ],
       explanation:
-        "Design system là đầu tư: với scale, nó giúp giữ consistency, giảm technical debt và chuẩn hóa trải nghiệm; với project rất nhỏ có thể chưa cần nhưng vẫn nên có tư duy component.",
+        "Design system giúp consistency, giảm technical debt; tư duy component vẫn quan trọng với mọi project.",
     },
     {
       id: 17,
       question:
-        "Bạn có sẵn sàng cân nhắc trade-offs giữa UX và business/tech constraints?",
+        "Nếu UX tốt nhưng tốn chi phí/giới hạn kỹ thuật, bạn sẽ làm gì?",
       options: [
         {
           id: "a",
-          text: "Có — mình cân nhắc giá trị người dùng, chi phí và kỹ thuật để đề xuất giải pháp khả thi",
+          text: "Cân nhắc trade-off giữa giá trị người dùng, chi phí và feasibility",
           isCorrect: true,
           percentage: 68,
         },
         {
           id: "b",
-          text: "Luôn ưu tiên UX dù tốn kém",
+          text: "Luôn ưu tiên UX dù vượt budget/tech",
           isCorrect: false,
           percentage: 18,
         },
         {
           id: "c",
-          text: "Theo ý developer nếu họ nói khó",
+          text: "Theo developer nếu họ nói khó",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Product design thực tế cần trade-off: designer phối hợp với Product Manager và developer để tìm giải pháp tối ưu giữa trải nghiệm, thời gian và chi phí phát triển.",
+        "Trade-off giúp cân bằng UX, cost và kỹ thuật; phối hợp với PM/dev để tìm giải pháp khả thi.",
     },
     {
       id: 18,
       question:
-        "Bạn có thường xuyên test sản phẩm với người dùng thật (qualitative) không?",
+        "Bạn test sản phẩm với người dùng thật định kỳ hay chỉ khi dự án lớn?",
       options: [
         {
           id: "a",
-          text: "Có — test định kỳ giúp điều chỉnh hướng thiết kế dựa trên bằng chứng",
+          text: "Test định kỳ để điều chỉnh dựa trên evidence",
           isCorrect: true,
           percentage: 63,
         },
         {
           id: "b",
-          text: "Hiếm khi — chỉ test khi có dự án lớn",
+          text: "Chỉ test khi dự án lớn",
           isCorrect: false,
           percentage: 23,
         },
         {
           id: "c",
-          text: "Không — mình tin vào cảm nhận và kinh nghiệm",
+          text: "Tin vào cảm nhận cá nhân",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Usability testing định kỳ (moderated/unmoderated) giúp phát hiện vấn đề thực tế, ưu tiên fix và tăng khả năng sản phẩm phù hợp với nhu cầu người dùng.",
+        "Usability test định kỳ giúp phát hiện vấn đề thực tế, ưu tiên fix, tăng khả năng sản phẩm phù hợp người dùng.",
     },
     {
       id: 19,
       question:
-        "Bạn có thói quen học hỏi công cụ mới (Figma plugins, prototyping tools, analytics) không?",
+        "Bạn có cập nhật công cụ mới (plugin, analytics, prototyping) thường xuyên không?",
       options: [
         {
           id: "a",
-          text: "Có — mình liên tục cập nhật để làm việc hiệu quả hơn",
+          text: "Có — để nâng cao hiệu quả và mở rộng workflow",
           isCorrect: true,
           percentage: 66,
         },
@@ -3022,21 +3107,21 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Không quan tâm đến công cụ",
+          text: "Không quan tâm",
           isCorrect: false,
           percentage: 14,
         },
       ],
       explanation:
-        "Liên tục học giúp designer nâng cao tốc độ, mở rộng phương pháp và tích hợp tốt hơn với workflow của team (ví dụ auto-layout, tokens, plugin automation).",
+        "Liên tục học công cụ giúp tăng tốc độ, mở rộng phương pháp và tích hợp workflow tốt hơn.",
     },
     {
       id: 20,
-      question: "Điều gì khiến bạn phù hợp với vai trò Product Designer nhất?",
+      question: "Điều gì giúp bạn phù hợp nhất với vai trò Product Designer?",
       options: [
         {
           id: "a",
-          text: "Sự kết hợp giữa tư duy sản phẩm, empathy với người dùng và kỹ năng thiết kế/triển khai",
+          text: "Kết hợp tư duy sản phẩm, empathy với người dùng và kỹ năng triển khai",
           isCorrect: true,
           percentage: 70,
         },
@@ -3048,13 +3133,13 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
         },
         {
           id: "c",
-          text: "Khả năng viết code thành thạo",
+          text: "Biết viết code thành thạo",
           isCorrect: false,
           percentage: 12,
         },
       ],
       explanation:
-        "Product Designer hiệu quả cần product sense (hiểu business & metrics), empathy (hiểu người dùng) và kỹ năng thực thi (research, prototyping, handoff). Visual đẹp hay code biết thêm là lợi thế nhưng không thay thế tư duy sản phẩm.",
+        "Product Designer giỏi cần product sense, empathy và kỹ năng thực thi; visual đẹp hay code chỉ là lợi thế.",
     },
   ],
 };

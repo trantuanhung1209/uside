@@ -158,7 +158,7 @@ export default function Section2() {
                 </div>
 
                 {/* Flip Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mb-10">
+                <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-6 mb-10">
                   {/* Flip Card 1 - Code */}
                   <div className="flip-card group relative h-64 [perspective:1000px]">
                     <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">

@@ -265,7 +265,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                         {/* Ảnh tin tức */}
                         {news.image && (
                           <div
-                            className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0"
+                            className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center"
                             style={{
                               boxShadow:
                                 "inset -2px -2px 4px rgba(255,255,255,0.8), inset 2px 2px 4px rgba(0,0,0,0.1)",
@@ -274,7 +274,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                             <img
                               src={news.image}
                               alt={news.title}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover object-center"
                             />
                           </div>
                         )}
@@ -364,7 +364,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                         {/* Ảnh tin tức */}
                         {news.image && (
                           <div
-                            className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0"
+                            className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center"
                             style={{
                               boxShadow:
                                 "inset -2px -2px 4px rgba(255,255,255,0.8), inset 2px 2px 4px rgba(0,0,0,0.1)",
@@ -373,7 +373,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                             <img
                               src={news.image}
                               alt={news.title}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover object-center"
                             />
                           </div>
                         )}
@@ -463,7 +463,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                         {/* Ảnh tin tức */}
                         {news.image && (
                           <div
-                            className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0"
+                            className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center"
                             style={{
                               boxShadow:
                                 "inset -2px -2px 4px rgba(255,255,255,0.8), inset 2px 2px 4px rgba(0,0,0,0.1)",
@@ -472,7 +472,7 @@ const FloatingNotificationBell: React.FC<FloatingNotificationBellProps> = ({
                             <img
                               src={news.image}
                               alt={news.title}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover object-center"
                             />
                           </div>
                         )}

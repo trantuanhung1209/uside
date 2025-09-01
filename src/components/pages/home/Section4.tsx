@@ -490,14 +490,14 @@ const Section4 = () => {
                           <div className="flex items-start gap-3">
                             {/* Thumbnail */}
                             <div className="flex-shrink-0">
-                              <div className="w-12 h-12 rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-300"
+                              <div className="w-12 h-12 rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-300 flex items-center justify-center"
                                    style={{
                                      boxShadow: "-2px -2px 4px #FAFBFF, 2px 2px 4px rgba(22, 17, 29, 0.08)"
                                    }}>
                                 <img 
                                   src={item.image} 
                                   alt={item.title}
-                                  className="w-full h-full object-cover"
+                                  className="w-full h-full object-cover object-center"
                                 />
                               </div>
                             </div>

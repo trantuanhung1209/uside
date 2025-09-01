@@ -200,11 +200,11 @@ const NewsDetailPage: React.FC = () => {
                     "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
                 }}
               >
-                <div className="xl:h-[500px] overflow-hidden rounded-xl">
+                <div className="xl:h-[500px] overflow-hidden rounded-xl flex items-center justify-center">
                   <img
                     src={newsItem.image}
                     alt={newsItem.title}
-                    className="w-full h-full object-contain lg:object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain lg:object-cover object-center"
                   />
                 </div>
               </div>
