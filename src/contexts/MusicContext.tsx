@@ -29,7 +29,17 @@ export const MusicProvider: React.FC<MusicProviderProps> = ({ children }) => {
   const musicTracks = [
     "/music_uside/music1.mp3",
     "/music_uside/music2.mp3", 
-    "/music_uside/music3.mp3"
+    "/music_uside/music3.mp3",
+    "/music_uside/music4.mp3",
+    "/music_uside/music5.mp3",
+    "/music_uside/music6.mp3",
+    "/music_uside/music7.mp3",
+    "/music_uside/music8.mp3",
+    "/music_uside/music9.mp3",
+    "/music_uside/music10.mp3",
+    "/music_uside/music11.mp3",
+    "/music_uside/music12.mp3",
+    "/music_uside/music13.mp3",
   ];
 
   // Khởi tạo audio element
