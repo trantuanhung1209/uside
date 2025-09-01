@@ -13,6 +13,8 @@ const NewsDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
+  const [isImageZoomOpen, setIsImageZoomOpen] = useState(false);
+  const [zoomImageSrc, setZoomImageSrc] = useState("");
   useScrollToTop();
   const { news: newsData, loading, error } = useRealtimeNews();
 
@@ -36,6 +38,21 @@ const NewsDetailPage: React.FC = () => {
     setTimeout(() => {
       setIsSharePopupOpen(true);
     }, 300); // Delay nhỏ để scroll hoàn thành trước
+  };
+
+  // Function để xử lý zoom ảnh
+  const handleImageClick = (imageSrc: string) => {
+    // Scroll lên đầu trang trước khi zoom
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    // Mở zoom modal sau khi scroll (delay nhỏ để smooth)
+    setTimeout(() => {
+      setZoomImageSrc(imageSrc);
+      setIsImageZoomOpen(true);
+    }, 200);
   };
 
   // Loading state
@@ -200,12 +217,47 @@ const NewsDetailPage: React.FC = () => {
                     "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
                 }}
               >
-                <div className="xl:h-[500px] overflow-hidden rounded-xl flex items-center justify-center">
+                <div className="relative overflow-hidden rounded-xl">
                   <img
                     src={newsItem.image}
                     alt={newsItem.title}
-                    className="w-full h-full object-contain lg:object-cover object-center"
+                    className="w-full h-auto max-h-[600px] object-contain bg-gray-50 cursor-pointer hover:scale-105 transition-transform duration-300"
+                    style={{
+                      minHeight: "200px",
+                      maxWidth: "100%",
+                    }}
+                    onClick={() => handleImageClick(newsItem.image!)}
+                    onLoad={(e) => {
+                      const img = e.target as HTMLImageElement;
+                      const aspectRatio = img.naturalWidth / img.naturalHeight;
+                      
+                      // Nếu ảnh dọc (portrait) - như ảnh chụp từ điện thoại
+                      if (aspectRatio < 1) {
+                        img.style.maxHeight = "500px";
+                        img.style.width = "auto";
+                        img.style.margin = "0 auto";
+                        img.style.display = "block";
+                      }
+                      // Nếu ảnh ngang (landscape) - như banner
+                      else if (aspectRatio > 1.5) {
+                        img.style.width = "100%";
+                        img.style.height = "auto";
+                        img.style.maxHeight = "400px";
+                        img.style.objectFit = "cover";
+                      }
+                      // Ảnh vuông hoặc gần vuông
+                      else {
+                        img.style.maxHeight = "450px";
+                        img.style.width = "auto";
+                        img.style.margin = "0 auto";
+                        img.style.display = "block";
+                      }
+                    }}
                   />
+                  {/* Zoom indicator */}
+                  <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    Click để phóng to
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,7 +277,7 @@ const NewsDetailPage: React.FC = () => {
                   // Custom styling cho các elements - loại bỏ bg riêng biệt
                   h1: ({...props}) => (
                     <h1 
-                      className="text-3xl font-bold text-text-primary mb-6 mt-8 first:mt-0" 
+                      className="text-2xl xl:text-3xl font-bold text-text-primary mb-6 mt-8 first:mt-0" 
                       {...props} 
                     />
                   ),
@@ -302,10 +354,11 @@ const NewsDetailPage: React.FC = () => {
                   img: ({...props}) => (
                     <div className="my-8 text-center">
                       <img 
-                        className="rounded-lg w-full h-auto object-cover max-h-96 mx-auto"
+                        className="rounded-lg w-full h-auto object-cover max-h-96 mx-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                         style={{
                           boxShadow: "-8px -8px 16px #FAFBFF, 8px 8px 16px rgba(22, 17, 29, 0.1)",
                         }}
+                        onClick={() => handleImageClick(props.src || "")}
                         {...props} 
                       />
                     </div>
@@ -364,6 +417,54 @@ const NewsDetailPage: React.FC = () => {
           </section>
         </div>
       </main>
+
+      {/* Image Zoom Modal */}
+      {isImageZoomOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ height: '100vh', width: '100vw', background: 'rgba(0, 0, 0, 0.95)' }}
+          onClick={() => setIsImageZoomOpen(false)}
+        >
+          <div className="relative w-full h-full flex items-center justify-center p-4">
+            <img
+              src={zoomImageSrc}
+              alt="Zoomed image"
+              className="max-w-full max-h-full object-contain"
+              style={{ 
+                maxWidth: '100%', 
+                maxHeight: '100%',
+                width: 'auto',
+                height: 'auto'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            {/* Close button */}
+            <button
+              onClick={() => setIsImageZoomOpen(false)}
+              className="absolute top-4 right-4 text-white bg-black bg-opacity-70 hover:bg-opacity-90 rounded-full p-3 transition-all duration-200 z-10"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            {/* Instructions */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-70 px-4 py-2 rounded-lg text-sm z-10">
+              Click để đóng
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Share Popup */}
       <SharePopup
