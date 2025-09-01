@@ -289,7 +289,7 @@ const Section4 = () => {
                     <div
                       className="h-80 sm:h-96 md:h-[450px] w-full overflow-hidden rounded-3xl 
                                relative cursor-pointer transition-all duration-700 ease-out
-                               group-hover:scale-105 group-hover:shadow-2xl"
+                               group-hover:scale-105 group-hover:shadow-2xl flex items-center justify-center"
                       onClick={() => {
                         const currentNews = filteredNews[safeActiveSlide];
                         if (currentNews) {
@@ -305,7 +305,7 @@ const Section4 = () => {
                           <img
                             src={filteredNews[safeActiveSlide].image}
                             alt={filteredNews[safeActiveSlide].title}
-                            className="w-full h-full object-cover transition-all duration-700 ease-out
+                            className="w-full h-full object-cover object-center transition-all duration-700 ease-out
                                      group-hover:scale-110"
                           />
                           
