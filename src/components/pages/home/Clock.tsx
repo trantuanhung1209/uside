@@ -46,7 +46,7 @@ const Clock = () => {
           </div>
           
           {/* Date Display */}
-          <div className="digital-date w-30">
+          <div className="digital-date w-31">
             {formattedDate}
           </div> 
         </div>
