@@ -172,7 +172,7 @@ const DirectionDetailPage: React.FC = () => {
       />
 
       <section
-        className="py-16 sm:py-20 lg:py-24 min-h-screen"
+        className="py-12 sm:py-20 lg:py-24 min-h-screen"
         style={{
           background: "var(--color-background)",
         }}
@@ -548,36 +548,55 @@ const DirectionDetailPage: React.FC = () => {
                           }
                         }}
                       >
-                        <div className="flex items-center gap-3">
-                          {showResult && (
-                            <div
-                              className={`
-                            w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold
-                            ${
-                              option.isCorrect
-                                ? "bg-green-400 text-white"
-                                : selectedOption === option.id
-                                ? "bg-red-400 text-white"
-                                : "bg-gray-300 text-gray-600"
-                            }
-                          `}
+                        <div className="relative">
+                          {/* Tag ở góc trên bên phải */}
+                          {option.tag && (
+                            <div 
+                              className="absolute -top-2 -right-2 p-2 rounded-full flex items-center justify-center text-xs font-bold z-10"
+                              style={{
+                                background: "#e63946",
+                                color: "white",
+                                boxShadow: `
+                                  2px 2px 4px var(--color-shadow),
+                                  -2px -2px 4px #FAFBFF
+                                `
+                              }}
                             >
-                              {option.isCorrect
-                                ? "✓"
-                                : selectedOption === option.id
-                                ? "✗"
-                                : "○"}
+                              {option.tag}
                             </div>
                           )}
-                          <span className="flex-1">{option.text}</span>
-                          {showResult && (
-                            <span
-                              className="text-sm font-medium"
-                              style={{ color: "var(--color-accent)" }}
-                            >
-                              {option.percentage}%
-                            </span>
-                          )}
+                          
+                          <div className="flex items-center gap-3">
+                            {showResult && (
+                              <div
+                                className={`
+                              w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold
+                              ${
+                                option.isCorrect
+                                  ? "bg-green-400 text-white"
+                                  : selectedOption === option.id
+                                  ? "bg-red-400 text-white"
+                                  : "bg-gray-300 text-gray-600"
+                              }
+                            `}
+                              >
+                                {option.isCorrect
+                                  ? "✓"
+                                  : selectedOption === option.id
+                                  ? "✗"
+                                  : "○"}
+                              </div>
+                            )}
+                            <span className="flex-1">{option.text}</span>
+                            {showResult && (
+                              <span
+                                className="text-sm font-medium"
+                                style={{ color: "var(--color-accent)" }}
+                              >
+                                {option.percentage}%
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </button>
                     ))}

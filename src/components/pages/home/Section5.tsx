@@ -11,30 +11,31 @@ interface FAQItem {
 const faqData: FAQItem[] = [
   {
     id: 1,
-    question: "USide là gì và phù hợp với ai?",
-    answer: "USide là nền tảng hướng nghiệp và phát triển kỹ năng dành cho sinh viên IT. Chúng tôi cung cấp định hướng nghề nghiệp, khóa học thực tế và cơ hội kết nối với doanh nghiệp. USide phù hợp với sinh viên IT, người mới tốt nghiệp và những ai muốn chuyển đổi sang lĩnh vực công nghệ."
+    question: "USide là gì và dành cho ai?",
+    answer: "USide là hệ thống tiện ích hỗ trợ sinh viên Trường Đại học Công nghiệp TP.HCM (IUH). Nền tảng giúp sinh viên dễ dàng tra cứu thông tin học tập, lịch học, điểm số và sử dụng các công cụ phục vụ việc học tập."
   },
   {
     id: 2,
-    question: "Làm thế nào để đăng ký tham gia chương trình?",
-    answer: "Bạn có thể đăng ký tham gia bằng cách truy cập website của chúng tôi và điền form đăng ký. Sau đó, đội ngũ tư vấn sẽ liên hệ để tư vấn lộ trình học tập phù hợp với nhu cầu và mục tiêu của bạn."
+    question: "Làm thế nào để tham gia USide?",
+    answer: "Bạn có thể tham gia bằng cách truy cập website của chúng tôi và điền form đăng ký. Sau đó, đội ngũ sẽ liên hệ để giới thiệu các hoạt động, sự kiện và nội dung hữu ích phù hợp với nhu cầu của bạn."
   },
   {
     id: 3,
-    question: "Chi phí tham gia chương trình như thế nào?",
-    answer: "Chúng tôi có nhiều gói chương trình với mức chi phí khác nhau, từ miễn phí đến trả phí tùy theo nội dung và thời gian học. Hãy liên hệ với chúng tôi để được tư vấn chi tiết về gói phù hợp nhất với ngân sách của bạn."
+    question: "USide cung cấp những tiện ích nào?",
+    answer: "USide hỗ trợ tra cứu lịch học, xem điểm, theo dõi tiến độ học tập, tải tài liệu và cập nhật các thông báo quan trọng từ nhà trường."
   },
   {
     id: 4,
-    question: "Có hỗ trợ tìm việc sau khi hoàn thành khóa học không?",
-    answer: "Có, chúng tôi có đội ngũ career advisor chuyên nghiệp và mạng lưới doanh nghiệp đối tác. Chúng tôi hỗ trợ từ việc xây dựng CV, chuẩn bị phỏng vấn đến kết nối với nhà tuyển dụng phù hợp."
+    question: "Sử dụng USide có mất phí không?",
+    answer: "Không. USide là hệ thống tiện ích miễn phí dành cho toàn bộ sinh viên IUH."
   },
   {
     id: 5,
-    question: "Thời gian học và lịch học như thế nào?",
-    answer: "Chương trình được thiết kế linh hoạt với cả lớp học offline và online. Thời gian học có thể điều chỉnh phù hợp với lịch trình của bạn. Thông thường, một khóa học kéo dài từ 3-6 tháng tùy theo chuyên ngành."
+    question: "Nếu gặp sự cố khi sử dụng USide thì làm thế nào?",
+    answer: "Trong trường hợp gặp sự cố, bạn có thể liên hệ đội ngũ hỗ trợ qua mục 'Liên hệ' trên hệ thống hoặc gửi phản hồi trực tiếp để được giải quyết kịp thời."
   }
 ];
+
 
 const Section5 = () => {
   const [openItems, setOpenItems] = useState<number[]>([]);

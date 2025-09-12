@@ -198,7 +198,8 @@ const BlockQuote = () => {
                 isAnimating ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              "<span className="typewriter-text">{displayedText}</span>
+              {/* mini game */}
+              "<span className={"typewriter-text" + displayedText}>Bạn có thể tìm kiếm mọi thứ tại đây</span>
               <span className={`typewriter-cursor ${isTyping ? 'animate-pulse' : 'opacity-0'}`}>|</span>"
             </blockquote>
           </div>

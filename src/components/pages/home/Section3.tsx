@@ -164,6 +164,8 @@ const Section3: React.FC<Section3Props> = ({
               style={{ color: "var(--color-text-secondary)" }}
             >
               {currentCareerIndex + 1} / {careerPaths.length}
+              {/* mini game */}
+              123412 
             </div>
 
             {/* Dot Indicators */}

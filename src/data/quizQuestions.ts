@@ -3,6 +3,7 @@ export interface QuizOption {
   text: string;
   isCorrect: boolean;
   percentage: number;
+  tag?: number;
 }
 
 export interface Question {
@@ -49,6 +50,7 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: false,
           percentage: 15,
         },
+        
       ],
       explanation:
         "Automation Testing giúp tiết kiệm chi phí và tăng độ tin cậy trong dài hạn.",
@@ -278,11 +280,19 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: true,
           percentage: 70,
         },
+        // {
+        //   id: "c",
+        //   text: "Gửi ngay cho developer không cần chi tiết",
+        //   isCorrect: false,
+        //   percentage: 20,
+        // },
         {
           id: "c",
-          text: "Gửi ngay cho developer không cần chi tiết",
+          text: "Design vibe",
           isCorrect: false,
-          percentage: 20,
+          percentage: 15,
+          // mini game
+          tag: 404,
         },
       ],
       explanation:
@@ -990,11 +1000,19 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: true,
           percentage: 76,
         },
+        // {
+        //   id: "b",
+        //   text: "Vì công nghệ không bao giờ thay đổi",
+        //   isCorrect: false,
+        //   percentage: 12,
+        // },
         {
           id: "b",
-          text: "Vì công nghệ không bao giờ thay đổi",
+          text: "Teamwork",
           isCorrect: false,
           percentage: 12,
+          // mini game
+          tag: 404,
         },
         {
           id: "c",
@@ -1802,11 +1820,19 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: false,
           percentage: 18,
         },
+        // {
+        //   id: "c",
+        //   text: "Atoms → Organisms → Molecules → Pages → Templates",
+        //   isCorrect: false,
+        //   percentage: 15,
+        // },
         {
           id: "c",
-          text: "Atoms → Organisms → Molecules → Pages → Templates",
+          text: "Innovation",
           isCorrect: false,
           percentage: 15,
+          // mini game
+          tag: 404,
         },
       ],
       explanation:
@@ -2938,11 +2964,19 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: true,
           percentage: 66,
         },
+        // {
+        //   id: "b",
+        //   text: "Làm ngay high-fi để vừa mắt team và stakeholders",
+        //   isCorrect: false,
+        //   percentage: 18,
+        // },
         {
           id: "b",
-          text: "Làm ngay high-fi để vừa mắt team và stakeholders",
+          text: "Code magic",
           isCorrect: false,
           percentage: 18,
+          // mini game 
+          tag: 404,
         },
         {
           id: "c",

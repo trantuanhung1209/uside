@@ -1,40 +1,70 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Title from "../../ui/Title";
 import { useMusic } from "../../../hooks";
+import FlipCards from "../about/FlipCards";
+import RobotFunFact from "../about/RobotFunFact";
+import { useState } from "react";
+import { TV_CHANNELS } from "../../../constants/tvChannels";
 
-const funFacts = [
-  "Team USide đã uống hơn 1000 cốc cà phê trong quá trình phát triển dự án này! ☕ Và có thể chúng mình đã debug tới 3AM nhiều hơn số lần ngủ đủ 8 tiếng... 😅",
-  "Trong lúc code, chúng mình đã nghe hơn 500 bài nhạc! 🎵 Playlist yêu thích: Lo-fi Hip Hop và nhạc Epic để boost energy! 🚀",
-  "USide Bot được tạo ra sau 42 lần thử nghiệm! 🤖 Lần đầu tiên nó chỉ biết nói 'Hello World', giờ thì... vẫn chỉ thế thôi! 😂",
-  "Tổng cộng đã có 1,337 dòng code bị xóa vì 'có thể làm tốt hơn'! 💻 Và 2,024 lần commit với message 'fix bug' 🐛",
-  "Mascot robot của USide được thiết kế dựa trên hình ảnh con robot trong mơ của team leader! 🌟 Plot twist: anh ấy mơ thấy robot làm bánh mì... 🥖",
-  "Chúng mình đã test website trên 15 thiết bị khác nhau! 📱💻 Bao gồm cả chiếc iPhone 6 cũ kỹ mà vẫn hoạt động tốt! 📲",
-  "Tính đến hiện tại, team đã ăn 27 tô phở, 43 ly trà sữa và 156 gói snack trong quá trình làm dự án! 🍜🧋 Fuel for coding! ⛽",
-  "Lần đầu tiên deploy thành công, cả team đã hét 'YESSSS!' to đến mức hàng xóm phải gõ cửa hỏi... 🎉 Worth it! 💯",
-];
+// const funFacts = [
+//   "Team USide đã uống hơn 1000 cốc cà phê trong quá trình phát triển dự án này! ☕ Và có thể chúng mình đã debug tới 3AM nhiều hơn số lần ngủ đủ 8 tiếng... 😅",
+//   "Trong lúc code, chúng mình đã nghe hơn 500 bài nhạc! 🎵 Playlist yêu thích: Lo-fi Hip Hop và nhạc Epic để boost energy! 🚀",
+//   "USide Bot được tạo ra sau 42 lần thử nghiệm! 🤖 Lần đầu tiên nó chỉ biết nói 'Hello World', giờ thì... vẫn chỉ thế thôi! 😂",
+//   "Tổng cộng đã có 1,337 dòng code bị xóa vì 'có thể làm tốt hơn'! 💻 Và 2,024 lần commit với message 'fix bug' 🐛",
+//   "Mascot robot của USide được thiết kế dựa trên hình ảnh con robot trong mơ của team leader! 🌟 Plot twist: anh ấy mơ thấy robot làm bánh mì... 🥖",
+//   "Chúng mình đã test website trên 15 thiết bị khác nhau! 📱💻 Bao gồm cả chiếc iPhone 6 cũ kỹ mà vẫn hoạt động tốt! 📲",
+//   "Tính đến hiện tại, team đã ăn 27 tô phở, 43 ly trà sữa và 156 gói snack trong quá trình làm dự án! 🍜🧋 Fuel for coding! ⛽",
+//   "Lần đầu tiên deploy thành công, cả team đã hét 'YESSSS!' to đến mức hàng xóm phải gõ cửa hỏi... 🎉 Worth it! 💯",
+// ];
 
 export default function Section2() {
-  const [currentFactIndex, setCurrentFactIndex] = useState(0);
-  const [factNumber, setFactNumber] = useState(1);
-  const { toggleMusic, isPlaying } = useMusic();
+  // mini game
+  // const [currentFactIndex, setCurrentFactIndex] = useState(0);
+  // const [factNumber, setFactNumber] = useState(1);
+  const { toggleMusic, isPlaying, playSpecificTrack } = useMusic();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newIndex = Math.floor(Math.random() * funFacts.length);
-      setCurrentFactIndex(newIndex);
-      setFactNumber((prev) => prev + 1);
-    }, 5000); // Random mỗi 5 giây
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const newIndex = Math.floor(Math.random() * funFacts.length);
+  //     setCurrentFactIndex(newIndex);
+  //     setFactNumber((prev) => prev + 1);
+  //   }, 5000); // Random mỗi 5 giây
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  const [sequenceCompleted, setSequenceCompleted] = useState(false);
+  
+    const handleSequenceComplete = (success: boolean) => {
+      if (success) {
+        setSequenceCompleted(true);
+        
+        // Bật TV Channel 14 (USide Succession) khi thành công
+        const channel14 = TV_CHANNELS.find(channel => channel.id === 14);
+        if (channel14) {
+          playSpecificTrack(channel14.music);
+        }
+        
+        // Reset sau khi thông báo đã hiển thị
+        setTimeout(() => {
+          setSequenceCompleted(false);
+        }, 90000);
+      }
+    };
   return (
     <>
       <section className="section-2 py-[20px] xl:py-[40px] border-b border-border">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <section className="inner-about">
-            <Title
+            {/* <Title
               title="Về Đội Ngũ USide"
               desc="Team sinh viên đam mê công nghệ, tạo ra những trải nghiệm số thú vị và sáng tạo!"
+              link="about"
+            /> */}
+            {/* mini game */}
+            <Title
+              title="Về Đội Ngũ USide"
+              desc="Lật thẻ theo đúng thứ tự mà bạn tìm được!"
               link="about"
             />
 
@@ -158,11 +188,9 @@ export default function Section2() {
                 </div>
 
                 {/* Flip Cards Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-6 mb-10">
-                  {/* Flip Card 1 - Code */}
+                {/* <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-6 mb-10">
                   <div className="flip-card group relative h-64 [perspective:1000px]">
                     <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                      {/* Front */}
                       <div className="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]">
                         <div className="flex flex-col items-center justify-center h-full p-6 text-center">
                           <div className="w-16 h-16 mb-4 rounded-2xl bg-background shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] flex items-center justify-center">
@@ -183,7 +211,6 @@ export default function Section2() {
                         </div>
                       </div>
 
-                      {/* Back */}
                       <div className="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl bg-gradient-to-br from-accent to-[#3aefc4] p-6 flex flex-col justify-center text-center text-white">
                         <h3 className="text-lg font-bold mb-3">
                           Frontend & Backend
@@ -196,7 +223,6 @@ export default function Section2() {
                     </div>
                   </div>
 
-                  {/* Flip Card 2 - Design */}
                   <div className="flip-card group relative h-64 [perspective:1000px]">
                     <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div className="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]">
@@ -242,7 +268,6 @@ export default function Section2() {
                     </div>
                   </div>
 
-                  {/* Flip Card 3 - Innovation */}
                   <div className="flip-card group relative h-64 [perspective:1000px]">
                     <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div className="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]">
@@ -279,7 +304,6 @@ export default function Section2() {
                     </div>
                   </div>
 
-                  {/* Flip Card 4 - Teamwork */}
                   <div className="flip-card group relative h-64 [perspective:1000px]">
                     <div className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div className="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl bg-background shadow-[-4px_-4px_8px_#FAFBFF,4px_4px_8px_rgba(22,17,29,0.25)]">
@@ -315,21 +339,17 @@ export default function Section2() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
+                <FlipCards onSequenceComplete={handleSequenceComplete} />
 
                 {/* Right Side - Robot Fun Fact Box & Bridge Connection */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                  {/* Robot Fun Fact Box */}
-                  <div className="lg:col-span-2">
+                  {/* <div className="lg:col-span-2">
                     <div className="group relative p-8 rounded-3xl bg-background overflow-hidden">
-                      {/* Neumorphic shadow */}
                       <div className="absolute inset-0 rounded-3xl bg-background shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)]"></div>
-
-                      {/* Background gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-[#3aefc4]/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                       <div className="relative z-10">
-                        {/* Robot Avatar */}
                         <div className="flex items-start space-x-4 mb-6">
                           <div className="w-16 h-16 rounded-2xl bg-background shadow-[-6px_-6px_12px_#FAFBFF,6px_6px_12px_rgba(22,17,29,0.15)] flex items-center justify-center group-hover:shadow-[-8px_-8px_16px_#FAFBFF,8px_8px_16px_rgba(22,17,29,0.2)] transition-all duration-300">
                             <svg
@@ -390,7 +410,6 @@ export default function Section2() {
                           </div>
                         </div>
 
-                        {/* Fun Fact Content */}
                         <div className="space-y-4">
                           <div className="p-4 rounded-2xl bg-background shadow-[inset_-4px_-4px_8px_#FAFBFF,inset_4px_4px_8px_rgba(22,17,29,0.1)] group-hover:shadow-[inset_-6px_-6px_12px_#FAFBFF,inset_6px_6px_12px_rgba(22,17,29,0.15)] transition-all duration-300">
                             <p className="text-text-primary font-medium mb-2">
@@ -405,7 +424,6 @@ export default function Section2() {
                           </div>
                         </div>
 
-                        {/* Floating elements */}
                         <div className="absolute top-4 right-4 w-2 h-2 bg-accent/40 rounded-full animate-bounce"></div>
                         <div
                           className="absolute bottom-6 right-8 w-1.5 h-1.5 bg-[#3aefc4]/40 rounded-full animate-pulse"
@@ -413,7 +431,8 @@ export default function Section2() {
                         ></div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
+                  <RobotFunFact sequenceCompleted={sequenceCompleted} />
 
                   {/* Music Toggle Button */}
                   <div
@@ -425,7 +444,7 @@ export default function Section2() {
                     <div className="relative group">
                       {/* Main music toggle circle with neumorphic design */}
                       <button
-                        className="w-32 h-32 rounded-full bg-background relative overflow-hidden focus:outline-none transition-transform duration-200 active:scale-95"
+                        className="w-24 h-24 xl:w-32 xl:h-32 rounded-full bg-background relative overflow-hidden focus:outline-none transition-transform duration-200 active:scale-95"
                         aria-label="Toggle Music"
                       >
                         {/* Neumorphic shadow layers */}

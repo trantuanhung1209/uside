@@ -66,11 +66,13 @@ const SearchInput = () => {
     ].slice(0, 10);
     setSearchHistory(newHistory);
     localStorage.setItem("searchHistory", JSON.stringify(newHistory));
+    {/* mini game */}
 
-    window.open(
-      `https://www.google.com/search?q=${encodeURIComponent(searchValue)}`,
-      "_blank"
-    );
+    // window.open(
+    //   `https://www.google.com/search?q=${encodeURIComponent(searchValue)}`,
+    //   "_blank"
+    // );
+    navigate(`/search?q=${searchValue}`);
     setShowPopup(false);
   };
 

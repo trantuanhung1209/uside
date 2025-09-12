@@ -98,6 +98,13 @@ export const TV_CHANNELS: TvChannel[] = [
     music: "/music_uside/music13.mp3",
     description: "Không gian bí ẩn, khiến bạn muốn khám phá nhiều hơn."
   },
+  {
+    id: 14,
+    name: "USide Succession",
+    video: "/images_uside/cloud_loadding.mp4",
+    music: "/music_uside/music14.mp3",
+    description: "Không gian kế thừa, nơi những giấc mơ tiếp nối nhau."
+  },
 ];
 
 

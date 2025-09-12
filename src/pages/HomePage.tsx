@@ -85,9 +85,15 @@ const HomePage: React.FC = () => {
       {/* section 3 - direction */}
       <section id="section-3" className="section-3 xl:py-[40px] xs:py-[20px]">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Title
+          {/* mini game */}
+          {/* <Title
             title="Các lĩnh vực hỗ trợ"
             desc="Chúng tôi cung cấp nhiều lĩnh vực hỗ trợ khác nhau để đáp ứng nhu cầu của bạn."
+            link="direction"
+          /> */}
+          <Title
+            title="Các lĩnh vực hỗ trợ"
+            desc=" Có vẻ mã code của đã bị lỗi, tìm kiếm cách sửa chữa tại đây."
             link="direction"
           />
 
