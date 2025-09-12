@@ -19,8 +19,9 @@ const Section3: React.FC<Section3Props> = ({
   
   const handlePrevious = useCallback(() => {
     const newIndex = currentCareerIndex === 0 ? careerPaths.length - 1 : currentCareerIndex - 1;
-    // Cập nhật thứ tự ẩn ý cho mini game
-    setHiddenSequenceIndex(prev => prev === 0 ? 3 : prev - 1);
+    // Cập nhật thứ tự ẩn ý cho mini game (6 cards → pattern 4)
+    const hiddenSequence = [0, 1, 2, 3, 0, 1]; // 6 cards map to 4-step pattern
+    setHiddenSequenceIndex(hiddenSequence[newIndex] || 0);
     
     if (onCareerIndexChange) {
       onCareerIndexChange(newIndex);
@@ -31,8 +32,9 @@ const Section3: React.FC<Section3Props> = ({
 
   const handleNext = useCallback(() => {
     const newIndex = currentCareerIndex === careerPaths.length - 1 ? 0 : currentCareerIndex + 1;
-    // Cập nhật thứ tự ẩn ý cho mini game
-    setHiddenSequenceIndex(prev => (prev + 1) % 4);
+    // Cập nhật thứ tự ẩn ý cho mini game (6 cards → pattern 4)
+    const hiddenSequence = [0, 1, 2, 3, 0, 1]; // 6 cards map to 4-step pattern
+    setHiddenSequenceIndex(hiddenSequence[newIndex] || 0);
     
     if (onCareerIndexChange) {
       onCareerIndexChange(newIndex);
@@ -42,8 +44,8 @@ const Section3: React.FC<Section3Props> = ({
   }, [currentCareerIndex, onCareerIndexChange]);
 
   const setCurrentCareerIndex = useCallback((index: number) => {
-    // Tính toán thứ tự ẩn ý dựa trên index được click
-    const hiddenSequence = [0, 1, 2, 3]; // Mapping từ career index sang hidden sequence
+    // Mapping 6 cards thành pattern 1/4 → 2/4 → 3/4 → 4/4 → 1/4 → 2/4
+    const hiddenSequence = [0, 1, 2, 3, 0, 1]; // 6 cards map to 4-step pattern
     setHiddenSequenceIndex(hiddenSequence[index] || 0);
     
     if (onCareerIndexChange) {

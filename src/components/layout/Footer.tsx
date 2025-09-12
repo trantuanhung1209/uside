@@ -226,12 +226,12 @@ const Footer = () => {
                   }}
                 >
                   <p className="text-sm text-text-secondary mb-2 text-center">
-                    Nhập đáp án mật thư ở đây:
+                    {isSuccess ? "✅ Nhập thành công!" : "Nhập đáp án mật thư ở đây"}
                   </p>
                   <div className="text-center">
                     {isSuccess ? (
                       <div className="text-green-500 font-bold animate-pulse">
-                        ✅ Nhập thành công!
+                        Đến H9 báo mật khẩu cho trưởng trạm.
                       </div>
                     ) : (
                       <div className="text-xl font-mono tracking-widest text-text-primary min-h-[28px]">
