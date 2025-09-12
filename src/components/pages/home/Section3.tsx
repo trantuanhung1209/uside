@@ -13,11 +13,15 @@ const Section3: React.FC<Section3Props> = ({
   onCareerIndexChange 
 }) => {
   const [internalCurrentCareerIndex, setInternalCurrentCareerIndex] = useState(0);
+  const [hiddenSequenceIndex, setHiddenSequenceIndex] = useState(0); // Thứ tự ẩn ý cho mini game
   const currentCareerIndex = externalCurrentCareerIndex ?? internalCurrentCareerIndex;
   const navigate = useNavigate();
   
   const handlePrevious = useCallback(() => {
     const newIndex = currentCareerIndex === 0 ? careerPaths.length - 1 : currentCareerIndex - 1;
+    // Cập nhật thứ tự ẩn ý cho mini game
+    setHiddenSequenceIndex(prev => prev === 0 ? 3 : prev - 1);
+    
     if (onCareerIndexChange) {
       onCareerIndexChange(newIndex);
     } else {
@@ -27,6 +31,9 @@ const Section3: React.FC<Section3Props> = ({
 
   const handleNext = useCallback(() => {
     const newIndex = currentCareerIndex === careerPaths.length - 1 ? 0 : currentCareerIndex + 1;
+    // Cập nhật thứ tự ẩn ý cho mini game
+    setHiddenSequenceIndex(prev => (prev + 1) % 4);
+    
     if (onCareerIndexChange) {
       onCareerIndexChange(newIndex);
     } else {
@@ -35,6 +42,10 @@ const Section3: React.FC<Section3Props> = ({
   }, [currentCareerIndex, onCareerIndexChange]);
 
   const setCurrentCareerIndex = useCallback((index: number) => {
+    // Tính toán thứ tự ẩn ý dựa trên index được click
+    const hiddenSequence = [0, 1, 2, 3]; // Mapping từ career index sang hidden sequence
+    setHiddenSequenceIndex(hiddenSequence[index] || 0);
+    
     if (onCareerIndexChange) {
       onCareerIndexChange(index);
     } else {
@@ -61,7 +72,7 @@ const Section3: React.FC<Section3Props> = ({
   const currentCareer = careerPaths[currentCareerIndex];
 
   return (
-    <div className="relative">
+    <div className="relative" id="section-3">
       <div
         className="mt-8 xl:mt-12 bg-background rounded-4xl lg:rounded-3xl p-3 md:p-6 mb-8 relative hidden 2xl:block"
         style={{
@@ -163,9 +174,8 @@ const Section3: React.FC<Section3Props> = ({
               className="text-xs sm:text-sm font-medium"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              {currentCareerIndex + 1} / {careerPaths.length}
+              {hiddenSequenceIndex + 1} / 4
               {/* mini game */}
-              123412 
             </div>
 
             {/* Dot Indicators */}
@@ -303,7 +313,7 @@ const Section3: React.FC<Section3Props> = ({
               className="text-xs sm:text-sm font-medium"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              {currentCareerIndex + 1} / {careerPaths.length}
+              {hiddenSequenceIndex + 1} / 4
             </div>
 
             {/* Dot Indicators */}

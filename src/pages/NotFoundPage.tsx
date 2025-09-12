@@ -1,13 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const NotFoundPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  
+  // Kiểm tra xem có query parameter 'q' không
+  const hasSearchQuery = searchParams.has('q');
+  const searchQuery = searchParams.get('q');
+
+  const handleGoHome = () => {
+    // Lưu flag để scroll đến section 3 khi về trang chủ
+    sessionStorage.setItem('homeScrollToSection', 'section-3');
+    navigate("/");
+  };
+
+  const handleGoBackHome = () => {
+    navigate("/");
+  };
   return (
     <div className="relative flex items-start justify-center min-h-screen bg-gray-100 text-center overflow-hidden">
       {/* Cloud Mascot */}
       <motion.img
-        src="/images_uside/pet_cloud_404.png"
+        src={hasSearchQuery ? "/images_uside/pet_cloud_404.png" : "/images_uside/pet_cloud_uside.png"}
         alt="Cloud mascot"
         className="w-100 h-100 absolute top-1/8"
         animate={{ y: [0, -15, 0] }}
@@ -22,21 +38,24 @@ const NotFoundPage: React.FC = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          [404]
+          {hasSearchQuery ? "[404]" : "[ERROR]"}
       </motion.h1>
 
-      <h2 className="text-2xl font-semibold mb-6 text-gray-700">
-        Bzzzt... Lỗi hệ thống!
+      <h2 className={"text-2xl font-semibold mb-6 text-gray-700" + searchQuery}>
+        {hasSearchQuery 
+          ? `Bzzzt... Mã bạn nhập đã bị lỗi!`
+          : "Oops! Có lỗi hệ thống xảy ra!"
+        }
       </h2>
 
       {/* Button */}
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-        <Link
-          to="/"
+        <button
+          onClick={hasSearchQuery ? handleGoHome : handleGoBackHome}
           className="neumorphic-button"
         >
-          Quay về trang chủ
-        </Link>
+          {hasSearchQuery ? "Đi sửa lỗi nào!" : "Quay lại trang chủ"}
+        </button>
       </motion.div>
       </div>
     </div>

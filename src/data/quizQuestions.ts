@@ -1339,12 +1339,21 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: false,
           percentage: 20,
         },
+        // {
+        //   id: "c",
+        //   text: "Không ảnh hưởng, miễn là kết quả đúng",
+        //   isCorrect: false,
+        //   percentage: 15,
+        // },
+        // mini game
         {
           id: "c",
-          text: "Không ảnh hưởng, miễn là kết quả đúng",
+          text: "Innovation",
           isCorrect: false,
           percentage: 15,
-        },
+          // mini game
+          tag: 404,
+        }, 
       ],
       explanation: "UX flow và responsiveness quyết định sự hài lòng của user.",
     },
@@ -1820,20 +1829,12 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: false,
           percentage: 18,
         },
-        // {
-        //   id: "c",
-        //   text: "Atoms → Organisms → Molecules → Pages → Templates",
-        //   isCorrect: false,
-        //   percentage: 15,
-        // },
         {
           id: "c",
-          text: "Innovation",
+          text: "Atoms → Organisms → Molecules → Pages → Templates",
           isCorrect: false,
           percentage: 15,
-          // mini game
-          tag: 404,
-        },
+        },     
       ],
       explanation:
         "Atomic Design đi từ phần tử nhỏ nhất (atoms) đến layout hoàn chỉnh (pages).",
@@ -2123,7 +2124,15 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: true,
           percentage: 65,
         },
-        { id: "c", text: "Khán giả", isCorrect: false, percentage: 15 },
+        // { id: "c", text: "Khán giả", isCorrect: false, percentage: 15 },
+        {
+          id: "c",
+          text: "Design Vibes",
+          isCorrect: false,
+          percentage: 12,
+          // mini game
+          tag: 404,
+        },
       ],
       explanation:
         "BA đóng vai 'phiên dịch viên' giữa business (stakeholder/PM) và technical team: họ dịch nhu cầu doanh nghiệp thành yêu cầu kỹ thuật rõ ràng, đồng thời chuyển thông tin kỹ thuật về lại cho business theo cách dễ hiểu.",
@@ -2327,11 +2336,19 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: false,
           percentage: 13,
         },
+        // {
+        //   id: "c",
+        //   text: "Hai khái niệm chỉ dùng trong marketing",
+        //   isCorrect: false,
+        //   percentage: 20,
+        // },
         {
           id: "c",
-          text: "Hai khái niệm chỉ dùng trong marketing",
+          text: "Code magic",
           isCorrect: false,
-          percentage: 20,
+          percentage: 18,
+          // mini game 
+          tag: 404,
         },
       ],
       explanation:
@@ -2648,11 +2665,20 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: true,
           percentage: 65,
         },
+        // {
+        //   id: "c",
+        //   text: "Khách hàng ngồi uống cà phê",
+        //   isCorrect: false,
+        //   percentage: 15,
+        // },
+        // mini game
         {
           id: "c",
-          text: "Khách hàng ngồi uống cà phê",
+          text: "Teamwork",
           isCorrect: false,
           percentage: 15,
+          // mini game
+          tag: 404,
         },
       ],
       explanation:
@@ -2964,19 +2990,11 @@ export const quizQuestionsByCareer: Record<string, Question[]> = {
           isCorrect: true,
           percentage: 66,
         },
-        // {
-        //   id: "b",
-        //   text: "Làm ngay high-fi để vừa mắt team và stakeholders",
-        //   isCorrect: false,
-        //   percentage: 18,
-        // },
         {
           id: "b",
-          text: "Code magic",
+          text: "Làm ngay high-fi để vừa mắt team và stakeholders",
           isCorrect: false,
           percentage: 18,
-          // mini game 
-          tag: 404,
         },
         {
           id: "c",

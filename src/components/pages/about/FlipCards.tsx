@@ -29,12 +29,13 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
       setIsGameCompleted(true);
       onSequenceComplete?.(isCorrectSequence);
       
-      // Reset sau 3 giây để user có thời gian đọc thông báo
+      // Reset với thời gian khác nhau: đúng 5s, sai 200ms
+      const resetDelay = isCorrectSequence ? 5000 : 200;
       setTimeout(() => {
         setFlippedCards(new Set());
         setSequenceOrder([]);
         setIsGameCompleted(false);
-      }, 3000);
+      }, resetDelay);
     }
   };
 
@@ -48,7 +49,7 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
         >
           <div
             className={
-              "flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d]" +
+              "flip-card-inner relative w-full h-full transition-transform duration-300 [transform-style:preserve-3d]" +
               (flippedCards.has(0) ? " [transform:rotateY(180deg)]" : "")
             }
           >
@@ -94,7 +95,7 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
         >
           <div
             className={
-              "flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d]" +
+              "flip-card-inner relative w-full h-full transition-transform duration-300 [transform-style:preserve-3d]" +
               (flippedCards.has(1) ? " [transform:rotateY(180deg)]" : "")
             }
           >
@@ -142,7 +143,7 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
         >
           <div
             className={
-              "flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d]" +
+              "flip-card-inner relative w-full h-full transition-transform duration-300 [transform-style:preserve-3d]" +
               (flippedCards.has(2) ? " [transform:rotateY(180deg)]" : "")
             }
           >
@@ -174,8 +175,7 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
             <div className="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl bg-gradient-to-br from-orange-500 to-red-500 p-6 flex flex-col justify-center text-center text-white">
               <h3 className="text-lg font-bold mb-3">Think Different</h3>
               <p className="text-sm opacity-90 leading-relaxed">
-                Chúng mình không ngừng tìm kiếm giải pháp sáng tạo để giải quyết
-                những thách thức thực tế!
+                Chúng mình không ngừng tìm kiếm giải pháp sáng tạo để giải quyết vấn đề thực tế!
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
         >
           <div
             className={
-              "flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d]" +
+              "flip-card-inner relative w-full h-full transition-transform duration-300 [transform-style:preserve-3d]" +
               (flippedCards.has(3) ? " [transform:rotateY(180deg)]" : "")
             }
           >
