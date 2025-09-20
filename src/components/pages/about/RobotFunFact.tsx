@@ -102,7 +102,7 @@ const RobotFunFact = ({ sequenceCompleted }: RobotFunFactProps) => {
                 {showSuccessMessage ? (
                   <>
                     <p className="text-green-600 font-bold mb-2 flex items-center">
-                      🎉 Chúc mừng! Bạn đã lật đúng thứ tự magic sequence!
+                      🎉 Chúc mừng! Tôi đã sửa lại mật khẩu chính xác cho bạn
                     </p>
                     <p className="text-text-secondary text-sm leading-relaxed">
                       Mật khẩu của bạn là <span className="font-bold text-accent">120905</span> hãy nhập vào ô bên dưới để biết nhiệm vụ tiếp theo!
