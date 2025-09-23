@@ -103,7 +103,7 @@ const SearchInput = () => {
         style={{
           color: "var(--color-text-primary)",
           boxShadow:
-            "inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.8)",
+            "inset -4px -4px 8px #FAFBFF, inset 4px 4px 8px var(--color-shadow)",
         }}
       />
 

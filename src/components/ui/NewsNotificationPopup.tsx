@@ -262,7 +262,7 @@ const NewsNotificationPopup: React.FC<NewsNotificationProps> = ({
             <div className="flex gap-3 justify-end">
               <button
                 onClick={handleClose}
-                className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 bg-white/80 hover:bg-white rounded-lg shadow-neumorphic-sm transition-all duration-200 hover:scale-105"
+                className="neumorphic-button-secondary"
               >
                 Đã hiểu
               </button>

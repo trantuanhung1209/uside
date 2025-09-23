@@ -277,30 +277,17 @@ const DirectionDetailPage: React.FC = () => {
           <button
             onClick={() => navigate("/")}
             className={`
-              inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-xl
-              text-sm font-medium transition-all duration-300
-              transform hover:scale-105 active:scale-95 cursor-pointer text-accent
+              neumorphic-button-secondary
             `}
-            style={{
-              background: "var(--color-background)",
-              boxShadow: `
-                6px 6px 12px var(--color-shadow),
-                -6px -6px 12px #FAFBFF
-              `,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = `
-                8px 8px 16px var(--color-shadow),
-                -8px -8px 16px #FAFBFF,
-                0 0 15px rgba(0, 210, 255, 0.1)
-              `;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = `
-                6px 6px 12px var(--color-shadow),
-                -6px -6px 12px #FAFBFF
-              `;
-            }}
+            style={{ 
+              padding: "10px 20px",
+              fontWeight: "500",
+              fontSize: "14px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              letterSpacing: "0",
+             }}
           >
             <span>←</span>
             Quay lại trang chủ

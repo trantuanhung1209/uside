@@ -75,6 +75,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
               ${success ? 'border-green-500 bg-green-50' : ''}
             `}
             style={className.includes('newsletter-compact') ? {
+              background: "var(--color-secondary)",
               boxShadow: `
                 inset -4px -4px 8px #FAFBFF,
                 inset 4px 4px 8px var(--color-shadow)

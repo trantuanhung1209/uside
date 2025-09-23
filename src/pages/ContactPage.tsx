@@ -44,11 +44,11 @@ const FormField: React.FC<FormFieldProps> = ({
         required={required}
         className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
         style={{
-          background: "var(--color-background)",
+          background: "var(--color-secondary)",
           color: "var(--color-text-primary)",
           boxShadow: `
-            inset -6px -6px 12px #FAFBFF,
-            inset 6px 6px 12px var(--color-shadow)
+            inset -4px -4px 8px #FAFBFF,
+            inset 4px 4px 8px var(--color-shadow)
           `,
         }}
       />
@@ -126,7 +126,16 @@ const ContactPage: React.FC = () => {
           <div className="mb-8">
             <button
               onClick={handleGoBack}
-              className="flex items-center gap-2 text-sm section-neumorphic px-4 py-2 rounded-lg hover:shadow-lg transition-shadow duration-300 cursor-pointer text-text-primary hover:text-accent"
+              className="neumorphic-button-secondary"
+              style={{ 
+              padding: "10px 20px",
+              fontWeight: "500",
+              fontSize: "14px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              letterSpacing: "0",
+             }}
             >
               <FaArrowLeft />
               Quay lại
@@ -204,7 +213,7 @@ const ContactPage: React.FC = () => {
                         required
                         className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
                         style={{
-                          background: "var(--color-background)",
+                          background: "var(--color-secondary)",
                           color: "var(--color-text-primary)",
                           boxShadow: `
                             inset -6px -6px 12px #FAFBFF,
@@ -239,7 +248,7 @@ const ContactPage: React.FC = () => {
                       required
                       className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium resize-none"
                       style={{
-                        background: "var(--color-background)",
+                        background: "var(--color-secondary)",
                         color: "var(--color-text-primary)",
                         boxShadow: `
                           inset -6px -6px 12px #FAFBFF,

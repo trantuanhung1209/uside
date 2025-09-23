@@ -381,7 +381,16 @@ const NewsDetailPage: React.FC = () => {
           <div className="flex justify-between items-center pt-8 border-t border-border">
             <button
               onClick={() => navigate("/news")}
-              className="flex items-center gap-2 text-accent px-1 py-1 cursor-pointer hover:scale-103 font-bold"
+              className="neumorphic-button-secondary"
+              style={{ 
+              padding: "10px 20px",
+              fontWeight: "500",
+              fontSize: "14px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              letterSpacing: "0",
+             }}
             >
               ← Quay lại tin tức
             </button>
