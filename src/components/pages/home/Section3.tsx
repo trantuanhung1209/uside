@@ -315,7 +315,7 @@ const Section3: React.FC<Section3Props> = ({
               className="text-xs sm:text-sm font-medium"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              {hiddenSequenceIndex + 1} / 4
+              Vị trí: {hiddenSequenceIndex + 1} / 4
             </div>
 
             {/* Dot Indicators */}

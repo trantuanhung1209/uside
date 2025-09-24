@@ -124,7 +124,7 @@ const DirectionPage: React.FC = () => {
                   className="text-xs sm:text-sm font-medium"
                   style={{ color: "var(--color-text-secondary)" }}
                 >
-                  {currentCareerIndex + 1} / {careerPaths.length}
+                 Vị trí: {currentCareerIndex + 1} / {careerPaths.length}
                 </div>
 
                 {/* Dot Indicators */}
