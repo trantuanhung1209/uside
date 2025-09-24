@@ -157,7 +157,7 @@ const Section4 = () => {
           <div className="mb-8">
             <Title
               title="Tin tức & Cập nhật"
-              desc="Khám phá những thông tin mới nhất và cơ hội nghề nghiệp từ USide."
+              desc="Lựa chọn đầu tiên là lựa chọn tốt nhất."
               link="news"
             />
           </div>

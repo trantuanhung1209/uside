@@ -64,7 +64,7 @@ export default function Section2() {
             {/* mini game */}
             <Title
               title="Về Đội Ngũ USide"
-              desc="Lật thẻ theo đúng thứ tự mà bạn tìm được!"
+              desc="Lật thẻ theo đúng thứ tự để chế tạo ra mật mã đúng!"
               link="about"
             />
 

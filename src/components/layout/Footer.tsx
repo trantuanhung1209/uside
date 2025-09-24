@@ -231,7 +231,7 @@ const Footer = () => {
                   <div className="text-center">
                     {isSuccess ? (
                       <div className="text-green-500 font-bold animate-pulse">
-                        Đến H9 báo mật khẩu cho trưởng trạm.
+                        Đến A6.1 báo mật khẩu cho trưởng trạm.
                       </div>
                     ) : (
                       <div className="text-xl font-mono tracking-widest text-text-primary min-h-[28px]">

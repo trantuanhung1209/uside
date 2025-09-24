@@ -8,13 +8,15 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
   const [sequenceOrder, setSequenceOrder] = useState<number[]>([]);
   const [isGameCompleted, setIsGameCompleted] = useState(false);
+  const [countdown, setCountdown] = useState<number>(0);
+  const [isWrongSequence, setIsWrongSequence] = useState(false);
   
   const targetSequence = [2, 4, 3, 1]; // Thứ tự cần lật: 2-4-3-1
   const cardNumbers = [1, 2, 3, 4]; // Số thứ tự của từng thẻ
 
   const handleFlip = (cardIndex: number) => {
-    // Không cho phép lật thẻ đã lật hoặc khi game đã hoàn thành
-    if (flippedCards.has(cardIndex) || isGameCompleted) return;
+    // Không cho phép lật thẻ đã lật hoặc khi game đã hoàn thành hoặc đang trong thời gian chờ
+    if (flippedCards.has(cardIndex) || isGameCompleted || isWrongSequence) return;
     
     const cardNumber = cardNumbers[cardIndex];
     const newFlippedCards = new Set(flippedCards).add(cardIndex);
@@ -29,18 +31,68 @@ const FlipCards = ({ onSequenceComplete }: FlipCardsProps) => {
       setIsGameCompleted(true);
       onSequenceComplete?.(isCorrectSequence);
       
-      // Reset với thời gian khác nhau: đúng 5s, sai 200ms
-      const resetDelay = isCorrectSequence ? 5000 : 200;
-      setTimeout(() => {
-        setFlippedCards(new Set());
-        setSequenceOrder([]);
-        setIsGameCompleted(false);
-      }, resetDelay);
+      if (isCorrectSequence) {
+        // Đúng thứ tự: reset sau 5s
+        setTimeout(() => {
+          setFlippedCards(new Set());
+          setSequenceOrder([]);
+          setIsGameCompleted(false);
+        }, 5000);
+      } else {
+        // Sai thứ tự: bắt đầu countdown 10s
+        setIsWrongSequence(true);
+        setCountdown(10);
+        
+        const countdownInterval = setInterval(() => {
+          setCountdown((prev) => {
+            if (prev <= 1) {
+              clearInterval(countdownInterval);
+              // Reset sau khi countdown xong
+              setFlippedCards(new Set());
+              setSequenceOrder([]);
+              setIsGameCompleted(false);
+              setIsWrongSequence(false);
+              setCountdown(0);
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+      }
     }
   };
 
   return (
     <>
+      {/* Hiển thị countdown khi lật sai */}
+      {isWrongSequence && countdown > 0 && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 text-center shadow-2xl">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
+              <svg
+                className="w-10 h-10 text-red-500"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-red-600 mb-2">Thứ tự sai!</h3>
+            <p className="text-gray-600 mb-4">Thử lại sau {countdown} giây</p>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div
+                className="bg-red-500 h-2 rounded-full transition-all duration-1000"
+                style={{ width: `${(countdown / 10) * 100}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 xl:gap-6 mb-10">
         {/* Flip Card 1 - Code */}
         <div

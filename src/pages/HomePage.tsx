@@ -93,7 +93,7 @@ const HomePage: React.FC = () => {
           /> */}
           <Title
             title="Các lĩnh vực hỗ trợ"
-            desc=" Có vẻ mã code của đã bị lỗi, tìm kiếm cách sửa chữa tại đây."
+            desc=" Có vẻ mã code của đã bị lỗi, làm trắc nghiệm để tìm cách sửa lỗi."
             link="direction"
           />
 

@@ -11,30 +11,31 @@ interface FAQItem {
 const faqData: FAQItem[] = [
   {
     id: 1,
-    question: "USide là gì và dành cho ai?",
-    answer: "USide là hệ thống tiện ích hỗ trợ sinh viên Trường Đại học Công nghiệp TP.HCM (IUH). Nền tảng giúp sinh viên dễ dàng tra cứu thông tin học tập, lịch học, điểm số và sử dụng các công cụ phục vụ việc học tập."
+    question: "USide là gì vậy, nghe lạ thế?",
+    answer: "USide là nền tảng giúp sinh viên khám phá bản thân và định hướng nghề nghiệp thông qua những bài quiz vui – mà có ích."
   },
   {
     id: 2,
-    question: "Làm thế nào để tham gia USide?",
-    answer: "Bạn có thể tham gia bằng cách truy cập website của chúng tôi và điền form đăng ký. Sau đó, đội ngũ sẽ liên hệ để giới thiệu các hoạt động, sự kiện và nội dung hữu ích phù hợp với nhu cầu của bạn."
+    question: "Làm quiz xong thì có gì hay ho?",
+    answer: "Sau khi hoàn thành, bạn sẽ nhận được gợi ý ngành nghề phù hợp với tính cách, sở thích và thế mạnh của mình. Có khi còn phát hiện ra 'thiên hướng tiềm ẩn' mà bạn chưa từng nghĩ tới!"
   },
   {
     id: 3,
-    question: "USide cung cấp những tiện ích nào?",
-    answer: "USide hỗ trợ tra cứu lịch học, xem điểm, theo dõi tiến độ học tập, tải tài liệu và cập nhật các thông báo quan trọng từ nhà trường."
+    question: "Quiz có khó như đề thi cuối kỳ không?",
+    answer: "Không đâu 😆. Quiz ở USide nhẹ nhàng, mang tính khám phá bản thân, không phải để 'làm khó'. Bạn cứ thoải mái làm như chơi game."
   },
   {
     id: 4,
-    question: "Sử dụng USide có mất phí không?",
-    answer: "Không. USide là hệ thống tiện ích miễn phí dành cho toàn bộ sinh viên IUH."
+    question: "Mình có cần trả phí để làm quiz không?",
+    answer: "Hoàn toàn miễn phí! Bạn chỉ cần khởi động và bắt đầu hành trình khám phá nghề nghiệp thôi."
   },
   {
     id: 5,
-    question: "Nếu gặp sự cố khi sử dụng USide thì làm thế nào?",
-    answer: "Trong trường hợp gặp sự cố, bạn có thể liên hệ đội ngũ hỗ trợ qua mục 'Liên hệ' trên hệ thống hoặc gửi phản hồi trực tiếp để được giải quyết kịp thời."
+    question: "Nếu kết quả quiz không giống mình nghĩ thì sao?",
+    answer: "Đừng lo, quiz chỉ là một gợi ý để bạn tham khảo. Định hướng nghề nghiệp còn đến từ trải nghiệm thực tế, đam mê và mục tiêu cá nhân của bạn nữa."
   }
 ];
+
 
 
 const Section5 = () => {
