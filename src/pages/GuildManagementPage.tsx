@@ -547,7 +547,7 @@ const GuildManagementPage: React.FC = () => {
       {/* Guild Form Modal (Simple modal for demonstration) */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 flex items-start pt-[300px] justify-center z-50 px-4"
+          className="fixed inset-0 flex items-start pt-[200px] justify-center z-50 px-4"
           style={{
             background: "rgba(0, 0, 0, 0.7)",
             backdropFilter: "blur(5px)",
