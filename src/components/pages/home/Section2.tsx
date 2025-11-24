@@ -6,17 +6,6 @@ import RobotFunFact from "../about/RobotFunFact";
 import { useState } from "react";
 import { TV_CHANNELS } from "../../../constants/tvChannels";
 
-// const funFacts = [
-//   "Team USide đã uống hơn 1000 cốc cà phê trong quá trình phát triển dự án này! ☕ Và có thể chúng mình đã debug tới 3AM nhiều hơn số lần ngủ đủ 8 tiếng... 😅",
-//   "Trong lúc code, chúng mình đã nghe hơn 500 bài nhạc! 🎵 Playlist yêu thích: Lo-fi Hip Hop và nhạc Epic để boost energy! 🚀",
-//   "USide Bot được tạo ra sau 42 lần thử nghiệm! 🤖 Lần đầu tiên nó chỉ biết nói 'Hello World', giờ thì... vẫn chỉ thế thôi! 😂",
-//   "Tổng cộng đã có 1,337 dòng code bị xóa vì 'có thể làm tốt hơn'! 💻 Và 2,024 lần commit với message 'fix bug' 🐛",
-//   "Mascot robot của USide được thiết kế dựa trên hình ảnh con robot trong mơ của team leader! 🌟 Plot twist: anh ấy mơ thấy robot làm bánh mì... 🥖",
-//   "Chúng mình đã test website trên 15 thiết bị khác nhau! 📱💻 Bao gồm cả chiếc iPhone 6 cũ kỹ mà vẫn hoạt động tốt! 📲",
-//   "Tính đến hiện tại, team đã ăn 27 tô phở, 43 ly trà sữa và 156 gói snack trong quá trình làm dự án! 🍜🧋 Fuel for coding! ⛽",
-//   "Lần đầu tiên deploy thành công, cả team đã hét 'YESSSS!' to đến mức hàng xóm phải gõ cửa hỏi... 🎉 Worth it! 💯",
-// ];
-
 export default function Section2() {
   // mini game
   // const [currentFactIndex, setCurrentFactIndex] = useState(0);
