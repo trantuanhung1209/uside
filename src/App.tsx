@@ -7,8 +7,10 @@ import {
   NewsPage,
   NewsDetailPage,
   ContactPage,
-  DashboardPage,
+  NewsManagementPage,
   AdminLoginPage,
+  AdminPage,
+  GuildManagementPage,
 } from "./pages";
 import NotFoundPage from "./pages/NotFoundPage";
 import {
@@ -17,6 +19,7 @@ import {
   FirebaseErrorBoundary,
   ProtectedRoute,
 } from "./components/ui";
+import GuildSeeder from "./components/debug/GuildSeeder";
 import { useAppLoading } from "./hooks";
 import { MusicProvider } from "./contexts/MusicContext";
 import AccentColorProvider from "./contexts/AccentColorContext";
@@ -27,6 +30,7 @@ import QuickPushNews from "./components/examples/QuickPushNews";
 import FirebaseDebug from "./components/debug/FirebaseDebug";
 import { preloader, lcpOptimizer } from "./utils/lcpOptimizer";
 import { useEffect } from "react";
+import OpportunitiesManagementPage from "./pages/OpportunitiesManagementPage";
 
 // Component để quản lý thông báo và hiển thị chúng
 const AppWithNotifications: React.FC = () => {
@@ -42,12 +46,28 @@ const AppWithNotifications: React.FC = () => {
         <Route path="/news/:id" element={<NewsDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
-        <Route path="/dashboard" element={
+        <Route path="/admin" element={
           <ProtectedRoute>
-            <DashboardPage />
+            <AdminPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/news" element={
+          <ProtectedRoute>
+            <NewsManagementPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/guilds" element={
+          <ProtectedRoute>
+            <GuildManagementPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/opportunities" element={
+          <ProtectedRoute>
+            <OpportunitiesManagementPage />
           </ProtectedRoute>
         } />
         <Route path="/debug" element={<FirebaseDebug />} />
+        <Route path="/guild-seeder" element={<GuildSeeder />} />
         {/* Route 404 */}
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/firestore" element={<QuickPushNews />} />

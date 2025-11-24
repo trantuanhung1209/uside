@@ -7,6 +7,7 @@ import { Title, SharePopup } from "../components";
 import NewsCard from "../components/ui/NewsCard";
 import { TbPinned } from "react-icons/tb";
 import { useRealtimeNews, useScrollToTop } from "../hooks";
+import { migrateSupabaseUrl } from "../services/imageUploadService";
 
 
 const NewsDetailPage: React.FC = () => {
@@ -219,14 +220,14 @@ const NewsDetailPage: React.FC = () => {
               >
                 <div className="relative overflow-hidden rounded-xl">
                   <img
-                    src={newsItem.image}
+                    src={migrateSupabaseUrl(newsItem.image)}
                     alt={newsItem.title}
                     className="w-full h-auto max-h-[600px] object-contain bg-gray-50 cursor-pointer hover:scale-105 transition-transform duration-300"
                     style={{
                       minHeight: "200px",
                       maxWidth: "100%",
                     }}
-                    onClick={() => handleImageClick(newsItem.image!)}
+                    onClick={() => handleImageClick(migrateSupabaseUrl(newsItem.image!))}
                     onLoad={(e) => {
                       const img = e.target as HTMLImageElement;
                       const aspectRatio = img.naturalWidth / img.naturalHeight;

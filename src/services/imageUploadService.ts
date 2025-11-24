@@ -7,6 +7,21 @@ export interface UploadImageResult {
   path: string;
 }
 
+// Migrate old Supabase URLs to new ones
+export const migrateSupabaseUrl = (url: string): string => {
+  const oldProjectId = 'mxughxhmiocbmgxzukyo';
+  const newProjectId = 'hfliuepqksujzfigdbil';
+  
+  if (url && url.includes(oldProjectId)) {
+    return url.replace(
+      `https://${oldProjectId}.supabase.co`,
+      `https://${newProjectId}.supabase.co`
+    );
+  }
+  
+  return url;
+};
+
 export class ImageUploadService {
   /**
    * Upload image to Supabase Storage

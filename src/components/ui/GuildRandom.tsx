@@ -1,464 +1,70 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { getGuilds, OPPORTUNITIES } from "../../services/guildService";
+import { supabase } from "../../config/supabase";
 
 interface Guild {
   id: number;
   name: string;
-  coinPerMonth: number;
+  coin_per_month: number;
   investors: string;
   icon: string;
   color: string;
 }
 
-interface Opportunity {
-  id: number;
-  name: string;
-  description: string;
-  effect: number; // coin change
-  icon: string;
-  color: string;
-  type: "positive" | "negative" | "neutral"; // for visual distinction
-}
-
-const GUILDS: Guild[] = [
-  {
-    id: 1,
-    name: "Guild 1",
-    coinPerMonth: 15000,
-    investors: "Nguyen Van A",
-    icon: "🥷",
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    id: 2,
-    name: "Guild 2",
-    coinPerMonth: 12500,
-    investors: "Nguyen Van B",
-    icon: "⚔️",
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    id: 3,
-    name: "Guild 3",
-    coinPerMonth: 18000,
-    investors: "Nguyen Van C",
-    icon: "🐉",
-    color: "from-orange-500 to-red-500",
-  },
-];
-
-const OPPORTUNITIES: Opportunity[] = [
-  // Positive Individual Events
-  {
-    id: 1,
-    name: "Được hoàn thuế",
-    description: "+ 200 coin",
-    effect: 200,
-    icon: "📄",
-    color: "from-green-400 to-emerald-500",
-    type: "positive",
-  },
-  {
-    id: 2,
-    name: "Trúng xổ số mini",
-    description: "+ 100 coin",
-    effect: 100,
-    icon: "🎟️",
-    color: "from-green-400 to-emerald-500",
-    type: "positive",
-  },
-  {
-    id: 3,
-    name: "Người thân gửi tặng tiền",
-    description: "+ 50 coin",
-    effect: 50,
-    icon: "💝",
-    color: "from-green-400 to-emerald-500",
-    type: "positive",
-  },
-  {
-    id: 4,
-    name: "Trộm tiền rơi trong hồ ước nguyện",
-    description: "+ 20 coin",
-    effect: 20,
-    icon: "🪙",
-    color: "from-green-400 to-emerald-500",
-    type: "positive",
-  },
-  {
-    id: 5,
-    name: "Chơi crypto đúng lúc",
-    description: "+ 300 coin",
-    effect: 300,
-    icon: "💻",
-    color: "from-green-400 to-emerald-500",
-    type: "positive",
-  },
-
-  // Negative Individual Events
-  {
-    id: 6,
-    name: "Phí sửa nhà sau thiên tai",
-    description: "- 100 coin",
-    effect: -100,
-    icon: "🏚️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 7,
-    name: "Bị phạt vì vi phạm giao thông",
-    description: "- 50 coin",
-    effect: -50,
-    icon: "🚔",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 8,
-    name: "Thua đua ngựa",
-    description: "- 200 coin",
-    effect: -200,
-    icon: "🐴",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 9,
-    name: "Hỏng xe",
-    description: "- 50 coin",
-    effect: -50,
-    icon: "🚗",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 10,
-    name: "Trượt giá chứng khoán",
-    description: "- 200 coin",
-    effect: -200,
-    icon: "📉",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 11,
-    name: "Bị trộm đột nhập",
-    description: "- 50 coin",
-    effect: -50,
-    icon: "🔓",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 12,
-    name: "Sửa điện nước",
-    description: "- 80 coin",
-    effect: -80,
-    icon: "🔧",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 13,
-    name: "Đóng phí bản quyền phần mềm",
-    description: "- 30 coin",
-    effect: -30,
-    icon: "📀",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-
-  // Guild Events - Positive
-  {
-    id: 14,
-    name: "Guild nhận tài trợ từ doanh nghiệp",
-    description: "+ 300 coin",
-    effect: 300,
-    icon: "🤝",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-  {
-    id: 15,
-    name: "Thắng giải hackathon",
-    description: "+ 200 coin",
-    effect: 200,
-    icon: "🏆",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-  {
-    id: 16,
-    name: "Quỹ học bổng tài trợ",
-    description: "+ 200 coin",
-    effect: 200,
-    icon: "🎓",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-  {
-    id: 17,
-    name: "Guild nhận donate ẩn danh",
-    description: "+ 30 coin",
-    effect: 30,
-    icon: "🎁",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-  {
-    id: 18,
-    name: "Được hỗ trợ cơ sở từ CLB khác",
-    description: "+ 100 coin",
-    effect: 100,
-    icon: "🏢",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-  {
-    id: 19,
-    name: "Guild viral TikTok",
-    description: "+ 50 coin",
-    effect: 50,
-    icon: "📱",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-  {
-    id: 20,
-    name: "Chính phủ hỗ trợ sửa nhà",
-    description: "+ 200 coin",
-    effect: 200,
-    icon: "🏛️",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-
-  // Guild Events - Negative
-  {
-    id: 21,
-    name: "Bị cắt ngân sách",
-    description: "- 100 coin",
-    effect: -100,
-    icon: "✂️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 22,
-    name: "Mua trang thiết bị mới",
-    description: "- 150 coin",
-    effect: -150,
-    icon: "🛠️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 23,
-    name: "Hỏng máy chủ",
-    description: "- 100 coin",
-    effect: -100,
-    icon: "🖥️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 24,
-    name: "Mất phí bảo trì hàng tháng",
-    description: "- 50 coin",
-    effect: -50,
-    icon: "📋",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 25,
-    name: "Mua tủ để cúp",
-    description: "- 30 coin",
-    effect: -30,
-    icon: "🗄️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 26,
-    name: "Bị leak tin nội bộ quan trọng",
-    description: "- 200 coin",
-    effect: -200,
-    icon: "🔒",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 27,
-    name: "Chủ tịch guild dính phốt tình ái",
-    description: "- 200 coin",
-    effect: -200,
-    icon: "💔",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 28,
-    name: "Drama page confession",
-    description: "- 20 coin",
-    effect: -20,
-    icon: "😱",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 29,
-    name: "Thiết bị hỏng trong sự kiện",
-    description: "- 40 coin",
-    effect: -40,
-    icon: "⚠️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 30,
-    name: "Lỡ tay post sai thông tin",
-    description: "- 20 coin",
-    effect: -20,
-    icon: "📝",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 31,
-    name: "Đầu tư sai lầm",
-    description: "- 250 coin",
-    effect: -250,
-    icon: "📊",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 32,
-    name: "Thuê đất bị đánh thuế",
-    description: "- 50 coin",
-    effect: -50,
-    icon: "🏗️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-
-  // Special Guild Interactions
-  {
-    id: 33,
-    name: "Bán merch guild",
-    description: "+ 50 coin/người",
-    effect: 50,
-    icon: "👕",
-    color: "from-purple-400 to-pink-500",
-    type: "positive",
-  },
-  {
-    id: 34,
-    name: "Tài trợ thiết bị cho guild khác",
-    description: "- 50 coin",
-    effect: -50,
-    icon: "🎁",
-    color: "from-yellow-400 to-orange-500",
-    type: "neutral",
-  },
-  {
-    id: 35,
-    name: "Cướp khách từ guild khác",
-    description: "+ 50 coin (guild kia - 50)",
-    effect: 50,
-    icon: "💼",
-    color: "from-purple-400 to-pink-500",
-    type: "positive",
-  },
-  {
-    id: 36,
-    name: "Guild bị drama với guild khác",
-    description: "- 50 coin",
-    effect: -50,
-    icon: "⚡",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-  {
-    id: 37,
-    name: "Đàm phán hợp đồng thành công",
-    description: "+ 50 coin từ mỗi guild",
-    effect: 50,
-    icon: "📜",
-    color: "from-blue-400 to-cyan-500",
-    type: "positive",
-  },
-  {
-    id: 38,
-    name: "Tranh tài esport",
-    description: "+ 100 coin (khác - 50)",
-    effect: 100,
-    icon: "🎮",
-    color: "from-green-400 to-emerald-500",
-    type: "positive",
-  },
-
-  // Wealth & Support Events
-  {
-    id: 39,
-    name: "Nhà đầu tư hỗ trợ hết mình",
-    description: "+ 500 coin",
-    effect: 500,
-    icon: "💎",
-    color: "from-yellow-400 to-orange-500",
-    type: "positive",
-  },
-  {
-    id: 40,
-    name: "Nâng cấp tài sản",
-    description: "- 50 coin/người",
-    effect: -50,
-    icon: "🏗️",
-    color: "from-orange-400 to-amber-500",
-    type: "neutral",
-  },
-  {
-    id: 41,
-    name: "Chia sẻ từ thiện",
-    description: "- 20 coin/người",
-    effect: -20,
-    icon: "❤️",
-    color: "from-pink-400 to-rose-500",
-    type: "neutral",
-  },
-  {
-    id: 42,
-    name: "Tổ chức team building",
-    description: "- 100 coin",
-    effect: -100,
-    icon: "🎉",
-    color: "from-orange-400 to-amber-500",
-    type: "neutral",
-  },
-
-  // Magical/Mysterious Events
-  {
-    id: 43,
-    name: "Gặp được thầy bói uy tín",
-    description: "Đổi khí vận của 1 guild",
-    effect: 0,
-    icon: "🔮",
-    color: "from-purple-400 to-pink-500",
-    type: "neutral",
-  },
-  {
-    id: 44,
-    name: "Săn bắn quá nhiều",
-    description: "Tất cả guild mất 10% tài sản",
-    effect: 0,
-    icon: "⚠️",
-    color: "from-red-400 to-rose-500",
-    type: "negative",
-  },
-];
-
 const GuildRandom = () => {
+  const [guilds, setGuilds] = useState<Guild[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const guildsPerPage = 4;
+
+  // Load guilds from Supabase on mount
+  useEffect(() => {
+    const loadGuilds = async () => {
+      try {
+        const result = await getGuilds();
+        if (result.success && result.data) {
+          setGuilds(result.data as Guild[]);
+        }
+      } catch (err) {
+        console.error("Error loading guilds:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadGuilds();
+
+    // Subscribe to real-time changes
+    const subscription = supabase
+      .channel('uside_guilds_changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'uside_guilds'
+        },
+        (payload) => {
+          console.log('Guild changed:', payload);
+          // Reload guilds on any change
+          loadGuilds();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // Paginate guilds
+  const paginatedGuilds = useMemo(() => {
+    const startIndex = (currentPage - 1) * guildsPerPage;
+    return guilds.slice(startIndex, startIndex + guildsPerPage);
+  }, [guilds, currentPage]);
+
+  const totalPages = Math.ceil(guilds.length / guildsPerPage);
+
   // Get daily opportunity based on date
   const dailyOpportunities = useMemo(() => {
     const today = new Date();
@@ -467,9 +73,12 @@ const GuildRandom = () => {
         86400000
     );
 
-    return GUILDS.map((_: Guild, index: number) => {
+    return paginatedGuilds.map((guild: Guild) => {
+      // Find original index in full guilds array for consistent seeding
+      const originalIndex = guilds.findIndex(g => g.id === guild.id);
+      
       // Tạo seed độc lập cho mỗi guild
-      const guildSeed = dayOfYear + index * 12345;
+      const guildSeed = dayOfYear + originalIndex * 12345;
 
       // 85% chance: no event (return null)
       // 15% chance: random opportunity
@@ -484,7 +93,7 @@ const GuildRandom = () => {
       const opportunityIndex = Math.abs(Math.floor((guildSeed * 7919) / 100)) % OPPORTUNITIES.length;
       return OPPORTUNITIES[opportunityIndex];
     });
-  }, []);
+  }, [paginatedGuilds, guilds]);
 
   return (
     <>
@@ -512,19 +121,65 @@ const GuildRandom = () => {
         >
           {/* Header */}
           <div
-            className="mb-6 pb-4"
+            className="mb-6 pb-4 flex items-start justify-between"
             style={{ borderColor: "var(--color-accent)/30" }}
           >
-            <h3 className="text-lg font-bold mb-1 bg-gradient-to-r from-accent to-blue-500 bg-clip-text text-transparent">
-              ✨ Daily Guild Opportunities
-            </h3>
-            <p className="text-xs text-text-secondary">
-              Những sự kiện hôm nay có thể thay đổi vận mệnh guild của bạn
-            </p>
+            <div>
+              <h3 className="text-lg font-bold mb-1 bg-gradient-to-r from-accent to-blue-500 bg-clip-text text-transparent">
+                ✨ Daily Guild Opportunities
+              </h3>
+              <p className="text-xs text-text-secondary">
+                Những sự kiện hôm nay có thể thay đổi vận mệnh guild của bạn
+              </p>
+            </div>
+
+            {/* Pagination Controls */}
+            {!loading && guilds.length > 0 && (
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1 rounded text-xs font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{
+                    background: "var(--color-background)",
+                    color: currentPage === 1 ? "#94a3b8" : "var(--color-accent)",
+                    border: "1px solid var(--color-border)",
+                  }}
+                >
+                  ←
+                </button>
+
+                <span className="text-xs font-semibold text-text-secondary" style={{ minWidth: "40px", textAlign: "center" }}>
+                  {currentPage} / {totalPages}
+                </span>
+
+                <button
+                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1 rounded text-xs font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{
+                    background: "var(--color-background)",
+                    color: currentPage === totalPages ? "#94a3b8" : "var(--color-accent)",
+                    border: "1px solid var(--color-border)",
+                  }}
+                >
+                  →
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Table */}
           <div className="overflow-x-auto">
+            {loading ? (
+              <div className="p-4 text-center text-text-secondary">
+                Đang tải dữ liệu guild...
+              </div>
+            ) : guilds.length === 0 ? (
+              <div className="p-4 text-center text-text-secondary">
+                Không có guild nào
+              </div>
+            ) : (
             <table className="w-full">
               <thead>
                 <tr
@@ -545,7 +200,7 @@ const GuildRandom = () => {
                 </tr>
               </thead>
               <tbody>
-                {GUILDS.map((guild: Guild, index: number) => (
+                {paginatedGuilds.map((guild: Guild, index: number) => (
                   <tr
                     key={guild.id}
                     className="border-b transition-all duration-300 hover:bg-accent/10 hover:shadow-lg"
@@ -605,6 +260,7 @@ const GuildRandom = () => {
                 ))}
               </tbody>
             </table>
+            )}
           </div>
 
           {/* Footer Info */}

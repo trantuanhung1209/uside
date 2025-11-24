@@ -6,6 +6,7 @@ import {
   Filter,
   Download,
   LogOut,
+  ArrowLeft,
 } from "lucide-react";
 import NewsFormModal from "../components/ui/NewsFormModal";
 import NewsTable from "../components/ui/NewsTable";
@@ -16,7 +17,7 @@ import { useScrollToTop, useAccentColor } from "../hooks";
 import { useAdminAuth } from "../hooks/useAdminAuth";
 import { useNavigate } from "react-router-dom";
 
-const DashboardPage: React.FC = () => {
+const NewsManagementPage: React.FC = () => {
   useScrollToTop();
   const { currentAccentColor } = useAccentColor();
   const { logout } = useAdminAuth();
@@ -203,6 +204,71 @@ const DashboardPage: React.FC = () => {
         minHeight: "100vh",
       }}
     >
+      {/* Navigation Header */}
+      <div
+        className="py-6 px-4 border-b"
+        style={{
+          background: "rgba(15, 23, 42, 0.8)",
+          borderColor: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(20px)",
+        }}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate("/admin")}
+              className="p-2 rounded-lg transition-all duration-300 cursor-pointer"
+              style={{
+                background: "rgba(30, 41, 59, 0.8)",
+                color: "#f1f5f9",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                boxShadow:
+                  "inset -4px -4px 8px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.05)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+
+            <div>
+              <h1 className="text-2xl font-bold" style={{ color: "#f1f5f9" }}>
+                Quản lý Tin tức
+              </h1>
+              <p className="text-sm" style={{ color: "#94a3b8" }}>
+                Quản lý các tin tức và sự kiện
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 cursor-pointer"
+              style={{
+                background: "rgba(30, 41, 59, 0.8)",
+                color: "#fca5a5",
+                border: "1px solid rgba(239, 68, 68, 0.3)",
+                boxShadow:
+                  "inset -4px -4px 8px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.05)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(239, 68, 68, 0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
+              }}
+            >
+              <LogOut className="w-4 h-4" />
+              Đăng xuất
+            </button>
+          </div>
+        </div>
+      </div>
 
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -331,7 +397,7 @@ const DashboardPage: React.FC = () => {
                   onClick={() => {
                     setEditingNews(null);
                     setIsModalOpen(true);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                   className="flex items-center justify-center gap-2 px-6 py-2 rounded-lg transition-all duration-300 text-white font-semibold cursor-pointer"
                   style={{
@@ -539,4 +605,4 @@ const DashboardPage: React.FC = () => {
   );
 };
 
-export default DashboardPage;
+export default NewsManagementPage;

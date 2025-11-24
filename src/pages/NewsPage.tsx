@@ -4,6 +4,7 @@ import { BannerBreadcrumb } from "../components";
 import { NewsDebug } from "../components/debug";
 import { useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
+import { migrateSupabaseUrl } from "../services/imageUploadService";
 import { FaFilter } from "react-icons/fa";
 import { TbPinned } from "react-icons/tb";
 import { useScrollToTop, useRealtimeNews } from "../hooks";
@@ -308,7 +309,7 @@ const NewsPage: React.FC = () => {
                         }}
                       >
                         <img
-                          src={item.image}
+                          src={migrateSupabaseUrl(item.image)}
                           alt={item.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />

@@ -199,7 +199,7 @@ const BlockQuote = () => {
               }`}
             >
               {/* mini game */}
-              "<span className={"typewriter-text" + displayedText}>Bạn có thể tìm kiếm mọi thứ ở đây 😎</span>
+              "<span className={"typewriter-text"}>{displayedText}</span>
               <span className={`typewriter-cursor ${isTyping ? 'animate-pulse' : 'opacity-0'}`}>|</span>"
             </blockquote>
           </div>
