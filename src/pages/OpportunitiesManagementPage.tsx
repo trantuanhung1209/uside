@@ -287,6 +287,27 @@ const OpportunitiesManagementPage: React.FC = () => {
                       {opportunities.length} sự kiện đang hoạt động{" "}
                       {saving && "(Đang xử lý...)"}
                     </p>
+
+                    <div className="flex gap-4 mt-3">
+                      <div className="flex items-center gap-2">
+                        <span style={{ fontSize: "16px", color: "#86efac", fontWeight: "600" }}>Tích cực:</span>
+                        <span style={{ fontSize: "16px", color: "#22c55e", fontWeight: "bold" }}>
+                          {opportunities.filter((o) => o.type === "positive").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span style={{ fontSize: "16px", color: "#fcd34d", fontWeight: "600" }}>Trung lập:</span>
+                        <span style={{ fontSize: "16px", color: "#f59e0b", fontWeight: "bold" }}>
+                          {opportunities.filter((o) => o.type === "neutral").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span style={{ fontSize: "16px", color: "#fca5a5", fontWeight: "600" }}>Tiêu cực:</span>
+                        <span style={{ fontSize: "16px", color: "#ef4444", fontWeight: "bold" }}>
+                          {opportunities.filter((o) => o.type === "negative").length}
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   <button
