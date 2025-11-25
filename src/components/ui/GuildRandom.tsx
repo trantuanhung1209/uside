@@ -149,6 +149,7 @@ const GuildRandom = () => {
       await saveFn(
         guild.id,
         guild.name,
+        guild.investors,
         opportunity?.id || null,
         !!opportunity,
         opportunity || null

@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS uside_daily_results (
   id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   guild_id BIGINT NOT NULL REFERENCES uside_guilds(id) ON DELETE CASCADE,
   guild_name TEXT NOT NULL,
+  investors TEXT,
   opportunity_id BIGINT REFERENCES uside_opportunities(id) ON DELETE SET NULL,
   result_date DATE NOT NULL,
   opportunity_name TEXT,

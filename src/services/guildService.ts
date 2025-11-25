@@ -641,6 +641,7 @@ export const deleteGuild = async (id: number) => {
 export const saveDailyResult = async (
   guildId: number,
   guildName: string,
+  investors: string | null,
   opportunityId: number | null,
   hasOpportunity: boolean,
   opportunityData?: Opportunity | null
@@ -652,6 +653,7 @@ export const saveDailyResult = async (
     const dailyResult = {
       guild_id: guildId,
       guild_name: guildName,
+      investors: investors,
       opportunity_id: opportunityId,
       result_date: resultDate,
       opportunity_name: opportunityData?.name || null,
