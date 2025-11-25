@@ -106,7 +106,48 @@ CREATE POLICY "Allow public update on uside_opportunities"
   USING (true)
   WITH CHECK (true);
 
+-- Create uside_daily_results table
+CREATE TABLE IF NOT EXISTS uside_daily_results (
+  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  guild_id BIGINT NOT NULL REFERENCES uside_guilds(id) ON DELETE CASCADE,
+  guild_name TEXT NOT NULL,
+  opportunity_id BIGINT REFERENCES uside_opportunities(id) ON DELETE SET NULL,
+  result_date DATE NOT NULL,
+  opportunity_name TEXT,
+  opportunity_description TEXT,
+  effect INTEGER,
+  icon TEXT,
+  color TEXT,
+  has_opportunity BOOLEAN DEFAULT false,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(guild_id, result_date)
+);
 
+-- Enable RLS on uside_daily_results
+ALTER TABLE uside_daily_results ENABLE ROW LEVEL SECURITY;
+
+-- Allow public read/write/delete on uside_daily_results
+CREATE POLICY "Allow public read on uside_daily_results"
+  ON uside_daily_results
+  FOR SELECT
+  USING (true);
+
+CREATE POLICY "Allow public insert on uside_daily_results"
+  ON uside_daily_results
+  FOR INSERT
+  WITH CHECK (true);
+
+CREATE POLICY "Allow public update on uside_daily_results"
+  ON uside_daily_results
+  FOR UPDATE
+  USING (true)
+  WITH CHECK (true);
+
+CREATE POLICY "Allow public delete on uside_daily_results"
+  ON uside_daily_results
+  FOR DELETE
+  USING (true);
 
 UPDATE auth.users 
 SET raw_user_meta_data = 

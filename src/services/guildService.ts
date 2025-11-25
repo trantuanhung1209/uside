@@ -634,3 +634,101 @@ export const deleteGuild = async (id: number) => {
     return { success: false, error };
   }
 };
+
+/**
+ * Save daily result for a guild
+ */
+export const saveDailyResult = async (
+  guildId: number,
+  guildName: string,
+  opportunityId: number | null,
+  hasOpportunity: boolean,
+  opportunityData?: Opportunity | null
+) => {
+  try {
+    const today = new Date();
+    const resultDate = today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+
+    const dailyResult = {
+      guild_id: guildId,
+      guild_name: guildName,
+      opportunity_id: opportunityId,
+      result_date: resultDate,
+      opportunity_name: opportunityData?.name || null,
+      opportunity_description: opportunityData?.description || null,
+      effect: opportunityData?.effect || null,
+      icon: opportunityData?.icon || null,
+      color: opportunityData?.color || null,
+      has_opportunity: hasOpportunity,
+    };
+
+    const { data, error } = await supabase
+      .from('uside_daily_results')
+      .upsert([dailyResult], { onConflict: 'guild_id,result_date' })
+      .select();
+
+    if (error) {
+      console.error('Error saving daily result:', error);
+      return { success: false, error };
+    }
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error saving daily result:', error);
+    return { success: false, error };
+  }
+};
+
+/**
+ * Get daily results for today
+ */
+export const getTodayDailyResults = async () => {
+  try {
+    const today = new Date().toISOString().split('T')[0];
+
+    const { data, error } = await supabase
+      .from('uside_daily_results')
+      .select('*')
+      .eq('result_date', today);
+
+    if (error) {
+      console.error('Error fetching daily results:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error fetching daily results:', error);
+    return { success: false, error };
+  }
+};
+
+/**
+ * Get daily results history for a guild
+ */
+export const getGuildDailyResultsHistory = async (
+  guildId: number,
+  days: number = 30
+) => {
+  try {
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - days);
+    const dateStr = startDate.toISOString().split('T')[0];
+
+    const { data, error } = await supabase
+      .from('uside_daily_results')
+      .select('*')
+      .eq('guild_id', guildId)
+      .gte('result_date', dateStr)
+      .order('result_date', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching guild daily results history:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error fetching guild daily results history:', error);
+    return { success: false, error };
+  }
+};

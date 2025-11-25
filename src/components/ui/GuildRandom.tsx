@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { getGuilds, OPPORTUNITIES } from "../../services/guildService";
 import { supabase } from "../../config/supabase";
 
@@ -11,8 +11,23 @@ interface Guild {
   color: string;
 }
 
+interface DailyResult {
+  id: number;
+  guild_id: number;
+  guild_name: string;
+  opportunity_id: number | null;
+  result_date: string;
+  opportunity_name: string | null;
+  opportunity_description: string | null;
+  effect: number | null;
+  icon: string | null;
+  color: string | null;
+  has_opportunity: boolean;
+}
+
 const GuildRandom = () => {
   const [guilds, setGuilds] = useState<Guild[]>([]);
+  const [dailyResults, setDailyResults] = useState<Record<number, DailyResult>>({});
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const guildsPerPage = 4;
@@ -57,6 +72,47 @@ const GuildRandom = () => {
     };
   }, []);
 
+  // Load today's daily results from database
+  useEffect(() => {
+    const loadDailyResults = async () => {
+      const { getTodayDailyResults: getResultsFn } = await import("../../services/guildService");
+      const result = await getResultsFn();
+      
+      if (result.success && result.data) {
+        // Convert array to map by guild_id for quick lookup
+        const resultsMap = (result.data as DailyResult[]).reduce((acc, item) => {
+          acc[item.guild_id] = item;
+          return acc;
+        }, {} as Record<number, DailyResult>);
+        setDailyResults(resultsMap);
+      }
+    };
+
+    loadDailyResults();
+
+    // Subscribe to changes in daily results
+    const subscription = supabase
+      .channel('daily_results_changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'uside_daily_results'
+        },
+        (payload) => {
+          console.log('Daily results changed:', payload);
+          // Reload daily results on any change
+          loadDailyResults();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
   // Paginate guilds
   const paginatedGuilds = useMemo(() => {
     const startIndex = (currentPage - 1) * guildsPerPage;
@@ -65,35 +121,80 @@ const GuildRandom = () => {
 
   const totalPages = Math.ceil(guilds.length / guildsPerPage);
 
-  // Get daily opportunity based on date
-  const dailyOpportunities = useMemo(() => {
+  // Save daily results to database for ALL guilds
+  const saveDailyResults = useCallback(async () => {
+    if (guilds.length === 0) return;
+
     const today = new Date();
     const dayOfYear = Math.floor(
       (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) /
         86400000
     );
 
-    return paginatedGuilds.map((guild: Guild) => {
-      // Find original index in full guilds array for consistent seeding
-      const originalIndex = guilds.findIndex(g => g.id === guild.id);
-      
-      // Tạo seed độc lập cho mỗi guild
-      const guildSeed = dayOfYear + originalIndex * 12345;
+    const { saveDailyResult: saveFn } = await import("../../services/guildService");
 
-      // 85% chance: no event (return null)
-      // 15% chance: random opportunity
+    // Calculate opportunities for ALL guilds, not just paginated ones
+    for (let i = 0; i < guilds.length; i++) {
+      const guild = guilds[i];
+      const originalIndex = i;
+      const guildSeed = dayOfYear + originalIndex * 12345;
       const eventChance = guildSeed % 100;
 
-      if (eventChance < 85) {
-        // No event today
-        return null;
+      let opportunity = null;
+      if (eventChance >= 85) {
+        const opportunityIndex = Math.abs(Math.floor((guildSeed * 7919) / 100)) % OPPORTUNITIES.length;
+        opportunity = OPPORTUNITIES[opportunityIndex];
       }
 
-      // 15% chance: pick a random opportunity từ toàn bộ mảng
-      const opportunityIndex = Math.abs(Math.floor((guildSeed * 7919) / 100)) % OPPORTUNITIES.length;
-      return OPPORTUNITIES[opportunityIndex];
-    });
-  }, [paginatedGuilds, guilds]);
+      await saveFn(
+        guild.id,
+        guild.name,
+        opportunity?.id || null,
+        !!opportunity,
+        opportunity || null
+      );
+    }
+  }, [guilds]);
+
+  // Save daily results when guilds load
+  useEffect(() => {
+    if (guilds.length === 0 || loading) return;
+
+    saveDailyResults().catch(err => 
+      console.error("Error saving daily results:", err)
+    );
+  }, [saveDailyResults, loading, guilds.length]);
+
+  // Auto-refresh results at 00:00 every day
+  useEffect(() => {
+    const scheduleNextRefresh = () => {
+      const now = new Date();
+      const tomorrow = new Date(now);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+
+      const timeUntilMidnight = tomorrow.getTime() - now.getTime();
+
+      console.log(`Next refresh scheduled in ${Math.floor(timeUntilMidnight / 1000 / 60)} minutes`);
+
+      const timeout = setTimeout(async () => {
+        console.log('🌙 Refreshing daily results at midnight...');
+        // Reload guilds to trigger recalculation with new day's seed
+        const result = await getGuilds();
+        if (result.success && result.data) {
+          setGuilds(result.data as Guild[]);
+        }
+        // Schedule next refresh
+        scheduleNextRefresh();
+      }, timeUntilMidnight);
+
+      return timeout;
+    };
+
+    const timeoutId = scheduleNextRefresh();
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <>
@@ -129,7 +230,7 @@ const GuildRandom = () => {
                 ✨ Daily Guild Opportunities
               </h3>
               <p className="text-xs text-text-secondary">
-                Những sự kiện hôm nay có thể thay đổi vận mệnh guild của bạn
+                Ngày: <span className="text-accent font-bold">{new Date().toLocaleDateString('vi-VN')}</span> • Những sự kiện hôm nay có thể thay đổi vận mệnh guild của bạn
               </p>
             </div>
 
@@ -200,64 +301,70 @@ const GuildRandom = () => {
                 </tr>
               </thead>
               <tbody>
-                {paginatedGuilds.map((guild: Guild, index: number) => (
-                  <tr
-                    key={guild.id}
-                    className="border-b transition-all duration-300 hover:bg-accent/10 hover:shadow-lg"
-                    style={{
-                      borderColor: "var(--color-border)",
-                    }}
-                  >
-                    {/* Guild Name */}
-                    <td className="py-3 px-4">
-                      <div className="font-bold text-sm text-text-primary group-hover:text-accent">
-                        {guild.name}
-                      </div>
-                    </td>
-
-                    {/* Investors */}
-                    <td className="py-3 px-4">
-                      <div
-                        className="rounded-lg p-2 hover:shadow-md transition-all"
-                        style={{
-                          background: "var(--color-background)",
-                          boxShadow: `
-                            inset -2px -2px 4px #FAFBFF,
-                            inset 2px 2px 4px var(--color-shadow)
-                          `,
-                        }}
-                      >
-                        <p className="text-xs text-text-secondary font-medium">
-                          {guild.investors}
-                        </p>
-                      </div>
-                    </td>
-
-                    {/* Daily Opportunity */}
-                    <td className="py-3 px-4">
-                      {dailyOpportunities[index] ? (
-                        <div className="space-y-2 animate-pulse-slow">
-                          <div className="font-bold text-sm text-text-primary">
-                            {dailyOpportunities[index].name}
-                          </div>
-                          <div
-                            className={`inline-flex items-center px-2 py-1 rounded-full bg-gradient-to-r ${dailyOpportunities[index].color} text-white font-bold text-xs shadow-lg`}
-
-                            style={{
-                              boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
-                            }}
-                          >
-                            {dailyOpportunities[index].description}
-                          </div>
+                {paginatedGuilds.map((guild: Guild) => {
+                  const result = dailyResults[guild.id];
+                  const today = new Date().toISOString().split('T')[0];
+                  const isOutdated = result?.result_date !== today;
+                  
+                  return (
+                    <tr
+                      key={guild.id}
+                      className="border-b transition-all duration-300 hover:bg-accent/10 hover:shadow-lg"
+                      style={{
+                        borderColor: "var(--color-border)",
+                        opacity: isOutdated ? 0.6 : 1,
+                      }}
+                    >
+                      {/* Guild Name */}
+                      <td className="py-3 px-4">
+                        <div className="font-bold text-sm text-text-primary group-hover:text-accent">
+                          {guild.name}
                         </div>
-                      ) : (
-                        <div className="text-sm text-text-secondary font-medium">
-                          ✌️ Không có gì
+                      </td>
+
+                      {/* Investors */}
+                      <td className="py-3 px-4">
+                        <div
+                          className="rounded-lg p-2 hover:shadow-md transition-all"
+                          style={{
+                            background: "var(--color-background)",
+                            boxShadow: `
+                              inset -2px -2px 4px #FAFBFF,
+                              inset 2px 2px 4px var(--color-shadow)
+                            `,
+                          }}
+                        >
+                          <p className="text-xs text-text-secondary font-medium">
+                            {guild.investors}
+                          </p>
                         </div>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+
+                      {/* Daily Opportunity from Database */}
+                      <td className="py-3 px-4">
+                        {result?.has_opportunity && result?.opportunity_name ? (
+                          <div className="space-y-2 animate-pulse-slow">
+                            <div className="font-bold text-sm text-text-primary">
+                              {result.opportunity_name}
+                            </div>
+                            <div
+                              className={`inline-flex items-center px-2 py-1 rounded-full bg-gradient-to-r ${result.color} text-white font-bold text-xs shadow-lg`}
+                              style={{
+                                boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
+                              }}
+                            >
+                              {result.opportunity_description}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="text-sm text-text-secondary font-medium">
+                            ✌️ Không có gì
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
             )}
