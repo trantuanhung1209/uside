@@ -650,11 +650,17 @@ export const saveDailyResult = async (
     const today = new Date();
     const resultDate = today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
 
+    // Verify opportunity exists in OPPORTUNITIES array
+    let validOpportunityId = null;
+    if (opportunityId !== null && OPPORTUNITIES.some(opp => opp.id === opportunityId)) {
+      validOpportunityId = opportunityId;
+    }
+
     const dailyResult = {
       guild_id: guildId,
       guild_name: guildName,
       investors: investors,
-      opportunity_id: opportunityId,
+      opportunity_id: validOpportunityId, // Only set if it exists in OPPORTUNITIES
       result_date: resultDate,
       opportunity_name: opportunityData?.name || null,
       opportunity_description: opportunityData?.description || null,

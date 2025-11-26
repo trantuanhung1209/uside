@@ -27,10 +27,10 @@ import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import { NewsNotificationProvider } from './contexts/NewsNotificationContext';
 import { ReadNewsProvider } from './contexts/ReadNewsContext';
 import QuickPushNews from "./components/examples/QuickPushNews";
-import FirebaseDebug from "./components/debug/FirebaseDebug";
 import { preloader, lcpOptimizer } from "./utils/lcpOptimizer";
 import { useEffect } from "react";
 import OpportunitiesManagementPage from "./pages/OpportunitiesManagementPage";
+import DailyResultsDebug from "./components/debug/DailyResultsDebug";
 
 // Component để quản lý thông báo và hiển thị chúng
 const AppWithNotifications: React.FC = () => {
@@ -66,7 +66,7 @@ const AppWithNotifications: React.FC = () => {
             <OpportunitiesManagementPage />
           </ProtectedRoute>
         } />
-        <Route path="/debug" element={<FirebaseDebug />} />
+        <Route path="/debug" element={<DailyResultsDebug />} />
         <Route path="/guild-seeder" element={<GuildSeeder />} />
         {/* Route 404 */}
         <Route path="*" element={<NotFoundPage />} />

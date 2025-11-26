@@ -1,6 +1,10 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
-import { getGuilds, OPPORTUNITIES } from "../../services/guildService";
-import { supabase } from "../../config/supabase";
+import { useState, useEffect } from "react";
+import type { DailyResult } from "../../services/dailyResultsService";
+import {
+  getTodayResults,
+  subscribeToDailyResults,
+  fetchAllGuilds,
+} from "../../services/dailyResultsService";
 
 interface Guild {
   id: number;
@@ -11,190 +15,75 @@ interface Guild {
   color: string;
 }
 
-interface DailyResult {
-  id: number;
-  guild_id: number;
-  guild_name: string;
-  opportunity_id: number | null;
-  result_date: string;
-  opportunity_name: string | null;
-  opportunity_description: string | null;
-  effect: number | null;
-  icon: string | null;
-  color: string | null;
-  has_opportunity: boolean;
-}
-
 const GuildRandom = () => {
   const [guilds, setGuilds] = useState<Guild[]>([]);
   const [dailyResults, setDailyResults] = useState<Record<number, DailyResult>>({});
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const guildsPerPage = 4;
+  
+  // Calculate pagination
+  const totalPages = Math.ceil(guilds.length / guildsPerPage);
+  const paginatedGuilds = guilds.slice(
+    (currentPage - 1) * guildsPerPage,
+    currentPage * guildsPerPage
+  );
 
-  // Load guilds from Supabase on mount
+  // Load today's results and subscribe to realtime updates
   useEffect(() => {
-    const loadGuilds = async () => {
+    const loadData = async () => {
       try {
-        const result = await getGuilds();
-        if (result.success && result.data) {
-          setGuilds(result.data as Guild[]);
+        setLoading(true);
+
+        // Load today's results
+        const todayResults = await getTodayResults();
+
+        if (todayResults.length > 0) {
+          const resultsMap = todayResults.reduce(
+            (acc: Record<number, DailyResult>, result: DailyResult) => ({
+              ...acc,
+              [result.guild_id]: result,
+            }),
+            {}
+          );
+          setDailyResults(resultsMap);
         }
-      } catch (err) {
-        console.error("Error loading guilds:", err);
-      } finally {
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Error loading data:", error);
         setLoading(false);
       }
     };
 
+    loadData();
+
+    // Subscribe to realtime updates
+    const unsubscribe = subscribeToDailyResults((result: DailyResult) => {
+      setDailyResults((prev) => ({
+        ...prev,
+        [result.guild_id]: result,
+      }));
+    });
+
+    // Cleanup subscription
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // Load guilds from database
+  useEffect(() => {
+    const loadGuilds = async () => {
+      try {
+        const fetchedGuilds = await fetchAllGuilds();
+        setGuilds(fetchedGuilds);
+      } catch (error) {
+        console.error("Error loading guilds:", error);
+      }
+    };
+
     loadGuilds();
-
-    // Subscribe to real-time changes
-    const subscription = supabase
-      .channel('uside_guilds_changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'uside_guilds'
-        },
-        (payload) => {
-          console.log('Guild changed:', payload);
-          // Reload guilds on any change
-          loadGuilds();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  // Load today's daily results from database
-  useEffect(() => {
-    const loadDailyResults = async () => {
-      const { getTodayDailyResults: getResultsFn } = await import("../../services/guildService");
-      const result = await getResultsFn();
-      
-      if (result.success && result.data) {
-        // Convert array to map by guild_id for quick lookup
-        const resultsMap = (result.data as DailyResult[]).reduce((acc, item) => {
-          acc[item.guild_id] = item;
-          return acc;
-        }, {} as Record<number, DailyResult>);
-        setDailyResults(resultsMap);
-      }
-    };
-
-    loadDailyResults();
-
-    // Subscribe to changes in daily results
-    const subscription = supabase
-      .channel('daily_results_changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'uside_daily_results'
-        },
-        (payload) => {
-          console.log('Daily results changed:', payload);
-          // Reload daily results on any change
-          loadDailyResults();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  // Paginate guilds
-  const paginatedGuilds = useMemo(() => {
-    const startIndex = (currentPage - 1) * guildsPerPage;
-    return guilds.slice(startIndex, startIndex + guildsPerPage);
-  }, [guilds, currentPage]);
-
-  const totalPages = Math.ceil(guilds.length / guildsPerPage);
-
-  // Save daily results to database for ALL guilds
-  const saveDailyResults = useCallback(async () => {
-    if (guilds.length === 0) return;
-
-    const today = new Date();
-    const dayOfYear = Math.floor(
-      (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) /
-        86400000
-    );
-
-    const { saveDailyResult: saveFn } = await import("../../services/guildService");
-
-    // Calculate opportunities for ALL guilds, not just paginated ones
-    for (let i = 0; i < guilds.length; i++) {
-      const guild = guilds[i];
-      const originalIndex = i;
-      const guildSeed = dayOfYear + originalIndex * 12345;
-      const eventChance = guildSeed % 100;
-
-      let opportunity = null;
-      if (eventChance >= 85) {
-        const opportunityIndex = Math.abs(Math.floor((guildSeed * 7919) / 100)) % OPPORTUNITIES.length;
-        opportunity = OPPORTUNITIES[opportunityIndex];
-      }
-
-      await saveFn(
-        guild.id,
-        guild.name,
-        guild.investors,
-        opportunity?.id || null,
-        !!opportunity,
-        opportunity || null
-      );
-    }
-  }, [guilds]);
-
-  // Save daily results when guilds load
-  useEffect(() => {
-    if (guilds.length === 0 || loading) return;
-
-    saveDailyResults().catch(err => 
-      console.error("Error saving daily results:", err)
-    );
-  }, [saveDailyResults, loading, guilds.length]);
-
-  // Auto-refresh results at 00:00 every day
-  useEffect(() => {
-    const scheduleNextRefresh = () => {
-      const now = new Date();
-      const tomorrow = new Date(now);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      tomorrow.setHours(0, 0, 0, 0);
-
-      const timeUntilMidnight = tomorrow.getTime() - now.getTime();
-
-      console.log(`Next refresh scheduled in ${Math.floor(timeUntilMidnight / 1000 / 60)} minutes`);
-
-      const timeout = setTimeout(async () => {
-        console.log('🌙 Refreshing daily results at midnight...');
-        // Reload guilds to trigger recalculation with new day's seed
-        const result = await getGuilds();
-        if (result.success && result.data) {
-          setGuilds(result.data as Guild[]);
-        }
-        // Schedule next refresh
-        scheduleNextRefresh();
-      }, timeUntilMidnight);
-
-      return timeout;
-    };
-
-    const timeoutId = scheduleNextRefresh();
-
-    return () => clearTimeout(timeoutId);
   }, []);
 
   return (
@@ -282,7 +171,7 @@ const GuildRandom = () => {
                 Không có guild nào
               </div>
             ) : (
-            <table className="w-full">
+              <table className="w-full">
               <thead>
                 <tr
                   className="border-b-2 bg-gradient-to-r from-accent/10 to-blue-500/10"
@@ -319,7 +208,7 @@ const GuildRandom = () => {
                       {/* Guild Name */}
                       <td className="py-3 px-4">
                         <div className="font-bold text-sm text-text-primary group-hover:text-accent">
-                          {guild.name}
+                          {guild.icon} {guild.name}
                         </div>
                       </td>
 
@@ -354,7 +243,7 @@ const GuildRandom = () => {
                                 boxShadow: "-3px -3px 6px #FAFBFF, 3px 3px 6px rgba(22, 17, 29, 0.15)",
                               }}
                             >
-                              {result.opportunity_description}
+                              {result.icon} {result.opportunity_description}
                             </div>
                           </div>
                         ) : (

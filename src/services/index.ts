@@ -5,3 +5,12 @@ export { authService, type AuthUser } from './authService';
 export { firestoreService, type FirestoreDocument, type QueryCondition } from './firestoreService';
 export { storageService, type UploadProgress } from './storageService';
 export { newsService, type NewsFormData, type FirestoreNewsItem } from './newsService';
+export {
+  getTodayResults,
+  getResultsByDate,
+  getGuildHistory,
+  subscribeToDailyResults,
+  fetchAllGuilds,
+  fetchAllOpportunities,
+  type DailyResult,
+} from './dailyResultsService';
