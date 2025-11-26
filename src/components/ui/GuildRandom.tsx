@@ -202,13 +202,13 @@ const GuildRandom = () => {
                       className="border-b transition-all duration-300 hover:bg-accent/10 hover:shadow-lg"
                       style={{
                         borderColor: "var(--color-border)",
-                        opacity: isOutdated ? 0.6 : 1,
+                        opacity: isOutdated ? 1 : 1,
                       }}
                     >
                       {/* Guild Name */}
                       <td className="py-3 px-4">
                         <div className="font-bold text-sm text-text-primary group-hover:text-accent">
-                          {guild.icon} {guild.name}
+                          {guild.name}
                         </div>
                       </td>
 
