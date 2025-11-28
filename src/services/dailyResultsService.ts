@@ -30,6 +30,7 @@ export interface DailyResult {
   icon: string | null;
   color: string | null;
   has_opportunity: boolean;
+  rarity?: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'divine' | null;
 }
 
 /**

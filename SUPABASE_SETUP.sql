@@ -40,6 +40,8 @@ CREATE TABLE IF NOT EXISTS uside_opportunities_new (
   icon TEXT NOT NULL,
   color TEXT NOT NULL,
   type TEXT NOT NULL,
+  rarity TEXT NOT NULL DEFAULT 'common' CHECK (rarity IN ('common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic', 'divine')),
+  rarity_chance DECIMAL(5,2) NOT NULL DEFAULT 50.00 CHECK (rarity_chance >= 0 AND rarity_chance <= 100),
   created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -47,9 +49,20 @@ CREATE TABLE IF NOT EXISTS uside_opportunities_new (
 DO $$ 
 BEGIN
   IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'uside_opportunities' AND table_schema = 'public') THEN
-    INSERT INTO uside_opportunities_new (id, name, description, effect, icon, color, type, created_at)
+    INSERT INTO uside_opportunities_new (id, name, description, effect, icon, color, type, rarity, rarity_chance, created_at)
     OVERRIDING SYSTEM VALUE
-    SELECT id, name, description, effect, icon, color, type, created_at FROM uside_opportunities;
+    SELECT 
+      id, 
+      name, 
+      description, 
+      effect, 
+      icon, 
+      color, 
+      type, 
+      COALESCE(rarity, 'common'),
+      COALESCE(rarity_chance, 50.00),
+      created_at 
+    FROM uside_opportunities;
     
     -- Update sequence to max id
     PERFORM setval(pg_get_serial_sequence('uside_opportunities_new', 'id'), (SELECT MAX(id) FROM uside_opportunities_new));
@@ -119,6 +132,8 @@ CREATE TABLE IF NOT EXISTS uside_daily_results (
   effect INTEGER,
   icon TEXT,
   color TEXT,
+  rarity TEXT,
+  rarity_chance DECIMAL(5,2),
   has_opportunity BOOLEAN DEFAULT false,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW(),
@@ -149,6 +164,18 @@ CREATE POLICY "Allow public delete on uside_daily_results"
   ON uside_daily_results
   FOR DELETE
   USING (true);
+
+-- Add rarity and coin fields to existing uside_opportunities table
+ALTER TABLE public.uside_opportunities 
+ADD COLUMN IF NOT EXISTS rarity TEXT NOT NULL DEFAULT 'common' 
+CHECK (rarity IN ('common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic', 'divine'));
+
+-- Add coin range fields for different opportunity types
+ALTER TABLE public.uside_opportunities 
+ADD COLUMN IF NOT EXISTS coin_min INTEGER NOT NULL DEFAULT 0;
+
+ALTER TABLE public.uside_opportunities 
+ADD COLUMN IF NOT EXISTS coin_max INTEGER NOT NULL DEFAULT 0;
 
 UPDATE auth.users 
 SET raw_user_meta_data = 

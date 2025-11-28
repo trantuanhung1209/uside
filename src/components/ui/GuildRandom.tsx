@@ -186,6 +186,9 @@ const GuildRandom = () => {
                     Nhà Đầu Tư
                   </th>
                   <th className="text-left py-3 px-4 font-bold text-xs text-accent uppercase tracking-wider">
+                    Độ Hiếm
+                  </th>
+                  <th className="text-left py-3 px-4 font-bold text-xs text-accent uppercase tracking-wider">
                     Cơ Hội Hôm Nay
                   </th>
                 </tr>
@@ -228,6 +231,38 @@ const GuildRandom = () => {
                             {guild.investors}
                           </p>
                         </div>
+                      </td>
+
+                      {/* Rarity */}
+                      <td className="py-3 px-4">
+                        {result?.has_opportunity && result?.rarity ? (
+                          <span
+                            className="inline-flex px-3 py-1 rounded-full text-xs font-semibold text-white"
+                            style={{
+                              backgroundColor: 
+                                result.rarity === 'common' ? '#6b7280' :
+                                result.rarity === 'uncommon' ? '#22c55e' :
+                                result.rarity === 'rare' ? '#3b82f6' :
+                                result.rarity === 'epic' ? '#8b5cf6' :
+                                result.rarity === 'legendary' ? '#f97316' :
+                                result.rarity === 'mythic' ? '#ef4444' :
+                                result.rarity === 'divine' ? '#fbbf24' :
+                                '#6b7280',
+                              boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
+                            }}
+                          >
+                            {result.rarity === 'common' ? 'Thường' :
+                             result.rarity === 'uncommon' ? 'Không phổ biến' :
+                             result.rarity === 'rare' ? 'Hiếm' :
+                             result.rarity === 'epic' ? 'Sử thi' :
+                             result.rarity === 'legendary' ? 'Huyền thoại' :
+                             result.rarity === 'mythic' ? 'Thần thoại' :
+                             result.rarity === 'divine' ? 'Thần thánh' : 'Thường'
+                            }
+                          </span>
+                        ) : (
+                          <span className="text-xs text-text-secondary">-</span>
+                        )}
                       </td>
 
                       {/* Daily Opportunity from Database */}

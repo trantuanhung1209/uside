@@ -19,6 +19,9 @@ interface Opportunity {
   icon?: string;
   color?: string;
   type: 'positive' | 'negative' | 'neutral';
+  rarity?: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'divine';
+  coin_min?: number;
+  coin_max?: number;
 }
 
 const OpportunitiesManagementPage: React.FC = () => {
@@ -356,10 +359,10 @@ const OpportunitiesManagementPage: React.FC = () => {
                         Tên
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
-                        Mô tả
+                        Độ hiếm
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
-                        Effect
+                        Khoảng Coin
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
                         Loại
@@ -389,20 +392,48 @@ const OpportunitiesManagementPage: React.FC = () => {
                               {opportunity.name}
                             </span>
                           </td>
-                          <td className="px-6 py-4">
-                            <span className="text-sm" style={{ color: "#94a3b8" }}>
-                              {opportunity.description}
-                            </span>
-                          </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
                               className="inline-flex px-3 py-1 rounded-full text-xs font-semibold text-white"
                               style={{
-                                backgroundColor: opportunity.effect > 0 ? "#22c55e" : "#ef4444",
+                                backgroundColor: 
+                                  opportunity.rarity === 'common' ? '#6b7280' :
+                                  opportunity.rarity === 'uncommon' ? '#22c55e' :
+                                  opportunity.rarity === 'rare' ? '#3b82f6' :
+                                  opportunity.rarity === 'epic' ? '#8b5cf6' :
+                                  opportunity.rarity === 'legendary' ? '#f97316' :
+                                  opportunity.rarity === 'mythic' ? '#ef4444' :
+                                  opportunity.rarity === 'divine' ? '#fbbf24' :
+                                  '#6b7280',
                                 boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
                               }}
                             >
-                              {opportunity.effect > 0 ? "+" : ""}{opportunity.effect}
+                              {opportunity.rarity ? 
+                                (opportunity.rarity === 'common' ? 'Thường' :
+                                 opportunity.rarity === 'uncommon' ? 'Không phổ biến' :
+                                 opportunity.rarity === 'rare' ? 'Hiếm' :
+                                 opportunity.rarity === 'epic' ? 'Sử thi' :
+                                 opportunity.rarity === 'legendary' ? 'Huyền thoại' :
+                                 opportunity.rarity === 'mythic' ? 'Thần thoại' :
+                                 opportunity.rarity === 'divine' ? 'Thần thánh' : 'Thường')
+                                : 'Thường'
+                              }
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span
+                              className="inline-flex px-3 py-1 rounded-full text-xs font-semibold"
+                              style={{
+                                backgroundColor: 'rgba(255,215,0,0.15)',
+                                color: '#ffd700',
+                                border: 'rgba(255,215,0,0.3)',
+                                boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
+                              }}
+                            >
+                              {opportunity.coin_min && opportunity.coin_max ? 
+                                `${opportunity.coin_min} - ${opportunity.coin_max}` : 
+                                'Chưa thiết lập'
+                              }
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -591,11 +622,14 @@ const OpportunitiesManagementPage: React.FC = () => {
                 const opportunityData: Opportunity = {
                   id: editingOpportunity?.id || 0,
                   name: formData.get("name") as string,
-                  description: formData.get("description") as string,
-                  effect: parseInt(formData.get("effect") as string) || 0,
+                  description: "", // Keep for backwards compatibility
+                  effect: 0, // Keep for backwards compatibility
                   icon: "✨",
                   color: "from-blue-400 to-cyan-500",
                   type: formData.get("type") as 'positive' | 'negative' | 'neutral',
+                  rarity: formData.get("rarity") as 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'divine',
+                  coin_min: parseInt(formData.get("coin_min") as string) || 0,
+                  coin_max: parseInt(formData.get("coin_max") as string) || 0,
                 };
                 handleSaveOpportunity(opportunityData);
               }}
@@ -628,43 +662,71 @@ const OpportunitiesManagementPage: React.FC = () => {
                   className="block text-sm mb-2"
                   style={{ color: "#f1f5f9" }}
                 >
-                  Mô tả
+                  Độ hiếm
                 </label>
-                <input
-                  type="text"
-                  name="description"
-                  defaultValue={editingOpportunity?.description}
-                  placeholder="Ví dụ: + 200 coin"
-                  required
+                <select
+                  name="rarity"
+                  defaultValue={editingOpportunity?.rarity || "common"}
                   className="w-full px-4 py-2 rounded-lg"
                   style={{
                     background: "rgba(30, 41, 59, 0.8)",
                     color: "#f1f5f9",
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                   }}
-                />
+                >
+                  <option value="common">Thường</option>
+                  <option value="uncommon">Không phổ biến</option>
+                  <option value="rare">Hiếm</option>
+                  <option value="epic">Sử thi</option>
+                  <option value="legendary">Huyền thoại</option>
+                  <option value="mythic">Thần thoại</option>
+                  <option value="divine">Thần thánh</option>
+                </select>
               </div>
 
-              <div>
-                <label
-                  className="block text-sm mb-2"
-                  style={{ color: "#f1f5f9" }}
-                >
-                  Effect (Coin)
-                </label>
-                <input
-                  type="number"
-                  name="effect"
-                  defaultValue={editingOpportunity?.effect}
-                  placeholder="200"
-                  required
-                  className="w-full px-4 py-2 rounded-lg"
-                  style={{
-                    background: "rgba(30, 41, 59, 0.8)",
-                    color: "#f1f5f9",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
-                  }}
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    className="block text-sm mb-2"
+                    style={{ color: "#f1f5f9" }}
+                  >
+                    Coin tối thiểu
+                  </label>
+                  <input
+                    type="number"
+                    name="coin_min"
+                    defaultValue={editingOpportunity?.coin_min}
+                    placeholder="100"
+                    required
+                    className="w-full px-4 py-2 rounded-lg"
+                    style={{
+                      background: "rgba(30, 41, 59, 0.8)",
+                      color: "#f1f5f9",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                    }}
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-sm mb-2"
+                    style={{ color: "#f1f5f9" }}
+                  >
+                    Coin tối đa
+                  </label>
+                  <input
+                    type="number"
+                    name="coin_max"
+                    defaultValue={editingOpportunity?.coin_max}
+                    placeholder="500"
+                    required
+                    className="w-full px-4 py-2 rounded-lg"
+                    style={{
+                      background: "rgba(30, 41, 59, 0.8)",
+                      color: "#f1f5f9",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                    }}
+                  />
+                </div>
               </div>
 
               <div>
