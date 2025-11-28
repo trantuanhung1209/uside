@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccentColor } from "../hooks";
 import { useAdminAuth } from "../hooks/useAdminAuth";
-import {
-  ArrowLeft,
-  LogOut,
-  Plus,
-  Edit2,
-  Trash2,
-} from "lucide-react";
+import { ArrowLeft, LogOut, Plus, Edit2, Trash2 } from "lucide-react";
 import { supabase } from "../config/supabase";
 
 interface Opportunity {
@@ -18,8 +12,15 @@ interface Opportunity {
   effect: number;
   icon?: string;
   color?: string;
-  type: 'positive' | 'negative' | 'neutral';
-  rarity?: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'divine';
+  type: "positive" | "negative" | "neutral";
+  rarity?:
+    | "common"
+    | "uncommon"
+    | "rare"
+    | "epic"
+    | "legendary"
+    | "mythic"
+    | "divine";
   coin_min?: number;
   coin_max?: number;
 }
@@ -45,12 +46,12 @@ const OpportunitiesManagementPage: React.FC = () => {
       setLoading(true);
       setError(null);
       const { data, error: err } = await supabase
-        .from('uside_opportunities')
-        .select('*')
-        .order('id', { ascending: true });
+        .from("uside_opportunities")
+        .select("*")
+        .order("id", { ascending: true });
 
       if (err) {
-        console.error('Error fetching opportunities:', err);
+        console.error("Error fetching opportunities:", err);
         setError("Không thể tải dữ liệu opportunities");
       } else {
         setOpportunities(data as Opportunity[]);
@@ -64,7 +65,8 @@ const OpportunitiesManagementPage: React.FC = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingOpportunity, setEditingOpportunity] = useState<Opportunity | null>(null);
+  const [editingOpportunity, setEditingOpportunity] =
+    useState<Opportunity | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const opportunitiesPerPage = 8;
 
@@ -90,9 +92,9 @@ const OpportunitiesManagementPage: React.FC = () => {
       try {
         setSaving(true);
         const { error: err } = await supabase
-          .from('uside_opportunities')
+          .from("uside_opportunities")
           .delete()
-          .eq('id', opportunityId);
+          .eq("id", opportunityId);
 
         if (err) {
           setError("Không thể xóa opportunity");
@@ -119,17 +121,19 @@ const OpportunitiesManagementPage: React.FC = () => {
         const { id: _, ...updateData } = opportunityData;
         void _;
         const { data, error: err } = await supabase
-          .from('uside_opportunities')
+          .from("uside_opportunities")
           .update(updateData)
-          .eq('id', editingOpportunity.id)
+          .eq("id", editingOpportunity.id)
           .select();
 
         if (err) {
-          console.error('Error updating opportunity:', err);
+          console.error("Error updating opportunity:", err);
           setError("Không thể cập nhật opportunity");
         } else if (data && data[0]) {
           setOpportunities(
-            opportunities.map((o) => (o.id === editingOpportunity.id ? data[0] : o))
+            opportunities.map((o) =>
+              o.id === editingOpportunity.id ? data[0] : o
+            )
           );
           setIsModalOpen(false);
           setEditingOpportunity(null);
@@ -139,12 +143,12 @@ const OpportunitiesManagementPage: React.FC = () => {
         const { id: _, ...newOpportunityData } = opportunityData;
         void _;
         const { data, error: err } = await supabase
-          .from('uside_opportunities')
+          .from("uside_opportunities")
           .insert([newOpportunityData])
           .select();
 
         if (err) {
-          console.error('Error adding opportunity:', err);
+          console.error("Error adding opportunity:", err);
           setError("Không thể thêm opportunity");
         } else if (data && data[0]) {
           setOpportunities([...opportunities, data[0]]);
@@ -262,7 +266,9 @@ const OpportunitiesManagementPage: React.FC = () => {
                 }}
               >
                 <div className="loading-spinner mx-auto mb-4"></div>
-                <p style={{ color: "#94a3b8" }}>Đang tải dữ liệu opportunities...</p>
+                <p style={{ color: "#94a3b8" }}>
+                  Đang tải dữ liệu opportunities...
+                </p>
               </div>
             )}
 
@@ -291,23 +297,219 @@ const OpportunitiesManagementPage: React.FC = () => {
                       {saving && "(Đang xử lý...)"}
                     </p>
 
-                    <div className="flex gap-4 mt-3">
+                    <div className="flex flex-wrap gap-4 mt-3">
+                      {/* Type Statistics */}
                       <div className="flex items-center gap-2">
-                        <span style={{ fontSize: "16px", color: "#86efac", fontWeight: "600" }}>Tích cực:</span>
-                        <span style={{ fontSize: "16px", color: "#22c55e", fontWeight: "bold" }}>
-                          {opportunities.filter((o) => o.type === "positive").length}
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#86efac",
+                            fontWeight: "600",
+                          }}
+                        >
+                          Tích cực:
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#22c55e",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {
+                            opportunities.filter((o) => o.type === "positive")
+                              .length
+                          }
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span style={{ fontSize: "16px", color: "#fcd34d", fontWeight: "600" }}>Trung lập:</span>
-                        <span style={{ fontSize: "16px", color: "#f59e0b", fontWeight: "bold" }}>
-                          {opportunities.filter((o) => o.type === "neutral").length}
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#fcd34d",
+                            fontWeight: "600",
+                          }}
+                        >
+                          Trung lập:
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#f59e0b",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {
+                            opportunities.filter((o) => o.type === "neutral")
+                              .length
+                          }
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span style={{ fontSize: "16px", color: "#fca5a5", fontWeight: "600" }}>Tiêu cực:</span>
-                        <span style={{ fontSize: "16px", color: "#ef4444", fontWeight: "bold" }}>
-                          {opportunities.filter((o) => o.type === "negative").length}
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#fca5a5",
+                            fontWeight: "600",
+                          }}
+                        >
+                          Tiêu cực:
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#ef4444",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {
+                            opportunities.filter((o) => o.type === "negative")
+                              .length
+                          }
+                        </span>
+                      </div>
+                    </div>
+                    
+                    {/* Rarity Statistics */}
+                    <div className="flex flex-wrap gap-3 mt-4">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="inline-flex px-2 py-1 rounded text-xs font-semibold text-white"
+                          style={{
+                            backgroundColor: "#6b7280",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Thường
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#6b7280",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {opportunities.filter((o) => o.rarity === "common").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="inline-flex px-2 py-1 rounded text-xs font-semibold text-white"
+                          style={{
+                            backgroundColor: "#22c55e",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Không phổ biến
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#22c55e",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {opportunities.filter((o) => o.rarity === "uncommon").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="inline-flex px-2 py-1 rounded text-xs font-semibold text-white"
+                          style={{
+                            backgroundColor: "#3b82f6",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Hiếm
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#3b82f6",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {opportunities.filter((o) => o.rarity === "rare").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="inline-flex px-2 py-1 rounded text-xs font-semibold text-white"
+                          style={{
+                            backgroundColor: "#8b5cf6",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Sử thi
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#8b5cf6",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {opportunities.filter((o) => o.rarity === "epic").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="inline-flex px-2 py-1 rounded text-xs font-semibold text-white"
+                          style={{
+                            backgroundColor: "#f97316",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Huyền thoại
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#f97316",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {opportunities.filter((o) => o.rarity === "legendary").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="inline-flex px-2 py-1 rounded text-xs font-semibold text-white"
+                          style={{
+                            backgroundColor: "#ef4444",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Thần thoại
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#ef4444",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {opportunities.filter((o) => o.rarity === "mythic").length}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="inline-flex px-2 py-1 rounded text-xs font-semibold text-white"
+                          style={{
+                            backgroundColor: "#fbbf24",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Thần thánh
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "14px",
+                            color: "#fbbf24",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {opportunities.filter((o) => o.rarity === "divine").length}
                         </span>
                       </div>
                     </div>
@@ -347,58 +549,100 @@ const OpportunitiesManagementPage: React.FC = () => {
               style={{
                 background: "rgba(15, 23, 42, 0.9)",
                 backdropFilter: "blur(20px)",
-                boxShadow: "inset -12px -12px 24px rgba(0, 0, 0, 0.4), inset 12px 12px 24px rgba(255, 255, 255, 0.05), 0 20px 40px rgba(0, 0, 0, 0.3)",
+                boxShadow:
+                  "inset -12px -12px 24px rgba(0, 0, 0, 0.4), inset 12px 12px 24px rgba(255, 255, 255, 0.05), 0 20px 40px rgba(0, 0, 0, 0.3)",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
               }}
             >
               <div className="overflow-x-auto">
-                <table className="min-w-full divide-y" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
+                <table
+                  className="min-w-full divide-y"
+                  style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}
+                >
                   <thead style={{ background: "rgba(30, 41, 59, 0.8)" }}>
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                      <th
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        style={{ color: "#94a3b8" }}
+                      >
                         Tên
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                      <th
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        style={{ color: "#94a3b8" }}
+                      >
                         Mô tả
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                      <th
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        style={{ color: "#94a3b8" }}
+                      >
                         Độ hiếm
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                      <th
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        style={{ color: "#94a3b8" }}
+                      >
                         Khoảng Coin
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                      <th
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                        style={{ color: "#94a3b8" }}
+                      >
                         Loại
                       </th>
-                      <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                      <th
+                        className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider"
+                        style={{ color: "#94a3b8" }}
+                      >
                         Hành động
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y" style={{ background: "rgba(15, 23, 42, 0.9)", borderColor: "rgba(255, 255, 255, 0.2)" }}>
+                  <tbody
+                    className="divide-y"
+                    style={{
+                      background: "rgba(15, 23, 42, 0.9)",
+                      borderColor: "rgba(255, 255, 255, 0.2)",
+                    }}
+                  >
                     {opportunities
-                      .slice((currentPage - 1) * opportunitiesPerPage, currentPage * opportunitiesPerPage)
+                      .slice(
+                        (currentPage - 1) * opportunitiesPerPage,
+                        currentPage * opportunitiesPerPage
+                      )
                       .map((opportunity) => (
                         <tr
                           key={opportunity.id}
                           className="transition-all duration-300"
                           style={{ background: "rgba(15, 23, 42, 0.9)" }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
+                            e.currentTarget.style.background =
+                              "rgba(30, 41, 59, 0.8)";
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "rgba(15, 23, 42, 0.9)";
+                            e.currentTarget.style.background =
+                              "rgba(15, 23, 42, 0.9)";
                           }}
                         >
                           <td className="px-6 py-4">
-                            <span style={{ color: "#f1f5f9" }} className="text-sm font-semibold">
+                            <span
+                              style={{ color: "#f1f5f9" }}
+                              className="text-sm font-semibold"
+                            >
                               {opportunity.name}
                             </span>
                           </td>
                           <td className="px-6 py-4">
-                            <div style={{ color: "#94a3b8" }} className="text-xs max-w-xs">
-                              <p className="truncate" title={opportunity.description}>
-                                {opportunity.description || 'Chưa có mô tả'}
+                            <div
+                              style={{ color: "#94a3b8" }}
+                              className="text-xs max-w-xs"
+                            >
+                              <p
+                                className="truncate"
+                                title={opportunity.description}
+                              >
+                                {opportunity.description || "Chưa có mô tả"}
                               </p>
                             </div>
                           </td>
@@ -406,54 +650,69 @@ const OpportunitiesManagementPage: React.FC = () => {
                             <span
                               className="inline-flex px-3 py-1 rounded-full text-xs font-semibold text-white"
                               style={{
-                                backgroundColor: 
-                                  opportunity.rarity === 'common' ? '#6b7280' :
-                                  opportunity.rarity === 'uncommon' ? '#22c55e' :
-                                  opportunity.rarity === 'rare' ? '#3b82f6' :
-                                  opportunity.rarity === 'epic' ? '#8b5cf6' :
-                                  opportunity.rarity === 'legendary' ? '#f97316' :
-                                  opportunity.rarity === 'mythic' ? '#ef4444' :
-                                  opportunity.rarity === 'divine' ? '#fbbf24' :
-                                  '#6b7280',
+                                backgroundColor:
+                                  opportunity.rarity === "common"
+                                    ? "#6b7280"
+                                    : opportunity.rarity === "uncommon"
+                                    ? "#22c55e"
+                                    : opportunity.rarity === "rare"
+                                    ? "#3b82f6"
+                                    : opportunity.rarity === "epic"
+                                    ? "#8b5cf6"
+                                    : opportunity.rarity === "legendary"
+                                    ? "#f97316"
+                                    : opportunity.rarity === "mythic"
+                                    ? "#ef4444"
+                                    : opportunity.rarity === "divine"
+                                    ? "#fbbf24"
+                                    : "#6b7280",
                                 boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
                               }}
                             >
-                              {opportunity.rarity ? 
-                                (opportunity.rarity === 'common' ? 'Thường' :
-                                 opportunity.rarity === 'uncommon' ? 'Không phổ biến' :
-                                 opportunity.rarity === 'rare' ? 'Hiếm' :
-                                 opportunity.rarity === 'epic' ? 'Sử thi' :
-                                 opportunity.rarity === 'legendary' ? 'Huyền thoại' :
-                                 opportunity.rarity === 'mythic' ? 'Thần thoại' :
-                                 opportunity.rarity === 'divine' ? 'Thần thánh' : 'Thường')
-                                : 'Thường'
-                              }
+                              {opportunity.rarity
+                                ? opportunity.rarity === "common"
+                                  ? "Thường"
+                                  : opportunity.rarity === "uncommon"
+                                  ? "Không phổ biến"
+                                  : opportunity.rarity === "rare"
+                                  ? "Hiếm"
+                                  : opportunity.rarity === "epic"
+                                  ? "Sử thi"
+                                  : opportunity.rarity === "legendary"
+                                  ? "Huyền thoại"
+                                  : opportunity.rarity === "mythic"
+                                  ? "Thần thoại"
+                                  : opportunity.rarity === "divine"
+                                  ? "Thần thánh"
+                                  : "Thường"
+                                : "Thường"}
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
                               className="inline-flex px-3 py-1 rounded-full text-xs font-semibold"
                               style={{
-                                backgroundColor: 'rgba(255,215,0,0.15)',
-                                color: '#ffd700',
-                                border: 'rgba(255,215,0,0.3)',
+                                backgroundColor: "rgba(255,215,0,0.15)",
+                                color: "#ffd700",
+                                border: "rgba(255,215,0,0.3)",
                                 boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
                               }}
                             >
-                              {opportunity.coin_min && opportunity.coin_max ? 
-                                `${opportunity.coin_min} - ${opportunity.coin_max}` : 
-                                'Chưa thiết lập'
-                              }
+                              {opportunity.coin_min && opportunity.coin_max
+                                ? `${opportunity.coin_min} - ${opportunity.coin_max}`
+                                : "Chưa thiết lập"}
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
                               className="inline-flex px-3 py-1 rounded-full text-xs font-semibold text-white"
                               style={{
-                                backgroundColor: 
-                                  opportunity.type === "positive" ? "#22c55e" :
-                                  opportunity.type === "negative" ? "#ef4444" :
-                                  "#f59e0b",
+                                backgroundColor:
+                                  opportunity.type === "positive"
+                                    ? "#22c55e"
+                                    : opportunity.type === "negative"
+                                    ? "#ef4444"
+                                    : "#f59e0b",
                                 boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
                               }}
                             >
@@ -467,24 +726,32 @@ const OpportunitiesManagementPage: React.FC = () => {
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <div className="flex items-center justify-end gap-2">
                               <button
-                                onClick={() => handleEditOpportunity(opportunity)}
+                                onClick={() =>
+                                  handleEditOpportunity(opportunity)
+                                }
                                 className="p-2 rounded-lg transition-all duration-300 cursor-pointer"
                                 style={{
                                   background: "rgba(15, 23, 42, 0.7)",
                                   backdropFilter: "blur(8px)",
                                   border: "1px solid rgba(51, 65, 85, 0.5)",
                                   color: currentAccentColor,
-                                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+                                  boxShadow:
+                                    "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
                                 }}
                                 onMouseEnter={(e) => {
-                                  e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
-                                  e.currentTarget.style.transform = "translateY(-1px)";
+                                  e.currentTarget.style.background =
+                                    "rgba(30, 41, 59, 0.8)";
+                                  e.currentTarget.style.transform =
+                                    "translateY(-1px)";
                                   e.currentTarget.style.boxShadow = `0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px ${currentAccentColor}40`;
                                 }}
                                 onMouseLeave={(e) => {
-                                  e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
-                                  e.currentTarget.style.transform = "translateY(0)";
-                                  e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
+                                  e.currentTarget.style.background =
+                                    "rgba(15, 23, 42, 0.7)";
+                                  e.currentTarget.style.transform =
+                                    "translateY(0)";
+                                  e.currentTarget.style.boxShadow =
+                                    "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
                                 }}
                                 title="Chỉnh sửa"
                                 disabled={saving}
@@ -493,7 +760,8 @@ const OpportunitiesManagementPage: React.FC = () => {
                               </button>
                               <button
                                 onClick={() =>
-                                  opportunity.id && handleDeleteOpportunity(opportunity.id)
+                                  opportunity.id &&
+                                  handleDeleteOpportunity(opportunity.id)
                                 }
                                 className="p-2 rounded-lg transition-all duration-300 cursor-pointer"
                                 style={{
@@ -501,17 +769,24 @@ const OpportunitiesManagementPage: React.FC = () => {
                                   backdropFilter: "blur(8px)",
                                   border: "1px solid rgba(51, 65, 85, 0.5)",
                                   color: "#EF4444",
-                                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+                                  boxShadow:
+                                    "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
                                 }}
                                 onMouseEnter={(e) => {
-                                  e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
-                                  e.currentTarget.style.transform = "translateY(-1px)";
-                                  e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px #EF444440";
+                                  e.currentTarget.style.background =
+                                    "rgba(30, 41, 59, 0.8)";
+                                  e.currentTarget.style.transform =
+                                    "translateY(-1px)";
+                                  e.currentTarget.style.boxShadow =
+                                    "0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px #EF444440";
                                 }}
                                 onMouseLeave={(e) => {
-                                  e.currentTarget.style.background = "rgba(15, 23, 42, 0.7)";
-                                  e.currentTarget.style.transform = "translateY(0)";
-                                  e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
+                                  e.currentTarget.style.background =
+                                    "rgba(15, 23, 42, 0.7)";
+                                  e.currentTarget.style.transform =
+                                    "translateY(0)";
+                                  e.currentTarget.style.boxShadow =
+                                    "0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)";
                                 }}
                                 title="Xóa"
                                 disabled={saving}
@@ -534,7 +809,10 @@ const OpportunitiesManagementPage: React.FC = () => {
                 disabled={currentPage === 1}
                 className="px-4 py-2 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 style={{
-                  background: currentPage === 1 ? "rgba(94, 109, 130, 0.5)" : "rgba(30, 41, 59, 0.8)",
+                  background:
+                    currentPage === 1
+                      ? "rgba(94, 109, 130, 0.5)"
+                      : "rgba(30, 41, 59, 0.8)",
                   color: "#f1f5f9",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
                 }}
@@ -576,12 +854,14 @@ const OpportunitiesManagementPage: React.FC = () => {
                   )
                 }
                 disabled={
-                  currentPage === Math.ceil(opportunities.length / opportunitiesPerPage)
+                  currentPage ===
+                  Math.ceil(opportunities.length / opportunitiesPerPage)
                 }
                 className="px-4 py-2 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 style={{
                   background:
-                    currentPage === Math.ceil(opportunities.length / opportunitiesPerPage)
+                    currentPage ===
+                    Math.ceil(opportunities.length / opportunitiesPerPage)
                       ? "rgba(94, 109, 130, 0.5)"
                       : "rgba(30, 41, 59, 0.8)",
                   color: "#f1f5f9",
@@ -598,7 +878,7 @@ const OpportunitiesManagementPage: React.FC = () => {
       {/* Opportunity Form Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 flex items-start pt-[200px] justify-center z-50 px-4"
+          className="fixed inset-0 flex items-start pt-[100px] justify-center z-50 px-4"
           style={{
             background: "rgba(0, 0, 0, 0.7)",
             backdropFilter: "blur(5px)",
@@ -622,7 +902,9 @@ const OpportunitiesManagementPage: React.FC = () => {
               className="text-2xl font-bold mb-6"
               style={{ color: "#f1f5f9" }}
             >
-              {editingOpportunity ? "Chỉnh sửa Opportunity" : "Thêm Opportunity mới"}
+              {editingOpportunity
+                ? "Chỉnh sửa Opportunity"
+                : "Thêm Opportunity mới"}
             </h3>
 
             <form
@@ -636,8 +918,18 @@ const OpportunitiesManagementPage: React.FC = () => {
                   effect: 0, // Keep for backwards compatibility
                   icon: "✨",
                   color: "from-blue-400 to-cyan-500",
-                  type: formData.get("type") as 'positive' | 'negative' | 'neutral',
-                  rarity: formData.get("rarity") as 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'divine',
+                  type: formData.get("type") as
+                    | "positive"
+                    | "negative"
+                    | "neutral",
+                  rarity: formData.get("rarity") as
+                    | "common"
+                    | "uncommon"
+                    | "rare"
+                    | "epic"
+                    | "legendary"
+                    | "mythic"
+                    | "divine",
                   coin_min: parseInt(formData.get("coin_min") as string) || 0,
                   coin_max: parseInt(formData.get("coin_max") as string) || 0,
                 };
