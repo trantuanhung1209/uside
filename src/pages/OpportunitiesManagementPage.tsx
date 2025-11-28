@@ -359,6 +359,9 @@ const OpportunitiesManagementPage: React.FC = () => {
                         Tên
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                        Mô tả
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
                         Độ hiếm
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: "#94a3b8" }}>
@@ -391,6 +394,13 @@ const OpportunitiesManagementPage: React.FC = () => {
                             <span style={{ color: "#f1f5f9" }} className="text-sm font-semibold">
                               {opportunity.name}
                             </span>
+                          </td>
+                          <td className="px-6 py-4">
+                            <div style={{ color: "#94a3b8" }} className="text-xs max-w-xs">
+                              <p className="truncate" title={opportunity.description}>
+                                {opportunity.description || 'Chưa có mô tả'}
+                              </p>
+                            </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
@@ -622,7 +632,7 @@ const OpportunitiesManagementPage: React.FC = () => {
                 const opportunityData: Opportunity = {
                   id: editingOpportunity?.id || 0,
                   name: formData.get("name") as string,
-                  description: "", // Keep for backwards compatibility
+                  description: formData.get("description") as string,
                   effect: 0, // Keep for backwards compatibility
                   icon: "✨",
                   color: "from-blue-400 to-cyan-500",
@@ -649,6 +659,28 @@ const OpportunitiesManagementPage: React.FC = () => {
                   placeholder="Tên sự kiện"
                   required
                   className="w-full px-4 py-2 rounded-lg"
+                  style={{
+                    background: "rgba(30, 41, 59, 0.8)",
+                    color: "#f1f5f9",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                  }}
+                />
+              </div>
+
+              <div>
+                <label
+                  className="block text-sm mb-2"
+                  style={{ color: "#f1f5f9" }}
+                >
+                  Mô tả
+                </label>
+                <textarea
+                  name="description"
+                  defaultValue={editingOpportunity?.description || ""}
+                  placeholder="Mô tả chi tiết về sự kiện này..."
+                  required
+                  rows={3}
+                  className="w-full px-4 py-2 rounded-lg resize-none"
                   style={{
                     background: "rgba(30, 41, 59, 0.8)",
                     color: "#f1f5f9",
