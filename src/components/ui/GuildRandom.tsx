@@ -413,18 +413,65 @@ const GuildRandom = () => {
                         <td className="py-2 sm:py-3 px-2 sm:px-4">
                           {result?.profit !== null &&
                           result?.profit !== undefined ? (
-                            <div className="flex items-center gap-1 sm:gap-2">
-                              <span
-                                className={`inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-bold text-white whitespace-nowrap`}
-                                style={{
-                                  backgroundColor:
-                                    result.profit >= 0 ? "#22c55e" : "#ef4444",
-                                  boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
-                                }}
-                              >
-                                {result.profit >= 0 ? "📈" : "📉"}{" "}
-                                {result.profit}%
-                              </span>
+                            <div className="space-y-1 sm:space-y-2">
+                              {/* Overall Profit */}
+                              <div className="flex items-center gap-1 sm:gap-2">
+                                <span
+                                  className={`inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-bold text-white whitespace-nowrap`}
+                                  style={{
+                                    backgroundColor:
+                                      result.profit >= 0 ? "#22c55e" : "#ef4444",
+                                    boxShadow: `inset -2px -2px 4px rgba(22, 17, 29, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.3)`,
+                                  }}
+                                >
+                                  {result.profit >= 0 ? "📈" : "📉"}{" "}
+                                  {result.profit}%
+                                </span>
+                              </div>
+
+                              {/* Investor Profit Breakdown */}
+                              {result?.investors && result.investors.length > 0 && (
+                                <div
+                                  className="rounded-lg p-1.5 sm:p-2 text-xs hover:shadow-md transition-all"
+                                  style={{
+                                    background: "var(--color-background)",
+                                    boxShadow: `
+                                    inset -2px -2px 4px #FAFBFF,
+                                    inset 2px 2px 4px var(--color-shadow)
+                                  `,
+                                  }}
+                                >
+                                  <div className="space-y-0.5 sm:space-y-1">
+                                    {result.investors.map((investor, idx) => {
+                                      const totalReturn =
+                                        investor.investment_coins *
+                                        ((result.profit ?? 0)) / 100;
+                                      const displayValue = Math.round(totalReturn);
+                                      return (
+                                        <div
+                                          key={idx}
+                                          className="flex items-center justify-between text-xs text-text-secondary font-medium"
+                                        >
+                                          <span className="font-semibold text-xs">
+                                            {investor.investor_name}
+                                          </span>
+                                          <span
+                                            className={`px-1.5 py-0.5 rounded text-white font-bold whitespace-nowrap`}
+                                            style={{
+                                              backgroundColor:
+                                                displayValue >= 0
+                                                  ? "#22c55e"
+                                                  : "#ef4444",
+                                            }}
+                                          >
+                                            (+{displayValue})
+                                          </span>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           ) : (
                             <span className="text-xs text-text-secondary">
