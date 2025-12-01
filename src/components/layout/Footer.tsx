@@ -84,13 +84,13 @@ const Footer = () => {
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 xl:grid-cols-6 gap-8 mb-16">
+        <div className="grid grid-cols-1 3xl:grid-cols-6 gap-8 mb-16">
           <GuildRandom />
 
           {/* Career Paths */}
-          <div className="lg:col-span-2">
+          <div className="4xl:col-span-1 lg:col-span-2">
             <div
-              className="p-6 rounded-3xl h-full"
+              className="py-6 px-3 rounded-3xl h-full"
               style={{
                 background: "var(--color-background)",
                 boxShadow: `

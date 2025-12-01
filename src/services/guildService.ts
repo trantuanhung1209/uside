@@ -1,12 +1,24 @@
 import { supabase } from '../config/supabase';
 
+export interface Investor {
+  investor_name: string;
+  investment_coins: number;
+}
+
 export interface Guild {
   id?: number;
   name: string;
   coin_per_month: number;
-  investors: string;
+  investors: Investor[];
   icon: string;
   color: string;
+  logo_url?: string;
+  flag_url?: string;
+  banner_url?: string;
+  project_name?: string;
+  progress?: number;
+  completed?: boolean;
+  created_at?: string;
 }
 
 export interface Opportunity {
@@ -25,25 +37,43 @@ export const GUILDS: Guild[] = [
     id: 1,
     name: 'Guild 1',
     coin_per_month: 15000,
-    investors: 'Nguyen Van A',
+    investors: [
+      { investor_name: 'Nguyen Van A', investment_coins: 5000 },
+      { investor_name: 'Tran Thi B', investment_coins: 3000 },
+    ],
     icon: '🥷',
     color: 'from-purple-500 to-pink-500',
+    project_name: 'Project Alpha',
+    progress: 65,
+    completed: false,
   },
   {
     id: 2,
     name: 'Guild 2',
     coin_per_month: 12500,
-    investors: 'Nguyen Van B',
+    investors: [
+      { investor_name: 'Nguyen Van B', investment_coins: 4000 },
+    ],
     icon: '⚔️',
     color: 'from-blue-500 to-cyan-500',
+    project_name: 'Project Beta',
+    progress: 45,
+    completed: false,
   },
   {
     id: 3,
     name: 'Guild 3',
     coin_per_month: 18000,
-    investors: 'Nguyen Van C',
+    investors: [
+      { investor_name: 'Nguyen Van C', investment_coins: 6000 },
+      { investor_name: 'Pham Minh D', investment_coins: 2000 },
+      { investor_name: 'Le Hoang E', investment_coins: 1500 },
+    ],
     icon: '🐉',
     color: 'from-orange-500 to-red-500',
+    project_name: 'Project Gamma',
+    progress: 80,
+    completed: false,
   },
 ];
 

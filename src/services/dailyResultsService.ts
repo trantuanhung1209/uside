@@ -1,15 +1,7 @@
 import { supabase } from "../config/supabase";
+import type { Guild } from "./guildService";
 
-interface Guild {
-  id: number;
-  name: string;
-  coin_per_month: number;
-  investors: string;
-  icon: string;
-  color: string;
-}
-
-interface Opportunity {
+export interface Opportunity {
   id: number;
   name: string;
   description: string;
@@ -18,10 +10,19 @@ interface Opportunity {
   color: string;
 }
 
+export interface Investor {
+  investor_name: string;
+  investment_coins: number;
+}
+
 export interface DailyResult {
   id?: number;
   guild_id: number;
   guild_name: string;
+  project_name?: string | null;
+  progress?: number | null;
+  profit?: number | null;
+  investors?: Investor[] | null;
   opportunity_id: number | null;
   result_date: string;
   opportunity_name: string | null;

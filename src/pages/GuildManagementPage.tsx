@@ -15,18 +15,9 @@ import {
   addGuild,
   updateGuild,
   deleteGuild,
+  type Guild,
+  type Investor,
 } from "../services/guildService";
-
-interface Guild {
-  id: number;
-  name: string;
-  coin_per_month: number;
-  investors: string;
-  icon: string;
-  color: string;
-  members?: number;
-  established?: string;
-}
 
 const GuildManagementPage: React.FC = () => {
   const navigate = useNavigate();
@@ -66,6 +57,14 @@ const GuildManagementPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingGuild, setEditingGuild] = useState<Guild | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [investorInputs, setInvestorInputs] = useState<Investor[]>([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    coin_per_month: 0,
+    project_name: "",
+    progress: 0,
+    completed: false,
+  });
   const guildsPerPage = 4;
 
   const handleLogout = () => {
@@ -77,15 +76,32 @@ const GuildManagementPage: React.FC = () => {
 
   const handleAddGuild = () => {
     setEditingGuild(null);
+    setInvestorInputs([{ investor_name: '', investment_coins: 0 }]);
+    setFormData({
+      name: "",
+      coin_per_month: 0,
+      project_name: "",
+      progress: 0,
+      completed: false,
+    });
     setIsModalOpen(true);
   };
 
   const handleEditGuild = (guild: Guild) => {
     setEditingGuild(guild);
+    setInvestorInputs(guild.investors || []);
+    setFormData({
+      name: guild.name,
+      coin_per_month: guild.coin_per_month,
+      project_name: guild.project_name || "",
+      progress: guild.progress || 0,
+      completed: guild.completed || false,
+    });
     setIsModalOpen(true);
   };
 
-  const handleDeleteGuild = async (guildId: number) => {
+  const handleDeleteGuild = async (guildId: number | undefined) => {
+    if (!guildId) return;
     if (window.confirm("Bạn có chắc chắn muốn xóa guild này?")) {
       try {
         setSaving(true);
@@ -113,8 +129,8 @@ const GuildManagementPage: React.FC = () => {
 
       if (editingGuild) {
         // Update existing guild - remove id before sending to update function
-        const { id, ...updateData } = guildData;
-        void id; // Explicitly mark as intentionally unused
+        const { id: _, ...updateData } = guildData;
+        if (!editingGuild.id) throw new Error("Guild ID is missing");
         console.log('🔄 Updating guild:', { id: editingGuild.id, updateData });
         const result = await updateGuild(editingGuild.id, updateData);
 
@@ -431,7 +447,7 @@ const GuildManagementPage: React.FC = () => {
                           className="text-xs truncate"
                           style={{ color: "#94a3b8" }}
                         >
-                          {guild.investors}
+                          {guild.investors?.map((inv) => inv.investor_name).join(", ") || "No investors"}
                         </p>
                       </div>
 
@@ -577,15 +593,16 @@ const GuildManagementPage: React.FC = () => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                const formData = new FormData(e.currentTarget);
-                const guildData = {
-                  id: editingGuild?.id || 0,
-                  name: formData.get("name") as string,
-                  coin_per_month:
-                    parseInt(formData.get("coin_per_month") as string) || 0,
-                  investors: formData.get("investors") as string,
+                const guildData: Guild = {
+                  id: editingGuild?.id,
+                  name: formData.name,
+                  coin_per_month: formData.coin_per_month,
+                  investors: investorInputs,
                   icon: editingGuild?.icon || "🥷",
                   color: editingGuild?.color || "from-purple-500 to-pink-500",
+                  project_name: formData.project_name || undefined,
+                  progress: formData.progress,
+                  completed: formData.completed,
                 };
                 handleSaveGuild(guildData);
               }}
@@ -600,8 +617,8 @@ const GuildManagementPage: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  defaultValue={editingGuild?.name}
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Guild name"
                   required
                   className="w-full px-4 py-2 rounded-lg"
@@ -622,8 +639,8 @@ const GuildManagementPage: React.FC = () => {
                 </label>
                 <input
                   type="number"
-                  name="coin_per_month"
-                  defaultValue={editingGuild?.coin_per_month}
+                  value={formData.coin_per_month}
+                  onChange={(e) => setFormData({ ...formData, coin_per_month: parseInt(e.target.value) || 0 })}
                   placeholder="15000"
                   required
                   className="w-full px-4 py-2 rounded-lg"
@@ -640,14 +657,13 @@ const GuildManagementPage: React.FC = () => {
                   className="block text-sm mb-2"
                   style={{ color: "#f1f5f9" }}
                 >
-                  Nhà đầu tư
+                  Tên Dự Án
                 </label>
                 <input
                   type="text"
-                  name="investors"
-                  defaultValue={editingGuild?.investors}
-                  placeholder="Nguyen Van A"
-                  required
+                  value={formData.project_name}
+                  onChange={(e) => setFormData({ ...formData, project_name: e.target.value })}
+                  placeholder="Project name"
                   className="w-full px-4 py-2 rounded-lg"
                   style={{
                     background: "rgba(30, 41, 59, 0.8)",
@@ -655,6 +671,120 @@ const GuildManagementPage: React.FC = () => {
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                   }}
                 />
+              </div>
+
+              <div>
+                <label
+                  className="block text-sm mb-2"
+                  style={{ color: "#f1f5f9" }}
+                >
+                  % Hoàn thành
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={formData.progress}
+                  onChange={(e) => setFormData({ ...formData, progress: parseInt(e.target.value) || 0 })}
+                  placeholder="0-100"
+                  className="w-full px-4 py-2 rounded-lg"
+                  style={{
+                    background: "rgba(30, 41, 59, 0.8)",
+                    color: "#f1f5f9",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                  }}
+                />
+              </div>
+
+              <div>
+                <label
+                  className="block text-sm mb-2"
+                  style={{ color: "#f1f5f9" }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.completed}
+                    onChange={(e) => setFormData({ ...formData, completed: e.target.checked })}
+                    className="mr-2"
+                  />
+                  Đã hoàn thành
+                </label>
+              </div>
+
+              {/* Investors Section */}
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <label
+                    className="block text-sm"
+                    style={{ color: "#f1f5f9" }}
+                  >
+                    Nhà Đầu Tư
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setInvestorInputs([...investorInputs, { investor_name: '', investment_coins: 0 }])
+                    }
+                    className="text-xs px-2 py-1 rounded transition-all"
+                    style={{
+                      background: currentAccentColor,
+                      color: "#fff",
+                    }}
+                  >
+                    + Thêm
+                  </button>
+                </div>
+
+                {investorInputs.map((investor, idx) => (
+                  <div key={idx} className="flex gap-2 mb-2">
+                    <input
+                      type="text"
+                      placeholder="Tên nhà đầu tư"
+                      value={investor.investor_name}
+                      onChange={(e) => {
+                        const updated = [...investorInputs];
+                        updated[idx].investor_name = e.target.value;
+                        setInvestorInputs(updated);
+                      }}
+                      className="flex-1 px-3 py-2 rounded-lg text-sm"
+                      style={{
+                        background: "rgba(30, 41, 59, 0.8)",
+                        color: "#f1f5f9",
+                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                      }}
+                    />
+                    <input
+                      type="number"
+                      placeholder="Số tiền"
+                      value={investor.investment_coins}
+                      onChange={(e) => {
+                        const updated = [...investorInputs];
+                        updated[idx].investment_coins = parseInt(e.target.value) || 0;
+                        setInvestorInputs(updated);
+                      }}
+                      className="w-24 px-3 py-2 rounded-lg text-sm"
+                      style={{
+                        background: "rgba(30, 41, 59, 0.8)",
+                        color: "#f1f5f9",
+                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updated = investorInputs.filter((_, i) => i !== idx);
+                        setInvestorInputs(updated);
+                      }}
+                      className="px-2 py-2 rounded transition-all"
+                      style={{
+                        background: "rgba(239, 68, 68, 0.2)",
+                        color: "#ef4444",
+                      }}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
               </div>
 
               <div className="flex gap-3 pt-4">
