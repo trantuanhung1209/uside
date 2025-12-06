@@ -1,10 +1,14 @@
 import { HiArrowSmUp } from "react-icons/hi";
 import { NewsletterSubscription } from "../ui";
-import { FaEnvelope } from "react-icons/fa6";
+import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaGithub } from "react-icons/fa6";
+import { IoLocationSharp, IoMail, IoCall } from "react-icons/io5";
+import { TbWorld } from "react-icons/tb";
+import { BsMailbox } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { careerPaths as careerPathsList } from "../../data/careerPaths";
 import GuildRandom from "../ui/GuildRandom";
+import { HiTag } from "react-icons/hi2";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -13,26 +17,26 @@ const Footer = () => {
   const socialLinks = [
     {
       name: "Facebook",
-      icon: "📘",
+      icon: <FaFacebook />,
       url: "#",
       color: "from-blue-500 to-blue-600",
     },
     {
       name: "Instagram",
-      icon: "📷",
+      icon: <FaInstagram />,
       url: "#",
       color: "from-pink-500 to-purple-600",
     },
     {
       name: "LinkedIn",
-      icon: "💼",
+      icon: <FaLinkedin />,
       url: "#",
       color: "from-blue-600 to-blue-700",
     },
-    { name: "YouTube", icon: "🎥", url: "#", color: "from-red-500 to-red-600" },
+    { name: "YouTube", icon: <FaYoutube />, url: "#", color: "from-red-500 to-red-600" },
     {
       name: "GitHub",
-      icon: "🔗",
+      icon: <FaGithub />,
       url: "#",
       color: "from-gray-700 to-gray-800",
     },
@@ -88,9 +92,9 @@ const Footer = () => {
           <GuildRandom />
 
           {/* Career Paths */}
-          <div className="4xl:col-span-1 lg:col-span-2">
+          <div className="4xl:col-span-2 lg:col-span-2">
             <div
-              className="py-6 px-3 rounded-3xl h-full"
+              className="py-6 px-6 rounded-3xl h-full"
               style={{
                 background: "var(--color-background)",
                 boxShadow: `
@@ -100,7 +104,7 @@ const Footer = () => {
               }}
             >
               <h3 className="text-lg font-bold text-text-primary mb-6 flex items-center gap-2">
-                <span className="text-accent">🎯</span> Hướng nghiệp
+                <HiTag className="text-accent" /> Hướng nghiệp
               </h3>
               <div className="flex flex-col flex-wrap gap-3">
                 {careerPathsList.map((career, index) => (
@@ -212,7 +216,7 @@ const Footer = () => {
                       `,
                     }}
                   >
-                    📍
+                    <IoLocationSharp />
                   </div>
                   <span className="text-sm">
                     Nguyễn Văn Bảo/12 Đ. Hạnh Thông, Phường, Gò Vấp, Hồ Chí Minh
@@ -229,7 +233,7 @@ const Footer = () => {
                       `,
                     }}
                   >
-                    📧
+                    <IoMail />
                   </div>
                   <span className="text-sm">
                     <a href="mailto:usider.tech@gmail.com">
@@ -248,7 +252,7 @@ const Footer = () => {
                       `,
                     }}
                   >
-                    📞
+                    <IoCall />
                   </div>
                   <span className="text-sm">+84 (035) 313 3235</span>
                 </div>
@@ -269,7 +273,7 @@ const Footer = () => {
               }}
             >
               <h3 className="text-lg font-bold text-text-primary mb-6 flex items-center gap-2">
-                <span className="text-accent">🌐</span> Kết nối với chúng tôi
+                <TbWorld className="text-accent" /> Kết nối với chúng tôi
               </h3>
 
               {/* Social Icons */}
@@ -294,7 +298,7 @@ const Footer = () => {
                         `,
                       }}
                     >
-                      <span className="text-white text-lg">{social.icon}</span>
+                      <span className="text-white text-xl">{social.icon}</span>
                     </div>
                     <div
                       className="absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"
@@ -311,8 +315,8 @@ const Footer = () => {
 
               {/* Newsletter Signup */}
               <div className="space-y-3">
-                <h4 className="text-sm font-semibold text-text-primary">
-                  📬 Đăng ký nhận tin
+                <h4 className="text-sm font-semibold text-text-primary flex items-center gap-2">
+                  <BsMailbox className="text-accent" /> Đăng ký nhận tin
                 </h4>
                 <NewsletterSubscription
                   placeholder="Email của bạn"

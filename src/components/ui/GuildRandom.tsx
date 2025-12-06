@@ -83,7 +83,7 @@ const GuildRandom = () => {
   return (
     <>
       <div
-        className="lg:col-span-5 rounded-3xl h-full"
+        className="lg:col-span-4 rounded-3xl h-full"
         style={{
           background: "var(--color-background)",
           boxShadow: `

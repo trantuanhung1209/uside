@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../ui/Button';
+import { MdError, MdCheckCircle } from 'react-icons/md';
+import { ImSpinner2 } from 'react-icons/im';
 
 interface NewsletterSubscriptionProps {
   className?: string;
@@ -91,7 +93,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
           className={`
             font-medium rounded-xl transition-all duration-300 transform hover:scale-105
             ${className.includes('newsletter-compact') 
-              ? 'w-10 h-10 text-white min-w-0 p-0'
+              ? 'w-10 h-10 text-white'
               : 'px-6 py-3 min-w-[120px] text-white'
             }
             ${isLoading 
@@ -104,17 +106,18 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
             boxShadow: `
               -4px -4px 8px #FAFBFF,
               4px 4px 8px var(--color-shadow)
-            `
+            `,
+            padding: '10px 20px',
           } : {
             backgroundColor: isLoading ? '#9CA3AF' : '#2563EB',
           }}
         >
           {isLoading ? (
             className.includes('newsletter-compact') ? (
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <ImSpinner2 className="w-4 h-4 animate-spin" />
             ) : (
               <div className="flex items-center justify-center">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                <ImSpinner2 className="w-4 h-4 animate-spin mr-2" />
                 Đang gửi...
               </div>
             )
@@ -129,18 +132,14 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
         <div className="mt-3">
           {error && (
             <div className="flex items-center p-3 text-red-700 bg-red-100 rounded-lg">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
+              <MdError className="w-5 h-5 mr-2" />
               <span className="text-sm">{error}</span>
             </div>
           )}
           
           {success && (
             <div className="flex items-center p-3 text-green-700 bg-green-100 rounded-lg">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
+              <MdCheckCircle className="w-5 h-5 mr-2" />
               <span className="text-sm">{message}</span>
             </div>
           )}
