@@ -298,7 +298,7 @@ const Footer = () => {
                         `,
                       }}
                     >
-                      <span className="text-white text-xl">{social.icon}</span>
+                      <span className="text-accent text-xl">{social.icon}</span>
                     </div>
                     <div
                       className="absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"

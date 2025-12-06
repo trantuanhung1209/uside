@@ -107,7 +107,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
               -4px -4px 8px #FAFBFF,
               4px 4px 8px var(--color-shadow)
             `,
-            padding: '10px 20px',
+            padding: '10px 12px',
           } : {
             backgroundColor: isLoading ? '#9CA3AF' : '#2563EB',
           }}
