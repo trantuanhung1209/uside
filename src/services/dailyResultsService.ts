@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabase";
+import { supabaseAdmin } from "../config/supabaseAdmin";
 import type { Guild } from "./guildService";
 
 export interface Opportunity {
@@ -39,7 +39,7 @@ export interface DailyResult {
  */
 export const fetchAllGuilds = async (): Promise<Guild[]> => {
   try {
-    const { data, error } = await supabase.from("uside_guilds").select("*");
+    const { data, error } = await supabaseAdmin!.from("uside_guilds").select("*");
 
     if (error) {
       console.error("Error fetching guilds:", error);
@@ -58,7 +58,7 @@ export const fetchAllGuilds = async (): Promise<Guild[]> => {
  */
 export const fetchAllOpportunities = async (): Promise<Opportunity[]> => {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin!
       .from("uside_opportunities")
       .select("*");
 
@@ -81,7 +81,7 @@ export const getTodayResults = async (): Promise<DailyResult[]> => {
   try {
     const today = new Date().toISOString().split("T")[0];
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin!
       .from("uside_daily_results")
       .select("*")
       .eq("result_date", today);
@@ -110,13 +110,13 @@ export const subscribeToDailyResults = (
 ): (() => void) => {
   const today = new Date().toISOString().split("T")[0];
 
-  const channel = supabase
+  const channel = supabaseAdmin!
     .channel("uside_daily_results_changes")
     .on<DailyResult>(
       "postgres_changes",
       {
         event: "*",
-        schema: "public",
+        schema: "uside_gaming",
         table: "uside_daily_results",
         filter: `result_date=eq.${today}`,
       },
@@ -152,7 +152,7 @@ export const subscribeToDailyResults = (
  */
 export const getResultsByDate = async (date: string): Promise<DailyResult[]> => {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin!
       .from("uside_daily_results")
       .select("*")
       .eq("result_date", date)
@@ -180,7 +180,7 @@ export const getGuildHistory = async (
   limit: number = 7
 ): Promise<DailyResult[]> => {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin!
       .from("uside_daily_results")
       .select("*")
       .eq("guild_id", guildId)

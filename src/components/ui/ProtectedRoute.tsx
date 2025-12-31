@@ -9,6 +9,8 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isAuthenticated, loading } = useAdminAuth();
 
+  console.log('ProtectedRoute - isAuthenticated:', isAuthenticated, 'loading:', loading);
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--color-background)" }}>

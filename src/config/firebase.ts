@@ -53,7 +53,7 @@ auth.onAuthStateChanged(
     if (user) {
       console.log('🔐 User authenticated:', user.email);
     } else {
-      console.log('🔓 User not authenticated');
+      console.log('🔓');
     }
   },
   (error) => {

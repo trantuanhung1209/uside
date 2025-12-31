@@ -3,6 +3,7 @@ import { LogIn, Shield } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../hooks/useAdminAuth';
 import { useAccentColor } from '../hooks';
+import { supabase } from '../config/supabase';
 
 const AdminLoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -11,10 +12,45 @@ const AdminLoginPage: React.FC = () => {
 
   // If already authenticated, redirect to admin page
   useEffect(() => {
+    console.log('AdminLoginPage useEffect - isAuthenticated:', isAuthenticated, 'loading:', loading);
     if (isAuthenticated && !loading) {
+      console.log('Redirecting to /admin');
       navigate('/admin');
     }
   }, [isAuthenticated, loading, navigate]);
+
+  // Handle OAuth redirect with token
+  useEffect(() => {
+    const handleOAuthRedirect = async () => {
+      const hash = window.location.hash;
+      if (hash && hash.includes('access_token')) {
+        console.log('Detected OAuth token in URL, processing...');
+        
+        // Parse token from URL hash
+        const params = new URLSearchParams(hash.substring(1));
+        const accessToken = params.get('access_token');
+        const refreshToken = params.get('refresh_token');
+        
+        if (accessToken && refreshToken) {
+          console.log('Setting session with tokens...');
+          const { data, error } = await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: refreshToken
+          });
+          
+          if (error) {
+            console.error('Error setting session:', error);
+          } else if (data.session) {
+            console.log('Session set successfully');
+            // Clean up URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
+        }
+      }
+    };
+
+    handleOAuthRedirect();
+  }, []);
 
   const handleGoogleLogin = async () => {
     try {

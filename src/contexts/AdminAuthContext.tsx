@@ -18,7 +18,7 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
   // Check if user has admin role
   const isUserAdmin = (userData: User | null): boolean => {
     if (!userData) return false;
-    const role = userData.user_metadata?.role;
+    const role = userData.user_metadata?.role || userData.app_metadata?.role;
     return role === 'admin';
   };
 
@@ -65,13 +65,16 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
     // Subscribe to auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
+        console.log('Auth state change - event:', _event, 'session exists:', !!session);
         if (session?.user) {
           const isAdmin = isUserAdmin(session.user);
+          console.log('User authenticated, isAdmin:', isAdmin, 'role from metadata:', session.user.user_metadata?.role, 'role from app_metadata:', session.user.app_metadata?.role);
           setIsAuthenticated(true);
           setUser(session.user);
           setHasAdminRole(isAdmin);
           setShowUnauthorized(!isAdmin); // Show unauthorized if not admin
         } else {
+          console.log('No session, setting unauthenticated');
           setIsAuthenticated(false);
           setUser(null);
           setHasAdminRole(false);

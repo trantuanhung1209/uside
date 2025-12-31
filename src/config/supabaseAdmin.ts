@@ -13,6 +13,9 @@ export const supabaseAdmin = supabaseServiceKey
       auth: {
         autoRefreshToken: false,
         persistSession: false
+      },
+      db: {
+        schema: 'uside_gaming'
       }
     })
   : null;
