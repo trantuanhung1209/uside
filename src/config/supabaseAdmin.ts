@@ -15,7 +15,7 @@ export const supabaseAdmin = supabaseServiceKey
         persistSession: false
       },
       db: {
-        schema: 'uside_gaming'
+        schema: 'public'
       }
     })
   : null;
