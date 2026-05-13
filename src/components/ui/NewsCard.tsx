@@ -26,9 +26,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
   return (
     <div
       className={`
-        group relative overflow-hidden rounded-2xl p-6 cursor-pointer
+        group relative overflow-hidden rounded-2xl p-5 sm:p-6 cursor-pointer h-full
         transition-all duration-500 ease-out
-        transform hover:scale-101 hover:-translate-y-2
+        transform hover:scale-[1.01] hover:-translate-y-2 focus-within:-translate-y-2
         opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]
       `}
       style={{
@@ -48,6 +48,15 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
       onClick={() => {
         Navigate(`/news/${article.id}`)
       }}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          Navigate(`/news/${article.id}`);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Đọc tin: ${article.title}`}
     >
       {/* Gradient overlay */}
       <div
@@ -64,9 +73,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
         {article.image && (
           <div
             className={`
-            h-40 overflow-hidden rounded-xl mb-4 flex items-center justify-center
+            aspect-[16/10] overflow-hidden rounded-xl mb-4 flex items-center justify-center
             transform transition-transform duration-500
-            ${isHovered ? "scale-110" : "scale-100"}
+            ${isHovered ? "scale-[1.03]" : "scale-100"}
           `}
             style={{
               boxShadow: `
@@ -194,20 +203,23 @@ const NewsCard: React.FC<NewsCardProps> = ({ article, index }) => {
         {/* Read More Button */}
         <div className="w-full text-center">
           <button
-          className={`
-            neumorphic-button w-full text-center
-          `}
-        >
-          Đọc thêm
-          <span
-            className={`
-            transition-transform duration-300
-            ${isHovered ? "translate-x-1" : ""}
-          `}
+            type="button"
+            className="neumorphic-button w-full text-center uside-focus-ring"
+            onClick={(event) => {
+              event.stopPropagation();
+              Navigate(`/news/${article.id}`);
+            }}
           >
-            →
-          </span>
-        </button>
+            Đọc thêm
+            <span
+              className={`
+                transition-transform duration-300
+                ${isHovered ? "translate-x-1" : ""}
+              `}
+            >
+              →
+            </span>
+          </button>
         </div>
       </div>
 

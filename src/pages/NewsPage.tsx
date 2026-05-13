@@ -155,7 +155,7 @@ const NewsPage: React.FC = () => {
       />
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="lg:text-3xl text-2xl font-bold text-text-primary mb-8">
+          <h1 className="lg:text-3xl text-2xl font-bold text-text-primary mb-8 text-center lg:text-left">
             Tin tức mới nhất
           </h1>
 
@@ -164,7 +164,10 @@ const NewsPage: React.FC = () => {
             <div className="flex justify-end mb-5 lg:hidden">
               <button
                 onClick={() => setShowActions(!showActions)}
-                className="p-2 rounded-full bg-[var(--color-background)] shadow-md hover:scale-110 transition cursor-pointer"
+                className="p-3 rounded-full bg-[var(--color-background)] shadow-md hover:scale-105 transition cursor-pointer uside-focus-ring"
+                type="button"
+                aria-expanded={showActions}
+                aria-label="Hiện bộ lọc tin tức"
               >
                 <FaFilter className="text-[var(--color-accent)]" />
               </button>
@@ -174,7 +177,7 @@ const NewsPage: React.FC = () => {
             <div
               className={`${
                 showActions ? "block" : "hidden"
-              } lg:block bg-[var(--color-background)] rounded-xl p-3 lg:p-0`}
+              } lg:block bg-[var(--color-background)] rounded-2xl p-3 lg:p-0`}
             >
               {/* Category Filter */}
               <div className="mb-4">
@@ -188,7 +191,7 @@ const NewsPage: React.FC = () => {
                   group relative lg:px-6 lg:py-3 xs:px-3 xs:py-2 rounded-2xl font-medium text-sm
                   transition-all duration-300 ease-out
                   transform hover:scale-105 active:scale-95
-                  flex items-center gap-2
+                  flex items-center gap-2 uside-focus-ring
                 `}
                       style={{
                         background: `var(--color-background)`,
@@ -263,15 +266,15 @@ const NewsPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-[20px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 uside-card-grid">
             {currentNews.length > 0 ? (
               currentNews.map((item, index) => (
                 <div
                   key={item.id}
                   className={`
-                    group relative overflow-hidden rounded-2xl p-6 cursor-pointer
+                    group relative overflow-hidden rounded-2xl p-5 sm:p-6 cursor-pointer h-full
                     transition-all duration-500 ease-out
-                    transform hover:scale-101 hover:-translate-y-2
+                    transform hover:scale-[1.01] hover:-translate-y-2 focus-within:-translate-y-2
                     opacity-0 animate-[slideInUp_0.6s_ease-out_forwards]
                   `}
                   style={{
@@ -283,6 +286,15 @@ const NewsPage: React.FC = () => {
                     animationDelay: `${index * 100}ms`,
                   }}
                   onClick={() => navigate(`/news/${item.id}`)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      navigate(`/news/${item.id}`);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Đọc tin: ${item.title}`}
                 >
                   {/* Gradient overlay */}
                   <div
@@ -293,12 +305,12 @@ const NewsPage: React.FC = () => {
                   `}
                   />
 
-                  <div className="relative z-10 flex gap-6 xs:flex-col ">
+                  <div className="relative z-10 flex gap-5 xs:flex-col">
                     {/* Image */}
                     {item.image && (
                       <div
                         className={`
-                        flex-shrink-0 w-32 h-48 overflow-hidden rounded-xl
+                        flex-shrink-0 w-32 aspect-[4/5] overflow-hidden rounded-xl
                         transform transition-transform duration-500 group-hover:scale-105 xs:w-full
                       `}
                         style={{
@@ -409,8 +421,9 @@ const NewsPage: React.FC = () => {
 
                       {/* Read More Button */}
                       <button
+                        type="button"
                         className={` xs:w-full
-                          neumorphic-button 
+                          neumorphic-button uside-focus-ring
                         `}
                         style={{
                           background: `var(--color-accent)`,
@@ -477,11 +490,12 @@ const NewsPage: React.FC = () => {
                   Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm
                 </p>
                 <button
+                  type="button"
                   onClick={() => {
                     handleFilterChange("all");
                     handleSearchChange("");
                   }}
-                  className="px-6 py-2 text-sm font-semibold rounded-xl transition-all duration-300"
+                  className="px-6 py-2 text-sm font-semibold rounded-xl transition-all duration-300 uside-focus-ring"
                   style={{
                     background: `var(--color-accent)`,
                     color: "white",
@@ -500,7 +514,7 @@ const NewsPage: React.FC = () => {
           <div className="pagination">
             {totalPages > 1 && (
               <div
-                className="mt-12 flex items-center justify-center gap-4"
+                className="mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
                 style={{
                   background: `var(--color-background)`,
                   borderRadius: "24px",
@@ -513,13 +527,14 @@ const NewsPage: React.FC = () => {
               >
                 {/* Previous Button */}
                 <button
+                  type="button"
                   onClick={goToPrevious}
                   disabled={currentPage === 1}
                   className={` cursor-pointer
                     group flex items-center justify-center w-12 h-12 rounded-2xl
                     transition-all duration-300 ease-out
                     transform hover:scale-110 active:scale-95
-                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 uside-focus-ring
                   `}
                   style={{
                     background:
@@ -573,13 +588,14 @@ const NewsPage: React.FC = () => {
 
                     return (
                       <button
+                        type="button"
                         key={pageNum}
                         onClick={() => goToPage(pageNum)}
                         className={` cursor-pointer
                           relative w-12 h-12 rounded-2xl font-bold text-sm
                           transition-all duration-300 ease-out
                           transform hover:scale-110 active:scale-95
-                          ${isActive ? "animate-pulse" : ""}
+                          uside-focus-ring ${isActive ? "animate-pulse" : ""}
                         `}
                         style={{
                           background: isActive
@@ -635,13 +651,14 @@ const NewsPage: React.FC = () => {
 
                 {/* Next Button */}
                 <button
+                  type="button"
                   onClick={goToNext}
                   disabled={currentPage === totalPages}
                   className={` cursor-pointer
                     group flex items-center justify-center w-12 h-12 rounded-2xl
                     transition-all duration-300 ease-out
                     transform hover:scale-110 active:scale-95
-                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 uside-focus-ring
                   `}
                   style={{
                     background:

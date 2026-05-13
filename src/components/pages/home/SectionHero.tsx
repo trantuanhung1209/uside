@@ -92,7 +92,7 @@ const SectionHero = () => {
       <section
         ref={heroRef}
         id="hero"
-        className="relative border-b border-border py-[40px]"
+        className="relative border-b border-border py-6 lg:py-10"
         style={{ background: "var(--color-background)" }}
         data-lcp="true"
       >
@@ -100,13 +100,13 @@ const SectionHero = () => {
 
         {/* Main Content */}
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:pb-[80px] pb-[20px] pt-0">
-          <div className="flex items-center xs:flex-col xs:gap-[10px] xl:flex-row 4xl:justify-between pb-[20px] 3xl:justify-around relative">
+          <div className="flex items-center xs:flex-col xs:gap-3 xl:flex-row 4xl:justify-between pb-5 3xl:justify-around relative">
             {/* Inner Quote */}
             <BlockQuote />
 
             {/* Right side buttons */}
             <div className="relative z-2 xs:order-1 xs:w-full md:block md:w-[80%] xl:order-2 3xl:w-[50%] 4xl:w-[40%]">
-              <div className="flex items-center gap-2 border-gray-200 bg-background shadow-sm px-[10px] lg:px-[15px] lg:py-[6px] rounded-[20px] transition-all duration-300 hover:shadow-lg">
+              <div className="flex items-center gap-2 border border-white/70 bg-background shadow-sm px-3 py-2 lg:px-4 rounded-[22px] transition-all duration-300 hover:shadow-lg uside-mobile-compact">
                 <div className="search-container relative group flex-1">
                   <div
                     className="search-wrapper relative rounded-2xl transition-all duration-300 "
@@ -152,7 +152,10 @@ const SectionHero = () => {
                   title="Open Apps"
                 >
                   <button
-                    className={`robot-apps-button section-neumorphic w-8 h-8 md:w-10 md:h-10 ${
+                    type="button"
+                    aria-label="Mở danh sách ứng dụng nhanh"
+                    aria-expanded={showAppsPopup}
+                    className={`robot-apps-button section-neumorphic uside-focus-ring w-9 h-9 md:w-10 md:h-10 ${
                       showAppsPopup ? "active" : ""
                     }`}
                     style={{
@@ -204,7 +207,7 @@ const SectionHero = () => {
 
             {/* Apps Popup */}
             {showAppsPopup && (
-              <div className="apps-popup absolute top-15 right-12 mt-2 bg-white rounded-lg shadow-lg border-border p-4 w-64 z-500 xs:scale-90 md:right-25 lg:right-30 xl:right-20 xl:scale-95 4xl:right-30 5xl:right-20">
+              <div className="apps-popup absolute top-[4.75rem] right-0 mt-2 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-border p-4 w-64 z-50 xs:scale-95 md:right-10 lg:right-20 xl:right-16 xl:scale-100 4xl:right-24 5xl:right-20">
                 <div className="apps-popup-arrow absolute -top-2 right-4 w-4 h-4 bg-white border-l border-t border-border transform rotate-45"></div>
                 <div className="apps-grid grid grid-cols-4 gap-3">
                   {appsData.map((app, index) => (
@@ -231,8 +234,8 @@ const SectionHero = () => {
               </div>
             )}
           </div>
-          <div className="flex xs:flex-col xs:gap-[20px] xl:flex-row items-center justify-between bg-background pb-[40px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="flex xs:flex-col xs:gap-5 xl:flex-row items-center justify-between bg-background pb-8 lg:pb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full xl:w-auto">
               <Weather />
               <div className="lg:block hidden">
                 <Extensions />
@@ -250,7 +253,7 @@ const SectionHero = () => {
               </div>
             </div>
           </div>
-          <div className="inner-wrap grid grid-cols-1 2xl:grid-cols-2 justify-between">
+          <div className="inner-wrap grid grid-cols-1 2xl:grid-cols-2 justify-between gap-6">
             <div className="inner-left w-full">
               <Television />
             </div>
