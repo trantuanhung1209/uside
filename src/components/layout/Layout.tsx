@@ -18,22 +18,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       {!isHomePage && <Header />}
-      <div className={isHomePage ? "flex w-full overflow-x-hidden" : "w-full overflow-x-hidden"}>
+      <div className={isHomePage ? "flex" : ""}>
         {isHomePage && (
-          <div
-            className="z-40 h-fit xs:ml-[-44px] sm:ml-0"
-            style={{
-              position: "fixed",
-              left: "0.5rem",
-              top: "50dvh",
-              transform: "translateY(-50%)",
-              willChange: "auto",
-            }}
-          >
+          <div className="sticky left-2 top-1/2 z-50 transition-all duration-700 ease-out xs:ml-[-40px] sm:ml-0">
             <FloatingStepProgress />
           </div>
         )}
-        <main className="min-w-0 flex-1 overflow-x-hidden">{children}</main>
+        <main className="overflow-x-hidden">{children}</main>
       </div>
       <Footer />
 
@@ -44,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       />
 
       {/* Change Accent Color - Floating button available on all pages */}
-      <div className={isHomePage ? "fixed top-24 right-3 z-30 lg:top-4 lg:right-4" : "fixed top-24 right-3 z-30 lg:right-4"}>
+      <div className={isHomePage ? "fixed top-28 right-2 lg:top-1 lg:right-2 z-10 3xl:top-4 3xl:right-4" : "fixed top-25 right-4 z-10"}>
         <ChangeAccentColor />
       </div>
     </>

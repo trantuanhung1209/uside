@@ -6,13 +6,10 @@ const FloatingMusicControl = () => {
   const { currentAccentColor } = useAccentColor();
 
   return (
-    <div className="fixed uside-safe-bottom uside-safe-right z-50">
+    <div className="inline-block fixed bottom-[3%] left-[85%] lg:left-[95%] z-50">
       <button
-        className="lg:w-14 lg:h-14 w-11 h-11 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group relative overflow-hidden flex items-center justify-center focus:outline-none cursor-pointer shadow-lg section-neumorphic uside-focus-ring"
+        className="lg:w-14 lg:h-14 w-10 h-10 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group relative overflow-hidden flex items-center justify-center focus:outline-none cursor-pointer shadow-lg section-neumorphic"
         onClick={toggleMusic}
-        type="button"
-        aria-pressed={isPlaying}
-        aria-label={isPlaying ? "Dừng nhạc nền" : "Phát nhạc nền"}
         title={isPlaying ? "Dừng nhạc" : "Phát nhạc"}
         style={{
           focusRingColor: `color-mix(in srgb, ${currentAccentColor} 20%, transparent)`,

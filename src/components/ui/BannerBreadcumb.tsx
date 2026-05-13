@@ -4,7 +4,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
   return (
     <>
       <section
-        className="section-bg w-full xl:h-[520px] xs:h-[300px] bg-border flex items-end justify-center relative overflow-hidden"
+        className="section-bg w-full xl:h-[550px] xs:h-[280px] bg-border flex items-end justify-center relative overflow-hidden "
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
@@ -13,7 +13,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
         }}
       >
         {/* Overlay gradient for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-text-primary/70 via-text-primary/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-text-primary/60 via-transparent to-transparent"></div>
 
         {/* Animated particles background */}
         <div className="absolute inset-0 overflow-hidden">
@@ -46,11 +46,11 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
           ></div>
         </div>
 
-        <div className="breadcrumb-container relative z-1 mb-5 lg:mb-8 px-4 py-3 lg:px-6 lg:py-4 bg-background/20 backdrop-blur-md rounded-2xl border border-white/30 shadow-2xl transform hover:scale-[1.02] transition-all duration-300 max-w-[calc(100vw-2rem)]">
-          <nav className="breadcrumb flex items-center lg:gap-4 lg:text-lg xs:text-sm xs:gap-2" aria-label="Breadcrumb">
+        <div className="breadcrumb-container relative z-1 lg:mb-8 lg:px-6 lg:py-4 xs:mb-4 xs:px-3 xs:py-2 bg-background/10 backdrop-blur-md rounded-2xl border border-border shadow-2xl transform hover:scale-105 transition-all duration-300 xs:scale-70 xs:hover:scale-72 lg:scale-100 lg:hover:scale-105">
+          <nav className="breadcrumb flex items-center lg:gap-4 lg:text-lg xs:text-base xs:gap-2">
             <NavLink
               to="/"
-              className="group flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 relative uside-focus-ring rounded-lg"
+              className="group flex items-center gap-2 text-text-secondary hover:text-text-primary transition-all duration-300 relative"
             >
               <svg
                 className="w-5 h-5 group-hover:animate-pulse"
@@ -67,7 +67,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
 
             <div className="breadcrumb-separator flex items-center">
               <svg
-                className="w-4 h-4 text-white/70 text-2xl animate-pulse"
+                className="w-4 h-4 text-text-placeholder text-2xl animate-pulse"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -81,7 +81,7 @@ const BannerBreadcrumb= ({ pageName, image } : { pageName: string; image: string
 
             <NavLink
               to="/about"
-              className="group flex items-center gap-2 text-white font-semibold relative uside-focus-ring rounded-lg"
+              className="group flex items-center gap-2 text-text-primary font-semibold relative"
             >
               <svg
                 className="w-5 h-5 group-hover:animate-spin"
