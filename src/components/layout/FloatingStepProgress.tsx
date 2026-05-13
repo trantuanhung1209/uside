@@ -137,10 +137,11 @@ const FloatingStepProgress = () => {
 
   return (
     <>
-      <div className="relative">
+      <div className="sticky left-2 top-1/2">
         {/* Toggle Button - Only show on small screens */}
         <div
           className={"transition-all duration-700 ease-out 3xl:hidden xs:translate-x-[-10px] xs:scale-70 sm:scale-100 sm:hidden" + isScrollingDown}
+          style={{ transform: "translateY(-50%)" }}
         >
           <button
             onClick={handleToggleVisibility}
@@ -174,7 +175,7 @@ const FloatingStepProgress = () => {
             isVisible || isExpanded ? "opacity-100 pointer-events-auto scale-100" : "opacity-0 pointer-events-none scale-95"
           }`}
           style={{
-            transform: isVisible || isExpanded ? "translateX(3rem)" : "translateX(0)",
+            transform: `translateY(-50%) ${isVisible || isExpanded ? "translateX(3rem)" : "translateX(0)"}`,
           }}
         >
           {/* Container */}
