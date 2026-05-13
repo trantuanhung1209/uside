@@ -13,7 +13,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
     switch (type) {
       case 'hero':
         return (
-          <div className="min-h-screen animate-pulse">
+          <div className="min-h-screen animate-pulse" aria-hidden="true">
             <div className="container mx-auto px-4 py-16">
               <div className="h-16 bg-gray-200 rounded-lg mb-8 w-3/4 mx-auto"></div>
               <div className="h-96 bg-gray-200 rounded-lg mb-8"></div>
@@ -27,7 +27,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
       
       case 'news':
         return (
-          <div className="py-16 animate-pulse">
+          <div className="py-16 animate-pulse" aria-hidden="true">
             <div className="container mx-auto px-4">
               <div className="h-8 bg-gray-200 rounded w-1/2 mx-auto mb-4"></div>
               <div className="h-4 bg-gray-200 rounded w-1/3 mx-auto mb-8"></div>
@@ -46,7 +46,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
       
       case 'about':
         return (
-          <div className="py-16 animate-pulse">
+          <div className="py-16 animate-pulse" aria-hidden="true">
             <div className="container mx-auto px-4">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
@@ -65,7 +65,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
       
       case 'faq':
         return (
-          <div className="py-16 animate-pulse">
+          <div className="py-16 animate-pulse" aria-hidden="true">
             <div className="container mx-auto px-4">
               <div className="h-8 bg-gray-200 rounded w-1/2 mx-auto mb-8"></div>
               <div className="space-y-4 max-w-2xl mx-auto">
@@ -82,7 +82,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
       
       default:
         return (
-          <div className="py-16 animate-pulse">
+          <div className="py-16 animate-pulse" aria-hidden="true">
             <div className="container mx-auto px-4">
               <div className="h-8 bg-gray-200 rounded w-1/2 mx-auto mb-4"></div>
               <div className="h-4 bg-gray-200 rounded w-1/3 mx-auto mb-8"></div>

@@ -99,7 +99,8 @@ const SearchInput = () => {
         onFocus={() => setShowPopup(true)}
         onClick={() => setShowPopup(true)}
         placeholder={"Tìm kiếm..."}
-        className="search-input w-full px-5 xs:py-1 lg:py-2 xs:text-base bg-transparent rounded-xl focus:outline-none transition-all duration-300"
+        className="search-input w-full pl-5 pr-14 xs:py-2 lg:py-2.5 xs:text-base bg-transparent rounded-xl focus:outline-none transition-all duration-300 uside-focus-ring"
+        aria-label="Tìm kiếm nội dung USide"
         style={{
           color: "var(--color-text-primary)",
           boxShadow:
@@ -109,7 +110,7 @@ const SearchInput = () => {
 
       {/* Icon search */}
       <div
-        className="absolute right-3 top-1/2 transform -translate-y-1/2 lg:w-10 lg:h-10 w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 lg:w-10 lg:h-10 w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-6 shadow-lg"
         style={{
           background:
             "linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-accent) 100%)",
@@ -141,7 +142,7 @@ const SearchInput = () => {
       {showPopup && (
         <div
           ref={popupRef}
-          className="absolute left-0 lg:left-[-50px] top-[120%] mt-2 w-[280px] lg:w-[380px] z-50 section-neumorphic rounded-2xl shadow-lg p-4 flex flex-col gap-4"
+          className="absolute left-0 lg:left-[-50px] top-[120%] mt-2 w-[min(90vw,380px)] z-50 section-neumorphic rounded-2xl shadow-lg p-4 flex flex-col gap-4 border border-white/70 bg-background/95 backdrop-blur-md"
         >
           {/* Plugins */}
           <div>
@@ -150,7 +151,7 @@ const SearchInput = () => {
               {plugins.map((plugin) => (
                 <button
                   key={plugin.id}
-                  className="px-3 cursor-pointer py-2 rounded-xl bg-accent/10 text-accent font-medium text-sm hover:bg-accent hover:text-white transition"
+                  className="px-3 cursor-pointer py-2 rounded-xl bg-accent/10 text-accent font-medium text-sm hover:bg-accent hover:text-white transition uside-focus-ring"
                   onClick={() => {
                     setShowPopup(false);
                     navigate(`/${plugin.link}`);

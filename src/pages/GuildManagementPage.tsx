@@ -129,7 +129,8 @@ const GuildManagementPage: React.FC = () => {
 
       if (editingGuild) {
         // Update existing guild - remove id before sending to update function
-        const { id: _, ...updateData } = guildData;
+        const { id, ...updateData } = guildData;
+        void id;
         if (!editingGuild.id) throw new Error("Guild ID is missing");
         console.log('🔄 Updating guild:', { id: editingGuild.id, updateData });
         const result = await updateGuild(editingGuild.id, updateData);
