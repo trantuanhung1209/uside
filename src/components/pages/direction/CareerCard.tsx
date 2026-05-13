@@ -19,15 +19,6 @@ interface CareerCardProps {
 export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const defaultShadow = `
-    10px 10px 20px var(--color-shadow),
-    -10px -10px 20px #FAFBFF
-  `;
-  const hoverShadow = `
-    18px 18px 36px var(--color-shadow),
-    -18px -18px 36px #FAFBFF,
-    0 0 30px rgba(0, 210, 255, 0.1)
-  `;
 
   // Animation effect when card appears
   useEffect(() => {
@@ -39,9 +30,9 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
     <div
       className={`
         group relative overflow-hidden rounded-2xl 
-        p-4 sm:p-6 md:p-8 h-full
+        p-4 sm:p-6 md:p-8
         transition-all duration-700 ease-out
-        transform hover:scale-[1.01]
+        transform hover:scale-[1.02]
         ${index % 2 === 0 ? "" : "lg:flex-row-reverse"}
         ${
           isVisible
@@ -51,14 +42,38 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
       `}
       style={{
         background: `var(--color-background)`,
-        boxShadow: isHovered ? hoverShadow : defaultShadow,
+        boxShadow: `
+          10px 10px 20px var(--color-shadow),
+          -10px -10px 20px #FAFBFF
+        `,
         transition: "all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
       }}
       onMouseEnter={() => {
         setIsHovered(true);
+        // Update hover shadow using CSS variables
+        const element = document.querySelector(
+          `[data-career="${career.id}"]`
+        ) as HTMLElement;
+        if (element) {
+          element.style.boxShadow = `
+            25px 25px 50px var(--color-shadow),
+            -25px -25px 50px #FAFBFF,
+            0 0 30px rgba(0, 210, 255, 0.1)
+          `;
+        }
       }}
       onMouseLeave={() => {
         setIsHovered(false);
+        // Reset to default shadow
+        const element = document.querySelector(
+          `[data-career="${career.id}"]`
+        ) as HTMLElement;
+        if (element) {
+          element.style.boxShadow = `
+            10px 10px 20px var(--color-shadow),
+            -10px -10px 20px #FAFBFF
+          `;
+        }
       }}
       data-career={career.id}
     >
@@ -156,7 +171,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
         >
           <div
             className={`
-              w-full sm:w-72 lg:w-80 aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden
+              w-full sm:w-72 lg:w-80 h-48 sm:h-56 lg:h-64 rounded-2xl sm:rounded-3xl overflow-hidden
               transition-all duration-500
               transform group-hover:scale-105
               relative mx-auto
@@ -183,7 +198,7 @@ export const CareerCard: React.FC<CareerCardProps> = ({ career, index }) => {
                 ${isHovered ? "animate-pulse scale-101" : ""}
               `}
               >
-                <img src={career.image} alt={career.title} className="w-full h-full object-cover"/>
+                <img src={career.image} alt={career.title} className="object-cover"/>
               </div>
             </div>
 

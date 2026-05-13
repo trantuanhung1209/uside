@@ -147,11 +147,8 @@ const ChangeAccentColor = () => {
   return (
     <>
       {/* Color Palette Button */}
-      <button
-        type="button"
-        aria-label="Chọn màu cảm xúc"
-        aria-expanded={isPopupOpen}
-        className={`w-12 h-12 cursor-pointer group uside-focus-ring rounded-full ${
+      <div
+        className={`w-12 h-12 cursor-pointer group ${
           !hasInteracted ? 'animate-gentle-bounce' : hasNewColors ? 'animate-smooth-pulse' : ''
         }`}
         onClick={togglePopup}
@@ -216,7 +213,7 @@ const ChangeAccentColor = () => {
             </div>
           )}
         </div>
-      </button>
+      </div>
 
           {/* Color Picker Popup */}
       {isPopupOpen && (
@@ -229,7 +226,7 @@ const ChangeAccentColor = () => {
           
           {/* Popup */}
           <div
-            className="fixed top-36 lg:top-20 right-3 lg:right-4 w-56 max-w-[calc(100vw-1.5rem)] z-50"
+            className="fixed xs:top-[170px] lg:top-16 right-4 w-48 z-50"
             style={{
               animation: "popupSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
             }}
@@ -435,8 +432,6 @@ const ChangeAccentColor = () => {
       {showNotification && (
         <div
           className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-3 py-2 rounded-lg transition-all duration-300"
-          role="status"
-          aria-live="polite"
           style={{
             background: "var(--color-background)",
             boxShadow: "-6px -6px 12px #FAFBFF, 6px 6px 12px rgba(22, 17, 29, 0.2)",

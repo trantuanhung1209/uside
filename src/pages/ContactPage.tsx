@@ -27,27 +27,22 @@ const FormField: React.FC<FormFieldProps> = ({
   placeholder,
   required = false,
 }) => {
-  const inputId = `contact-${name}`;
-
   return (
     <div>
       <label
-        htmlFor={inputId}
         className="block text-sm font-semibold mb-3"
         style={{ color: "var(--color-text-primary)" }}
       >
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <input
-        id={inputId}
         type={type}
         name={name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium uside-focus-ring"
+        className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
         style={{
           background: "var(--color-secondary)",
           color: "var(--color-text-primary)",
@@ -125,14 +120,13 @@ const ContactPage: React.FC = () => {
 
   return (
     <Layout>
-      <section className="py-10 lg:py-12">
+      <section className="py-[40px]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Button */}
           <div className="mb-8">
             <button
-              type="button"
               onClick={handleGoBack}
-              className="neumorphic-button-secondary uside-focus-ring"
+              className="neumorphic-button-secondary"
               style={{ 
               padding: "10px 20px",
               fontWeight: "500",
@@ -161,7 +155,7 @@ const ContactPage: React.FC = () => {
             {/* Contact Form */}
             <div className="">
               <div
-                className="p-5 sm:p-8 rounded-3xl"
+                className="p-8 rounded-3xl"
                 style={{
                   background: "var(--color-background)",
                   boxShadow: `
@@ -184,7 +178,7 @@ const ContactPage: React.FC = () => {
                   {/* Name and Email Row */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <FormField
-                      label="Họ và tên"
+                      label="👤 Họ và tên"
                       name="name"
                       type="text"
                       value={formData.name}
@@ -193,7 +187,7 @@ const ContactPage: React.FC = () => {
                       required
                     />
                     <FormField
-                      label="Email"
+                      label="📧 Email"
                       name="email"
                       type="email"
                       value={formData.email}
@@ -207,19 +201,17 @@ const ContactPage: React.FC = () => {
                   <div className="grid grid-cols-1 gap-6">
                     <div>
                       <label
-                        htmlFor="contact-subject"
                         className="block text-sm font-semibold mb-3"
                         style={{ color: "var(--color-text-primary)" }}
                       >
-                        Chủ đề<span className="text-red-500 ml-1">*</span>
+                        🏷️ Chủ đề
                       </label>
                       <select
-                        id="contact-subject"
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium uside-focus-ring"
+                        className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium"
                         style={{
                           background: "var(--color-secondary)",
                           color: "var(--color-text-primary)",
@@ -242,21 +234,19 @@ const ContactPage: React.FC = () => {
                   {/* Message Field */}
                   <div>
                     <label
-                      htmlFor="contact-message"
                       className="block text-sm font-semibold mb-3"
                       style={{ color: "var(--color-text-primary)" }}
                     >
-                      Tin nhắn<span className="text-red-500 ml-1">*</span>
+                      💬 Tin nhắn
                     </label>
                     <textarea
-                      id="contact-message"
                       name="message"
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Nhập nội dung tin nhắn của bạn..."
                       required
-                      className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium resize-none uside-focus-ring"
+                      className="w-full px-4 py-3 bg-transparent border-0 outline-none rounded-xl text-sm font-medium resize-none"
                       style={{
                         background: "var(--color-secondary)",
                         color: "var(--color-text-primary)",
@@ -273,7 +263,7 @@ const ContactPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`neumorphic-button cursor-pointer flex items-center gap-2 uside-focus-ring
+                      className={`neumorphic-button cursor-pointer flex items-center gap-2
                         ${isSubmitting ? "animate-pulse" : ""}
                       `}
                     >
@@ -283,9 +273,9 @@ const ContactPage: React.FC = () => {
                           Đang gửi...
                         </>
                       ) : submitStatus === "success" ? (
-                        <>Đã gửi thành công!</>
+                        <>✅ Đã gửi thành công!</>
                       ) : submitStatus === "error" ? (
-                        <>Có lỗi xảy ra</>
+                        <>❌ Có lỗi xảy ra</>
                       ) : (
                         <>
                           <BsRocketTakeoffFill /> Gửi tin nhắn
@@ -306,8 +296,6 @@ const ContactPage: React.FC = () => {
                             ? "bg-green-100 text-green-800 border border-green-200"
                             : "bg-red-100 text-red-800 border border-red-200"
                         }`}
-                        role="status"
-                        aria-live="polite"
                       >
                         {statusMessage}
                       </div>

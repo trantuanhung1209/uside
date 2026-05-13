@@ -28,14 +28,6 @@
 body {
   background: #f0f1f4;
   font-family: 'Quicksand', sans-serif;
-  color: var(--color-text-primary);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 @theme {
@@ -60,12 +52,6 @@ html {
   /* viền nhẹ */
   --color-shadow: rgba(22, 17, 29, 0.15);
   /* bóng tối nhẹ */
-  --shadow-soft: -8px -8px 16px #FAFBFF, 8px 8px 16px var(--color-shadow);
-  --shadow-soft-sm: -4px -4px 8px #FAFBFF, 4px 4px 8px var(--color-shadow);
-  --shadow-inset: inset -6px -6px 12px #FAFBFF, inset 6px 6px 12px var(--color-shadow);
-  --radius-card: 24px;
-  --radius-control: 16px;
-  --transition-ui: 220ms ease;
 
   --color-accent-1: #ffb3ba;
   /* hồng pastel (nhẹ nhàng, nữ tính, dùng cho highlight nhỏ) */
@@ -90,78 +76,6 @@ html {
   --breakpoint-5xl: 1280px;
   --breakpoint-6xl: 1340px;
   --breakpoint-7xl: 1400px;
-}
-
-.uside-surface {
-  background: var(--color-background);
-  box-shadow: var(--shadow-soft);
-}
-
-.uside-surface-sm {
-  background: var(--color-background);
-  box-shadow: var(--shadow-soft-sm);
-}
-
-.uside-inset {
-  background: var(--color-secondary);
-  box-shadow: var(--shadow-inset);
-}
-
-.uside-focus-ring:focus-visible,
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
-  outline-offset: 3px;
-}
-
-.uside-interactive {
-  transition:
-    transform var(--transition-ui),
-    box-shadow var(--transition-ui),
-    color var(--transition-ui),
-    background-color var(--transition-ui),
-    border-color var(--transition-ui);
-}
-
-.uside-interactive:hover {
-  transform: translateY(-2px);
-}
-
-.uside-card-grid {
-  align-items: stretch;
-}
-
-.uside-safe-bottom {
-  bottom: max(1rem, env(safe-area-inset-bottom));
-}
-
-.uside-safe-right {
-  right: max(1rem, env(safe-area-inset-right));
-}
-
-@media (max-width: 480px) {
-  .uside-mobile-compact {
-    border-radius: 18px;
-    padding-inline: 1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
 }
 
 
@@ -2569,3 +2483,4 @@ body::-webkit-scrollbar {
   animation-duration: 1s;
   opacity: 0.6;
 }
+

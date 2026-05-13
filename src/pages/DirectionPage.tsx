@@ -61,7 +61,7 @@ const DirectionPage: React.FC = () => {
 
           {/* Career Paths Section */}
           <div
-            className="mt-10 sm:mt-12 bg-background rounded-3xl p-4 sm:p-6 md:p-8 mb-8 relative"
+            className="mt-12 bg-background rounded-2xl p-4 sm:p-6 md:p-8 mb-8 relative"
             style={{
               boxShadow:
                 "inset -10px -10px 20px #FAFBFF, inset 10px 10px 20px rgba(22, 17, 29, 0.1)",
@@ -77,12 +77,12 @@ const DirectionPage: React.FC = () => {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex items-center justify-between mt-8 px-1 sm:px-0 gap-3">
+            <div className="flex items-center justify-between mt-8 px-4 sm:px-0">
               {/* Previous Button */}
               <button
                 onClick={handlePrevious}
                 className={`
-                  group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl shrink-0 uside-focus-ring
+                  group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl
                   transition-all duration-300 ease-out
                   transform hover:scale-110 active:scale-95
                   focus:outline-none focus:ring-2 focus:ring-offset-2
@@ -118,7 +118,7 @@ const DirectionPage: React.FC = () => {
               </button>
 
               {/* Career Counter & Indicators */}
-              <div className="flex min-w-0 flex-col items-center gap-3 sm:gap-4">
+              <div className="flex flex-col items-center gap-3 sm:gap-4">
                 {/* Career Progress */}
                 <div
                   className="text-xs sm:text-sm font-medium"
@@ -128,13 +128,13 @@ const DirectionPage: React.FC = () => {
                 </div>
 
                 {/* Dot Indicators */}
-                <div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap max-w-full">
+                <div className="flex items-center gap-1 sm:gap-2">
                   {careerPaths.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentCareerIndex(index)}
                       className={`
-                        w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-0 cursor-pointer uside-focus-ring
+                        w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border-0 cursor-pointer
                         transition-all duration-300 ease-out
                         transform hover:scale-125 focus:outline-none focus:scale-150
                         ${index === currentCareerIndex ? "animate-pulse" : ""}
@@ -174,7 +174,7 @@ const DirectionPage: React.FC = () => {
               <button
                 onClick={handleNext}
                 className={`
-                  group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl shrink-0 uside-focus-ring
+                  group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl
                   transition-all duration-300 ease-out
                   transform hover:scale-110 active:scale-95
                   focus:outline-none focus:ring-2 focus:ring-offset-2
@@ -212,7 +212,7 @@ const DirectionPage: React.FC = () => {
 
             {/* Career Navigation Info */}
             <div
-              className="text-center mt-6 space-y-3"
+              className="text-center mt-6 space-y-2"
               style={{ color: "var(--color-text-secondary)" }}
             >
               <div className="text-xs">
@@ -220,7 +220,7 @@ const DirectionPage: React.FC = () => {
                 phù hợp.
               </div>
               <button
-                className="neumorphic-button uside-focus-ring"
+                className="neumorphic-button"
                 onClick={() => {
                   navigate(`/direction/${currentCareer.id}`);
                 }}
