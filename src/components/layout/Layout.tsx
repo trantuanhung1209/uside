@@ -20,16 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {!isHomePage && <Header />}
       <div className={isHomePage ? "flex w-full overflow-x-hidden" : "w-full overflow-x-hidden"}>
         {isHomePage && (
-          <div
-            className="z-40 h-fit xs:ml-[-44px] sm:ml-0"
-            style={{
-              position: "fixed",
-              left: "0.5rem",
-              top: "50dvh",
-              transform: "translateY(-50%)",
-              willChange: "auto",
-            }}
-          >
+          <div className="fixed left-2 top-1/2 z-40 h-fit -translate-y-1/2 transition-all duration-700 ease-out xs:ml-[-44px] sm:ml-0">
             <FloatingStepProgress />
           </div>
         )}

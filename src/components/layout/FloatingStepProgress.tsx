@@ -17,6 +17,8 @@ const FloatingStepProgress = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
 
   // Định nghĩa các sections
   const sections: Section[] = useMemo(
@@ -36,12 +38,34 @@ const FloatingStepProgress = () => {
     return window.innerWidth <= 576; // xl breakpoint is 576px
   };
 
-  // Handle scroll progress and active section detection
+  // Handle scroll with auto-hide functionality for xl and smaller screens
   const handleScroll = useCallback(() => {
     const scrollTop = window.pageYOffset;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     setScrollProgress(Math.min(100, Math.max(0, scrollPercent)));
+
+    // Auto-hide logic only for xl and smaller screens
+    if (isXlOrSmaller()) {
+      const currentScrollY = scrollTop;
+      const scrollDifference = Math.abs(currentScrollY - lastScrollY);
+
+      if (scrollDifference > 10) {
+        // Threshold to prevent excessive toggling
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          setIsScrollingDown(true);
+          setIsVisible(false);
+          setIsExpanded(false);
+        } else {
+          // Scrolling up
+          setIsScrollingDown(false);
+          setIsVisible(false);
+          setIsExpanded(false);
+        }
+        setLastScrollY(currentScrollY);
+      }
+    }
 
     // Section detection
     const windowHeight = window.innerHeight;
@@ -58,7 +82,7 @@ const FloatingStepProgress = () => {
         }
       }
     }
-  }, [sections]);
+  }, [sections, lastScrollY]);
 
   useEffect(() => {
     handleScroll();
@@ -116,7 +140,7 @@ const FloatingStepProgress = () => {
       <div className="relative">
         {/* Toggle Button - Only show on small screens */}
         <div
-          className="transition-all duration-700 ease-out 3xl:hidden xs:translate-x-[-10px] xs:scale-70 sm:scale-100 sm:hidden"
+          className={"transition-all duration-700 ease-out 3xl:hidden xs:translate-x-[-10px] xs:scale-70 sm:scale-100 sm:hidden" + isScrollingDown}
         >
           <button
             onClick={handleToggleVisibility}
@@ -146,9 +170,12 @@ const FloatingStepProgress = () => {
 
         {/* Main Progress Component */}
         <div
-          className={`transition-opacity duration-300 ease-out xs:w-[100px] 2xl:w-[135px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 5xl:scale-95 6xl:scale-100 ${
+          className={`transition-all duration-700 ease-out xs:w-[100px] 2xl:w-[135px] 2xl:translate-x-[-50px] xs:ml-[-120px] 2xl:ml-0 xs:translate-x-[100px] xs:scale-70 sm:scale-80 md:scale-85 5xl:scale-95 6xl:scale-100 ${
             isVisible || isExpanded ? "opacity-100 pointer-events-auto scale-100" : "opacity-0 pointer-events-none scale-95"
           }`}
+          style={{
+            transform: isVisible || isExpanded ? "translateX(3rem)" : "translateX(0)",
+          }}
         >
           {/* Container */}
           <div className="relative bg-background pt-[10px] rounded-3xl shadow-sm hover:scale-101 transition-all duration-300 hover:shadow-lg xs:translate-y-[-30%] lg:translate-y-0">
